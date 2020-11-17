@@ -6,6 +6,8 @@
     --font-family: Bariol Regular, sans-serif;
 
     --image-logo: ../images/logo-sys-with-name.svg;
+
+    --page-max-width: 1140px;
 }
 
 @font-face {
@@ -17,8 +19,13 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: var(--color-background);
     font-family: var(--font-family);
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-background);
 }
 
 /*

@@ -5,6 +5,7 @@ import Routes from './routes';
 
 //Components
 import PageHeader from './components/page-header/page-header';
+import PageFooter from './components/page-footer/page-footer';
 
 //CSS
 import './styles/global.css'
@@ -12,9 +13,11 @@ import './styles/global.css'
 function App() { 
     return (
         <div id="page-content" className="page-content">
-                <PageHeader/>
+                <PageHeader/> 
 
                 <Routes/>
+
+                <PageFooter/>
         </div>
     )
 }

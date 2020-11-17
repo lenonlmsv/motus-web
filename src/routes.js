@@ -11,7 +11,6 @@ function Routes() {
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Opportunities}/>
-                
             </Switch>
         </BrowserRouter>
     )
