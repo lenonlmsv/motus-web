@@ -1,0 +1,35 @@
+:root {
+    --color-background: #FFF;
+    --color-font-primary: #0047a8;
+    --color-font-secondary: #ea0870;
+
+    --font-family: Bariol Regular, sans-serif;
+
+    --image-logo: ../images/logo-sys-with-name.svg;
+}
+
+@font-face {
+    font-family: Bariol Regular;
+    src: url(../fonts/bariol_light-webfont.ttf); 
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-background);
+    font-family: var(--font-family);
+}
+
+/*
+#page-content {
+    width: 100vw;
+}
+
+@media (min-width:1200px) {
+    #page-content {
+        display: flex;
+        flex-direction: column;
+    }
+}
+*/

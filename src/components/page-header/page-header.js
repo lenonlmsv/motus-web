@@ -1,25 +1,95 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 //CSS
-import './page-header.css'
+import './styles/page-header.css'
+
+//Routes
+import {BrowserRouter, Link} from 'react-router-dom';
+
+//Images
+import sysLogo from '../../images/logo-sys-with-name.svg'
+import { AiOutlineDown } from 'react-icons/ai';
+import { FaLinkedinIn } from 'react-icons/fa';
+
 
 function PageHeader() {
+    const [showItens, setShowItens] = useState('hover-content-hide');
+
+    const showOnHover = () => {
+        setTimeout(() => {
+            setShowItens('hover-content-show');
+        }, 300); 
+    }
+
+    const hideOnBlur = (event) => {
+        setTimeout(() => {
+            setShowItens('hover-content-hide');
+        }, 300); 
+    }
+
     return (
-        <header>
-            <div id="container-logo">
-                <a href="">
-                    <div className="container-image"></div>
-                </a>
-            </div>
-
-            <div id="container-links">
-
-                <div id="container-shortcut">
-
+        <div id="header-content">
+            <header id="page-header">
+                <div className="container-logo">
+                    <a href="https://www.sysmanager.com.br">
+                        <img className='sys-logo' src={sysLogo} alt='Sys-Logo'/>
+                    </a>
                 </div>
-            </div>
 
-        </header>
+                <div className="container-links">
+                    <div onMouseOver={showOnHover} onMouseOut={hideOnBlur} className="link-item" id="hover-trigger">
+                        <div className="div-hover">
+                            SEJA BEM VINDO
+                            <i>
+                                <AiOutlineDown/>
+                            </i>
+                        </div>
+                        <div className={showItens}>
+                            <ul>
+                                <li>
+                                    <a href='https://www.sysmanager.com.br/quem-somos/'>
+                                        Quem Somos
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href='https://www.sysmanager.com.br/clientes-e-parceiros/'>
+                                        Clientes e parceros
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <a className="link-item" href="https://www.sysmanager.com.br/o-que-oferecemos/">
+                        O QUE OFERECEMOS
+                    </a>
+
+                    <a className="link-item" href="https://www.sysmanager.com.br/resultados/">
+                        RESULTADOS
+                    </a>
+
+                    <BrowserRouter>
+                    <Link to="/" className="link-item">
+                        JUNTE-SE A NÓS 
+                    </Link>
+                    </BrowserRouter>
+
+                    <a className="link-item" href="https://www.sysmanager.com.br/contato/">
+                        CONTATO
+                    </a>
+                </div>
+
+                <div className="container-linkedin">
+                        <a className="backButton" href="https://www.sysmanager.com.br">
+                            Voltar
+                        </a>
+                        <a target='_blank' href="https://www.linkedin.com/company/sys-manager-informática">
+                            <FaLinkedinIn className="linkedinIcon"/>
+                        </a>
+                </div>
+            </header>
+        </div>
     )
 }
 

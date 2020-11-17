@@ -1,10 +1,19 @@
 import React from 'react';
 
+//Routes
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+//Pages
+import Opportunities from './pages/opportunities';
 
 function Routes() {
     return (
-        <p style={{fontSize:"150px"}}>exemplo</p>
+        <BrowserRouter>
+            <Switch>
+                <Route path="/" exact component={Opportunities}/>
+                
+            </Switch>
+        </BrowserRouter>
     )
 }
 
