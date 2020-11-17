@@ -84,7 +84,10 @@ function PageHeader() {
                         <a className="backButton" href="https://www.sysmanager.com.br">
                             Voltar
                         </a>
-                        <a target='_blank' href="https://www.linkedin.com/company/sys-manager-informática">
+                        <a 
+                            target='_blank' 
+                            rel="noreferrer noopener" 
+                            href="https://www.linkedin.com/company/sys-manager-informática">
                             <FaLinkedinIn className="linkedinIcon"/>
                         </a>
                 </div>

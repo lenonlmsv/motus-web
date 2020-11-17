@@ -15,8 +15,10 @@ function App() {
         <div id="page-content" className="page-content">
                 <PageHeader/> 
 
-                <Routes/>
-
+                <div className="router-content">
+                    <Routes/>
+                </div>
+                
                 <PageFooter/>
         </div>
     )

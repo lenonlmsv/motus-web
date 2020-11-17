@@ -1,0 +1,37 @@
+#image-background-dotted {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.div-image-dotted {
+    background-image: url(../images/dotted-background.svg);
+    background-repeat: no-repeat;
+    position: relative;
+    width: 20rem;
+    height: 11rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-image-content {
+    font-size: 2.5rem;
+    color: var(--color-font-primary);
+    font-weight: normal;
+}
+
+.div-description {
+    display: flex;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-top: -2rem;
+    z-index: 10;
+}
+
+.div-description p {
+    text-align: center;
+}
