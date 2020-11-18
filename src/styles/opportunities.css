@@ -20,6 +20,7 @@
     font-family: var(--font-family-light);
     border: unset;
     cursor: pointer;
+    color: rgba(0,0,0,0.9);
 }
 
 .opportunities-card-closed { /* Used to hide / show opportunitie*/

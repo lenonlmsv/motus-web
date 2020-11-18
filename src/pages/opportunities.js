@@ -2,24 +2,32 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 //Components
-import BackgroundTitle from '../components/background-title/background-title'
+import BackgroundTitle from '../components/background-title/background-title';
 
 //CSS
-import '../styles/opportunities.css'
+import '../styles/opportunities.css';
+
+//Icons
+import { AiOutlineDown, AiOutlineUp} from 'react-icons/ai';
 
 function Opportunities() {
-    //States
+    //States;
     const [card, setCard] = useState('opportunities-card-closed');
     const [description, setDescription] = useState('opportunitie-description-closed');
+    const ArrowDown = <AiOutlineDown style={{color: "rgba(0,0,0,0.5)"}}/>
+    const ArrowUp = <AiOutlineUp style={{color: "rgba(0,0,0,0.5)"}}/>
+    const [iconState, setIconState] = useState(ArrowUp)
     
     const openCard = () => {
         setCard('')
         setDescription('')
+        setIconState(ArrowDown);
     }
     
     const closeCard = () => {
         setCard('opportunities-card-closed');
         setDescription('opportunitie-description-closed');
+        setIconState(ArrowUp);
     }
 
     const triggerCard = (event) => {
@@ -35,12 +43,14 @@ function Opportunities() {
             <div className="opportunities-list">
                 <h1>Vagas em aberto</h1>
                 <div className="opportunities">
-                    <div 
+                    <div // Oportunity begin
                         onClick={triggerCard}
                         className={`opportunities-card ${card}`}>
 
                         <h3>Desenvolvedor React</h3>
-                        <i>ícone</i>
+                        <i>
+                            {iconState}
+                        </i>
                     </div>
 
                     <div className={`opportunitie-description ${description}`}>
@@ -62,11 +72,16 @@ function Opportunities() {
                         <p>
                             is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
                         </p>
+        
+                        {   //Verificar se o usuário possui o vídeo currículo gravado e direcionar:
+                            //para a tela de gravação se não tiver (video-resume)
+                            //para a tela com opções de vídeos, se tiver (oppotunitie-details)
+                        }
 
-                        <Link to={`/opportunities/:id`} className="button button-secondary opportunitie-button">
+                        <Link to={`/`} className="button button-secondary opportunitie-button">
                         Candidate-se
                         </Link>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
