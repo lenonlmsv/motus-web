@@ -3,7 +3,8 @@
     --color-font-primary: #0047a8;
     --color-font-secondary: #ea0870;
 
-    --font-family: Bariol Regular, sans-serif;
+    --font-family-bold: Bariol Regular, sans-serif;
+    --font-family-light: Bariols Light, sans-serif;
 
     --image-logo: ../images/logo-sys-with-name.svg;
 
@@ -12,6 +13,11 @@
 
 @font-face {
     font-family: Bariol Regular;
+    src: url(../fonts/bariol_regular-webfont.ttf); 
+}
+
+@font-face {
+    font-family: Bariol Light;
     src: url(../fonts/bariol_light-webfont.ttf); 
 }
 
@@ -19,13 +25,35 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: var(--font-family);
+    font-family: var(--font-family-bold);
 }
 
 body {
     width: 100vw;
     height: 100vh;
     background-color: var(--color-background);
+}
+
+.router-content {
+   display: flex;
+   justify-content: center;
+   min-height: 150px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 10rem;
+    max-width: 120px;
+    text-decoration: none;
+}
+
+.button-secondary {
+    border: 1px solid var(--color-font-primary);
+    color: var(--color-font-primary);
 }
 
 /*

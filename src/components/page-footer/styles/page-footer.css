@@ -7,11 +7,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
+    position: relative;
     flex-direction: column;
     left: 0;
     bottom: 0;
     width: 100%;
+    margin-top: 2.5rem;
 }
 
 #page-footer .div-footer {
@@ -31,6 +32,7 @@
 
 #page-footer .div-image img {
     height: 5rem;
+    max-height: 250px;
 }
 
 #page-footer .div-copyright {
@@ -59,5 +61,32 @@
 }
 
 @media (min-width: 1200px) {
+    #page-footer .div-footer, #page-footer .div-copyright {
+        max-width: unset;
+    }
+
+    #page-footer .div-info {
+        font-size: 1.2rem;
+    }
     
+    #page-footer .div-footer {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    #page-footer .div-info {
+        align-items: inherit;
+    }
+
+    #page-footer .div-footer .div-image {
+        border-left: 3px solid #fff;
+        height: 12rem;
+        margin: 0 0 0 2rem;
+        padding: 0 0 0 2rem;
+        align-items: center;
+    }
+    
+    #page-footer .div-footer .div-image img {
+        height: 6rem;
+    }
 }

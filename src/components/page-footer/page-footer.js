@@ -4,7 +4,7 @@ import React from 'react';
 import './styles/page-footer.css'
 
 //Image 
-import ImageSys from './images/sys-image-footer.png';
+import ImageSys from './images/sys-image-footer.png'
 
 function PageFooter() { 
     return (
@@ -23,11 +23,11 @@ function PageFooter() {
                           <p>Barra da Tijuca • RJ/RJ • CEP 22775-023</p>
                     </div>
 
-                    <strong>corp@sysmi.com.br | +55 21 2151 1684</strong>
-
-                    <div className="div-image">
-                        <img src={ImageSys} alt="Sys Logo"/>
-                    </div> 
+                    <strong>corp@sysmi.com.br | +55 21 2151 1684</strong> 
+                </div>
+                
+                <div className="div-image">
+                    <img src={ImageSys} alt="Sys Logo"/>
                 </div>
             </div>
 
