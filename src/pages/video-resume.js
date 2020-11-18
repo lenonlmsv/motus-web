@@ -40,6 +40,7 @@ function VideoResume() {
     const handleVideoResume = (event) => {
         const fileTypeName = event.target.files[0].type;
         const isFormat = checkFileType(fileTypeName);
+        //console.log(checkFileType(fileTypeName))
         
         if(isFormat) {
             setShowError('hide-error');
