@@ -18,7 +18,7 @@ function Routes() {
 		<BrowserRouter>
 			<AuthProvider>
 				<Switch>
-					<Route path="/login" component={Login} />
+					<Route path="/login" component={Login}/>
 					<Route
 						path="/oportunidades"
 						exact

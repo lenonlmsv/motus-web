@@ -46,8 +46,8 @@ body {
     align-items: center;
     padding: 1rem;
     border-radius: 25px;
-    width: 10rem;
-    max-width: 120px;
+    width: auto;
+    max-width: auto;
     text-decoration: none;
     transition: 0.4s;
 }
@@ -65,6 +65,7 @@ body {
 .button-primary {
     background-color: var(--color-font-primary);
     color: #fff;
+    border: 0;
 }
 
 .button-primary:hover {

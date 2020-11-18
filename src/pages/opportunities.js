@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 //Components
 import BackgroundTitle from '../components/background-title/background-title';
@@ -18,6 +18,9 @@ function Opportunities() {
     const ArrowUp = <AiOutlineUp style={{color: "rgba(0,0,0,0.5)"}}/>
     const [iconState, setIconState] = useState(ArrowUp)
     
+    //History
+    const history = useHistory();
+
     const openCard = () => {
         setCard('')
         setDescription('')
@@ -32,6 +35,13 @@ function Opportunities() {
 
     const triggerCard = (event) => {
         card !== 'opportunities-card-closed' ? closeCard() : openCard();
+    }
+
+    const checkUservideo = () => {
+        //Checar se o usuário tem vídeo currículo cadastrado
+        const isVideoRecored = true;
+
+        isVideoRecored ? history.push('/oportunidades/:id') : history.push('/video-curriculo')
     }
 
     return (
@@ -54,8 +64,9 @@ function Opportunities() {
                     </div>
 
                     <div className={`opportunitie-description ${description}`}>
-                        <strong>Número de vagas:</strong>
-                        <p id="opportunitie-name">199</p>
+                        {//</div>strong>Número de vagas:</strong>
+                        //<p id="opportunitie-name">199</p>
+                        }
 
                         <strong>Descrição da vaga:</strong>
                         <p id="p">
@@ -78,9 +89,9 @@ function Opportunities() {
                             //para a tela com opções de vídeos, se tiver (oppotunitie-details)
                         }
 
-                        <Link to={`/`} className="button button-secondary opportunitie-button">
-                        Candidate-se
-                        </Link>
+                        <button onClick={checkUservideo} className="button button-secondary opportunitie-button">
+                            Candidate-se
+                        </button>
                     </div> 
                 </div>
             </div>
