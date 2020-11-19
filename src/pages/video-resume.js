@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 //Youtube dependencie
 import Youtube from 'react-youtube'
@@ -35,16 +35,24 @@ function VideoResume() {
         else {
             return false;
         }
-   }
+    }
+
+    const saveVideoResume = () => {
+       //Enviar para o backend
+    }
+    
+    const history = useHistory();
 
     const handleVideoResume = (event) => {
         const fileTypeName = event.target.files[0].type;
         const isFormat = checkFileType(fileTypeName);
-        //console.log(checkFileType(fileTypeName))
         
         if(isFormat) {
             setShowError('hide-error');
             //Enviar para o backend
+            saveVideoResume();
+            
+            history.push('/oportunidades/:id')
         }
         else {
             setShowError('error-div')

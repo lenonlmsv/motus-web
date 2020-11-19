@@ -1,0 +1,156 @@
+#page-opportunitie-details {
+    width: 90vw;
+    max-width: var(--page-max-width);
+}
+
+.opportunitie-detail-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.opportunitie-detail-description button {
+    font-size: 1rem;
+    margin: 0.5rem 0 0 0;
+}
+
+.opportunitie-detail-description p, .opportunitie-detail-description strong {
+    text-align: justify;
+    align-self: baseline;
+}
+
+.opportunitie-detail-description p + strong {
+    margin: 0.5rem 0 0 0;
+}
+
+#record-videos {
+    margin-top: 2rem;
+    text-align: justify;
+}
+
+#record-videos p{
+    margin-top: 1rem;
+}
+
+#video-questions {
+    margin-top: 1rem;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-radius: 2px;
+}
+
+#video-questions .question {
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgba(0,0,0,0.4);
+    border-top: 1px solid rgba(0,0,0,0.4);
+    padding: 0.4rem;
+    align-items: center;
+    background-color: rgba(0,0,0,0.15);
+}
+
+#video-questions .question-check {
+    color: green;
+    margin-left: 0.4rem;
+}
+
+#video-questions .question-check-hide {
+    display: none;
+}
+
+#video-questions .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.4rem;
+}
+
+#video-questions .button {
+    font-size: 1rem;
+}
+
+#video-questions .send-button {
+    border: none;
+    font-size: 1rem;
+    background-color: unset;
+    color: var(--color-font-primary);
+    font-weight: bold;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none
+}
+
+#video-questions .send-button-icon {
+    margin: 0 0.5rem 0 0;
+}
+
+#video-questions .send-button + .send-button {
+    margin-left: 1rem;
+}
+
+#message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+    color: #fff;
+    border-radius: 10px;
+    width: 100%;
+    padding: 0.6rem;
+    margin: 1rem 0 0 0;
+}
+
+.return {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 0 0;
+}
+
+.return .button {
+    align-self: center;
+}
+
+@media (min-width: 1200px) {
+    .opportunitie-detail-description button {
+        align-self: baseline;
+        margin: 1rem 0 0 0;
+    }
+
+    #record-videos p {
+        margin: 0.5rem 0 0 0;
+    }
+
+    #video-questions {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #video-questions .questions {
+        display: flex;
+        width: 100%;
+    }
+
+    #video-questions .questions + .questions {
+        border-top: 1px solid rgba(0,0,0,0.4);
+    }
+
+    #video-questions .question {
+        width: 60%;
+        border: 0;
+        border-right: 1px solid rgba(0,0,0,0.4);
+    }
+
+    #video-questions .actions {
+        width: 40%;
+    }
+    
+    #message {
+        width: 350px;
+    }
+
+    .return {
+        justify-content: initial;
+    }
+}
