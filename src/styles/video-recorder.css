@@ -1,0 +1,4 @@
+#page-video-recorder {
+    width: 90vw;
+    max-width: var(--page-max-width);
+}

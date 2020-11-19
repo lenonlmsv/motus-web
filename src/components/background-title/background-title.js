@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 
 //CSS
 import './styles/background-title.css';
 
 function BackgroundTitle(props) {
+    
     return (
         <div id="image-background-dotted">
             <div className="div-image-dotted">

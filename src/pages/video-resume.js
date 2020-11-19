@@ -106,7 +106,7 @@ function VideoResume() {
                             onChange={handleVideoResume}
                             />
                         
-                        <Link to={'gravar-video'} className="button button-primary">
+                        <Link to={'/gravar-video/resume'} className="button button-primary">
                             Gravar Vídeo
                         </Link>
                     </div>

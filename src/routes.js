@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 //Routes
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -29,7 +29,8 @@ function Routes() {
 						component={OpportunitieDetail}
 					/>
 					<Route path="/video-curriculo" component={VideoResume} />
-					<Route path="/gravar-video" componente={VideoRecord} />
+					<Route path="/gravar-video/20/:id" component={VideoRecord} />
+					<Route path="/gravar-video/:id" component={VideoRecord} />
 				</Switch>
 			</AuthProvider>
 		</BrowserRouter>
