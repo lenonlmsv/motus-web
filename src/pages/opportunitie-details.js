@@ -95,7 +95,9 @@ function OpportunitieDetail() {
                         style={{display: "none"}}
                         />
                     
-                        <Link to={`/gravar-video/:id`} className="send-button">
+                        <Link to={`/gravar-video/resume`} className="send-button"> 
+                            {//Retornar para video/:id
+                            }
                             <FaRecordVinyl className="send-button-icon"/>Gravar vídeo
                         </Link>
 
