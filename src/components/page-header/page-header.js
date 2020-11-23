@@ -36,7 +36,7 @@ function PageHeader() {
                     </a>
                 </div>
 
-                <div className="container-links">
+                <nav className="container-links">
                     <div onMouseOver={showOnHover} onMouseOut={hideOnBlur} className="link-item" id="hover-trigger">
                         <div className="div-hover">
                             SEJA BEM VINDO
@@ -78,7 +78,7 @@ function PageHeader() {
                     <a className="link-item" href="https://www.sysmanager.com.br/contato/">
                         CONTATO
                     </a>
-                </div>
+                </nav>
 
                 <div className="container-linkedin">
                         <a className="backButton" href="https://www.sysmanager.com.br">

@@ -39,7 +39,7 @@ function VideoRecord() {
                     description={`você terá ${timeSeconds.toMMSS()} minutos para gravar sua resposta em vídeo`}/>
 
                 <div id="div-recoder">
-                    y
+                    
                 </div>
             </div>
         )

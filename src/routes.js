@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 //Context
-import { Provider as AuthProvider } from "./context/AuthContext";
+import { Provider as AuthProvider } from "./context/authContext";
 
 //Pages
 import Opportunities from "./pages/opportunities";

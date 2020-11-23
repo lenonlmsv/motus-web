@@ -1,10 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 //CSS
 import './styles/background-title.css';
 
 function BackgroundTitle(props) {
-    
+    useEffect(() => {
+        const pageTitle = props.title;
+        document.querySelector('title').innerText = pageTitle;
+        window.scrollTo(0,0)
+    }, [props.title]) //Executa apenas se o props.title mudar
+
     return (
         <div id="image-background-dotted">
             <div className="div-image-dotted">
