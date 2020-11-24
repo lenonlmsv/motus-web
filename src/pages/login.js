@@ -22,15 +22,13 @@ const Login = () => {
 	const onSubmit = (event) => {
 		event.preventDefault();
 		//return () => signin({ email: values.user, password: values.password });
+		//signin({ email: values.user, password: values.password });
+		console.log("Funciona");
 	};
 
 	return (
 		<div style={teste.Div}>
-			<form
-				onSubmit={() =>
-					signin({ email: values.user, password: values.password })
-				}
-			>
+			<form onSubmit={onSubmit}>
 				<div>
 					<label>Login</label>
 					<input
@@ -51,7 +49,16 @@ const Login = () => {
 						value={values.password}
 					></input>
 				</div>
-				<button style={teste.Button} type="submit">
+				<button
+					style={teste.Button}
+					type="submit"
+					onSubmit={() =>
+						signin({
+							email: values.user,
+							password: values.password,
+						})
+					}
+				>
 					"Login"
 				</button>
 			</form>
