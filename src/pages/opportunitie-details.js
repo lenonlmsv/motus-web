@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 
 //Components
@@ -10,11 +10,17 @@ import '../styles/opportunitie-details.css';
 //Icons
 import { FaUpload, FaDownload, FaRecordVinyl, FaCheck} from 'react-icons/fa';
 
+export const userCandidature = createContext();
+
 function OpportunitieDetail() {
+    //Verificar se devemos colocar o candidatura id num useContext
+
     //States
     const [checkCandidate, setCheckCandidate] = useState(false);
     const [candidature, setCandidature] = useState([])
     const [isVideo, setIsVideo] = useState();
+
+    //Context
 
     useEffect(() => {
         //Checar se o usuário tem a candidatura
@@ -25,6 +31,7 @@ function OpportunitieDetail() {
         //Criar candidatura na base
         
         setCheckCandidate(true);
+
     }
 
     return (
@@ -65,7 +72,10 @@ function OpportunitieDetail() {
                 <p>Por favor, responda as questões abaixo em vídeo:</p>
             </div>
 
-            <div id="video-questions">
+            <div id="video-questions"> 
+                {//Lista de perguntas para o candidato
+                }
+                
                 <div className="questions">
                     <div className="question">
                        Fale um pouco sobre você <FaCheck className="question-check"/>
@@ -85,7 +95,9 @@ function OpportunitieDetail() {
                         style={{display: "none"}}
                         />
                     
-                        <Link to="/gravar-video" className="send-button">
+                        <Link to={`/gravar-video/:id`} className="send-button"> 
+                            {//Retornar para video/:id
+                            }
                             <FaRecordVinyl className="send-button-icon"/>Gravar vídeo
                         </Link>
 
@@ -101,7 +113,7 @@ function OpportunitieDetail() {
             </div>
             
             <div className="return">
-                <Link to="/oportunidades" className="button button-secondary">
+                <Link to="/oportunidades/" className="button button-secondary">
                     Ver oportunidades
                 </Link>
             </div>

@@ -14,16 +14,15 @@ import { FaExclamation }from 'react-icons/fa';
 import BackgroundTitle from '../components/background-title/background-title';
 
 function VideoResume() {
-    const errorMessage = 'Os formatos aceitos são .doc, .docx e .pdf';
+    const errorMessage = 'Somente formatos de vídeo são aceitos';
 
     const [error, setError] = useState(errorMessage);
     const [showError, setShowError] = useState('hide-error')
 
     const checkFileType = (fileType) => {
         const acceptedTypes = [
-            {name:'application/msword', type:' .doc'},
-            {name:'application/vnd.openxmlformats-officedocument.wordprocessingml.document', type:' .docx'},
-            {name:'application/pdf', type:' .pdf'}
+            //Checar tipos de arquivo aceitos
+            //{name:'application/msword', type:' .doc'},
         ]
         
         const isValid = acceptedTypes.find(type => type.name == fileType);
@@ -106,7 +105,7 @@ function VideoResume() {
                             onChange={handleVideoResume}
                             />
                         
-                        <Link to={'gravar-video'} className="button button-primary">
+                        <Link to={'/gravar-video/video-curriculo'} className="button button-primary">
                             Gravar Vídeo
                         </Link>
                     </div>

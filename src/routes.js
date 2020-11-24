@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 
 //Routes
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 //Context
-import { Provider as AuthProvider } from "./context/AuthContext";
+import { Provider as AuthProvider } from "./context/authContext";
 
 //Pages
 import Opportunities from "./pages/opportunities";
@@ -12,6 +12,7 @@ import OpportunitieDetail from "./pages/opportunitie-details";
 import Login from "./pages/login";
 import VideoResume from "./pages/video-resume";
 import VideoRecord from "./pages/video-recorder";
+import CandidateDetails from './pages/candidate-detail';
 
 function Routes() {
 	return (
@@ -19,6 +20,7 @@ function Routes() {
 			<AuthProvider>
 				<Switch>
 					<Route path="/login" component={Login}/>
+					<Route path="/candidato/:id" component={CandidateDetails}/>
 					<Route
 						path="/oportunidades"
 						exact
@@ -29,7 +31,7 @@ function Routes() {
 						component={OpportunitieDetail}
 					/>
 					<Route path="/video-curriculo" component={VideoResume} />
-					<Route path="/gravar-video" componente={VideoRecord} />
+					<Route path="/gravar-video/:id" component={VideoRecord} />
 				</Switch>
 			</AuthProvider>
 		</BrowserRouter>

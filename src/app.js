@@ -11,6 +11,7 @@ import PageFooter from "./components/page-footer/page-footer";
 import "./styles/global.css";
 
 function App() {
+	
 	return (
 		<div id="page-content" className="page-content">
 			<PageHeader />
@@ -20,7 +21,7 @@ function App() {
 			</div>
 
 			<PageFooter />
-		</div>
+ 		</div>
 	);
 }
 

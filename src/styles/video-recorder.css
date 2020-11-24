@@ -1,0 +1,71 @@
+#page-video-recorder {
+    width: 90vw;
+    max-width:
+    var(--page-max-width);
+}
+
+.displayNone, .hideItens {
+    display: none;
+}
+
+video {
+    width: 100%;
+}
+
+.displayFlex {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+#timerContainer {
+    height: 1.5rem;
+    font-size: 1.7rem;
+    font-weight: bold;
+    padding: 2rem 0;
+    color: var(--color-font-primary);
+}
+
+.div-buttons button {
+    font-size: 1.2rem;
+}
+
+.div-buttons button svg {
+    margin-right: 0.2rem;
+}
+
+.div-buttons button + button {
+    margin-left: 0.5rem;
+}
+
+#back-button {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+#back-button button {
+    min-width: 6rem;
+    font-size: 1rem;
+}
+
+@media (min-width: 1200px) {
+    #recorder-block {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    video {
+        width: 60%;
+    }
+
+    .div-buttons button {
+        font-size: 1.5rem;
+    }
+
+    .div-buttons button svg {
+        margin-right: 0.5rem;
+    }
+}

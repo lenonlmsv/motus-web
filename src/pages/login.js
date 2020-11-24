@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Context as AuthContext } from "../context/AuthContext";
+import { Context as AuthContext } from "../context/authContext";
 
 function initialState() {
 	return { user: "", password: "" };
