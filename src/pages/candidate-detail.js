@@ -12,6 +12,9 @@ import { FaTrash } from 'react-icons/fa';
 //Components
 import BackgroundTitle from '../components/background-title/background-title';
 
+//API
+import api from '../services/api'
+
 function CandidateDetails() {
     const params = useParams();
 
@@ -19,9 +22,15 @@ function CandidateDetails() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [linkedin, setLinkedin] = useState('');
+    const [cellNumber, setCellNumber] = useState('')
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [resume, setResume] = useState('');
+
+    
+    if (params.id !== 'cadastro') { //Buscar dados do candidato
+        //api.get(`candidato/${params.id}`)
+    }
 
     const checkFileType = (fileType) => {
         const acceptedTypes = [
@@ -76,136 +85,173 @@ function CandidateDetails() {
         document.querySelector('div.file-details').classList.add('display-none');
     }
 
-    if (params.id === 'cadastro') { //Novo candidato
-
-        const handleSubmit = (e) => {
-            e.preventDefault();
+    async function handleSubmit(e) {
+        e.preventDefault();
             
-            if(resume === '') { //Checa se o currículo foi anexado
-                document.querySelector('div.input-flex.input-block').classList.add('input-error');
-                document.querySelector('div.input-flex.input-block label span').classList.add('text-error');
-                return;
-            }
-
-            
+        if(resume === '') { //Checa se o currículo foi anexado
+            document.querySelector('div.input-flex.input-block').classList.add('input-error');
+            document.querySelector('div.input-flex.input-block label span').classList.add('text-error');
+            return;
         }
 
-        return (
-            <div id='page-candidate-details'>
-                <BackgroundTitle  title="Novo candidato" description="Cadastre-se para concorrer!"/>
-                <main className='display-flex'>                    
-                    <form className="create-candidate" onSubmit={handleSubmit}>
-                        <div className="input-block">
-                            <label htmlFor="name">Nome</label>
-                            <input 
-                                id="name" 
-                                value={name}
-                                type="text"
-                                onChange={event => {setName(event.target.value)}}
-                                required/>
-                        </div>
+        const data = new FormData();
 
-                        <div className="input-block">
-                            <label htmlFor="email">E-mail</label>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                onChange={event => {setEmail(event.target.value)}}
-                                value={email}
-                                required/>
-                        </div>
+        data.append("email",email);
+        data.append("celular", cellNumber);
+        data.append("linkedin", linkedin);
+        data.append("telefone", phone);
+        data.append("senha", password);
+        data.append("login", email);
+        data.append("nome",name)
+            
+        //for (var pair of data.entries()) {
+        //    console.log(pair); 
+        //}
 
-                        <div className="input-block">
-                            <label htmlFor="linkedin">
-                                Linkedin 
-                                <span>
-                                    Informe a url para seu perfil
-                                </span>
-                            </label>
-                            <input 
-                                id='linkedin'
-                                type='text'
-                                onChange={event => {setLinkedin(event.target.value)}}
-                                value={linkedin}/>
-                        </div> 
-
-                        <div className="input-block">
-                            <label htmlFor="phone-number">
-                                Telefone
-                                <span>
-                                    Formato: 10 ou 11 dígitos com DDD (21999999999)
-                                </span>
-                            </label>
-                            <input 
-                                id="phone-number" 
-                                value={phone}
-                                type="text"
-                                pattern = "[0-9]+"
-                                maxLength="11"
-                                minLength="10"
-                                title="Somente números"
-                                onChange={event => {setPhone(event.target.value)}}
-                                required/>
-                        </div>
-
-                        <div className="input-block">
-                            <label htmlFor="password">Senha
-                                <span>
-                                    Informe uma senha para acesso ao sistema
-                                </span>
-                            </label>
-                            <input 
-                                id="password" 
-                                value={password}
-                                type="password"
-                                onChange={event => {setPassword(event.target.value)}}
-                                required/>
-                        </div>
-
-                        <div className="input-flex input-block">
-                            <label 
-                                htmlFor='resume'
-                                className=''>
-                                    <strong>Envie seu currículo</strong>
-                                    <span>
-                                        Formatos .doc, .docx ou .pdf
-                                    </span>
-                                
-                            </label>
-
-                            <input 
-                                id="resume"
-                                type='file'
-                                className='display-none'
-                                onChange={handleResume}/>
-                        </div>
-
-                        <div className="file-details display-none">
-                            <FaTrash color={'red'} onClick={removeResume}/>
-                            <p>{resume.name}</p>
-                        </div>
-
-                        <div class='display-flex button-send'>
-                            <button type="submit" className="button button-secondary send-form">
-                                Enviar
-                            </button>
-                        </div>
-
-                    </form>
-                </main>
-            </div>
-        )
+        try {
+            //await api.post('candidato', data);
+        }
+            
+        catch (error) {
+            console.log(error.message);
+        }
     }
 
-    else {
-        //Buscar dados API
-        return (
-            <div id='page-candidate-details'>
-                <BackgroundTitle title="Lenon Manhães" description="Consulte seus dados!"/>
-                <p>Candidato detalhes</p>
-            </div>
+    return (
+        <div id='page-candidate-details'>
+            <BackgroundTitle  
+                title={name === '' ? 'Novo candidato' : name} 
+                description={name === '' ? 'Cadastre-se para concorrer!' : 'Confira seus dados cadastrados'}/>
+
+            <main className='display-flex'>                    
+                <form className="create-candidate" onSubmit={handleSubmit}>
+                    <div className="input-block">
+                        <label htmlFor="name">Nome</label>
+                        <input 
+                            id="name" 
+                            value={name}
+                            type="text"
+                            maxLength="50"
+                            onChange={event => {setName(event.target.value)}}
+                            required/>
+                    </div>
+
+                    <div className="input-block">
+                        <label htmlFor="email">E-mail</label>
+                        <input 
+                            type="email" 
+                            id="email"
+                            maxLength="40"
+                            onChange={event => {setEmail(event.target.value)}}
+                            value={email}
+                            required/>
+                    </div>
+
+                    <div className="input-block">
+                        <label htmlFor="linkedin">
+                            Linkedin 
+                            <span>
+                                Informe a url para seu perfil
+                            </span>                            
+                        </label>
+                            
+                        <input 
+                            id='linkedin'
+                            type='text'
+                            maxLength="100"
+                            onChange={event => {setLinkedin(event.target.value)}}
+                            value={linkedin}
+                            required/>
+                    </div> 
+
+                    <div className="input-block">
+                        <label htmlFor="phone-number">
+                            Celular
+                            <span>
+                                Formato: 11 dígitos com DDD (21999999999)
+                            </span>
+                         </label>
+
+                        <input 
+                            id="phone-number" 
+                            value={cellNumber}
+                            type="text"
+                            pattern = "[0-9]+"
+                            maxLength="11"
+                            minLength="11"
+                            title="Somente números"
+                            onChange={event => {setCellNumber(event.target.value)}}
+                            required/>
+                    </div>
+
+                    <div className="input-block">
+                        <label htmlFor="phone">
+                            Telefone
+                            <span>
+                                Formato: 10 dígitos com DDD (2133333333)
+                            </span>                            
+                        </label>
+                            
+                        <input 
+                            id="phone" 
+                            value={phone}
+                            type="text"
+                            pattern = "[0-9]+"
+                            maxLength="10"
+                            minLength="10"
+                            title="Somente números"
+                            onChange={event => {setPhone(event.target.value)}}
+                            required/>
+                    </div>
+
+                    <div className="input-block">
+                        <label htmlFor="password">Senha
+                            <span>
+                                Informe uma senha para acesso ao sistema
+                            </span>
+                        </label>
+                            
+                        <input 
+                            id="password" 
+                            value={password}
+                            type="password"
+                            onChange={event => {setPassword(event.target.value)}}
+                            required/>
+                    </div>
+
+                    <div className="input-flex input-block">
+                        <label 
+                            htmlFor='resume'
+                            className=''>
+                                <strong>Envie seu currículo</strong>
+                                <span>
+                                    Formatos .doc, .docx ou .pdf
+                                </span>
+                            
+                        </label>
+
+                        <input 
+                            id="resume"
+                            type='file'
+                            className='display-none'
+                            onChange={handleResume}/>
+                    </div>
+
+                    <div className="file-details display-none">
+                        <FaTrash color={'red'} onClick={removeResume}/>
+                        <p>{resume.name}</p>
+                    </div>
+
+                    <div class='display-flex button-send'>
+                        <button type="submit" className="button button-secondary send-form">
+                            Enviar
+                        </button>
+                    </div>
+
+                </form>
+            </main>
+        </div>
         )
     }
-}
 
 export default CandidateDetails;
