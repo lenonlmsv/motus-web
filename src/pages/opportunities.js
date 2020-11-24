@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 
 //Components
 import BackgroundTitle from "../components/background-title/background-title";
-import OpportunitiesCard from "../components/OpportunitiesCard";
+import OpportunitiesCard from "../components/Opportunities/OpportunitiesCard";
 
 //CSS
 import "../styles/opportunities.css";
