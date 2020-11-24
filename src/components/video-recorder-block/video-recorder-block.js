@@ -32,8 +32,8 @@ function VideoRecorderBlock(props) {
                 video.setAttribute('playsinline', true);
                 video.setAttribute('controls', false);
                 video.onloadedmetadata = function(e) {
-                video.play();
-                triggerItens();
+                    video.play();
+                    triggerItens();
                 }; 
             })
 
@@ -68,12 +68,13 @@ function VideoRecorderBlock(props) {
             hideButtons(['#buttonRecord', '#buttonDownload', '#buttonSend']);
             hidevideoRecorded();
 
-            start();                
+            startT();                
             
             navigator.mediaDevices.getUserMedia({audio: true, video: {facingMode: 'user'}})
-            .then(function(stream) {
+            .then(function() {
                 chunks = [];
 
+                
                 mediaRecorder.start();
                 
                 mediaRecorder.ondataavailable = function(eventoData) {
@@ -88,7 +89,7 @@ function VideoRecorderBlock(props) {
         stop.onclick = function() {
             mediaRecorder.stop();
             hideButtons(['#buttonStop'])
-            showButtons(['#buttonRecord', '#buttonDownload', '#buttonSend'])              
+            showButtons(['#buttonRecord', '#buttonDownload', '#buttonSend'])
         }
         
         mediaRecorder.onstop = function(e) {
@@ -119,6 +120,17 @@ function VideoRecorderBlock(props) {
         }
     };
 
+    const stopStreaming = (vElement) => {
+        const stream = vElement.srcObject;
+        const tracks = stream.getTracks();
+
+        tracks.forEach(function(track) {
+            track.stop();
+        });
+
+        vElement.srcObject = null;
+    }
+
     const downloadOnClick = (url) => {
         let a = document.createElement('a');
         document.body.appendChild(a);
@@ -130,10 +142,14 @@ function VideoRecorderBlock(props) {
     
     const sendOnClick = (b64File) => {
         const base64 = b64File.replace('data:octet-stream;base64,', '');
+
+        let video = document.querySelector('video.videoStream');
+        stopStreaming(video)
+        
         history.push('/oportunidades/:id')
     }
     
-    function start(){
+    function startT(){
         //Update the count down every 1 second
         cron = setInterval(() => {timer();}, 1000);
     }
@@ -159,9 +175,7 @@ function VideoRecorderBlock(props) {
         // If the count down is over, write some text 
         if (tempo <= 0) {
             clearInterval(cron);
-            //$('#"+Lnk_Parar.Id+"').click();
             document.querySelector('#buttonStop').click();
-            //document.querySelector('#timerContainer').innerHTML = '';
         }
     }
 
@@ -225,6 +239,12 @@ function VideoRecorderBlock(props) {
 
             <input id="base64String" className="input hideItens"/>
             <input id="mimeType" className="input hideItens"/>
+
+            <div id="back-button">
+                    <button onClick={() => {history.push('/oportunidades/:id')}} className="button button-secondary">
+                        Voltar
+                    </button>
+            </div>
         </div>
     )
 }

@@ -1,8 +1,5 @@
 import React from 'react';
 
-//Components
-import BackButton from '../backbutton/backbutton';
-
 //CSS
 import './styles/page-footer.css'
 
@@ -12,9 +9,6 @@ import ImageSys from './images/sys-image-footer.png'
 
 function PageFooter() { 
     return (
-        <div>
-            <BackButton/>
-
             <footer id="page-footer">
                 <div className="div-footer">
                     <div>
@@ -42,7 +36,6 @@ function PageFooter() {
                     <p>Copyright © 2019 | Todos os direitos reservados</p>
                 </div>
             </footer>
-        </div>
     )
 }
 

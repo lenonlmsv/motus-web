@@ -29,7 +29,6 @@ function Routes() {
 						component={OpportunitieDetail}
 					/>
 					<Route path="/video-curriculo" component={VideoResume} />
-					<Route path="/gravar-video/20/:id" component={VideoRecord} />
 					<Route path="/gravar-video/:id" component={VideoRecord} />
 				</Switch>
 			</AuthProvider>

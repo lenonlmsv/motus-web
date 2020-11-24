@@ -95,7 +95,7 @@ function OpportunitieDetail() {
                         style={{display: "none"}}
                         />
                     
-                        <Link to={`/gravar-video/resume`} className="send-button"> 
+                        <Link to={`/gravar-video/:id`} className="send-button"> 
                             {//Retornar para video/:id
                             }
                             <FaRecordVinyl className="send-button-icon"/>Gravar vídeo
@@ -113,7 +113,7 @@ function OpportunitieDetail() {
             </div>
             
             <div className="return">
-                <Link to="/oportunidades" className="button button-secondary">
+                <Link to="/oportunidades/" className="button button-secondary">
                     Ver oportunidades
                 </Link>
             </div>
