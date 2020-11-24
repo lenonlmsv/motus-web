@@ -21,9 +21,9 @@ function Opportunities() {
 				}
 			/>
 
-			<OpportunitiesCard />
-			<OpportunitiesCard />
-			<OpportunitiesCard />
+			<OpportunitiesCard jobType="Estagiario" />
+			<OpportunitiesCard jobType="Pleno" />
+			<OpportunitiesCard jobType="Senior" />
 			<OpportunitiesCard />
 			<OpportunitiesCard />
 			<OpportunitiesCard />

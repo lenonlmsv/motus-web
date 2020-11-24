@@ -8,7 +8,12 @@ import "../../styles/opportunities.css";
 //Icons
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 
-const OpportunitiesCard = () => {
+const OpportunitiesCard = ({
+	jobDescription,
+	jobType,
+	workTime,
+	habilities,
+}) => {
 	//States;
 	const [card, setCard] = useState("opportunities-card-closed");
 	const [description, setDescription] = useState(
@@ -62,7 +67,7 @@ const OpportunitiesCard = () => {
 					//<p id="opportunitie-name">199</p>
 				}
 
-				<OpportunitiesDetailCard />
+				<OpportunitiesDetailCard jobType={jobType} />
 
 				{
 					//Verificar se o usuário possui o vídeo currículo gravado e direcionar:
