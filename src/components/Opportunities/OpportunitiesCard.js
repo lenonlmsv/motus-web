@@ -67,7 +67,12 @@ const OpportunitiesCard = ({
 					//<p id="opportunitie-name">199</p>
 				}
 
-				<OpportunitiesDetailCard jobType={jobType} />
+				<OpportunitiesDetailCard
+					jobDescription={jobDescription}
+					jobType={jobType}
+					workTime={workTime}
+					habilities={habilities}
+				/>
 
 				{
 					//Verificar se o usuário possui o vídeo currículo gravado e direcionar:

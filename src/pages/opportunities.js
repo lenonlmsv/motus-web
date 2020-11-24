@@ -21,7 +21,12 @@ function Opportunities() {
 				}
 			/>
 
-			<OpportunitiesCard jobType="Estagiario" />
+			<OpportunitiesCard
+				jobType="Estagiario"
+				jobDescription="Descrição teste"
+				workTime="Das 8 as 20"
+				habilities="Ser top que nem o Lenon no React"
+			/>
 			<OpportunitiesCard jobType="Pleno" />
 			<OpportunitiesCard jobType="Senior" />
 			<OpportunitiesCard />
