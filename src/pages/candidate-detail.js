@@ -10,7 +10,7 @@ import '../styles/candidate-detail.css'
 import { FaTrash } from 'react-icons/fa';
 
 //Components
-import BackgroundTitle from '../components/background-title/background-title';
+import BackgroundTitle from '../components/background-title/Background-title';
 
 //API
 import api from '../services/api'
@@ -18,19 +18,31 @@ import api from '../services/api'
 function CandidateDetails() {
     const params = useParams();
 
-    //Form data
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [linkedin, setLinkedin] = useState('');
-    const [cellNumber, setCellNumber] = useState('')
-    const [phone, setPhone] = useState('');
-    const [password, setPassword] = useState('');
-    const [resume, setResume] = useState('');
-
-    
-    if (params.id !== 'cadastro') { //Buscar dados do candidato
-        //api.get(`candidato/${params.id}`)
+    let userData = {
+        name: '',
+        email: '',
+        linkedin: '',
+        cellNumber: '',
+        phone: '',
+        password: '',
+        resume: ''
     }
+
+
+    if (params.id !== 'cadastro') { //Buscar dados do candidato
+        //api.get(`candidato/${params.id}`).then(response => )
+        userData.name = "Lenon";
+        userData.email = 'lenon@lenon'
+    }
+    
+    //Form data
+    const [name, setName] = useState(userData.name);
+    const [email, setEmail] = useState(userData.email);
+    const [linkedin, setLinkedin] = useState(userData.linkedin);
+    const [cellNumber, setCellNumber] = useState(userData.cellNumber)
+    const [phone, setPhone] = useState(userData.phone);
+    const [password, setPassword] = useState(userData.password);
+    const [resume, setResume] = useState(userData.resume);
 
     const checkFileType = (fileType) => {
         const acceptedTypes = [
@@ -120,7 +132,7 @@ function CandidateDetails() {
     return (
         <div id='page-candidate-details'>
             <BackgroundTitle  
-                title={name === '' ? 'Novo candidato' : name} 
+                title={name === '' ? 'Novo candidato' : `Olá, ${name}`}
                 description={name === '' ? 'Cadastre-se para concorrer!' : 'Confira seus dados cadastrados'}/>
 
             <main className='display-flex'>                    
