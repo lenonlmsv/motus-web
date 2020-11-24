@@ -12,6 +12,7 @@ import OpportunitieDetail from "./pages/opportunitie-details";
 import Login from "./pages/login";
 import VideoResume from "./pages/video-resume";
 import VideoRecord from "./pages/video-recorder";
+import CandidateDetails from './pages/candidate-detail';
 
 function Routes() {
 	return (
@@ -19,6 +20,7 @@ function Routes() {
 			<AuthProvider>
 				<Switch>
 					<Route path="/login" component={Login}/>
+					<Route path="/candidato/:id" component={CandidateDetails}/>
 					<Route
 						path="/oportunidades"
 						exact
