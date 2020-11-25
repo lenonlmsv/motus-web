@@ -11,7 +11,7 @@ import '../styles/video-resume.css'
 import { FaExclamation }from 'react-icons/fa';
 
 //Components
-import BackgroundTitle from '../components/background-title/background-title';
+import BackgroundTitle from '../components/background-title/Background-title';
 
 function VideoResume() {
     const errorMessage = 'Somente formatos de vídeo são aceitos';

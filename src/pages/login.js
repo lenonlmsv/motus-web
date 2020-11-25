@@ -1,5 +1,10 @@
 import React, { useState, useContext } from "react";
+
+//Auth
 import { Context as AuthContext } from "../context/authContext";
+
+//Components
+import BackgroundTitle from "../components/background-title/Background-title";
 
 function initialState() {
 	return { user: "", password: "" };
@@ -28,6 +33,8 @@ const Login = () => {
 
 	return (
 		<div style={teste.Div}>
+			<BackgroundTitle title="Login" description="Informe suas credenciais para acessar o sistema"/>
+
 			<form onSubmit={onSubmit}>
 				<div>
 					<label>Login</label>

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 //React Camera
-import VideoRecorderBlock from '../components/video-recorder-block/video-recorder-block'
+import VideoRecorderBlock from '../components/video-recorder-block/Video-recorder-block'
 
 //Router dom
 import {useParams} from 'react-router-dom'
@@ -10,7 +10,7 @@ import {useParams} from 'react-router-dom'
 import '../styles/video-recorder.css';
 
 //Components
-import BackgroundTitle from '../components/background-title/background-title';
+import BackgroundTitle from '../components/background-title/Background-title';
 
 function VideoRecord() {
     const params = useParams();

@@ -4,8 +4,8 @@ import React from "react";
 import Routes from "./routes";
 
 //Components
-import PageHeader from "./components/page-header/page-header";
-import PageFooter from "./components/page-footer/page-footer";
+import PageHeader from "./components/page-header/Page-header";
+import PageFooter from "./components/page-footer/Page-footer";
 
 //CSS
 import "./styles/global.css";
