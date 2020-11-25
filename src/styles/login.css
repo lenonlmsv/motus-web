@@ -1,0 +1,48 @@
+#page-login {
+    width: 90vw;
+    max-width: var(--page-max-width);
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0 0 0;
+}
+
+.submit-button button {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#page-login #options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.8rem 0 0 0;
+}
+
+#page-login #options a {
+    text-decoration: none;
+}
+
+#page-login #options a + a {
+    margin-left: 1rem;
+    font-size: 1rem;
+}
+
+@media (min-width: 1200px) {
+    #page-login main {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #page-login main form {
+        width: 40vw;
+    }
+
+    #page-login #options {
+        justify-content: left;
+    }
+}

@@ -70,9 +70,9 @@ function PageHeader() {
                     </a>
 
                     <BrowserRouter>
-                    <Link to="/" className="link-item">
+                        <Link to="/" className="link-item">
                         JUNTE-SE A NÓS 
-                    </Link>
+                        </Link>
                     </BrowserRouter>
 
                     <a className="link-item" href="https://www.sysmanager.com.br/contato/">

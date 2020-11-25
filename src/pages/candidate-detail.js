@@ -31,8 +31,8 @@ function CandidateDetails() {
 	if (params.id !== "cadastro") {
 		//Buscar dados do candidato
 		//api.get(`candidato/${params.id}`).then(response => )
-		userData.name = "Lenon";
-		userData.email = "lenon@lenon";
+		userData.name = "";
+		userData.email = "";
 	}
 
 	//Form data
@@ -173,7 +173,12 @@ function CandidateDetails() {
 					</div>
 
 					<div className="input-block">
-						<label htmlFor="email">E-mail</label>
+						<label htmlFor="email">
+							E-mail
+							<span>
+								Seu email será usado como login de acesso
+							</span>
+						</label>
 						<input
 							type="email"
 							id="email"
