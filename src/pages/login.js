@@ -4,10 +4,10 @@ import React, { useState, useContext } from "react";
 import { Context as AuthContext } from "../context/authContext";
 
 //Components
-import BackgroundTitle from "../components/background-title/Background-title";
+import BackgroundTitle from "../components/background-title/background-title";
 
 //CSS
-import '../styles/login.css'
+import "../styles/login.css";
 
 function initialState() {
 	return { user: "", password: "" };
@@ -21,11 +21,10 @@ const Login = () => {
 		const { value, name } = e.target;
 
 		setValues({
-			
 			[name]: value,
 		});
 
-		console.log(values.name)
+		console.log(values.name);
 	}
 
 	const onSubmit = (e) => {
@@ -37,46 +36,47 @@ const Login = () => {
 
 	return (
 		<div>
-			<BackgroundTitle title="Login" description="Informe suas credenciais para acessar o sistema"/>
+			<BackgroundTitle
+				title="Login"
+				description="Informe suas credenciais para acessar o sistema"
+			/>
 
 			<form onSubmit={onSubmit}>
-
 				<div className="input-block">
 					<label htmlFor="name">
 						Login
-						<span>
-							Informe o e-mail para login
-						</span>
+						<span>Informe o e-mail para login</span>
 					</label>
-					<input 
+					<input
 						id="user"
 						name="user"
 						value={values.user}
 						type="text"
 						maxLength="50"
 						onChange={onChange}
-						required/>
-                </div>
+						required
+					/>
+				</div>
 
 				<div className="input-block">
-					<label htmlFor="password">
-						Senha
-					</label>
-						
-					<input 
-						id="password" 
+					<label htmlFor="password">Senha</label>
+
+					<input
+						id="password"
 						name="password"
 						value={values.password}
 						type="password"
 						maxLength="10"
 						onChange={onChange}
-						required/>
-					</div>
+						required
+					/>
+				</div>
 
 				<button
 					type="submit"
 					className="button button-primary"
-					onSubmit={() => signin({
+					onSubmit={() =>
+						signin({
 							email: values.user,
 							password: values.password,
 						})

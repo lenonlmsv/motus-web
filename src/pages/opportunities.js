@@ -1,12 +1,11 @@
 import React from "react";
 
 //Components
-import BackgroundTitle from "../components/background-title/Background-title";
-import OpportunitiesCard from "../components/opportunities/OpportunitiesCard";
+import BackgroundTitle from "../components/background-title/background-title";
+import OpportunitiesCard from "../components/Opportunities/OpportunitiesCard";
 
 //CSS
 import "../styles/opportunities.css";
-
 
 function Opportunities() {
 	return (
