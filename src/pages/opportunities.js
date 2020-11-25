@@ -1,9 +1,9 @@
 import React from "react";
 
 //Components
-import BackgroundTitle from "../components/background-title/background-title";
-import OpportunitiesCard from "../components/Opportunities/OpportunitiesCard";
-import OpportunitiesList from "../components/Opportunities/OpportunitiesList";
+import BackgroundTitle from "../components/background-title/Background-title";
+import OpportunitiesCard from "../components/opportunities/OpportunitiesCard";
+import OpportunitiesList from "../components/opportunities/OpportunitiesList";
 
 //CSS
 import "../styles/opportunities.css";

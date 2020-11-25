@@ -10,7 +10,7 @@ import "../styles/candidate-detail.css";
 import { FaTrash } from "react-icons/fa";
 
 //Components
-import BackgroundTitle from "../components/background-title/background-title";
+import BackgroundTitle from "../components/background-title/Background-title";
 
 //API
 import api from "../services/api";
