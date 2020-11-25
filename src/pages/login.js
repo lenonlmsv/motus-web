@@ -1,10 +1,14 @@
 import React, { useState, useContext } from "react";
 
+//Router
+import {Link} from 'react-router-dom';
+
 //Auth
 import { Context as AuthContext } from "../context/authContext";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
+import api from '../services/api'
 
 //CSS
 import '../styles/login.css'
@@ -15,76 +19,97 @@ function initialState() {
 
 const Login = () => {
 	const { state, signin } = useContext(AuthContext);
-	const [values, setValues] = useState(initialState);
+	const [user, setUser] = useState(initialState.user);
+	const [password, setPassword] = useState(initialState.password)
 
-	function onChange(e) {
-		const { value, name } = e.target;
-
-		setValues({
-			
-			[name]: value,
-		});
-
-		console.log(values.name)
-	}
-
-	const onSubmit = (e) => {
+	async function onSubmit(e) {
 		e.preventDefault();
 		//return () => signin({ email: values.user, password: values.password });
 		//signin({ email: values.user, password: values.password });
-		console.log("Funciona");
+
+		const data = new FormData;
+
+		data.append("login", user);
+		data.append("senha", password)
+
+		for (var pair of data.entries()) {
+			console.log(pair); 
+		}
+
+		try {
+			//api.get('api/service/cadastro');
+		}
+
+		catch (error) {
+			console.log(error.message);
+		}
 	};
 
 	return (
-		<div>
-			<BackgroundTitle title="Login" description="Informe suas credenciais para acessar o sistema"/>
+		<div id="page-login">
 
-			<form onSubmit={onSubmit}>
+			<BackgroundTitle title="Login" description=""/>
 
-				<div className="input-block">
-					<label htmlFor="name">
-						Login
-						<span>
-							Informe o e-mail para login
-						</span>
-					</label>
-					<input 
-						id="user"
-						name="user"
-						value={values.user}
-						type="text"
-						maxLength="50"
-						onChange={onChange}
-						required/>
-                </div>
+			<main>
+				<form onSubmit={onSubmit}>
 
-				<div className="input-block">
-					<label htmlFor="password">
-						Senha
-					</label>
-						
-					<input 
-						id="password" 
-						name="password"
-						value={values.password}
-						type="password"
-						maxLength="10"
-						onChange={onChange}
-						required/>
+					<div className="input-block">
+						<label htmlFor="user">
+							Login
+							<span>
+								Informe o e-mail para login
+							</span>
+						</label>
+						<input 
+							id="user"
+							name="user"
+							value={user}
+							type="text"
+							maxLength="50"
+							onChange={event => {setUser(event.target.value)}}
+							required/>
 					</div>
 
-				<button
-					type="submit"
-					className="button button-primary"
-					onSubmit={() => signin({
-							email: values.user,
-							password: values.password,
-						})
-					}
-				>
-					Login
-				</button>
-			</form>
+					<div className="input-block">
+						<label htmlFor="password">
+							Senha
+						</label>
+							
+						<input 
+							id="password" 
+							name="password"
+							value={password}
+							type="password"
+							maxLength="10"
+							onChange={event => {setPassword(event.target.value)}}
+							required/>
+					</div>
+
+					<div id='options'>
+							<Link to="/candidato/cadastro">
+								Cadastre-se
+							</Link>
+
+							<Link to="/">
+								Esqueci minha senha
+							</Link>
+					</div>
+
+					<div className="submit-button">
+						<button
+							type="submit"
+							className="button button-primary"
+							onSubmit={() => signin({
+									email: user,
+									password: password,
+								})
+							}
+						>
+							Acessar
+						</button>
+					</div>
+				</form>
+			</main>
 		</div>
 	);
 };
