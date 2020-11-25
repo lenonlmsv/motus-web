@@ -7,7 +7,6 @@ import notfound from '../images/image-not-found.png'
 import {BrowserRouter, Link, useHistory} from 'react-router-dom'
 
 export default function PageNotFound() {
-
     const history = useHistory();
 
     const push = () => {
@@ -15,7 +14,9 @@ export default function PageNotFound() {
     }
 
     return (
-        <div style={{
+        <div 
+            className="page-position" 
+            style={{
                 display:"flex", 
                 justifyContent:"center",
                 alignItems:"center",

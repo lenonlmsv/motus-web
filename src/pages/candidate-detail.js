@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 //Router dom
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 //CSS
 import '../styles/candidate-detail.css'
@@ -130,7 +130,7 @@ function CandidateDetails() {
     }
 
     return (
-        <div id='page-candidate-details'>
+        <div id='page-candidate-details' className="page-position">
             <BackgroundTitle  
                 title={name === '' ? 'Novo candidato' : `Olá, ${name}`}
                 description={name === '' ? 'Cadastre-se para concorrer!' : 'Confira seus dados cadastrados'}/>
@@ -261,8 +261,13 @@ function CandidateDetails() {
                         <p>{resume.name}</p>
                     </div>
 
+
                     <div class='display-flex button-send'>
-                        <button type="submit" className="button button-secondary send-form">
+                        <Link to="/" className="button button-secondary">
+                            Ver oportunidades
+                        </Link>
+
+                        <button type="submit" className="button button-primary send-form">
                             Enviar
                         </button>
                     </div>

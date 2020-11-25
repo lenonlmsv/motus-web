@@ -10,9 +10,13 @@
     margin: 1.5rem 0 0 0;
 }
 
-.submit-button button {
-    font-size: 1.5rem;
+.submit-button button, .submit-button a {
+    font-size: 1.1rem;
     cursor: pointer;
+}
+
+.submit-button a + button {
+    margin-left: 0.7rem;
 }
 
 #page-login #options {
@@ -29,6 +33,19 @@
 #page-login #options a + a {
     margin-left: 1rem;
     font-size: 1rem;
+}
+
+#page-login #submit-error {
+    border: 1px solid red;
+    border-radius: 10px;
+    padding: 0.5rem 0.2rem;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+#page-login #submit-error p {
+    color: red;
 }
 
 @media (min-width: 1200px) {

@@ -29,7 +29,7 @@ function VideoRecord() {
         const timeSeconds = "300"; //Tempo de gravação para vídeo currículo
 
         return (
-            <div id="page-video-recorder">
+            <div id="page-video-recorder" className="page-position">
                 <BackgroundTitle 
                     title="Gravar vídeo currículo"
                     description={`Você terá ${timeSeconds.toMMSS()} minutos para gravar seu novo vídeo currículo`}/>
@@ -48,7 +48,7 @@ function VideoRecord() {
         const timeSeconds = '90';
 
         return (
-            <div id="page-video-recorder">
+            <div id="page-video-recorder" className="page-position">
                 <BackgroundTitle 
                     title="Gravar vídeo"
                     description={`Você terá até ${timeSeconds.toMMSS()} para responder esta pergunta`}/>

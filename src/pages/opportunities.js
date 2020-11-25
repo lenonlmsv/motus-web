@@ -10,7 +10,7 @@ import "../styles/opportunities.css";
 
 function Opportunities() {
 	return (
-		<div id="page-opportunities">
+		<div id="page-opportunities" className="page-position">
 			<BackgroundTitle
 				title={"Junte-se a nós!"}
 				description={
