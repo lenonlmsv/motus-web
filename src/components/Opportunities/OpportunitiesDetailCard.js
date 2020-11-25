@@ -7,7 +7,7 @@ const OpportunitiesDetailCard = ({
 	habilities,
 }) => {
 	return (
-		<div>
+		<div className='div-card'>
 			<strong>Descrição da vaga:</strong>
 			{jobDescription ? (
 				<p id="p"> {jobDescription}</p>

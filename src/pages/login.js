@@ -6,6 +6,9 @@ import { Context as AuthContext } from "../context/authContext";
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
 
+//CSS
+import '../styles/login.css'
+
 function initialState() {
 	return { user: "", password: "" };
 }
@@ -14,77 +17,76 @@ const Login = () => {
 	const { state, signin } = useContext(AuthContext);
 	const [values, setValues] = useState(initialState);
 
-	function onChange(event) {
-		const { value, name } = event.target;
+	function onChange(e) {
+		const { value, name } = e.target;
 
-		console.log("Esta no OnChange");
 		setValues({
-			...value,
+			
 			[name]: value,
 		});
+
+		console.log(values.name)
 	}
 
-	const onSubmit = (event) => {
-		event.preventDefault();
+	const onSubmit = (e) => {
+		e.preventDefault();
 		//return () => signin({ email: values.user, password: values.password });
 		//signin({ email: values.user, password: values.password });
 		console.log("Funciona");
 	};
 
 	return (
-		<div style={teste.Div}>
+		<div>
 			<BackgroundTitle title="Login" description="Informe suas credenciais para acessar o sistema"/>
 
 			<form onSubmit={onSubmit}>
-				<div>
-					<label>Login</label>
-					<input
+
+				<div className="input-block">
+					<label htmlFor="name">
+						Login
+						<span>
+							Informe o e-mail para login
+						</span>
+					</label>
+					<input 
 						id="user"
-						type="text"
 						name="user"
-						onChange={onChange}
 						value={values.user}
-					/>
-				</div>
-				<div>
-					<label>Senha</label>
-					<input
-						id="password"
-						type="password"
-						name="password"
+						type="text"
+						maxLength="50"
 						onChange={onChange}
+						required/>
+                </div>
+
+				<div className="input-block">
+					<label htmlFor="password">
+						Senha
+					</label>
+						
+					<input 
+						id="password" 
+						name="password"
 						value={values.password}
-					></input>
-				</div>
+						type="password"
+						maxLength="10"
+						onChange={onChange}
+						required/>
+					</div>
+
 				<button
-					style={teste.Button}
 					type="submit"
-					onSubmit={() =>
-						signin({
+					className="button button-primary"
+					onSubmit={() => signin({
 							email: values.user,
 							password: values.password,
 						})
 					}
 				>
-					"Login"
+					Login
 				</button>
 			</form>
 		</div>
 	);
-};
-
-const teste = {
-	Div: {
-		bordeColor: "red",
-		bordeWidth: 10,
-		margin: 100,
-		backgroundColor: "rgb(230, 230,230)",
-		flex: 1,
-		justifyContent: "center",
-	},
-	Button: {
-		backgroundcolor: `rgb(0, 0, 255)`,
-	},
 };
 
 export default Login;

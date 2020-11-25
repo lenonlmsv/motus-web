@@ -226,6 +226,7 @@ function CandidateDetails() {
                         <input 
                             id="password" 
                             value={password}
+                            maxLength="10"
                             type="password"
                             onChange={event => {setPassword(event.target.value)}}
                             required/>
