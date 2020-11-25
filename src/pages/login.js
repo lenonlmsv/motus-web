@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { Context as AuthContext } from "../context/authContext";
 
 //Components
-import BackgroundTitle from "../components/background-title/Background-title";
+import BackgroundTitle from "../components/background-title/background-title";
 import api from "../services/api";
 
 //CSS
