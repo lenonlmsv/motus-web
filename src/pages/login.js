@@ -13,7 +13,7 @@ import { login, isAuthenticated } from "../services/auth";
 
 
 //CSS
-import '../styles/login.css'
+import "../styles/login.css";
 
 function initialState() {
 	return { user: "", password: "" };
@@ -37,10 +37,10 @@ const Login = () => {
 		const data = new FormData;
 		
 		data.append("login", user);
-		data.append("senha", password)
+		data.append("senha", password);
 
 		for (var pair of data.entries()) {
-			console.log(pair); 
+			console.log(pair);
 		}
 
 		try {
@@ -53,7 +53,7 @@ const Login = () => {
 			console.log(error.message);
 			setDisplay('')
 		}
-	};
+	}
 
 	return (
 		<div id="page-login" className="page-position">
@@ -62,37 +62,38 @@ const Login = () => {
 
 			<main>
 				<form onSubmit={onSubmit}>
-
 					<div className="input-block">
 						<label htmlFor="user">
 							Login
-							<span>
-								Informe o e-mail para login
-							</span>
+							<span>Informe o e-mail para login</span>
 						</label>
-						<input 
+						<input
 							id="user"
 							name="user"
 							value={user}
 							type="text"
 							maxLength="50"
-							onChange={event => {setUser(event.target.value)}}
-							required/>
+							onChange={(event) => {
+								setUser(event.target.value);
+							}}
+							required
+						/>
 					</div>
 
 					<div className="input-block">
-						<label htmlFor="password">
-							Senha
-						</label>
-							
-						<input 
-							id="password" 
+						<label htmlFor="password">Senha</label>
+
+						<input
+							id="password"
 							name="password"
 							value={password}
 							type="password"
 							maxLength="10"
-							onChange={event => {setPassword(event.target.value)}}
-							required/>
+							onChange={(event) => {
+								setPassword(event.target.value);
+							}}
+							required
+						/>
 					</div>
 
 					<div id='submit-error' className={display}>
@@ -104,9 +105,7 @@ const Login = () => {
 								Cadastre-se
 							</Link>
 
-							<Link to="/">
-								Esqueci minha senha
-							</Link>
+						<Link to="/">Esqueci minha senha</Link>
 					</div>
 
 					<div className="submit-button">
@@ -117,7 +116,8 @@ const Login = () => {
 						<button
 							type="submit"
 							className="button button-primary"
-							onSubmit={() => signin({
+							onSubmit={() =>
+								signin({
 									email: user,
 									password: password,
 								})

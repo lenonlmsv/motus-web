@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 //Youtube dependencie
-import Youtube from 'react-youtube'
+import Youtube from "react-youtube";
 
 //CSS
-import '../styles/video-resume.css'
+import "../styles/video-resume.css";
 
-//Icons 
-import { FaExclamation }from 'react-icons/fa';
+//Icons
+import { FaExclamation } from "react-icons/fa";
 
 //Components
-import BackgroundTitle from '../components/background-title/Background-title';
+import BackgroundTitle from "../components/background-title/background-title";
 
 function VideoResume() {
     const errorMessage = 'Somente formatos de vídeo são aceitos';

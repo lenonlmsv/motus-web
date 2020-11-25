@@ -1,19 +1,19 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 
 //Router dom
 import {Link, useParams} from 'react-router-dom';
 
 //CSS
-import '../styles/candidate-detail.css'
+import "../styles/candidate-detail.css";
 
 //Icons
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash } from "react-icons/fa";
 
 //Components
-import BackgroundTitle from '../components/background-title/Background-title';
+import BackgroundTitle from "../components/background-title/background-title";
 
 //API
-import api from '../services/api'
+import api from "../services/api";
 
 function CandidateDetails() {
     const params = useParams();

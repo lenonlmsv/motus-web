@@ -1,14 +1,15 @@
 import React from "react";
 
 //Components
-import BackgroundTitle from "../components/background-title/Background-title";
-import OpportunitiesCard from "../components/opportunities/OpportunitiesCard";
+import BackgroundTitle from "../components/background-title/background-title";
+import OpportunitiesCard from "../components/Opportunities/OpportunitiesCard";
+import OpportunitiesList from "../components/Opportunities/OpportunitiesList";
 
 //CSS
 import "../styles/opportunities.css";
 
-
 function Opportunities() {
+	const arrayTest = [1, 2, 3];
 	return (
 		<div id="page-opportunities" className="page-position">
 			<BackgroundTitle
@@ -18,17 +19,14 @@ function Opportunities() {
 				}
 			/>
 
-			<OpportunitiesCard
+			<OpportunitiesList id={arrayTest} />
+
+			{/*<OpportunitiesCard
 				jobType="Estagiario"
 				jobDescription="Descrição teste"
 				workTime="Das 8 as 20"
 				habilities="Ser top que nem o Lenon no React"
-			/>
-			<OpportunitiesCard jobType="Pleno" />
-			<OpportunitiesCard jobType="Senior" />
-			<OpportunitiesCard />
-			<OpportunitiesCard />
-			<OpportunitiesCard />
+			/>*/}
 		</div>
 	);
 }
