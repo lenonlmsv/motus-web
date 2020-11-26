@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 //React Camera
-import VideoRecorderBlock from "../components/video-recorder-block/Video-recorder-block";
+import VideoRecorderBlock from "../components/video-recorder-block/video-recorder-block";
 
 //Router dom
 import { useParams } from "react-router-dom";
@@ -32,11 +32,12 @@ function VideoRecord() {
 		//If this screens will be used to record video resume
 		const timeSeconds = "300"; //Tempo de gravação para vídeo currículo
 
-        return (
-            <div id="page-video-recorder" className="page-position">
-                <BackgroundTitle 
-                    title="Gravar vídeo currículo"
-                    description={`Você terá ${timeSeconds.toMMSS()} minutos para gravar seu novo vídeo currículo`}/>
+		return (
+			<div id="page-video-recorder" className="page-position">
+				<BackgroundTitle
+					title="Gravar vídeo currículo"
+					description={`Você terá ${timeSeconds.toMMSS()} minutos para gravar seu novo vídeo currículo`}
+				/>
 
 				<div id="div-recoder">
 					<VideoRecorderBlock time={timeSeconds} />
@@ -49,18 +50,19 @@ function VideoRecord() {
 
 		const timeSeconds = "90";
 
-        return (
-            <div id="page-video-recorder" className="page-position">
-                <BackgroundTitle 
-                    title="Gravar vídeo"
-                    description={`Você terá até ${timeSeconds.toMMSS()} para responder esta pergunta`}/>
-                
-                <div id="div-recoder">
-                    <VideoRecorderBlock time={timeSeconds}/>                   
-                </div>
-            </div>
-        )
-    }
+		return (
+			<div id="page-video-recorder" className="page-position">
+				<BackgroundTitle
+					title="Gravar vídeo"
+					description={`Você terá até ${timeSeconds.toMMSS()} para responder esta pergunta`}
+				/>
+
+				<div id="div-recoder">
+					<VideoRecorderBlock time={timeSeconds} />
+				</div>
+			</div>
+		);
+	}
 }
 
 export default VideoRecord;
