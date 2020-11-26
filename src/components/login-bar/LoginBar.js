@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 //Router
 import { Link, useHistory } from 'react-router-dom'
@@ -7,30 +7,36 @@ import { Link, useHistory } from 'react-router-dom'
 import './styles/login-bar.css'
 
 //Components
-import {isAuthenticated, logout} from '../../services/auth'
+import {getHashId, getUserName, isAuthenticated, logout} from '../../services/auth';
 
-export default function LoginBar() {   
-    const history = useHistory()
-
-    const [name, useName] = useState('Lenon Manhães da Silva Villeth')
+export default function LoginBar() {
+    const history = useHistory();
+    
+    const [isLogged, setIsLogged] = useState(isAuthenticated());
+    const [hashId, setHashId] = useState(getHashId());
+    const [userName, setUserName] = useState(getUserName);
+    
+    /*useEffect(() => {
+        setIslogged(isAuthenticated())
+    })*/
 
     const triggerLogout =() => {
         //history.push('/oportunidades');
         logout();
         history.push('/login')
     }
-
-    if(isAuthenticated()) {
+    
+    if(isLogged) {
         return (
             <div id="login-bar">
                 <div className="div-limited display-flex">
-                    <p className="hide-long-content">{name}</p>
+                    <p className="hide-long-content">{`Candidato ${userName}`}</p>
                 </div>
                 
                 <div className="logout-options">
-                    <Link to="/candidato/:id">
-                        {"Meus dados | "}
-                    </Link>                        
+                    <Link to={`/candidato/${hashId}`}>
+                        {"Meus dados |"}
+                    </Link>             
 
                     <Link onClick={triggerLogout} className="logout-button">
                         {"Logout"}

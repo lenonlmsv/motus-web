@@ -9,7 +9,7 @@ import { Context as AuthContext } from "../context/authContext";
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
 import api from '../services/api'
-import { login, isAuthenticated } from "../services/auth";
+import { login, isAuthenticated, TOKEN_KEY } from "../services/auth";
 
 
 //CSS
@@ -31,26 +31,32 @@ const Login = () => {
 
 	async function onSubmit(e) {
 		e.preventDefault();
-		//return () => signin({ email: values.user, password: values.password });
-		//signin({ email: values.user, password: values.password });
-		
-		const data = new FormData;
-		
-		data.append("login", user);
-		data.append("senha", password);
 
-		for (var pair of data.entries()) {
-			console.log(pair);
-		}
+		const data = {
+			"login": user, 
+			"password": password
+		};
 
 		try {
-			//api.post('api/service/cadastro', data);
-			//login(response.data.token)
-			history.push('/oportunidades')
-		}
+			//api.defaults.headers.post['Content-Type'] = 'application/json'; //USAR FORMATO JSON
+
+			const json = JSON.stringify(data);
+			
+			await api.post('/api/service/login', json).then( response => {
+				const string = response.data.split(' ');
+				const token = string[1]; //Get token
+
+				const userData = api.get(`/candidato/`)
+
+				login(token); //Store token
+				
+				alert("Logado")
+				history.push('/oportunidades');
+			})
+			}
 
 		catch (error) {
-			console.log(error.message);
+			console.log(error);
 			setDisplay('')
 		}
 	}

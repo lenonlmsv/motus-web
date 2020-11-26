@@ -132,11 +132,11 @@ function CandidateDetails() {
         //}
 
         try {
-            let json = JSON.stringify(data);
-            console.log(json)
-            await api.post('/inscricao', json).then(response => {
-                //console.log(response.data.responseData);
+            api.defaults.headers.post['Content-Type'] = 'application/json'; //USAR FORMATO JSON
 
+            let json = JSON.stringify(data);
+
+            await api.post('/inscricao', json).then(response => {
                 alert('Usuário criado com sucesso');
                 history.push('/login');
             });

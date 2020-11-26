@@ -89,6 +89,10 @@ body {
     background-color: var(--color-font-secondary);
 }
 
+a:visited {
+    color: var(--color-font-primary);
+}
+
 /*
 #page-content {
     width: 100vw;
