@@ -43,6 +43,17 @@ body {
    display: flex;
    justify-content: center;
    min-height: 150px;
+   flex-direction: column;
+}
+
+.page-position {
+    align-self: center;
+}
+
+.hide-long-content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .button {

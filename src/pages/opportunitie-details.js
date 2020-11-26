@@ -2,8 +2,8 @@ import React, { createContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 //Components
-import BackgroundTitle from "../components/background-title/background-title";
-import OpportunitiesDetailCard from "../components/Opportunities/OpportunitiesDetailCard";
+import BackgroundTitle from "../components/background-title/Background-title";
+import OpportunitiesDetailCard from "../components/opportunities/OpportunitiesDetailCard";
 
 //CSS
 import "../styles/opportunitie-details.css";
@@ -35,7 +35,7 @@ function OpportunitieDetail() {
 	};
 
 	return (
-		<div id="page-opportunitie-details">
+		<div id="page-opportunitie-details" className="page-position">
 			<BackgroundTitle title="Desenvolvedor React" description="" />
 
 			<div className="opportunitie-detail-description">

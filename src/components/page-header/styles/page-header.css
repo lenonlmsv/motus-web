@@ -15,6 +15,12 @@ header#page-header .container-links {
     display: none; /* Hide menu in mobile */
 }
 
+#header-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 img.sys-logo {
     width: 100%;
     height: 100%;

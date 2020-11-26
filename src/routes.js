@@ -9,6 +9,10 @@ import { isAuthenticated } from './services/auth'
 //Context
 import { Provider as AuthProvider } from "./context/authContext";
 
+//Components
+import PageHeader from "./components/page-header/Page-header";
+import PageFooter from "./components/page-footer/Page-footer";
+
 //Pages
 import Opportunities from "./pages/opportunities";
 import OpportunitieDetail from "./pages/opportunitie-details";
@@ -18,7 +22,7 @@ import VideoRecord from "./pages/video-recorder";
 import CandidateDetails from './pages/candidate-detail';
 import PageNotFound from './pages/page-not-found'
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({ component: Component, ...rest }) => ( //Bloqueia de acordo com a autenticação
 	<Route {...rest} render={props => (
 		isAuthenticated() ? (
 			<Component {...props}/>
@@ -32,8 +36,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 function Routes() {
 	return (
 		<BrowserRouter>
+			<PageHeader/>
+
 			<AuthProvider>
-				<Switch>
+
+				<Switch style={{alignSelf:"center"}}>
 					<Route 
 						path="/" 
 						exact 
@@ -76,6 +83,10 @@ function Routes() {
 						component={PageNotFound}/>
 				</Switch>
 			</AuthProvider>
+
+			<PageFooter/>
+
+
 		</BrowserRouter>
 	);
 }

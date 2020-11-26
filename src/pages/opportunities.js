@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 //Components
-import BackgroundTitle from "../components/background-title/background-title";
-import OpportunitiesList from "../components/Opportunities/OpportunitiesList";
-import Pagination from "../components/Pagination";
+import BackgroundTitle from "../components/background-title/Background-title";
+import OpportunitiesCard from "../components/opportunities/OpportunitiesCard";
+import OpportunitiesList from "../components/opportunities/OpportunitiesList";
 
 //CSS
 import "../styles/opportunities.css";
@@ -45,7 +45,7 @@ function Opportunities() {
 	const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 	return (
-		<div id="page-opportunities">
+		<div id="page-opportunities" className="page-position">
 			<BackgroundTitle
 				title={"Junte-se a nós!"}
 				description={

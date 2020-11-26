@@ -4,13 +4,15 @@ import React, { useState } from 'react';
 import './styles/page-header.css'
 
 //Routes
-import {BrowserRouter, Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 //Images
 import sysLogo from '../../images/logo-sys-with-name.svg'
 import { AiOutlineDown } from 'react-icons/ai';
 import { FaLinkedinIn } from 'react-icons/fa';
 
+//Components
+import LoginBar from "../login-bar/LoginBar";
 
 function PageHeader() {
     const [showItens, setShowItens] = useState('hover-content-hide');
@@ -69,11 +71,9 @@ function PageHeader() {
                         RESULTADOS
                     </a>
 
-                    <BrowserRouter>
                         <Link to="/" className="link-item">
                         JUNTE-SE A NÓS 
                         </Link>
-                    </BrowserRouter>
 
                     <a className="link-item" href="https://www.sysmanager.com.br/contato/">
                         CONTATO
@@ -92,6 +92,8 @@ function PageHeader() {
                         </a>
                 </div>
             </header>
+
+            <LoginBar/>
         </div>
     )
 }
