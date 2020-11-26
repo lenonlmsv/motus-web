@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 //Router dom
-import {Link, useParams} from 'react-router-dom';
+import {Link, useParams, useHistory} from 'react-router-dom';
 
 //CSS
 import "../styles/candidate-detail.css";
@@ -16,6 +16,7 @@ import BackgroundTitle from "../components/background-title/Background-title";
 import api from "../services/api";
 
 function CandidateDetails() {
+    const history = useHistory();
     const params = useParams();
 
     let userData = {
@@ -106,7 +107,7 @@ function CandidateDetails() {
             return;
         }
 
-        const data = new FormData();
+        /*const data = new FormData();
 
         data.append("email",email);
         data.append("celular", cellNumber);
@@ -114,18 +115,36 @@ function CandidateDetails() {
         data.append("telefone", phone);
         data.append("senha", password);
         data.append("login", email);
-        data.append("nome",name)
+        data.append("nome",name)*/
+
+        const data = {
+            "email":email,
+            "celular": cellNumber,
+            "linkedin": linkedin,
+            "telefone": phone,
+            "senha": password,
+            "login": email,
+            "nome": name
+        }
             
         //for (var pair of data.entries()) {
         //    console.log(pair); 
         //}
 
         try {
-            //await api.post('candidato', data);
+            let json = JSON.stringify(data);
+            console.log(json)
+            await api.post('/inscricao', json).then(response => {
+                //console.log(response.data.responseData);
+
+                alert('Usuário criado com sucesso');
+                history.push('/login');
+            });
         }
             
         catch (error) {
-            console.log(error.message);
+            console.log(`Error: ${error.message}`);
+            alert("Erro ao criar usuário")
         }
     }
 

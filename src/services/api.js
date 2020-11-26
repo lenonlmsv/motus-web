@@ -7,6 +7,8 @@ const api = axios.create({
     baseURL: process.env.REACT_APP_API_ENDPOINT
 })
 
+api.defaults.headers.post['Content-Type'] = 'application/json';
+
 api.interceptors.request.use(async config => {
     const token = getToken();
     if (token) {

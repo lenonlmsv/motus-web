@@ -36,10 +36,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => ( //Bloqueia de acor
 function Routes() {
 	return (
 		<BrowserRouter>
-
 			<PageHeader/>
 
 			<AuthProvider>
+
 				<Switch style={{alignSelf:"center"}}>
 					<Route 
 						path="/" 
@@ -84,7 +84,9 @@ function Routes() {
 				</Switch>
 			</AuthProvider>
 
-			<PageFooter/>	
+			<PageFooter/>
+
+
 		</BrowserRouter>
 	);
 }
