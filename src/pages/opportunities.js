@@ -10,7 +10,7 @@ import OpportunitiesList from "../components/opportunities/OpportunitiesList";
 import "../styles/opportunities.css";
 
 function Opportunities() {
-	const [posts, setPosts] = useState([]);
+	const [opportunities, setPosts] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [postsPerPage, setPostsPerPage] = useState(5);
@@ -35,11 +35,11 @@ function Opportunities() {
 		fetchPosts();
 	}, []);
 	console.log("Tentando pegar api");
-	console.log(posts);
+	console.log(opportunities);
 
 	const indexOfLastPost = currentPage * postsPerPage;
 	const indexOfFirstPost = indexOfLastPost - postsPerPage;
-	const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+	const currentPosts = opportunities.slice(indexOfFirstPost, indexOfLastPost);
 
 	//Muda pagina
 	const paginate = (pageNumber) => setCurrentPage(pageNumber);
