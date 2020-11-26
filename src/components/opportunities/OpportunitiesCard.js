@@ -9,6 +9,7 @@ import "../../styles/opportunities.css";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 
 const OpportunitiesCard = ({
+	jobName,
 	jobDescription,
 	jobType,
 	workTime,
@@ -21,7 +22,7 @@ const OpportunitiesCard = ({
 	);
 	const ArrowDown = <AiOutlineDown style={{ color: "rgba(0,0,0,0.5)" }} />;
 	const ArrowUp = <AiOutlineUp style={{ color: "rgba(0,0,0,0.5)" }} />;
-	const [iconState, setIconState] = useState(ArrowUp);
+	const [iconState, setIconState] = useState(ArrowDown);
 
 	//History
 	const history = useHistory();
@@ -29,13 +30,13 @@ const OpportunitiesCard = ({
 	const openCard = () => {
 		setCard("");
 		setDescription("");
-		setIconState(ArrowDown);
+		setIconState(ArrowUp);
 	};
 
 	const closeCard = () => {
 		setCard("opportunities-card-closed");
 		setDescription("opportunitie-description-closed");
-		setIconState(ArrowUp);
+		setIconState(ArrowDown);
 	};
 
 	const triggerCard = (event) => {
@@ -57,7 +58,7 @@ const OpportunitiesCard = ({
 				onClick={triggerCard}
 				className={`opportunities-card ${card}`}
 			>
-				<h3>Desenvolvedor React</h3>
+				{jobName ? <h3>{jobName}</h3> : <h3>Desenvolvedor React</h3>}
 				<i>{iconState}</i>
 			</div>
 
