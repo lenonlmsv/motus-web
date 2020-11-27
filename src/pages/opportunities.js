@@ -34,8 +34,8 @@ function Opportunities() {
 
 		fetchPosts();
 	}, []);
-	console.log("Tentando pegar api");
-	console.log(opportunities);
+	//console.log("Tentando pegar api");
+	//console.log(opportunities);
 
 	const indexOfLastPost = currentPage * postsPerPage;
 	const indexOfFirstPost = indexOfLastPost - postsPerPage;

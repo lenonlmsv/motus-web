@@ -14,36 +14,48 @@ import BackgroundTitle from "../components/background-title/Background-title";
 
 //API
 import api from "../services/api";
+import { isAuthenticated } from "../services/auth";
 
 function CandidateDetails() {
     const history = useHistory();
     const params = useParams();
 
-    let userData = {
-        name: '',
-        email: '',
-        linkedin: '',
-        cellNumber: '',
-        phone: '',
-        password: '',
-        resume: ''
-    }
+    // let userData = {
+    //     name: 'jij',
+    //     email: '',
+    //     linkedin: '',
+    //     cellNumber: '',
+    //     phone: '',
+    //     password: '',
+    //     resume: ''
+    // }
 
-
-    if (params.id !== 'cadastro') { //Buscar dados do candidato
-        //api.get(`candidato/${params.id}`).then(response => )
-        userData.name = '';
-        userData.email = ''
-    }
-    
     //Form data
-    const [name, setName] = useState(userData.name);
-    const [email, setEmail] = useState(userData.email);
-    const [linkedin, setLinkedin] = useState(userData.linkedin);
-    const [cellNumber, setCellNumber] = useState(userData.cellNumber)
-    const [phone, setPhone] = useState(userData.phone);
-    const [password, setPassword] = useState(userData.password);
-    const [resume, setResume] = useState(userData.resume);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [linkedin, setLinkedin] = useState('');
+    const [cellNumber, setCellNumber] = useState('')
+    const [phone, setPhone] = useState('');
+    const [password, setPassword] = useState('');
+    const [resume, setResume] = useState('');
+    
+    if (params.id !== 'cadastro') { //Buscar dados do candidato
+        try {
+            //console.log(params)
+            api.get(`/candidato`).then(response => {
+            setName(response.data.responseData.nome) ;
+            console.log(name)
+        })
+        }
+
+        catch (error) {
+            console.log(error)
+        }
+    }
+
+    else {
+        history.push('.oportunidades');
+    }
 
     const checkFileType = (fileType) => {
         const acceptedTypes = [
@@ -107,16 +119,6 @@ function CandidateDetails() {
             return;
         }
 
-        /*const data = new FormData();
-
-        data.append("email",email);
-        data.append("celular", cellNumber);
-        data.append("linkedin", linkedin);
-        data.append("telefone", phone);
-        data.append("senha", password);
-        data.append("login", email);
-        data.append("nome",name)*/
-
         const data = {
             "email":email,
             "celular": cellNumber,
@@ -126,10 +128,6 @@ function CandidateDetails() {
             "login": email,
             "nome": name
         }
-            
-        //for (var pair of data.entries()) {
-        //    console.log(pair); 
-        //}
 
         try {
             api.defaults.headers.post['Content-Type'] = 'application/json'; //USAR FORMATO JSON

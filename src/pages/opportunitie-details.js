@@ -14,8 +14,6 @@ import { FaUpload, FaDownload, FaRecordVinyl, FaCheck } from "react-icons/fa";
 export const userCandidature = createContext();
 
 function OpportunitieDetail() {
-	//Verificar se devemos colocar o candidatura id num useContext
-
 	//States
 	const [checkCandidate, setCheckCandidate] = useState(false);
 	const [candidature, setCandidature] = useState([]);

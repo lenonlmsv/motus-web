@@ -1,3 +1,4 @@
+import React from 'react';
 import api from "./api";
 
 export const isAuthenticated = () => {
@@ -8,13 +9,13 @@ export const isAuthenticated = () => {
 
 export const login = (token) => {
     localStorage.setItem('TOKEN_KEY', token);
-    getUserData()
+    getUserData();
 };
 
 const getUserData = () => {
     api.get('/candidato/').then( response => {
         setHash(response.data.responseData.hashId);
-        setUserName(response.data.responseData.nome)
+        setUserName(response.data.responseData.nome);
     });
 }
 

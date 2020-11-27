@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 //Router
 import { Link, useHistory } from 'react-router-dom'
@@ -11,22 +11,16 @@ import {getHashId, getUserName, isAuthenticated, logout} from '../../services/au
 
 export default function LoginBar() {
     const history = useHistory();
-    
-    const [isLogged, setIsLogged] = useState(isAuthenticated());
-    const [hashId, setHashId] = useState(getHashId());
-    const [userName, setUserName] = useState(getUserName);
-    
-    /*useEffect(() => {
-        setIslogged(isAuthenticated())
-    })*/
+
+    const hashId = getHashId();
+    const userName = getUserName();
 
     const triggerLogout =() => {
-        //history.push('/oportunidades');
         logout();
         history.push('/login')
     }
-    
-    if(isLogged) {
+  
+    if(isAuthenticated()) {
         return (
             <div id="login-bar">
                 <div className="div-limited display-flex">
