@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 //React Camera
-import VideoRecorderBlock from "../components/video-recorder-block/video-recorder-block";
+import VideoRecorderBlock from "../components/video-recorder-block/Video-recorder-block";
 
 //Router dom
 import { useParams } from "react-router-dom";
