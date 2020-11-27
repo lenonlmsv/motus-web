@@ -33,31 +33,29 @@ const Login = () => {
 		e.preventDefault();
 
 		const data = {
-			"login": user, 
-			"password": password
+			login: user,
+			password: password,
 		};
 
 		try {
 			//api.defaults.headers.post['Content-Type'] = 'application/json'; //USAR FORMATO JSON
 
 			const json = JSON.stringify(data);
-			
-			await api.post('/api/service/login', json).then( response => {
-				const string = response.data.split(' ');
+
+			await api.post("/api/service/login", json).then((response) => {
+				const string = response.data.split(" ");
 				const token = string[1]; //Get token
 
-				const userData = api.get(`/candidato/`)
+				const userData = api.get(`/candidato/`);
 
 				login(token); //Store token
-				
-				alert("Logado")
-				history.push('/oportunidades');
-			})
-			}
 
-		catch (error) {
+				alert("Logado");
+				history.push("/oportunidades");
+			});
+		} catch (error) {
 			console.log(error);
-			setDisplay('')
+			setDisplay("");
 		}
 	}
 
