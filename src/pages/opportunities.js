@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../services/api";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
-import OpportunitiesCard from "../components/opportunities/OpportunitiesCard";
 import OpportunitiesList from "../components/opportunities/OpportunitiesList";
 
 //CSS
@@ -15,31 +14,26 @@ function Opportunities() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [postsPerPage, setPostsPerPage] = useState(5);
 
-	const arrayTest = [
-		{ id: 1, jobDes: "React Dev" },
-		{ id: 2, jobDes: "Mobile Dev" },
-		{ id: 3, jobDes: "Web Dev" },
-	];
-
 	// TODO: Modificar pra pegar da api correta
-	useEffect(() => {
+	{
+		/*	useEffect(() => {
 		const fetchPosts = async () => {
 			setLoading(true);
-			const response = await axios.get(
-				"https://sysmanager-dev.outsystemscloud.com/RequisicaoVaga_Service/rest/Oportunidades"
-			);
+			const response = await api.get("/oportunidade");
 			setPosts(response.data);
 			setLoading(false);
+			console.log("Dentro do fetch");
+			console.log("valor loading: " + loading);
+			console.log(opportunities.responseData);
 		};
 
 		fetchPosts();
 	}, []);
-	//console.log("Tentando pegar api");
-	//console.log(opportunities);
-
+*/
+	}
 	const indexOfLastPost = currentPage * postsPerPage;
 	const indexOfFirstPost = indexOfLastPost - postsPerPage;
-	const currentPosts = opportunities.slice(indexOfFirstPost, indexOfLastPost);
+	//const currentPosts = opportunities.slice(indexOfFirstPost, indexOfLastPost);
 
 	//Muda pagina
 	const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -53,7 +47,11 @@ function Opportunities() {
 				}
 			/>
 
-			{/*<OpportunitiesList opportunities={currentPosts} />
+			<OpportunitiesList />
+			{/*<OpportunitiesList
+				opportunities={opportunities}
+				loading={loading}
+			/>
 			<Pagination
 				postsPerPage={postsPerPage}
 				totalPosts={posts.length}
