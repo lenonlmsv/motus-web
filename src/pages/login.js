@@ -8,13 +8,8 @@ import { Context as AuthContext } from "../context/authContext";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
-<<<<<<< HEAD
-import api from '../services/api'
-import { login, isAuthenticated, TOKEN_KEY } from "../services/auth";
-=======
 import api from "../services/api";
 import { login, isAuthenticated } from "../services/auth";
->>>>>>> 1f6cc167626ea4115b505f05453bfaa691ae5c03
 
 //CSS
 import "../styles/login.css";
@@ -35,35 +30,6 @@ const Login = () => {
 
 	async function onSubmit(e) {
 		e.preventDefault();
-<<<<<<< HEAD
-
-		const data = {
-			"login": user, 
-			"password": password
-		};
-
-		try {
-			//api.defaults.headers.post['Content-Type'] = 'application/json'; //USAR FORMATO JSON
-
-			const json = JSON.stringify(data);
-			
-			await api.post('/api/service/login', json).then( response => {
-				const string = response.data.split(' ');
-				const token = string[1]; //Get token
-
-				const userData = api.get(`/candidato/`)
-
-				login(token); //Store token
-				
-				alert("Logado")
-				history.push('/oportunidades');
-			})
-			}
-
-		catch (error) {
-			console.log(error);
-			setDisplay('')
-=======
 		//return () => signin({ email: values.user, password: values.password });
 		//signin({ email: values.user, password: values.password });
 
@@ -83,7 +49,6 @@ const Login = () => {
 		} catch (error) {
 			console.log(error.message);
 			setDisplay("");
->>>>>>> 1f6cc167626ea4115b505f05453bfaa691ae5c03
 		}
 	}
 
