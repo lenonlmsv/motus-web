@@ -14,7 +14,7 @@ import { FaLinkedinIn } from 'react-icons/fa';
 //Components
 import LoginBar from "../login-bar/LoginBar";
 
-function PageHeader() {
+function PageHeader(props) {
     const [showItens, setShowItens] = useState('hover-content-hide');
 
     const showOnHover = () => {

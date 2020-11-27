@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 //Routes
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
@@ -57,13 +57,9 @@ function Routes() {
 						component={Login}/>
 
 					<Route
-						path="/candidato/cadastro"
+						path="/candidato/:id"
 						component={CandidateDetails}/>
-					
-					<PrivateRoute 
-						path="/candidato/:id" 
-						component={CandidateDetails}/>
-					
+							
 
 					<PrivateRoute
 						path="/oportunidades/:id"
