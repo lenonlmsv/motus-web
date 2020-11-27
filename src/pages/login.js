@@ -8,13 +8,8 @@ import { Context as AuthContext } from "../context/authContext";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
-<<<<<<< HEAD
-import api from '../services/api'
-import { login, isAuthenticated, TOKEN_KEY } from "../services/auth";
-=======
 import api from "../services/api";
 import { login, isAuthenticated } from "../services/auth";
->>>>>>> 1f6cc167626ea4115b505f05453bfaa691ae5c03
 
 //CSS
 import "../styles/login.css";
@@ -35,7 +30,6 @@ const Login = () => {
 
 	async function onSubmit(e) {
 		e.preventDefault();
-<<<<<<< HEAD
 
 		const data = {
 			"login": user, 
@@ -63,27 +57,6 @@ const Login = () => {
 		catch (error) {
 			console.log(error);
 			setDisplay('')
-=======
-		//return () => signin({ email: values.user, password: values.password });
-		//signin({ email: values.user, password: values.password });
-
-		const data = new FormData();
-
-		data.append("login", user);
-		data.append("senha", password);
-
-		for (var pair of data.entries()) {
-			console.log(pair);
-		}
-
-		try {
-			//api.post('api/service/cadastro', data);
-			//login(response.data.token)
-			history.push("/oportunidades");
-		} catch (error) {
-			console.log(error.message);
-			setDisplay("");
->>>>>>> 1f6cc167626ea4115b505f05453bfaa691ae5c03
 		}
 	}
 
