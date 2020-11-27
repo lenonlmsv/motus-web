@@ -15,7 +15,7 @@ export default function LoginBar() {
     const hashId = getHashId();
     const userName = getUserName();
 
-    const triggerLogout =() => {
+    function triggerLogout() {
         logout();
         history.push('/login')
     }
@@ -24,7 +24,7 @@ export default function LoginBar() {
         return (
             <div id="login-bar">
                 <div className="div-limited display-flex">
-                    <p className="hide-long-content">{`Candidato ${userName}`}</p>
+                    <p className="hide-long-content">{`Candidato(a) ${userName}`}</p>
                 </div>
                 
                 <div className="logout-options">

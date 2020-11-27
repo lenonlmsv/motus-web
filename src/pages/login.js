@@ -38,7 +38,7 @@ const Login = () => {
 		};
 
 		try {
-			//api.defaults.headers.post['Content-Type'] = 'application/json'; //USAR FORMATO JSON
+			api.defaults.headers.post['Content-Type'] = 'application/json'; //USAR FORMATO JSON
 
 			const json = JSON.stringify(data);
 
@@ -46,13 +46,12 @@ const Login = () => {
 				const string = response.data.split(" ");
 				const token = string[1]; //Get token
 
-				const userData = api.get(`/candidato/`);
-
 				login(token); //Store token
 
 				alert("Logado");
 				history.push("/oportunidades");
 			});
+			
 		} catch (error) {
 			console.log(error);
 			setDisplay("");
@@ -106,7 +105,7 @@ const Login = () => {
 					</div>
 
 					<div id="options">
-						<Link to="/candidato/cadastro">Cadastre-se</Link>
+						<Link to="/cadastro">Cadastre-se</Link>
 
 						<Link to="/">Esqueci minha senha</Link>
 					</div>

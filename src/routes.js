@@ -21,6 +21,7 @@ import VideoResume from "./pages/video-resume";
 import VideoRecord from "./pages/video-recorder";
 import CandidateDetails from './pages/candidate-detail';
 import PageNotFound from './pages/page-not-found'
+import CandidateSignUp from './pages/candidate-signup'
 
 const PrivateRoute = ({ component: Component, ...rest }) => ( //Bloqueia de acordo com a autenticação
 	<Route {...rest} render={props => (
@@ -56,10 +57,13 @@ function Routes() {
 						path="/login" 
 						component={Login}/>
 
-					<Route
+					<PrivateRoute
 						path="/candidato/:id"
 						component={CandidateDetails}/>
-							
+
+					<Route
+						path="/cadastro"
+						component={CandidateSignUp}/>	
 
 					<PrivateRoute
 						path="/oportunidades/:id"

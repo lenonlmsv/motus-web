@@ -14,11 +14,13 @@ import BackgroundTitle from "../components/background-title/Background-title";
 
 //API and Auth
 import api from "../services/api";
-import { getHashId, login, logout } from "../services/auth";
+import { getHashId, isAuthenticated, login, logout } from "../services/auth";
 
-function CandidateDetails() {
+export default function CandidateSignUp() {
     const history = useHistory();
     const params = useParams();
+
+    isAuthenticated() && history.push(`/candidato/${getHashId()}`);
 
     //Form data
     const [name, setName] = useState('');
@@ -27,38 +29,7 @@ function CandidateDetails() {
     const [cellNumber, setCellNumber] = useState('')
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
-    const [resume, setResume] = useState('')
-    
-    useEffect(() => {
-        try {
-            const getData = async function() {
-                api.defaults.headers.post['Content-Type'] = 'application/json';
-    
-                await api.get(`/candidato`).then(response => {
-                    api.get(`/candidato-curriculo/${getHashId()}`).then(response => {
-                        setResume({
-                            'name' : response.data.responseData[0].nomeArquivo,
-                            'hashId': response.data.responseData[0].hashId,
-                        });
-                        document.querySelector('div.file-details').classList.remove('display-none');
-                    });
-                    
-                    const data = response.data.responseData;
-                    setName(data.nome);
-                    setEmail(data.email);
-                    setCellNumber(data.celular);
-                    setPhone(data.telefone);
-                    setLinkedin(data.linkedin)
-                    
-                })
-            }
-            getData()
-        }
-        
-        catch (error) {
-            console.log(error)
-        }        
-    }, [params.id])
+    const [resume, setResume] = useState('');
     
     const checkFileType = (fileType) => {
         const acceptedTypes = [
@@ -78,7 +49,7 @@ function CandidateDetails() {
             return false;
         }
     }
-    
+
     const handleResume = (e) => {
         //Valida o tipo do arquivo
         const fileTypeName = e.target.files[0];
@@ -112,20 +83,13 @@ function CandidateDetails() {
         document.querySelector('div.file-details').classList.add('display-none');
     }
 
-    function downloadResume(e) {     
-        console.log(resume);
+    const downloadResume = (e) => {
+        console.log(resume)
+        const resumeFile = window.URL.createObjectURL(resume);
         let a = document.createElement('a')
         a.style = 'display:none';
+        a.href = resumeFile;
         a.download = resume.name;
-        
-        if (resume.hashId == undefined) {
-            const resumeURL = window.URL.createObjectURL(resume);
-            a.href = resumeURL; //api.get(`/candidato-curriculo/download/${resume.hashId}`);
-        }
-        
-        else {
-            a.href = api.get(`/candidato-curriculo/download/${resume.hashId}`);
-        }
         a.click();
     }
 
@@ -145,17 +109,29 @@ function CandidateDetails() {
             "telefone": phone,
             "senha": password,
             "login": email,
-            "nome": name,
-            "hashId": getHashId(),
+            "nome": name
         }
 
         try {
             api.defaults.headers.post['Content-Type'] = 'application/json'; //USAR FORMATO JSON
-            
-            let json = JSON.stringify(data);
-            console.log(json)
 
-            await api.put('/candidato', json);
+            let json = JSON.stringify(data);
+
+            await api.post('/inscricao', json);
+            
+            let userData = { 
+                login: data.login, 
+                password: data.senha
+            }
+            
+            let jsonData = JSON.stringify(userData);
+            
+			await api.post("/api/service/login", jsonData).then((response) => {
+                const string = response.data.split(" ");
+				const token = string[1]; //Get token
+
+                login(token); //Store token
+            });
 
             api.defaults.headers.post['Content-Type'] = 'multipart/form-data'; //USAR FORMATO DE ARQUIVO
 
@@ -165,21 +141,22 @@ function CandidateDetails() {
 
             await api.post('candidato-curriculo', userResume);
             
-            alert('Usuário alterado com sucesso');
-            history.push('/oportunidades');
+            alert('Usuário criado com sucesso');
+            logout();
+            history.push('/login');
         }
             
         catch (error) {
             console.log(`Error: ${error.message}`);
-            alert("Erro ao editar usuário. Tente novamente!")
+            alert("Erro ao criar usuário. Tente novamente!")
         }
     }
 
     return (
         <div id='page-candidate-details' className="page-position">
             <BackgroundTitle  
-                title={`Meus dados`}
-                description={'Confira seus dados cadastrados'}/>
+                title={'Novo candidato'}
+                description={'Cadastre-se para concorrer!'}/>
 
             <main className='display-flex'>                    
                 <form className="create-candidate" onSubmit={handleSubmit}>
@@ -322,7 +299,5 @@ function CandidateDetails() {
                 </form>
             </main>
         </div>
-        )
-    }
-
-export default CandidateDetails;
+    )
+}
