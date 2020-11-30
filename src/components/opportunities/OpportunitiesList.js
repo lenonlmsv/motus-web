@@ -8,30 +8,25 @@ const OpportunitiesList = () => {
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		const fetchPosts = async () => {
+		const fetchOpportunities = async () => {
 			setLoading(true);
 			try {
 				const response = await api.get("/oportunidade");
 				setOpportunities(response.data.responseData);
 				setLoading(false);
-				console.log("Dentro do fetch");
-				console.log("valor loading: " + loading);
-				console.log(opportunities.responseData);
 			} catch (e) {
 				console.log(e);
 			}
 		};
 
-		fetchPosts();
+		fetchOpportunities();
 	}, []);
-
-	console.log("Oportunidade: ");
-	console.log(opportunities);
 
 	return opportunities.map((array) => {
 		return (
 			<div key={array.id}>
 				<OpportunitiesCard
+					jobId={array.id}
 					jobName={array.titulo}
 					jobDescription={array.descricaoVaga}
 					workTime={array.horarioTrabalho}
