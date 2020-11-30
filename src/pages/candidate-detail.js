@@ -212,7 +212,7 @@ function CandidateDetails() {
                         <label htmlFor="email">
                             E-mail
                             <span>
-                                Email não pode ser alterado
+                                O seu e-mail não pode ser alterado
                             </span>
                         </label>
                         <input 
@@ -297,11 +297,11 @@ function CandidateDetails() {
                             required/>
                     </div> */}
 
-                    <div className="input-flex input-block">
+                    <div className="input-block">
                         <label 
                             htmlFor='change-password'
                             className=''>
-                                Trocar senha
+                                Redefinir senha
                                 <span>
                                     Você receberá um e-mail parar alterar a senha de acesso
                                 </span>
