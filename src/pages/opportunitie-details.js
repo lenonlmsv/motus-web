@@ -20,7 +20,6 @@ function OpportunitieDetail() {
 	const [isVideo, setIsVideo] = useState();
 
 	//Context
-
 	useEffect(() => {
 		//Checar se o usuário tem a candidatura
 		setCheckCandidate();
