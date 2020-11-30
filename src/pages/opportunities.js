@@ -14,23 +14,6 @@ function Opportunities() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [postsPerPage, setPostsPerPage] = useState(5);
 
-	// TODO: Modificar pra pegar da api correta
-	{
-		/*	useEffect(() => {
-		const fetchPosts = async () => {
-			setLoading(true);
-			const response = await api.get("/oportunidade");
-			setPosts(response.data);
-			setLoading(false);
-			console.log("Dentro do fetch");
-			console.log("valor loading: " + loading);
-			console.log(opportunities.responseData);
-		};
-
-		fetchPosts();
-	}, []);
-*/
-	}
 	const indexOfLastPost = currentPage * postsPerPage;
 	const indexOfFirstPost = indexOfLastPost - postsPerPage;
 	//const currentPosts = opportunities.slice(indexOfFirstPost, indexOfLastPost);

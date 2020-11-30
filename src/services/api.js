@@ -9,15 +9,14 @@ const api = axios.create({
 });
 
 export const APILogin = (json) => {
-	api.defaults.headers.post['Content-Type'] = 'application/json';
+	api.defaults.headers.post["Content-Type"] = "application/json";
 
 	api.post("/api/service/login", json).then((response) => {
 		const string = response.data.split(" ");
 		const token = string[1]; //Get token
 		login(token); //Store token
 	});
-}
-
+};
 
 api.interceptors.request.use(async (config) => {
 	const token = getToken();

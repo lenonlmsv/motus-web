@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import OpportunitiesDetailCard from "./OpportunitiesDetailCard";
 
 //CSS
@@ -9,6 +9,7 @@ import "../../styles/opportunities.css";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 
 const OpportunitiesCard = ({
+	jobId,
 	jobName,
 	jobDescription,
 	jobType,
@@ -48,7 +49,7 @@ const OpportunitiesCard = ({
 		const isVideoRecored = true;
 
 		isVideoRecored
-			? history.push("/oportunidades/:id")
+			? history.push(`/oportunidades/${jobId}`)
 			: history.push("/video-curriculo");
 	};
 

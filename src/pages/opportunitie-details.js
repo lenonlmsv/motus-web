@@ -1,9 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
 import OpportunitiesDetailCard from "../components/opportunities/OpportunitiesDetailCard";
+import api from "../services/api";
 
 //CSS
 import "../styles/opportunitie-details.css";
@@ -15,13 +16,28 @@ export const userCandidature = createContext();
 
 function OpportunitieDetail() {
 	//States
+	const params = useParams();
+
+	const [opportunity, setOpportunity] = useState([]);
 	const [checkCandidate, setCheckCandidate] = useState(false);
 	const [candidature, setCandidature] = useState([]);
 	const [isVideo, setIsVideo] = useState();
 
 	//Context
 	useEffect(() => {
+		const fetchOpportunity = async () => {
+			//setLoading(true);
+			try {
+				const response = await api.get(`/oportunidade/${params.id}`);
+				setOpportunity(response.data.responseData);
+				//setLoading(false);
+			} catch (e) {
+				console.log(e);
+			}
+		};
+
 		//Checar se o usuário tem a candidatura
+		//fetchOpportunity();
 		setCheckCandidate();
 	}, []);
 
@@ -30,6 +46,8 @@ function OpportunitieDetail() {
 
 		setCheckCandidate(true);
 	};
+
+	console.log(params.id);
 
 	return (
 		<div id="page-opportunitie-details" className="page-position">
@@ -40,7 +58,12 @@ function OpportunitieDetail() {
 					//<strong>Número de vagas:</strong>
 					//<p id="opportunitie-name">199</p>
 				}
-				<OpportunitiesDetailCard />
+				<OpportunitiesDetailCard
+					jobDescription={""}
+					jobType={""}
+					workTime={""}
+					habilities={""}
+				/>
 
 				<button
 					onClick={createNewCandidature}
