@@ -15,8 +15,9 @@ export default function LoginBar() {
     const hashId = getHashId();
     const userName = getUserName();
 
-    function triggerLogout() {
+    async function triggerLogout() {
         logout();
+        await alert('deslogado');
         history.push('/login')
     }
   

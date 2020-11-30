@@ -45,10 +45,9 @@ const Login = () => {
 			await api.post("/api/service/login", json).then((response) => {
 				const string = response.data.split(" ");
 				const token = string[1]; //Get token
-
-				login(token); //Store token
-
+				
 				alert("Logado");
+				login(token); //Store token
 				history.push("/oportunidades");
 			});
 			
