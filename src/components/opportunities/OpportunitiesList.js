@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import OpportunitiesCard from "./OpportunitiesCard";
 import api from "../../services/api";
+import OpportunitiesEmpty from "./OpportunitiesEmpty";
 
 const OpportunitiesList = () => {
 	const [opportunities, setOpportunities] = useState([]);
@@ -22,19 +23,23 @@ const OpportunitiesList = () => {
 		fetchOpportunities();
 	}, []);
 
-	return opportunities.map((array) => {
-		return (
-			<div key={array.id}>
-				<OpportunitiesCard
-					jobId={array.id}
-					jobName={array.titulo}
-					jobDescription={array.descricaoVaga}
-					workTime={array.horarioTrabalho}
-					habilities={array.requisitoDesejavel}
-				/>
-			</div>
-		);
-	});
+	return opportunities !== "undefined" && opportunities.length > 0 ? (
+		opportunities.map((array) => {
+			return (
+				<div key={array.id}>
+					<OpportunitiesCard
+						jobId={array.id}
+						jobName={array.titulo}
+						jobDescription={array.descricaoVaga}
+						workTime={array.horarioTrabalho}
+						habilities={array.requisitoDesejavel}
+					/>
+				</div>
+			);
+		})
+	) : (
+		<OpportunitiesEmpty />
+	);
 };
 
 export default OpportunitiesList;
