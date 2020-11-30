@@ -24,7 +24,6 @@ function OpportunitieDetail() {
 	const [isVideo, setIsVideo] = useState();
 
 	//Context
-
 	useEffect(() => {
 		const fetchOpportunity = async () => {
 			//setLoading(true);

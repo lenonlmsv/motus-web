@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 //Router dom
-import {Link, useParams, useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 //CSS
 import "../styles/candidate-detail.css";
@@ -14,11 +14,23 @@ import BackgroundTitle from "../components/background-title/Background-title";
 
 //API and Auth
 import api from "../services/api";
-import { getHashId, isAuthenticated, login, logout } from "../services/auth";
+import { getHashId, isAuthenticated, firstLogin, logout } from "../services/auth";
+
+//Alert
+import { useAlert } from 'react-alert';
 
 export default function CandidateSignUp() {
+    const alert = useAlert();
+    
+    const showError = (message) => {
+        alert.show(message, {type: 'error'})
+    }
+
+    const showSuccess = (message) => {
+        alert.show(message, {type: 'success'})
+    }
+
     const history = useHistory();
-    const params = useParams();
 
     isAuthenticated() && history.push(`/candidato/${getHashId()}`);
 
@@ -30,7 +42,7 @@ export default function CandidateSignUp() {
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [resume, setResume] = useState('');
-    
+     
     const checkFileType = (fileType) => {
         const acceptedTypes = [
             //Checar tipos de arquivo aceitos
@@ -84,7 +96,6 @@ export default function CandidateSignUp() {
     }
 
     const downloadResume = (e) => {
-        console.log(resume)
         const resumeFile = window.URL.createObjectURL(resume);
         let a = document.createElement('a')
         a.style = 'display:none';
@@ -129,8 +140,7 @@ export default function CandidateSignUp() {
 			await api.post("/api/service/login", jsonData).then((response) => {
                 const string = response.data.split(" ");
 				const token = string[1]; //Get token
-
-                login(token); //Store token
+                firstLogin(token); //Store token
             });
 
             api.defaults.headers.post['Content-Type'] = 'multipart/form-data'; //USAR FORMATO DE ARQUIVO
@@ -141,14 +151,13 @@ export default function CandidateSignUp() {
 
             await api.post('candidato-curriculo', userResume);
             
-            alert('Usuário criado com sucesso');
-            logout();
+            await logout();
+            showSuccess('Usuário criado com sucesso!');
             history.push('/login');
         }
             
         catch (error) {
-            console.log(`Error: ${error.message}`);
-            alert("Erro ao criar usuário. Tente novamente!")
+            showError("Erro ao criar usuário. Tente novamente!")
         }
     }
 

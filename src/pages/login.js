@@ -9,17 +9,25 @@ import { Context as AuthContext } from "../context/authContext";
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
 import api from "../services/api";
-import { login, isAuthenticated } from "../services/auth";
-
+import { login, isAuthenticated, reloadPage	 } from "../services/auth";
 
 //CSS
 import "../styles/login.css";
+
+//Alert
+import { useAlert } from 'react-alert';
 
 function initialState() {
 	return { user: "", password: "" };
 }
 
 const Login = () => {
+	const alert = useAlert();
+
+	const showError = (message) => {
+        alert.show(message, {type: 'error'})
+    }
+
 	const history = useHistory();
 
 	isAuthenticated() && history.push("/oportunidades");
@@ -32,29 +40,33 @@ const Login = () => {
 	async function onSubmit(e) {
 		e.preventDefault();
 
-		const data = {
+		const dataObj = {
 			login: user,
 			password: password,
 		};
 
+		const data = JSON.stringify(dataObj);
+
 		try {
 			api.defaults.headers.post['Content-Type'] = 'application/json'; //USAR FORMATO JSON
 
-			const json = JSON.stringify(data);
+			//const json = JSON.stringify(data);
 
-			await api.post("/api/service/login", json).then((response) => {
+			await api.post("/api/service/login", data).then((response) => {
 				const string = response.data.split(" ");
 				const token = string[1]; //Get token
-
 				login(token); //Store token
-
-				alert("Logado");
 				history.push("/oportunidades");
 			});
-			
+
+
 		} catch (error) {
-			console.log(error);
-			setDisplay("");
+			console.log(error.message)
+			//setDisplay("");
+			switch (error.message) {
+				case ('Request failed with status code 403'): showError('Usuário não encontrado')
+			}
+			//showError(error.message)//"Erro ao executar login. Tente novamente.")
 		}
 	}
 

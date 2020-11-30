@@ -1,4 +1,3 @@
-import React from 'react';
 import api from "./api";
 
 export const isAuthenticated = () => {
@@ -7,16 +6,20 @@ export const isAuthenticated = () => {
     } 
 }
 
-export const login = (token) => {
+export async function login(token) {
     localStorage.setItem('TOKEN_KEY', token);
-    getUserData();
-};
-
-const getUserData = () => {
     api.get('/candidato/').then( response => {
         setHash(response.data.responseData.hashId);
         setUserName(response.data.responseData.nome);
-        reloadPage()
+        reloadPage();
+    });
+};
+
+export async function firstLogin(token) {
+    localStorage.setItem('TOKEN_KEY', token);
+    api.get('/candidato/').then( response => {
+        setHash(response.data.responseData.hashId);
+        setUserName(response.data.responseData.nome);
     });
 }
 
@@ -31,9 +34,9 @@ export async function logout() {
     localStorage.removeItem('TOKEN_KEY');
     localStorage.removeItem('HASH_ID');
     localStorage.removeItem('USER_NAME');
-    reloadPage();
+    //reloadPage();
 }
 
-function reloadPage() {
+export function reloadPage() {
     window.location.reload();
 }

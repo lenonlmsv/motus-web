@@ -16,7 +16,20 @@ import BackgroundTitle from "../components/background-title/Background-title";
 import api from "../services/api";
 import { getHashId, login, logout } from "../services/auth";
 
+//Alert
+import { useAlert } from 'react-alert';
+
 function CandidateDetails() {
+    const alert = useAlert();
+
+	const showError = (message) => {
+        alert.show(message, {type: 'error'})
+    }
+
+    const showSuccess = (message) => {
+        alert.show(message, {type: 'success'})
+    }
+
     const history = useHistory();
     const params = useParams();
 
@@ -26,7 +39,7 @@ function CandidateDetails() {
     const [linkedin, setLinkedin] = useState('');
     const [cellNumber, setCellNumber] = useState('')
     const [phone, setPhone] = useState('');
-    const [password, setPassword] = useState('');
+    //const [password, setPassword] = useState('');
     const [resume, setResume] = useState('')
     
     useEffect(() => {
@@ -139,14 +152,14 @@ function CandidateDetails() {
         }
 
         const data = {
-            "email":email,
             "celular": cellNumber,
+            "email":email,
+            "hashId": getHashId(),
             "linkedin": linkedin,
-            "telefone": phone,
-            "senha": password,
             "login": email,
             "nome": name,
-            "hashId": getHashId(),
+            "telefone": phone,
+            //"senha": password,
         }
 
         try {
@@ -157,21 +170,21 @@ function CandidateDetails() {
 
             await api.put('/candidato', json);
 
-            api.defaults.headers.post['Content-Type'] = 'multipart/form-data'; //USAR FORMATO DE ARQUIVO
+            // api.defaults.headers.post['Content-Type'] = 'multipart/form-data'; //USAR FORMATO DE ARQUIVO
 
-            const userResume = new FormData();
+            // const userResume = new FormData();
 
-            userResume.append('arquivo', resume);
+            // userResume.append('arquivo', resume);
 
-            await api.post('candidato-curriculo', userResume);
+            // await api.post('candidato-curriculo', userResume);
             
-            alert('Usuário alterado com sucesso');
+            showSuccess('Usuário alterado com sucesso');
             history.push('/oportunidades');
         }
             
         catch (error) {
-            console.log(`Error: ${error.message}`);
-            alert("Erro ao editar usuário. Tente novamente!")
+            console.log(`${error.message}`);
+            showError("Erro ao editar usuário. Tente novamente!")
         }
     }
 
@@ -199,7 +212,7 @@ function CandidateDetails() {
                         <label htmlFor="email">
                             E-mail
                             <span>
-                                Seu email será usado como login de acesso
+                                Email não pode ser alterado
                             </span>
                         </label>
                         <input 
@@ -208,7 +221,7 @@ function CandidateDetails() {
                             maxLength="40"
                             onChange={event => {setEmail(event.target.value)}}
                             value={email}
-                            required/>
+                            disabled/>
                     </div>
 
                     <div className="input-block">
@@ -268,7 +281,7 @@ function CandidateDetails() {
                             required/>
                     </div>
 
-                    <div className="input-block">
+                    {/* <div className="input-block">
                         <label htmlFor="password">Senha
                             <span>
                                 Informe uma senha para acesso ao sistema
@@ -282,6 +295,18 @@ function CandidateDetails() {
                             type="password"
                             onChange={event => {setPassword(event.target.value)}}
                             required/>
+                    </div> */}
+
+                    <div className="input-flex input-block">
+                        <label 
+                            htmlFor='change-password'
+                            className=''>
+                                Trocar senha
+                                <span>
+                                    Você receberá um e-mail parar alterar a senha de acesso
+                                </span>
+                            
+                        </label>
                     </div>
 
                     <div className="input-flex input-block">
