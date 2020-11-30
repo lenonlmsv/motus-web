@@ -7,7 +7,7 @@ import { Link, useHistory } from 'react-router-dom'
 import './styles/login-bar.css'
 
 //Components
-import {getHashId, getUserName, isAuthenticated, logout} from '../../services/auth';
+import {getHashId, getUserName, isAuthenticated, logout, reloadPage} from '../../services/auth';
 
 export default function LoginBar() {
     const history = useHistory();
@@ -15,10 +15,10 @@ export default function LoginBar() {
     const hashId = getHashId();
     const userName = getUserName();
 
-    async function triggerLogout() {
+    function triggerLogout() {
         logout();
-        await alert('deslogado');
-        history.push('/login')
+        history.push('/login');
+        reloadPage()
     }
   
     if(isAuthenticated()) {

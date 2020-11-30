@@ -12,16 +12,10 @@ import "./styles/global.css";
 
 function App() {
 	return (
-		<div id="page-content" className="page-content">
-			{//<PageHeader />
-			}
-			
+		<div id="page-content" className="page-content">	
 			<div className="router-content">
 				<Routes />
 			</div>
-
-			{//<PageFooter />
-			}
  		</div>
 	);
 }
