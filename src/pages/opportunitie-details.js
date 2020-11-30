@@ -29,7 +29,7 @@ function OpportunitieDetail() {
 		const fetchOpportunity = async () => {
 			//setLoading(true);
 			try {
-				const response = await api.get("/oportunidade");
+				const response = await api.get(`/oportunidade/${params.id}`);
 				setOpportunity(response.data.responseData);
 				//setLoading(false);
 			} catch (e) {
