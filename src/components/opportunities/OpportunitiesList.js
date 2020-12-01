@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import OpportunitiesCard from "./OpportunitiesCard";
 import api from "../../services/api";
 import OpportunitiesEmpty from "./OpportunitiesEmpty";
+import OpportunitiesLoadingCard from "./OpportunitiesLoadingCard";
 
 const OpportunitiesList = ({ opportunities, loading }) => {
 	/*const [opportunities, setOpportunities] = useState([]);
@@ -27,7 +28,7 @@ const OpportunitiesList = ({ opportunities, loading }) => {
 	console.log("Na lista de oportunidades: " + opportunities);
 	console.log("Na lsita de opp, valor loading: " + loading);
 	return loading ? (
-		<div>Carregando</div>
+		<OpportunitiesLoadingCard />
 	) : opportunities !== "undefined" && opportunities.length > 0 ? (
 		opportunities.map((array) => {
 			return (
