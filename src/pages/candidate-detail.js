@@ -11,6 +11,7 @@ import { FaDownload, FaTrash } from "react-icons/fa";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
+import ResumesList from '../components/resumes-list/ResumesList'
 
 //API and Auth
 import api from "../services/api";
@@ -333,6 +334,8 @@ function CandidateDetails() {
                             className='display-none'
                             onChange={handleResume}/>
                     </div>
+
+                    <ResumesList/>
 
                     <div className="file-details display-none">
                         <FaTrash color={'red'} onClick={removeResume}/>
