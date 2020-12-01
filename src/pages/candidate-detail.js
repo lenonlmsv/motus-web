@@ -133,14 +133,13 @@ function CandidateDetails() {
     }
 
     function downloadResume(e) {     
-        console.log(resume);
         let a = document.createElement('a')
         a.style = 'display:none';
         a.download = resume.name;
         
         if (resume.hashId == undefined) {
             const resumeURL = window.URL.createObjectURL(resume);
-            a.href = resumeURL; //api.get(`/candidato-curriculo/download/${resume.hashId}`);
+            a.href = resumeURL;
         }
         
         else {
@@ -337,11 +336,11 @@ function CandidateDetails() {
 
                     <ResumesList/>
 
-                    <div className="file-details display-none">
+                    <div className="file-details ">
                         <FaTrash color={'red'} onClick={removeResume}/>
                         <FaDownload color={'blue'} onClick={downloadResume}/>
                         <p>{resume.name}</p>
-                    </div>
+                    </div> 
 
 
                     <div class='display-flex button-send'>

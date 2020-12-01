@@ -3,6 +3,9 @@ import api from './api'
 //Alert 
 import Alert from '../components/Alert'
 
+//Auth
+import {getUserName} from './auth'
+
 export async function deleteResume(resumeHashId) {
     try {
         await api.delete(`candidato-curriculo/${resumeHashId}`);
@@ -31,12 +34,10 @@ export async function getResumes() {
     }
 }
 
-export async function downloadResume(resumeHashId) {
-    try {
-        await api.get(`candidato-curriculo/download/${resumeHashId}`);
-    }
-
-    catch(e) {
-        <Alert m={e.message} type='error'/>
-    }
+export async function downloadResume(resumeHashId, fileName) {
+    let a = document.createElement('a');
+    a.href = api.get(`/candidato-curriculo/download/${resumeHashId}`);
+    a.style = 'display:none';
+    a.download = fileName;
+    a.click();      
 }
