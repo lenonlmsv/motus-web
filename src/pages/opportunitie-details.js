@@ -51,7 +51,9 @@ function OpportunitieDetail() {
 
 	return (
 		<div id="page-opportunitie-details" className="page-position">
-			<BackgroundTitle title="Desenvolvedor React" description="" />
+			<BackgroundTitle 
+				title={`${opportunity.titulo}`}
+				description="" />
 
 			<div className="opportunitie-detail-description">
 				{
