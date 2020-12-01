@@ -52,13 +52,7 @@ function OpportunitieDetail() {
 
 	return (
 		<div id="page-opportunitie-details" className="page-position">
-<<<<<<< HEAD
-			<BackgroundTitle 
-				title={`${opportunity.titulo}`}
-				description="" />
-=======
 			<BackgroundTitle title={opportunity.titulo} description="" />
->>>>>>> 9ebfe33316c7f554b75d9e959432d8aed6297f07
 
 			<div className="opportunitie-detail-description">
 				{
