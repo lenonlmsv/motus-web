@@ -4,22 +4,40 @@ import api from "../services/api";
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
 import OpportunitiesList from "../components/opportunities/OpportunitiesList";
+import Pagination from "../components/Pagination";
 
 //CSS
 import "../styles/opportunities.css";
 
 function Opportunities() {
-	const [opportunities, setPosts] = useState([]);
+	const [opportunities, setOpportunities] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [postsPerPage, setPostsPerPage] = useState(5);
 
+	useEffect(() => {
+		const fetchOpportunities = async () => {
+			setLoading(true);
+			try {
+				const response = await api.get("/oportunidade");
+				setOpportunities(response.data.responseData);
+				setLoading(false);
+			} catch (e) {
+				console.log(e);
+			}
+		};
+
+		fetchOpportunities();
+	}, []);
+
 	const indexOfLastPost = currentPage * postsPerPage;
 	const indexOfFirstPost = indexOfLastPost - postsPerPage;
-	//const currentPosts = opportunities.slice(indexOfFirstPost, indexOfLastPost);
-
+	const currentPosts = opportunities.slice(indexOfFirstPost, indexOfLastPost);
 	//Muda pagina
-	const paginate = (pageNumber) => setCurrentPage(pageNumber);
+	const paginate = (pageNumber) => {
+		setCurrentPage(pageNumber);
+	};
+	console.log(opportunities);
 
 	return (
 		<div id="page-opportunities" className="page-position">
@@ -30,7 +48,12 @@ function Opportunities() {
 				}
 			/>
 
-			<OpportunitiesList />
+			<OpportunitiesList opportunities={currentPosts} loading={loading} />
+			<Pagination
+				postsPerPage={postsPerPage}
+				totalPosts={opportunities.length}
+				paginate={paginate}
+			/>
 			{/*<OpportunitiesList
 				opportunities={opportunities}
 				loading={loading}
