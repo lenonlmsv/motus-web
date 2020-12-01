@@ -43,6 +43,8 @@ const OpportunitiesList = ({ opportunities, loading }) => {
 				</div>
 			);
 		})
+	) : loading ? (
+		<OpportunitiesLoadingCard />
 	) : (
 		<OpportunitiesEmpty />
 	);

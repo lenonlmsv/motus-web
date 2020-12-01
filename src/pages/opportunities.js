@@ -10,6 +10,7 @@ import Pagination from "../components/Pagination";
 import "../styles/opportunities.css";
 
 function Opportunities() {
+	const [error, setError] = useState(null);
 	const [opportunities, setOpportunities] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
@@ -24,6 +25,7 @@ function Opportunities() {
 				setLoading(false);
 			} catch (e) {
 				console.log(e);
+				setError(e);
 			}
 		};
 
@@ -38,6 +40,7 @@ function Opportunities() {
 		setCurrentPage(pageNumber);
 	};
 	console.log(opportunities);
+	console.log("O error é: " + error);
 
 	return (
 		<div id="page-opportunities" className="page-position">
@@ -47,13 +50,21 @@ function Opportunities() {
 					"A história da Sys Manager é construída com a contribuição de uma equipe talentosa empenhada em sempre entregar a melhor solução para os clientes."
 				}
 			/>
-
-			<OpportunitiesList opportunities={currentPosts} loading={loading} />
-			<Pagination
-				postsPerPage={postsPerPage}
-				totalPosts={opportunities.length}
-				paginate={paginate}
-			/>
+			{error === null ? (
+				<div>
+					<OpportunitiesList
+						opportunities={currentPosts}
+						loading={loading}
+					/>
+					<Pagination
+						postsPerPage={postsPerPage}
+						totalPosts={opportunities.length}
+						paginate={paginate}
+					/>
+				</div>
+			) : (
+				<div>Erro na api</div>
+			)}
 			{/*<OpportunitiesList
 				opportunities={opportunities}
 				loading={loading}
