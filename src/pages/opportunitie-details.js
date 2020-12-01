@@ -37,7 +37,7 @@ function OpportunitieDetail() {
 		};
 
 		//Checar se o usuário tem a candidatura
-		//fetchOpportunity();
+		fetchOpportunity();
 		setCheckCandidate();
 	}, []);
 
@@ -48,10 +48,11 @@ function OpportunitieDetail() {
 	};
 
 	console.log(params.id);
+	console.log(opportunity);
 
 	return (
 		<div id="page-opportunitie-details" className="page-position">
-			<BackgroundTitle title="Desenvolvedor React" description="" />
+			<BackgroundTitle title={opportunity.titulo} description="" />
 
 			<div className="opportunitie-detail-description">
 				{
@@ -59,10 +60,10 @@ function OpportunitieDetail() {
 					//<p id="opportunitie-name">199</p>
 				}
 				<OpportunitiesDetailCard
-					jobDescription={""}
-					jobType={""}
-					workTime={""}
-					habilities={""}
+					jobDescription={opportunity.descricaoVaga}
+					jobType={"Senior"}
+					workTime={opportunity.horarioTrabalho}
+					habilities={opportunity.requisitoDesejavel}
 				/>
 
 				<button
