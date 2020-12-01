@@ -148,6 +148,8 @@ export default function CandidateSignUp() {
             const userResume = new FormData();
 
             userResume.append('arquivo', resume);
+            userResume.append('name', resume.name);
+            userResume.append('tipoCurriculo', 'DOCUMENTO');
 
             await api.post('candidato-curriculo', userResume);
             

@@ -48,13 +48,19 @@ function CandidateDetails() {
                 api.defaults.headers.post['Content-Type'] = 'application/json';
     
                 await api.get(`/candidato`).then(response => {
-                    api.get(`/candidato-curriculo/${getHashId()}`).then(response => {
-                        setResume({
-                            'name' : response.data.responseData[0].nomeArquivo,
-                            'hashId': response.data.responseData[0].hashId,
-                        });
+                    try {
+                        api.get(`/candidato-curriculo/DOCUMENTO`).then(response => {
+                            setResume({
+                                'name' : response.data.responseData[0].nomeArquivo,
+                                'hashId': response.data.responseData[0].hashId,
+                            });
                         document.querySelector('div.file-details').classList.remove('display-none');
-                    });
+                        });
+                    }
+
+                    catch(error) {
+                         showError('Erro ao buscar currículo')
+                     }
                     
                     const data = response.data.responseData;
                     setName(data.nome);
@@ -166,17 +172,18 @@ function CandidateDetails() {
             api.defaults.headers.post['Content-Type'] = 'application/json'; //USAR FORMATO JSON
             
             let json = JSON.stringify(data);
-            console.log(json)
 
-            await api.put('/candidato', json);
+            await api.post('/candidato', json);
 
-            // api.defaults.headers.post['Content-Type'] = 'multipart/form-data'; //USAR FORMATO DE ARQUIVO
+            api.defaults.headers.post['Content-Type'] = 'multipart/form-data'; //USAR FORMATO DE ARQUIVO
 
-            // const userResume = new FormData();
+            const userResume = new FormData();
 
-            // userResume.append('arquivo', resume);
+            userResume.append('arquivo', resume);
+            userResume.append('name', resume.name);
+            userResume.append('tipoCurriculo', 'DOCUMENTO');
 
-            // await api.post('candidato-curriculo', userResume);
+            await api.post('candidato-curriculo', userResume);
             
             showSuccess('Usuário alterado com sucesso');
             history.push('/oportunidades');
