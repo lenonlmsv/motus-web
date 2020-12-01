@@ -1,7 +1,23 @@
-import api from './api'
+import api from './api' 
 
 export async function deleteResume(resumeHashId) {
-    const resumes = await api.get('/candidato-curriculo/DOCUMENTO');
+    try {
+        await api.delete(`candidato-curriculo/${resumeHashId}`);
+    }
 
-    console.log(resumes)
+    catch(e) {
+        console.log(e.message)
+    }
+}
+
+export async function getResumes() {
+    try {
+        const response = await api.get(`candidato-curriculo/DOCUMENTOS`).response.data.responseData;
+        return response;
+    }
+
+    catch(e) {
+        console.log(e.message)
+        return null;
+    }
 }
