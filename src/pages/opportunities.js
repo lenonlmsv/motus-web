@@ -21,7 +21,7 @@ function Opportunities() {
 		const fetchOpportunities = async () => {
 			setLoading(true);
 			try {
-				const response = await api.get("/oportunidade");
+				const response = await api.get("/oportunidade/1/100");
 				setOpportunities(response.data.responseData);
 				setLoading(false);
 			} catch (e) {
@@ -35,7 +35,7 @@ function Opportunities() {
 
 	const indexOfLastPost = currentPage * postsPerPage;
 	const indexOfFirstPost = indexOfLastPost - postsPerPage;
-	const currentPosts = opportunities.slice(indexOfFirstPost, indexOfLastPost);
+	//const currentPosts = opportunities.slice(indexOfFirstPost, indexOfLastPost);
 	//Muda pagina
 	const paginate = (pageNumber) => {
 		setCurrentPage(pageNumber);
@@ -55,7 +55,7 @@ function Opportunities() {
 			{error === null ? (
 				<div>
 					<OpportunitiesList
-						opportunities={currentPosts}
+						opportunities={opportunities}
 						loading={loading}
 					/>
 					<Pagination
