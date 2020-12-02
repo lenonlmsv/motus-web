@@ -1,4 +1,32 @@
+#resumes .input-flex {
+    margin: 0.5rem 0 0 0;
+}
+
 .file-list {
     width: 100%;
     display: flex;
+    margin: 0.7rem 0;
 }
+
+.file-list svg {
+    cursor: pointer;
+    font-size: 16px;
+    min-width: 16px;
+}
+
+.file-list svg + svg {
+    margin: 0 0.5rem 0 0.5rem;
+}
+
+.file-list p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (min-width: 800px) {
+    .file-list svg {
+        font-size: 22px;
+    }
+}
+

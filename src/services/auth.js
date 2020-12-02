@@ -27,8 +27,8 @@ export const getToken = () => localStorage.getItem('TOKEN_KEY');
 export const getHashId = () => localStorage.getItem('HASH_ID');
 export const getUserName = () => localStorage.getItem('USER_NAME');
 
-const setHash = hash => {localStorage.setItem('HASH_ID',hash)}
-const setUserName = name => {localStorage.setItem('USER_NAME',name)}
+export const setHash = hash => {localStorage.setItem('HASH_ID',hash)}
+export const setUserName = name => {localStorage.setItem('USER_NAME',name)}
 
 export async function logout() {
     localStorage.removeItem('TOKEN_KEY');
