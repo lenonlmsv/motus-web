@@ -82,6 +82,28 @@ export async function getOpportunitieDetail(vagaId) {
     }
 }
 
+export function checkCandidature() {
+    try {
+        const response = api.get(`candidatura/`);
+
+    }
+
+    catch(e){
+        console.log(e)
+    }
+}
+
+export function createCandidature(vagaId) {
+    try {
+        const response = api.get(`candidatura/${vagaId}`);
+        
+    }
+
+    catch(e){
+        console.log(e)
+    }
+}
+
 export default function Methods() {
 
 }
