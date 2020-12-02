@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../services/api";
+import { getToken } from "../services/auth";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
@@ -41,6 +42,7 @@ function Opportunities() {
 	};
 	console.log(opportunities);
 	console.log("O error é: " + error);
+	console.log("O token é: " + getToken());
 
 	return (
 		<div id="page-opportunities" className="page-position">
