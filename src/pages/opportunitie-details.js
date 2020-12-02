@@ -32,7 +32,7 @@ function OpportunitieDetail() {
 		const fetchOpportunity = async () => {
 			//setLoading(true);
 			try {
-				const response = await getOpportunitieDetail();
+				const response = await getOpportunitieDetail(params.id);
 				setOpportunity(response.data.responseData);
 				//setLoading(false);
 			} catch (e) {
@@ -51,9 +51,6 @@ function OpportunitieDetail() {
 		setCheckCandidate(true);
 	};
 
-	console.log(params.id);
-	console.log(opportunity);
-
 	return (
 		<div id="page-opportunitie-details" className="page-position">
 			<BackgroundTitle title={opportunity.titulo} description="" />
@@ -65,7 +62,7 @@ function OpportunitieDetail() {
 				}
 				<OpportunitiesDetailCard
 					jobDescription={opportunity.descricaoVaga}
-					jobType={"Senior"}
+					jobType={"Não informado"}
 					workTime={opportunity.horarioTrabalho}
 					habilities={opportunity.requisitoDesejavel}
 				/>

@@ -25,6 +25,7 @@ const OpportunitiesDetailCard = ({
 					PageMaker including versions of Lorem Ipsum
 				</p>
 			)}
+			
 			<strong>Tipo de vaga:</strong>
 			{jobType ? <p>{jobType}</p> : <p>Sênior</p>}
 

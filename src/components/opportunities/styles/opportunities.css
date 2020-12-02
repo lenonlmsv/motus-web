@@ -1,0 +1,23 @@
+#no-opportunities {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin: 1rem 0 0 0;
+}
+
+#no-opportunities p {
+	color: var(--color-font-secondary);
+	font-size: 1.1rem;
+}
+
+@media (min-width: 1200px) {
+	#no-opportunities p {
+		font-size: 2rem;
+	}
+
+	#no-opportunities img {
+		width: 650px;
+	}
+}
+

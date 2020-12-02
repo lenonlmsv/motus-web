@@ -6,6 +6,7 @@ import { getToken } from "../services/auth";
 import BackgroundTitle from "../components/background-title/Background-title";
 import OpportunitiesList from "../components/opportunities/OpportunitiesList";
 import Pagination from "../components/Pagination";
+import OpportunitiesEmpty from "../components/opportunities/OpportunitiesEmpty";
 
 //CSS
 import "../styles/opportunities.css";
@@ -47,12 +48,14 @@ function Opportunities() {
 
 	return (
 		<div id="page-opportunities" className="page-position">
+
 			<BackgroundTitle
 				title={"Junte-se a nós!"}
 				description={
 					"A história da Sys Manager é construída com a contribuição de uma equipe talentosa empenhada em sempre entregar a melhor solução para os clientes."
 				}
 			/>
+
 			{error === null ? (
 				<div>
 					<OpportunitiesList
@@ -66,9 +69,10 @@ function Opportunities() {
 					/>
 				</div>
 			) : (
-				<div>Erro na api</div>
+				<div>Erro ao buscar dados...</div>
 			)}
-			{/*<OpportunitiesList
+			{/*<
+			List
 				opportunities={opportunities}
 				loading={loading}
 			/>

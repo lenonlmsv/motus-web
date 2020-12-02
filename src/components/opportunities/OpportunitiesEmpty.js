@@ -1,13 +1,15 @@
 import React from "react";
 
 //CSS
-import "./styles/opportunities-css.css";
+import "./styles/opportunities.css";
+
+import noOpportunities from '../../images/no-opportunities.svg'
 
 const OpportunitiesEmpty = () => {
 	return (
-		<div>
-			<div className="div-image-opportunities"></div>
-			<div className="div-content-opportunities">Tem vaga não, parça</div>
+		<div id='no-opportunities'>
+			<p className="no-opportunities">Sem oportunidades no momento...</p>
+			<img src={noOpportunities} alt="Sem oportunidades no momento"/>
 		</div>
 	);
 };
