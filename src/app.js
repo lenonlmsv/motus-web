@@ -3,10 +3,6 @@ import React from "react";
 //Routes
 import Routes from "./routes";
 
-//Components
-//import PageHeader from "./components/page-header/Page-header";
-//import PageFooter from "./components/page-footer/Page-footer";
-
 //CSS
 import "./styles/global.css";
 

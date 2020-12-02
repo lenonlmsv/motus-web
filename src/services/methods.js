@@ -1,19 +1,15 @@
 import api from './api'
 
-//Alert 
-import Alert from '../components/Alert'
-
 //Auth
 import {getUserName} from './auth'
 
 export async function deleteResume(resumeHashId) {
     try {
-        await api.delete(`candidato-curriculo/${resumeHashId}`);
-        <Alert m='Currículo deletado com sucesso' type='success'/>
-    }
+        await api.post(`candidato-curriculo/delete/${resumeHashId}`);
+    }   
 
     catch(e) {
-        <Alert m={e.message} type='error'/>
+        console.log(e.message)
     }
 }
 
@@ -29,7 +25,7 @@ export async function getResumes() {
     }
 
     catch(e) {
-        <Alert m={e.message} type='error'/>
+        console.log(e)
         return null;
     }
 }
@@ -40,4 +36,22 @@ export async function downloadResume(resumeHashId, fileName) {
     a.style = 'display:none';
     a.download = fileName;
     a.click();      
+}
+
+export async function sendResume(resume) {
+    try {
+        api.defaults.headers.post['Content-Type'] = 'multipart/form-data'; //USAR FORMATO DE ARQUIVO
+
+        const data = new FormData();
+
+        data.append('arquivo', resume);
+        data.append('name', resume.name);
+        data.append('tipoCurriculo', 'DOCUMENTO');
+
+        api.post('/candidato-curriculo', data)
+    }
+
+    catch(e) {
+        console.log(e)
+    }
 }
