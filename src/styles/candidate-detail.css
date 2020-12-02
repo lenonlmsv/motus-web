@@ -27,6 +27,7 @@
 
 #page-candidate-details main form {
     width: 100%;
+    max-width: var(--page-max-width);
 }
 
 .input-block + .input-block {
