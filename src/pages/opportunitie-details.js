@@ -6,6 +6,9 @@ import BackgroundTitle from "../components/background-title/Background-title";
 import OpportunitiesDetailCard from "../components/opportunities/OpportunitiesDetailCard";
 import api from "../services/api";
 
+//Methods
+import {getOpportunitieDetail} from '../services/methods'
+
 //CSS
 import "../styles/opportunitie-details.css";
 
@@ -13,6 +16,7 @@ import "../styles/opportunitie-details.css";
 import { FaUpload, FaDownload, FaRecordVinyl, FaCheck } from "react-icons/fa";
 
 export const userCandidature = createContext();
+
 
 function OpportunitieDetail() {
 	//States
@@ -28,7 +32,7 @@ function OpportunitieDetail() {
 		const fetchOpportunity = async () => {
 			//setLoading(true);
 			try {
-				const response = await api.get(`/oportunidade/${params.id}`);
+				const response = await getOpportunitieDetail();
 				setOpportunity(response.data.responseData);
 				//setLoading(false);
 			} catch (e) {

@@ -55,3 +55,33 @@ export async function sendResume(resume) {
         console.log(e)
     }
 }
+
+export async function getOpportunities(page) {
+    try {
+        const currPage = page;
+        const items = 100;
+        const opportunities = await api.get(`/oportunidade/${currPage}/${items}`);
+        return opportunities;
+    }
+
+    catch(e) {
+        console.log(e);
+        return null
+    }
+}
+
+export async function getOpportunitieDetail(vagaId) {
+    try {
+        const opportunitie = await api.get(`/oportunidade/${vagaId}`)
+        return opportunitie;
+    }
+    
+    catch(e){
+        console.log(e);
+        return null;
+    }
+}
+
+export default function Methods() {
+
+}

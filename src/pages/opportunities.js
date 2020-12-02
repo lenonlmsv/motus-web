@@ -10,6 +10,9 @@ import Pagination from "../components/Pagination";
 //CSS
 import "../styles/opportunities.css";
 
+//Methods
+import {getOpportunities} from '../services/methods'
+
 function Opportunities() {
 	const [error, setError] = useState(null);
 	const [opportunities, setOpportunities] = useState([]);
@@ -18,10 +21,11 @@ function Opportunities() {
 	const [postsPerPage, setPostsPerPage] = useState(5);
 
 	useEffect(() => {
-		const fetchOpportunities = async () => {
+		async function fetchOpportunities() {
 			setLoading(true);
 			try {
-				const response = await api.get("/oportunidade");
+				let response = '';
+				response = await getOpportunities(1) //await api.get("/oportunidade/1/10");
 				setOpportunities(response.data.responseData);
 				setLoading(false);
 			} catch (e) {
@@ -31,7 +35,7 @@ function Opportunities() {
 		};
 
 		fetchOpportunities();
-	}, []);
+	},[]);
 
 	const indexOfLastPost = currentPage * postsPerPage;
 	const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -40,9 +44,6 @@ function Opportunities() {
 	const paginate = (pageNumber) => {
 		setCurrentPage(pageNumber);
 	};
-	console.log(opportunities);
-	console.log("O error é: " + error);
-	console.log("O token é: " + getToken());
 
 	return (
 		<div id="page-opportunities" className="page-position">
