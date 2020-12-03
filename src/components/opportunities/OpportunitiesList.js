@@ -24,9 +24,6 @@ const OpportunitiesList = ({ opportunities, loading }) => {
 		fetchOpportunities();
 	}, []);
 */
-
-	console.log("Na lista de oportunidades: " + opportunities);
-	console.log("Na lsita de opp, valor loading: " + loading);
 	return loading ? (
 		<OpportunitiesLoadingCard />
 	) : opportunities !== "undefined" && opportunities.length > 0 ? (

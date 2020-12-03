@@ -6,7 +6,6 @@ import { getToken } from "../services/auth";
 import BackgroundTitle from "../components/background-title/Background-title";
 import OpportunitiesList from "../components/opportunities/OpportunitiesList";
 import Pagination from "../components/Pagination";
-import OpportunitiesEmpty from "../components/opportunities/OpportunitiesEmpty";
 
 //CSS
 import "../styles/opportunities.css";

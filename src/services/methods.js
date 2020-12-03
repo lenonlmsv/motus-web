@@ -82,10 +82,24 @@ export async function getOpportunitieDetail(vagaId) {
     }
 }
 
-export function checkCandidature() {
+export async function checkIsCandidate() {
     try {
-        const response = api.get(`candidatura/`);
+        const response = await api.get(`candidatura/`);
+        
+        if(response.data.responseData.length === 0) {
+            return false;
+        } 
 
+        else {
+            const opp = response.data.responseData.map(opps => {
+                return opps.vagaId;
+            })
+            
+            return ({
+                status: true,
+                opps: opp,
+            })
+        }
     }
 
     catch(e){

@@ -11,6 +11,10 @@
 	font-size: 1.1rem;
 }
 
+.div-card {
+	width: 100%;
+}
+
 @media (min-width: 1200px) {
 	#no-opportunities p {
 		font-size: 2rem;

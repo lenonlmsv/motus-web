@@ -7,13 +7,18 @@ import OpportunitiesDetailCard from "../components/opportunities/OpportunitiesDe
 import api from "../services/api";
 
 //Methods
-import {getOpportunitieDetail} from '../services/methods'
+import {getOpportunitieDetail, checkIsCandidate} from '../services/methods'
+
+
+//Auth
+import {getUserName}from '../services/auth'
 
 //CSS
 import "../styles/opportunitie-details.css";
 
 //Icons
 import { FaUpload, FaDownload, FaRecordVinyl, FaCheck } from "react-icons/fa";
+import { setUserName } from "../services/auth";
 
 export const userCandidature = createContext();
 
@@ -26,6 +31,7 @@ function OpportunitieDetail() {
 	const [checkCandidate, setCheckCandidate] = useState(false);
 	const [candidature, setCandidature] = useState([]);
 	const [isVideo, setIsVideo] = useState();
+	const [ifIsCandidate, setIfIsCandidate] = useState(false)
 
 	//Context
 	useEffect(() => {
@@ -35,6 +41,15 @@ function OpportunitieDetail() {
 				const response = await getOpportunitieDetail(params.id);
 				setOpportunity(response.data.responseData);
 				//setLoading(false);
+
+				//const isCandidate = 
+				const checkIfIsCandidate = await checkIsCandidate();
+
+				const opportunities = checkIfIsCandidate.opps.find(
+					opp => opp == params.id)
+				
+				opportunities != undefined && setIfIsCandidate(checkIfIsCandidate.opps);
+
 			} catch (e) {
 				console.log(e);
 			}
@@ -75,67 +90,70 @@ function OpportunitieDetail() {
 				</button>
 			</div>
 
-			<div id="record-videos">
-				<p>
-					Olá, <strong>usuário</strong>. Você está se candidatando a
-					vaga de Desenvolvedor React. Já temos seu CV e vídeo CV.
-					Precisamos que você responda as perguntas abaixo.
-				</p>
-
-				<p>Por favor, responda as questões abaixo em vídeo:</p>
-			</div>
-
-			<div id="video-questions">
-				{
-					//Lista de perguntas para o candidato
-				}
-
-				<div className="questions">
-					<div className="question">
-						Fale um pouco sobre você{" "}
-						<FaCheck className="question-check" />
+			{
+			ifIsCandidate && 
+				<div>
+					<div id="record-videos">
+						<p>
+							{`Olá, ${getUserName()}. Você está se candidatando a
+							vaga de ${opportunity.titulo}. Já temos seu CV, agora precisamos que você responda as perguntas abaixo. Por favor, responda as questões abaixo em vídeo:`}
+						</p>
+			
+						<p></p>
 					</div>
 
-					<div className="actions">
-						<label htmlFor="send-video" className="send-button">
-							<FaUpload className="send-button-icon" />
-							Enviar Vídeo
-						</label>
-
-						<input
-							id="send-video"
-							type="file"
-							className="send-button"
-							style={{ display: "none" }}
-						/>
-
-						<Link to={`/gravar-video/:id`} className="send-button">
-							{
-								//Retornar para video/:id
-							}
-							<FaRecordVinyl className="send-button-icon" />
-							Gravar vídeo
-						</Link>
-
-						<button className="send-button">
-							<FaDownload className="send-button-icon" />
-							Download
-						</button>
+					<div id="video-questions">
+						<div className="questions">
+							<div className="question">
+								Fale um pouco sobre você{" "}
+								<FaCheck className="question-check" />
+							</div>
+			
+							<div className="actions">
+								<label htmlFor="send-video" className="send-button">
+									<FaUpload className="send-button-icon" />
+									Enviar Vídeo
+								</label>
+			
+								<input
+									id="send-video"
+									type="file"
+									className="send-button"
+									style={{ display: "none" }}
+								/>
+			
+								<Link to={`/gravar-video/${params.id}`} className="send-button">
+									{
+										//Retornar para video/:id
+									}
+									<FaRecordVinyl className="send-button-icon" />
+									Gravar vídeo
+								</Link>
+			
+								<button className="send-button">
+									<FaDownload className="send-button-icon" />
+									Download
+								</button>
+							</div>
+						</div>
 					</div>
+								
+					<div id="message">
+						<p>Parabéns! Você está concorrendo a esta vaga!</p>
+					</div>
+	
 				</div>
-			</div>
-
-			<div id="message">
-				<p>Parabéns! Você está concorrendo a esta vaga!</p>
-			</div>
-
+			}
+			
 			<div className="return">
 				<Link to="/oportunidades/" className="button button-secondary">
 					Ver oportunidades
 				</Link>
 			</div>
+
 		</div>
-	);
+	)
 }
+
 
 export default OpportunitieDetail;
