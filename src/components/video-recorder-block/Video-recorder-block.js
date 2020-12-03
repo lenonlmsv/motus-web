@@ -6,14 +6,35 @@ import { useHistory, useParams } from 'react-router-dom';
 //Icons
 import { FaDownload, FaStop, FaRecordVinyl, FaShare} from 'react-icons/fa';
 
+//Methods
+import {sendVideoResume} from '../../services/methods'
+
+//Alert
+import { useAlert } from 'react-alert';
+
 function VideoRecorderBlock(props) {
     useEffect(() => setRecord())
 
     //Params
-    const params = useParams()
-
+    const params = useParams();
+    
     //States
     const [isCameraAllowed, setIsCameraAllowed] = useState(false);
+    const [videoRecorded, setVideoRecorded] = useState([])
+    const [returnTo, setreturnTo] = useState(props.returnTo)
+
+    const alert = useAlert();
+
+    function showSuccess(m) {
+        alert.show(m, {type: 'success'})
+    }
+
+    function showErrorMessage(m) {
+        alert.show(m, {type: 'error'})
+    }
+
+    //Destination after record video
+    props.returnTo === '' && setreturnTo(params.id)
 
     //History
     const history = useHistory();
@@ -24,7 +45,7 @@ function VideoRecorderBlock(props) {
     let videoBlobURL = '';
     let streamVar;
     let mediaRecorder;
-        
+  
     function setRecord() {
         'use strict';
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -82,7 +103,6 @@ function VideoRecorderBlock(props) {
             .then(function() {
                 chunks = [];
 
-                
                 mediaRecorder.start();
                 
                 mediaRecorder.ondataavailable = function(eventoData) {
@@ -101,9 +121,10 @@ function VideoRecorderBlock(props) {
         }
         
         mediaRecorder.onstop = function(e) {
+            setVideoRecorded(chunks[0])
             document.querySelector('input#mimeType').value = mediaRecorder.mimeType;
             const blob = new Blob(chunks, { 'type' : 'octet-stream' }); //mediaRecorder.mimeType });
-            chunks = [];
+            //chunks = [];
             videoBlobURL = window.URL.createObjectURL(blob);
             stopT();
             
@@ -148,13 +169,22 @@ function VideoRecorderBlock(props) {
         a.click();
     }
     
-    const sendOnClick = (b64File) => {
-        const base64 = b64File.replace('data:octet-stream;base64,', '');
+    const sendOnClick = async () => {
+        if (params.id === 'video-curriculo') {
+            const response = await sendVideoResume(videoRecorded);
+            if(response.status == 'error'){
+                showErrorMessage(response.message);
+                showErrorMessage('Você também pode baixar este video e enviar!')
+                return
+            }
+            showSuccess('Vídeo currículo enviado com sucesso!');
+            history.push(returnTo)
+        }
 
-        let video = document.querySelector('video.videoStream');
-        stopStreaming(video)
+        //let video = document.querySelector('video.videoStream');
+        //stopStreaming(video)
         
-        history.push('/oportunidades/:id')
+        //history.push('/oportunidades/:id')
     }
     
     function startT(){
@@ -242,7 +272,10 @@ function VideoRecorderBlock(props) {
                                 Baixar
                             </button>
                             
-                            <button id="buttonSend"className="button button-primary displayNone">
+                            <button 
+                                id="buttonSend"
+                                className="button button-primary displayNone"
+                                style={{cursor:'pointer'}}>
                                 <FaShare/>
                                 Enviar
                             </button>
@@ -253,11 +286,12 @@ function VideoRecorderBlock(props) {
 
                     </div>
             }
-                        <div id="back-button">
-                                <button onClick={() => {history.push(`/oportunidades/${params.id}`)}} className="button button-secondary">
-                                    Voltar
-                                </button>
-                        </div>
+
+            <div id="back-button">
+                    <button onClick={() => {history.push(`/oportunidades/${returnTo}`)}} className="button button-secondary">
+                        Voltar
+                    </button>
+            </div>
         </div>
     )
 }

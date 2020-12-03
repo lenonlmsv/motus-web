@@ -124,7 +124,8 @@ export async function sendVideoResume(file) {
     data.append('tipoCurriculo', 'VIDEO');
     
     try {
-        await api.post('/candidato-curriculo', data);
+        const response = await api.post('/candidato-curriculo', data);
+        console.log(response)
         return {status: 'ok', message: ''}
     }
 

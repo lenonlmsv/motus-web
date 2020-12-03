@@ -21,6 +21,9 @@ import BackgroundTitle from "../components/background-title/Background-title";
 import {sendVideoResume} from '../services/methods'
 import { useAlert } from "react-alert";
 
+//Auth
+import {getHashId} from '../services/auth'
+
 function VideoResume() {
     //Alert
     const alert = useAlert();
@@ -66,13 +69,12 @@ function VideoResume() {
     async function submitResume() {
         const response = await sendVideoResume(resumeFile);
         if(response.status == 'error'){
-            console.log(response)
             showErrorMessage(response.message)
             return
         }
         
         showSuccess('Video enviado com sucesso!')
-        history.push('/oportunidades');
+        history.push(`/candidato/${getHashId()}`);
     }
 
     const handleVideoResume = (event) => {

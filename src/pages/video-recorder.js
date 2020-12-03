@@ -40,7 +40,9 @@ function VideoRecord() {
 				/>
 
 				<div id="div-recoder">
-					<VideoRecorderBlock time={timeSeconds} />
+					<VideoRecorderBlock 
+						time={timeSeconds} 
+						returnTo={'/oportunidades'}/>
 				</div>
 			</div>
 		);
@@ -58,7 +60,9 @@ function VideoRecord() {
 				/>
 
 				<div id="div-recoder">
-					<VideoRecorderBlock time={timeSeconds} />
+					<VideoRecorderBlock 
+						time={timeSeconds}
+						returnTo={''} />
 				</div>
 			</div>
 		);
