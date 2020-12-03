@@ -94,7 +94,7 @@ export async function checkIsCandidate() {
             const opp = response.data.responseData.map(opps => {
                 return opps.vagaId;
             })
-            
+
             return ({
                 status: true,
                 opps: opp,
@@ -109,8 +109,7 @@ export async function checkIsCandidate() {
 
 export function createCandidature(vagaId) {
     try {
-        const response = api.get(`candidatura/${vagaId}`);
-        
+        const response = api.post(`candidatura/${vagaId}`);
     }
 
     catch(e){

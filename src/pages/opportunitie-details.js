@@ -7,7 +7,7 @@ import OpportunitiesDetailCard from "../components/opportunities/OpportunitiesDe
 import api from "../services/api";
 
 //Methods
-import {getOpportunitieDetail, checkIsCandidate} from '../services/methods'
+import {getOpportunitieDetail, createCandidature, checkIsCandidate} from '../services/methods'
 
 
 //Auth
@@ -18,17 +18,25 @@ import "../styles/opportunitie-details.css";
 
 //Icons
 import { FaUpload, FaDownload, FaRecordVinyl, FaCheck } from "react-icons/fa";
-import { setUserName } from "../services/auth";
+import { useAlert } from "react-alert";
 
 export const userCandidature = createContext();
 
 
 function OpportunitieDetail() {
-	//States
+	//Params
 	const params = useParams();
+	
+	//Alert
+	const alert = useAlert();
 
+	const showSuccess = (m) => {
+		alert.show(m, {type: 'success'})
+	}
+
+	//States
 	const [opportunity, setOpportunity] = useState([]);
-	const [checkCandidate, setCheckCandidate] = useState(false);
+	//const [checkCandidate, setCheckCandidate] = useState(false);
 	const [candidature, setCandidature] = useState([]);
 	const [isVideo, setIsVideo] = useState();
 	const [ifIsCandidate, setIfIsCandidate] = useState(false)
@@ -36,19 +44,17 @@ function OpportunitieDetail() {
 	//Context
 	useEffect(() => {
 		const fetchOpportunity = async () => {
-			//setLoading(true);
 			try {
 				const response = await getOpportunitieDetail(params.id);
 				setOpportunity(response.data.responseData);
-				//setLoading(false);
 
-				//const isCandidate = 
+				//Busca os dados para checar se existe candidatura para esta vaga
 				const checkIfIsCandidate = await checkIsCandidate();
 
 				const opportunities = checkIfIsCandidate.opps.find(
 					opp => opp == params.id)
 				
-				opportunities != undefined && setIfIsCandidate(checkIfIsCandidate.opps);
+				opportunities != undefined && setIfIsCandidate(checkIfIsCandidate.status);
 
 			} catch (e) {
 				console.log(e);
@@ -57,13 +63,17 @@ function OpportunitieDetail() {
 
 		//Checar se o usuário tem a candidatura
 		fetchOpportunity();
-		setCheckCandidate();
+		//setCheckCandidate();
 	}, []);
 
-	const createNewCandidature = () => {
+	function createNewCandidature() {
 		//Criar candidatura na base
-
-		setCheckCandidate(true);
+		//setCheckCandidate(true);
+		if (ifIsCandidate === false) {
+			createCandidature(params.id);
+			showSuccess('Candidatura criada com sucesso! Prossiga para a próxima etapa');
+			setIfIsCandidate(true)
+		}
 	};
 
 	return (
@@ -75,6 +85,7 @@ function OpportunitieDetail() {
 					//<strong>Número de vagas:</strong>
 					//<p id="opportunitie-name">199</p>
 				}
+
 				<OpportunitiesDetailCard
 					jobDescription={opportunity.descricaoVaga}
 					jobType={"Não informado"}
@@ -82,12 +93,14 @@ function OpportunitieDetail() {
 					habilities={opportunity.requisitoDesejavel}
 				/>
 
+				{!ifIsCandidate &&
 				<button
-					onClick={createNewCandidature}
+					onClick={() => createNewCandidature()}
 					className="button button-secondary opportunitie-button"
 				>
 					Quero me candidatar
 				</button>
+				}
 			</div>
 
 			{
