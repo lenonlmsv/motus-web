@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 //Router
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 //Icons
 import { FaDownload, FaStop, FaRecordVinyl, FaShare} from 'react-icons/fa';
@@ -9,6 +9,13 @@ import { FaDownload, FaStop, FaRecordVinyl, FaShare} from 'react-icons/fa';
 function VideoRecorderBlock(props) {
     useEffect(() => setRecord())
 
+    //Params
+    const params = useParams()
+
+    //States
+    const [isCameraAllowed, setIsCameraAllowed] = useState(false);
+
+    //History
     const history = useHistory();
 
     let cron;
@@ -34,7 +41,8 @@ function VideoRecorderBlock(props) {
                 video.onloadedmetadata = function(e) {
                     video.play();
                     triggerItens();
-                }; 
+                };
+                setIsCameraAllowed(true)
             })
 
             .catch(function(error) {
@@ -215,36 +223,41 @@ function VideoRecorderBlock(props) {
                 <p className="timer"></p>
             </div>
             
-            <div className="div-buttons displayFlex">
-                <button id="buttonRecord" className="button button-secondary">
-                    <FaRecordVinyl/>
-                    Gravar
-                </button>
+            {
+                isCameraAllowed &&
+                    <div> 
+                        <div className="div-buttons displayFlex">
+                            <button id="buttonRecord" className="button button-secondary">
+                                <FaRecordVinyl/>
+                                Gravar
+                            </button>
 
-                <button id="buttonStop" className="button button-secondary displayNone">
-                    <FaStop/>
-                    Parar
-                </button>
+                            <button id="buttonStop" className="button button-secondary displayNone">
+                                <FaStop/>
+                                Parar
+                            </button>
 
-                <button id="buttonDownload" className="button button-secondary displayNone">
-                    <FaDownload/>
-                    Baixar
-                </button>
-                
-                <button id="buttonSend"className="button button-primary displayNone">
-                    <FaShare/>
-                    Enviar
-                </button>
-            </div>
+                            <button id="buttonDownload" className="button button-secondary displayNone">
+                                <FaDownload/>
+                                Baixar
+                            </button>
+                            
+                            <button id="buttonSend"className="button button-primary displayNone">
+                                <FaShare/>
+                                Enviar
+                            </button>
+                        </div>
 
-            <input id="base64String" className="input hideItens"/>
-            <input id="mimeType" className="input hideItens"/>
+                        <input id="base64String" className="input hideItens"/>
+                        <input id="mimeType" className="input hideItens"/>
 
-            <div id="back-button">
-                    <button onClick={() => {history.push('/oportunidades/:id')}} className="button button-secondary">
-                        Voltar
-                    </button>
-            </div>
+                    </div>
+            }
+                        <div id="back-button">
+                                <button onClick={() => {history.push(`/oportunidades/${params.id}`)}} className="button button-secondary">
+                                    Voltar
+                                </button>
+                        </div>
         </div>
     )
 }

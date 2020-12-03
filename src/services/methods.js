@@ -1,8 +1,5 @@
 import api from './api'
 
-//Auth
-import {getUserName} from './auth'
-
 export async function deleteResume(resumeHashId) {
     try {
         await api.post(`candidato-curriculo/delete/${resumeHashId}`);
@@ -110,10 +107,33 @@ export async function checkIsCandidate() {
 export function createCandidature(vagaId) {
     try {
         const response = api.post(`candidatura/${vagaId}`);
+        return response
     }
 
     catch(e){
         console.log(e)
+    }
+}
+
+export async function sendVideoResume(file) {
+    api.defaults.headers.post['Content-Type'] = 'multipart/form-data'; //USAR FORMATO DE ARQUIVO
+    
+    const data = new FormData();
+    
+    data.append('arquivo', file);
+    data.append('tipoCurriculo', 'VIDEO');
+    
+    try {
+        await api.post('/candidato-curriculo', data);
+        return {status: 'ok', message: ''}
+    }
+
+    catch(e) {
+        console.log(e.message)
+        switch (e.message) {
+            case 'Network Error': return {status: 'error', message: 'Arquivo maior que o permitido'};
+            default: return {status: 'error', message: 'Erro interno'};
+        }
     }
 }
 

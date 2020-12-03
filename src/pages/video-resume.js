@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
+
+import api from '../services/api'
+
+
 //Youtube dependencie
 import Youtube from "react-youtube";
 
@@ -13,16 +17,31 @@ import { FaExclamation } from "react-icons/fa";
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
 
-function VideoResume() {
-    const errorMessage = 'Somente formatos de vídeo são aceitos';
+//Methods
+import {sendVideoResume} from '../services/methods'
+import { useAlert } from "react-alert";
 
-    const [error, setError] = useState(errorMessage);
+function VideoResume() {
+    //Alert
+    const alert = useAlert();
+
+    function showSuccess(m) {
+        alert.show(m, {type:'success'})
+    }
+
+    function showErrorMessage(m) {
+        alert.show(m, {type: 'error'})
+    }
+
+    const [error, setError] = useState('');
     const [showError, setShowError] = useState('hide-error')
+    const [resumeFile, setResumeFile] = useState('')
 
     const checkFileType = (fileType) => {
         const acceptedTypes = [
             //Checar tipos de arquivo aceitos
-            //{name:'application/msword', type:' .doc'},
+            {name:'video/mp4', type:' .mp4'},
+            {name:'video/webm', type:' .webm'}
         ]
         
         const isValid = acceptedTypes.find(type => type.name == fileType);
@@ -32,29 +51,41 @@ function VideoResume() {
         }
 
         else {
+            //Mostra os formatos em mensagem na tela
+            const formats = acceptedTypes.map(format => {
+                return (format.type);
+            })
+
+            setError(`Os formatos aceitos são ${formats}`)
             return false;
         }
     }
-
-    const saveVideoResume = () => {
-       //Enviar para o backend
-    }
-    
+  
     const history = useHistory();
+
+    async function submitResume() {
+        const response = await sendVideoResume(resumeFile);
+        if(response.status == 'error'){
+            console.log(response)
+            showErrorMessage(response.message)
+            return
+        }
+        
+        showSuccess('Video enviado com sucesso!')
+        history.push('/oportunidades');
+    }
 
     const handleVideoResume = (event) => {
         const fileTypeName = event.target.files[0].type;
         const isFormat = checkFileType(fileTypeName);
-        
+                
         if(isFormat) {
             setShowError('hide-error');
-            //Enviar para o backend
-            saveVideoResume();
-            
-            history.push('/oportunidades/:id')
+            setResumeFile(event.target.files[0]);
         }
         else {
-            setShowError('error-div')
+            setShowError('error-div');
+            setResumeFile('')
         }
     }   
 
@@ -95,7 +126,7 @@ function VideoResume() {
 
                     <div className="video-buttons">
                         <label htmlFor="video-resume" className="button button-secondary">
-                            Enviar vídeo
+                            Selecionar vídeo
                         </label>
 
                         <input
@@ -108,7 +139,25 @@ function VideoResume() {
                         <Link to={'/gravar-video/video-curriculo'} className="button button-primary">
                             Gravar Vídeo
                         </Link>
+
+                        {resumeFile &&
+                            <button
+                            onClick={() => submitResume()} 
+                            className='button button-secondary send-button'>Enviar</button>
+                        }
                     </div>
+                    
+                    {resumeFile && 
+                        <div id="selected-file">
+                            <span 
+                                style={{color: 'rgba(0,0,0,0.5'}}>
+                                Arquivo selecionado:</span>
+                            <p 
+                                style={{alignSelf:'left'}}>
+                                {resumeFile.name}</p>
+                        </div>
+                    }
+
                     <div className={showError}>
                         <FaExclamation/>{error}
                     </div>

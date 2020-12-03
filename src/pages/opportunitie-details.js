@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
@@ -24,8 +24,12 @@ export const userCandidature = createContext();
 
 
 function OpportunitieDetail() {
+	//History
+	const history = useHistory();
+	
 	//Params
 	const params = useParams();
+	params.id === ':id' && history.push('/oportunidades')
 	
 	//Alert
 	const alert = useAlert();
@@ -46,6 +50,10 @@ function OpportunitieDetail() {
 		const fetchOpportunity = async () => {
 			try {
 				const response = await getOpportunitieDetail(params.id);
+				
+				//redireciona em caso de tentativa de manipulação da url
+				response === null && history.push('/oportunidades'); 
+				
 				setOpportunity(response.data.responseData);
 
 				//Busca os dados para checar se existe candidatura para esta vaga
@@ -77,6 +85,7 @@ function OpportunitieDetail() {
 	};
 
 	return (
+
 		<div id="page-opportunitie-details" className="page-position">
 			<BackgroundTitle title={opportunity.titulo} description="" />
 

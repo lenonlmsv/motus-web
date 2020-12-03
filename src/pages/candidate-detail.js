@@ -306,10 +306,23 @@ function CandidateDetails() {
                     <div className="input-block">
                         <label 
                             htmlFor='change-password'
-                            className=''>
+                            style={{cursor:'pointer'}}>
                                 Redefinir senha
                                 <span>
                                     Você receberá um e-mail parar alterar a senha de acesso
+                                </span>
+                            
+                        </label>
+                    </div>
+
+                    <div className="input-block">
+                        <label 
+                            htmlFor='send-video'
+                            style={{cursor:'pointer'}}
+                            onClick={() => history.push('/video-curriculo')}>
+                                Vídeo Currículo
+                                <span>
+                                    Grave seu vídeo currículo e aumente suas chances
                                 </span>
                             
                         </label>
