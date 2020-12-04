@@ -53,11 +53,12 @@ export async function sendResume(resume) {
     }
 }
 
-export async function getOpportunities(page) {
+export async function getOpportunities(page, search) {
     try {
+        search !== '' && (search = `?busca=${search}`)
         const currPage = page;
         const items = 100;
-        const opportunities = await api.get(`/oportunidade/${currPage}/${items}`);
+        const opportunities = await api.get(`/oportunidade/${currPage}/${items}${search}`);
         return opportunities;
     }
 

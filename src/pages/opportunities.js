@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import api from "../services/api";
-import { getToken } from "../services/auth";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
@@ -19,22 +17,23 @@ function Opportunities() {
 	const [loading, setLoading] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [postsPerPage, setPostsPerPage] = useState(5);
+	const [search, setSearch] = useState('')
+
+	async function fetchOpportunities(searchText) {
+		setLoading(true);
+		try {
+			let response = '';
+			response = await getOpportunities(1,searchText) //await api.get("/oportunidade/1/10");
+			setOpportunities(response.data.responseData);
+			setLoading(false);
+		} catch (e) {
+			console.log(e);
+			setError(e);
+		}
+	};
 
 	useEffect(() => {
-		async function fetchOpportunities() {
-			setLoading(true);
-			try {
-				let response = '';
-				response = await getOpportunities(1) //await api.get("/oportunidade/1/10");
-				setOpportunities(response.data.responseData);
-				setLoading(false);
-			} catch (e) {
-				console.log(e);
-				setError(e);
-			}
-		};
-
-		fetchOpportunities();
+		fetchOpportunities('');
 	},[]);
 
 	const indexOfLastPost = currentPage * postsPerPage;
@@ -55,17 +54,44 @@ function Opportunities() {
 				}
 			/>
 
-			{error === null ? (
+			{
+			
+			error === null ? (
 				<div>
+					<div id='search'>
+					<div id='search-items'>
+						<input
+							id='search-input'
+							type='text'
+							value={search}
+							placeholder='SCRUM Master...'
+							onChange={(e) => setSearch(e.target.value)}/>
+						<div>
+							<button 
+								id='clean-field'
+								className='button button-secondary'
+								onClick={() => {fetchOpportunities(''); setSearch('')}}>
+								Limpar</button>
+
+							<button 
+								id='search-button'
+								className='button button-primary'
+								onClick={() => fetchOpportunities(search)}
+								>
+								Buscar vagas</button>	
+						</div>
+					</div>
+				</div>
+
 					<OpportunitiesList
 						opportunities={opportunities}
 						loading={loading}
 					/>
-					<Pagination
+					{/*<Pagination
 						postsPerPage={postsPerPage}
 						totalPosts={opportunities.length}
 						paginate={paginate}
-					/>
+					/>*/}
 				</div>
 			) : (
 				<div>Erro ao buscar dados...</div>
