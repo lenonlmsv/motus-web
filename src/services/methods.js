@@ -126,7 +126,6 @@ export async function sendVideoResume(file) {
     
     try {
         const response = await api.post('/candidato-curriculo', data);
-        console.log(response)
         return {status: 'ok', message: ''}
     }
 
@@ -136,6 +135,16 @@ export async function sendVideoResume(file) {
             case 'Network Error': return {status: 'error', message: 'Arquivo maior que o permitido'};
             default: return {status: 'error', message: 'Erro interno'};
         }
+    }
+}
+
+export async function sendVideoAnswer() {
+    try {
+        const response = await api.post
+    }
+
+    catch(e) {
+        console.log(e.message)
     }
 }
 

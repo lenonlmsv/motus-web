@@ -13,16 +13,15 @@ import {sendVideoResume} from '../../services/methods'
 import { useAlert } from 'react-alert';
 
 function VideoRecorderBlock(props) {
-    useEffect(() => setRecord())
+    useEffect(() => { setRecord()}, [])
 
     //Params
     const params = useParams();
-    
+        
     //States
     const [isCameraAllowed, setIsCameraAllowed] = useState(false);
-    const [videoRecorded, setVideoRecorded] = useState([])
-    const [returnTo, setreturnTo] = useState(props.returnTo)
-
+    const [returnTo, setreturnTo] = useState(props.returnTo);
+    
     const alert = useAlert();
 
     function showSuccess(m) {
@@ -33,9 +32,6 @@ function VideoRecorderBlock(props) {
         alert.show(m, {type: 'error'})
     }
 
-    //Destination after record video
-    props.returnTo === '' && setreturnTo(params.id)
-
     //History
     const history = useHistory();
 
@@ -45,10 +41,12 @@ function VideoRecorderBlock(props) {
     let videoBlobURL = '';
     let streamVar;
     let mediaRecorder;
+    let fileRecorded;
+    
   
     function setRecord() {
         'use strict';
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {//Checa disponibilidade
         // Access the web cam
             navigator.mediaDevices.getUserMedia({audio: true, video: {facingMode: 'user'}}).then(function(stream) {
                 let video = document.querySelector('video.videoStream');
@@ -59,15 +57,17 @@ function VideoRecorderBlock(props) {
                 video.setAttribute('controls','false');
                 video.setAttribute('playsinline', true);
                 video.setAttribute('controls', false);
-                video.onloadedmetadata = function(e) {
+                video.onloadedmetadata = function() {
                     video.play();
                     triggerItens();
                 };
-                setIsCameraAllowed(true)
+                setIsCameraAllowed(true);
+                //Destination after record video
+                props.returnTo === '' && setreturnTo('params.id')
             })
 
             .catch(function(error) {
-            console.log('Não foi possível acesso a câmera. Error: ' + error.name + ': ' + error.message);
+            console.log('Não foi possível acesso a câmera. Erro: ' + error.name + ': ' + error.message);
             });
         }
     };
@@ -121,7 +121,7 @@ function VideoRecorderBlock(props) {
         }
         
         mediaRecorder.onstop = function(e) {
-            setVideoRecorded(chunks[0])
+            fileRecorded = chunks[0]
             document.querySelector('input#mimeType').value = mediaRecorder.mimeType;
             const blob = new Blob(chunks, { 'type' : 'octet-stream' }); //mediaRecorder.mimeType });
             //chunks = [];
@@ -142,22 +142,24 @@ function VideoRecorderBlock(props) {
             
             //Send Record
             send.onclick = () => {
-                sendOnClick(reader.result);
+                sendOnClick(fileRecorded);
             }
 
             showVideoRecorded(videoBlobURL);
         }
     };
 
-    const stopStreaming = (vElement) => {
-        const stream = vElement.srcObject;
+    const stopStreaming = () => {
+        const videoElement = document.querySelector('video.videoStream');
+        const stream = videoElement.srcObject;
         const tracks = stream.getTracks();
-
+        
         tracks.forEach(function(track) {
             track.stop();
+            track.enabled = false;
         });
+        videoElement.srcObject = null;
 
-        vElement.srcObject = null;
     }
 
     const downloadOnClick = (url) => {
@@ -169,22 +171,28 @@ function VideoRecorderBlock(props) {
         a.click();
     }
     
-    const sendOnClick = async () => {
+    const sendOnClick = async (file) => {
         if (params.id === 'video-curriculo') {
-            const response = await sendVideoResume(videoRecorded);
+            const response = await sendVideoResume(file);
             if(response.status == 'error'){
                 showErrorMessage(response.message);
-                showErrorMessage('Você também pode baixar este video e enviar!')
                 return
             }
             showSuccess('Vídeo currículo enviado com sucesso!');
+            stopStreaming()
             history.push(returnTo)
+        }
+
+        else {
+             
+            showSuccess('Vídeo currículo enviado com sucesso!');
+            stopStreaming()
+            //history.push(`/oportunidades/${params.id}`)
         }
 
         //let video = document.querySelector('video.videoStream');
         //stopStreaming(video)
         
-        //history.push('/oportunidades/:id')
     }
     
     function startT(){
@@ -246,6 +254,14 @@ function VideoRecorderBlock(props) {
 
     return (
         <div id="recorder-block">
+            {
+                !isCameraAllowed && 
+                 //Sem acesso à câmera
+                <div id='no-opportunities'>
+                    <p className="no-opportunities">Sem acesso à câmera...</p>
+                </div>
+            }
+
             <video className='videoStream' autoPlay muted></video>
             <video id="video-recorded" muted="false" className='displayNone' controls="true"></video>
             
