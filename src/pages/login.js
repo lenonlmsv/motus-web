@@ -1,10 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 //Router
 import { Link, useHistory } from "react-router-dom";
 
 //Redux connect
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
+
+import { signIn } from "../actions";
 
 //Auth
 import { login, isAuthenticated, getUserName } from "../services/auth";
@@ -17,7 +19,7 @@ import api from "../services/api";
 import "../styles/login.css";
 
 //Alert
-import { useAlert } from 'react-alert';
+import { useAlert } from "react-alert";
 
 function initialState() {
 	return { user: "", password: "" };
@@ -25,17 +27,22 @@ function initialState() {
 
 function loginREDUX() {
 	return {
+<<<<<<< HEAD
 		type: 'LOGIN',
 		userName: getUserName(),
     }
+=======
+		type: "LOGIN",
+	};
+>>>>>>> 330dbaa0781e51bf3a3bf56854996518d71c3510
 }
 
-function Login({dispatch}) {
+function Login({ dispatch, isLogged, signIn }) {
 	const alert = useAlert();
 
 	const showError = (message) => {
-        alert.show(message, {type: 'error'})
-    }
+		alert.show(message, { type: "error" });
+	};
 
 	const history = useHistory();
 
@@ -46,10 +53,18 @@ function Login({dispatch}) {
 	const [password, setPassword] = useState(initialState.password);
 	//const [display, setDisplay] = useState("display-none");
 
+	useEffect(() => {
+		if (isLogged) {
+			history.push("/oportunidades");
+		}
+	}, [isLogged]);
+
 	async function onSubmit(e) {
 		e.preventDefault();
 
-		const dataObj = {
+		signIn(user, password);
+
+		/*const dataObj = {
 			login: user,
 			password: password,
 		};
@@ -78,7 +93,7 @@ function Login({dispatch}) {
 				default: showError('Erro inesperado ao realizar login')
 			}
 			//showError(error.message)//"Erro ao executar login. Tente novamente.")
-		}
+		}*/
 	}
 
 	return (
@@ -138,9 +153,7 @@ function Login({dispatch}) {
 							Ver oportunidades
 						</Link>
 
-						<button
-							type="submit"
-							className="button button-primary">
+						<button type="submit" className="button button-primary">
 							Acessar
 						</button>
 					</div>
@@ -148,6 +161,10 @@ function Login({dispatch}) {
 			</main>
 		</div>
 	);
+}
+
+const mapStateToProps = (state) => {
+	return { isLogged: state.IsLogged };
 };
 
-export default connect()(Login);
+export default connect(mapStateToProps, { signIn })(Login);
