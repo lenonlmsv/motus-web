@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Router dom
-import { useHistory, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 //Contex
 import {connect} from 'react-redux'
@@ -10,7 +10,7 @@ import {connect} from 'react-redux'
 import './styles/login-bar.css'
 
 //Components
-import {getHashId, getUserName} from '../../services/auth';
+import {getHashId} from '../../services/auth';
 
 function logoutREDUX() {
     return {
@@ -18,13 +18,12 @@ function logoutREDUX() {
     }
 };
 
-function LoginBar({isLogged, dispatch}) {
-    const history = useHistory();
-
+function LoginBar({isLogged, dispatch}) {    
     const hashId = getHashId();
-    const userName = getUserName();
 
-    if(isLogged) {
+    console.log(isLogged)
+
+    if(isLogged.auth) {
         return (
             <div id="login-bar">
                 <div className="div-limited display-flex">
@@ -53,4 +52,4 @@ function LoginBar({isLogged, dispatch}) {
     }
 }
 
-export default connect(state => ({isLogged : state}))(LoginBar);
+export default connect(state => ({isLogged: state}))(LoginBar);

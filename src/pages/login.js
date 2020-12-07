@@ -7,7 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import {connect} from 'react-redux'
 
 //Auth
-import { login, isAuthenticated } from "../services/auth";
+import { login, isAuthenticated, getUserName } from "../services/auth";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
@@ -25,7 +25,8 @@ function initialState() {
 
 function loginREDUX() {
 	return {
-        type: 'LOGIN'
+		type: 'LOGIN',
+		userName: getUserName(),
     }
 }
 
@@ -64,11 +65,12 @@ function Login({dispatch}) {
 				const string = response.data.split(" ");
 				const token = string[1]; //Get token
 				login(token); //Store token
-				dispatch(loginREDUX())
-				history.push("/oportunidades");
 			});
-
-
+			
+			//const response = await 
+			history.push("/oportunidades");
+			dispatch(loginREDUX())
+			
 		} catch (error) {
 			console.log(error.message)
 			switch (error.message) {

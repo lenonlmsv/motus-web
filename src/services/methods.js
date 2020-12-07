@@ -1,5 +1,24 @@
 import api from './api'
 
+export async function loginUser(data) {
+    try {
+        api.defaults.headers.post['Content-Type'] = 'application/json'; //USAR FORMATO JSON
+
+        const json = JSON.stringify(data);
+
+        await api.post("/api/service/login", data).then((response) => {
+            const string = response.data.split(" ");
+            const token = string[1]; //Get token
+            //login(token); //Store token
+        });
+    }   
+
+    catch(e) {
+        console.log(e.message)
+    }
+}
+
+ 
 export async function deleteResume(resumeHashId) {
     try {
         await api.post(`candidato-curriculo/delete/${resumeHashId}`);

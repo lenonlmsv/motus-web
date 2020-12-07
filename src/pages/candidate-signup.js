@@ -14,7 +14,7 @@ import BackgroundTitle from "../components/background-title/Background-title";
 
 //API and Auth
 import api from "../services/api";
-import { getHashId, isAuthenticated, firstLogin, logout } from "../services/auth";
+import { getHashId, isAuthenticated, login, logout } from "../services/auth";
 
 //Alert
 import { useAlert } from 'react-alert';
@@ -140,7 +140,7 @@ export default function CandidateSignUp() {
 			await api.post("/api/service/login", jsonData).then((response) => {
                 const string = response.data.split(" ");
 				const token = string[1]; //Get token
-                firstLogin(token); //Store token
+                login(token); //Store token
             });
 
             api.defaults.headers.post['Content-Type'] = 'multipart/form-data'; //USAR FORMATO DE ARQUIVO

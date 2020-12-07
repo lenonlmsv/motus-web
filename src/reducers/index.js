@@ -1,21 +1,32 @@
 import {createStore} from 'redux';
 
 //Auth
-import {getUserName, isAuthenticated, login, logout} from '../services/auth'
+import {getHashId, isAuthenticated, getUserName, logout} from '../services/auth'
 
-const ISLOGGED = {
-    Auth: isAuthenticated(),
-    userName: getUserName()
+console.log(isAuthenticated())
+
+const INITIAL_STATE = {
+    auth: isAuthenticated(),
+    userName: getUserName(),
 }
 
-function reducer(state = isAuthenticated(), action) {
+function reducer(state = INITIAL_STATE, action) {
     if(action.type === 'LOGOUT') {
         logout();
-        return false;
+        return {
+            ...state,
+            auth: false,
+            userName: '',
+        }
     }
 
-    else if(action.type === 'LOGIN') {
-        return true;
+    if(action.type === 'LOGIN') {
+        logout();
+        return {
+            ...state,
+            auth: true,
+            userName: action.userName,
+        }
     }
 
     return state;
