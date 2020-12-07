@@ -1,7 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./styles/global.css";
+import {Provider} from 'react-redux';
+
+import IsLogged from './reducers'
+
 import App from "./app";
+
+//CSS
+import "./styles/global.css";
 
 //Alert provider
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
@@ -17,9 +23,11 @@ const options = {
 
 ReactDOM.render(
 	<React.StrictMode>
-		<AlertProvider template={AlertTemplate} {...options}>
-			<App />
-		</AlertProvider>
+		<Provider store={IsLogged}>
+			<AlertProvider template={AlertTemplate} {...options}>
+				<App />
+			</AlertProvider>
+		</Provider>
 	</React.StrictMode>,
 	document.getElementById("root")
 );

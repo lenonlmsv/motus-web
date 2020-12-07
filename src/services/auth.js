@@ -1,5 +1,7 @@
 import api from "./api";
 
+import {connect} from 'react-redux'
+
 export const isAuthenticated = () => {
     if(getToken() !== null && getHashId() !== null) {
         return true   
@@ -11,7 +13,6 @@ export async function login(token) {
     api.get('/candidato/').then( response => {
         setHash(response.data.responseData.hashId);
         setUserName(response.data.responseData.nome);
-        reloadPage();
     });
 };
 
@@ -34,7 +35,6 @@ export async function logout() {
     localStorage.removeItem('TOKEN_KEY');
     localStorage.removeItem('HASH_ID');
     localStorage.removeItem('USER_NAME');
-    //reloadPage();
 }
 
 export function reloadPage() {

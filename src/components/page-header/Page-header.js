@@ -12,7 +12,7 @@ import { AiOutlineDown } from 'react-icons/ai';
 import { FaLinkedinIn } from 'react-icons/fa';
 
 //Components
-import LoginBar from "../login-bar/LoginBar";
+import LoginBar from "../login-bar/LoginBar_copy";
 
 function PageHeader(props) {
     const [showItens, setShowItens] = useState('hover-content-hide');
