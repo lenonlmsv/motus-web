@@ -4,7 +4,7 @@ import React from "react";
 import notfound from '../images/image-not-found.png'
 
 //Router
-import {BrowserRouter, Link, useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 
 export default function PageNotFound() {
     const history = useHistory();

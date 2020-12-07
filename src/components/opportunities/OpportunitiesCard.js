@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import OpportunitiesDetailCard from "./OpportunitiesDetailCard";
 
 //CSS

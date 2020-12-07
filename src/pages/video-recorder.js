@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 //React Camera
 import VideoRecorderBlock from "../components/video-recorder-block/Video-recorder-block";

@@ -4,7 +4,6 @@ import { Link, useHistory, useParams } from "react-router-dom";
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
 import OpportunitiesDetailCard from "../components/opportunities/OpportunitiesDetailCard";
-import api from "../services/api";
 
 //Methods
 import {getOpportunitieDetail, createCandidature, checkIsCandidate} from '../services/methods'
@@ -40,9 +39,6 @@ function OpportunitieDetail() {
 
 	//States
 	const [opportunity, setOpportunity] = useState([]);
-	//const [checkCandidate, setCheckCandidate] = useState(false);
-	const [candidature, setCandidature] = useState([]);
-	const [isVideo, setIsVideo] = useState();
 	const [ifIsCandidate, setIfIsCandidate] = useState(false)
 
 	//Context

@@ -4,12 +4,11 @@ import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 //Auth
-import { Context as AuthContext } from "../context/authContext";
+import { login, isAuthenticated } from "../services/auth";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
 import api from "../services/api";
-import { login, isAuthenticated, reloadPage	 } from "../services/auth";
 
 //CSS
 import "../styles/login.css";
@@ -32,10 +31,10 @@ const Login = () => {
 
 	isAuthenticated() && history.push("/oportunidades");
 
-	const { state, signin } = useContext(AuthContext);
+	//const { state, signin } = useContext(AuthContext);
 	const [user, setUser] = useState(initialState.user);
 	const [password, setPassword] = useState(initialState.password);
-	const [display, setDisplay] = useState("display-none");
+	//const [display, setDisplay] = useState("display-none");
 
 	async function onSubmit(e) {
 		e.preventDefault();
@@ -62,9 +61,9 @@ const Login = () => {
 
 		} catch (error) {
 			console.log(error.message)
-			//setDisplay("");
 			switch (error.message) {
-				case ('Request failed with status code 403'): showError('Usuário não encontrado')
+				case ('Request failed with status code 403'): showError('Usuário não encontrado');
+				default: showError('Erro inesperado ao realizar login')
 			}
 			//showError(error.message)//"Erro ao executar login. Tente novamente.")
 		}
@@ -110,11 +109,11 @@ const Login = () => {
 						/>
 					</div>
 
-					<div id="submit-error" className={display}>
+					{/* <div id="submit-error" className={display}>
 						<p className={display}>
 							Erro ao realizar login. Tente novamente!
 						</p>
-					</div>
+					</div> */}
 
 					<div id="options">
 						<Link to="/cadastro">Cadastre-se</Link>
@@ -129,14 +128,7 @@ const Login = () => {
 
 						<button
 							type="submit"
-							className="button button-primary"
-							onSubmit={() =>
-								signin({
-									email: user,
-									password: password,
-								})
-							}
-						>
+							className="button button-primary">
 							Acessar
 						</button>
 					</div>

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
 import OpportunitiesList from "../components/opportunities/OpportunitiesList";
-import Pagination from "../components/Pagination";
+//import Pagination from "../components/Pagination";
 
 //CSS
 import "../styles/opportunities.css";

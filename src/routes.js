@@ -6,9 +6,6 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 //Authentication
 import { isAuthenticated } from './services/auth'
 
-//Context
-import { Provider as AuthProvider } from "./context/authContext";
-
 //Components
 import PageHeader from "./components/page-header/Page-header";
 import PageFooter from "./components/page-footer/Page-footer";
@@ -38,8 +35,6 @@ function Routes() {
 	return (
 		<BrowserRouter>
 			<PageHeader/>
-
-			<AuthProvider>
 
 				<Switch style={{alignSelf:"center"}}>
 					<Route 
@@ -82,10 +77,8 @@ function Routes() {
 						path="*" 
 						component={PageNotFound}/>
 				</Switch>
-			</AuthProvider>
-
+				
 			<PageFooter/>
-
 
 		</BrowserRouter>
 	);

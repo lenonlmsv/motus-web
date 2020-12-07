@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-
-import api from '../services/api'
-
-
 //Youtube dependencie
 import Youtube from "react-youtube";
 

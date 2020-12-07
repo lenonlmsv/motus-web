@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React from 'react';
 
-//Router
-import { Link, useHistory } from 'react-router-dom'
+//Router dom
+import { useHistory, Link } from 'react-router-dom'
 
 //CSS
 import './styles/login-bar.css'
@@ -42,6 +42,10 @@ export default function LoginBar() {
     }
 
     else {
-        return (<p style={{display:'none'}}>Não logado</p>)
+        return (
+            <div>
+                <Link to='/login' className='button button-primary'>Login</Link>
+            </div>
+        )
     }
 }
