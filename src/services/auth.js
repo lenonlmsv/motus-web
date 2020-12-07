@@ -1,17 +1,9 @@
 import api from "./api";
 
-import {connect, useDispatch} from 'react-redux'
-
 export const isAuthenticated = () => {
     if(getToken() !== null && getHashId() !== null) {
         return true   
     } 
-}
-
-function reportLogin() {
-    return {
-        type: 'LOGIN'
-    }
 }
 
 export async function login(token) {
@@ -41,8 +33,4 @@ export async function logout() {
     localStorage.removeItem('TOKEN_KEY');
     localStorage.removeItem('HASH_ID');
     localStorage.removeItem('USER_NAME');
-}
-
-export function reloadPage() {
-    window.location.reload();
 }

@@ -3,29 +3,32 @@ import React from 'react';
 //Router dom
 import { useHistory, Link } from 'react-router-dom'
 
+//Contex
+import {connect} from 'react-redux'
+
 //CSS
 import './styles/login-bar.css'
 
 //Components
-import {getHashId, getUserName, isAuthenticated, logout, reloadPage} from '../../services/auth';
+import {getHashId, getUserName} from '../../services/auth';
 
-export default function LoginBar() {
+function logoutREDUX() {
+    return {
+        type: 'LOGOUT'
+    }
+};
+
+function LoginBar({isLogged, dispatch}) {
     const history = useHistory();
 
     const hashId = getHashId();
     const userName = getUserName();
 
-    function triggerLogout() {
-        logout();
-        history.push('/login');
-        reloadPage()
-    }
-  
-    if(isAuthenticated()) {
+    if(isLogged) {
         return (
             <div id="login-bar">
                 <div className="div-limited display-flex">
-                    <p className="hide-long-content">{`Candidato(a) ${userName}`}</p>
+                    <p className="hide-long-content">{`Candidato(a) ${isLogged.userName}`}</p>
                 </div>
                 
                 <div className="logout-options">
@@ -33,7 +36,7 @@ export default function LoginBar() {
                         {"Meus dados |"}
                     </Link>             
 
-                    <Link onClick={triggerLogout} className="logout-button">
+                    <Link onClick={() => {dispatch(logoutREDUX())}} className="logout-button">
                         {"Logout"}
                     </Link>
                 </div>
@@ -49,3 +52,5 @@ export default function LoginBar() {
         )
     }
 }
+
+export default connect(state => ({isLogged : state}))(LoginBar);

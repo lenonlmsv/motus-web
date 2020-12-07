@@ -3,6 +3,9 @@ import React, { useState, useContext } from "react";
 //Router
 import { Link, useHistory } from "react-router-dom";
 
+//Redux connect
+import {connect} from 'react-redux'
+
 //Auth
 import { login, isAuthenticated } from "../services/auth";
 
@@ -20,7 +23,13 @@ function initialState() {
 	return { user: "", password: "" };
 }
 
-const Login = () => {
+function loginREDUX() {
+	return {
+        type: 'LOGIN'
+    }
+}
+
+function Login({dispatch}) {
 	const alert = useAlert();
 
 	const showError = (message) => {
@@ -55,6 +64,7 @@ const Login = () => {
 				const string = response.data.split(" ");
 				const token = string[1]; //Get token
 				login(token); //Store token
+				dispatch(loginREDUX())
 				history.push("/oportunidades");
 			});
 
@@ -138,4 +148,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default connect()(Login);
