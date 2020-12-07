@@ -1,6 +1,6 @@
 import api from "./api";
 
-import {connect} from 'react-redux'
+import {connect, useDispatch} from 'react-redux'
 
 export const isAuthenticated = () => {
     if(getToken() !== null && getHashId() !== null) {
@@ -8,8 +8,14 @@ export const isAuthenticated = () => {
     } 
 }
 
+function reportLogin() {
+    return {
+        type: 'LOGIN'
+    }
+}
+
 export async function login(token) {
-    localStorage.setItem('TOKEN_KEY', token);
+    localStorage.setItem('TOKEN_KEY', token);  
     api.get('/candidato/').then( response => {
         setHash(response.data.responseData.hashId);
         setUserName(response.data.responseData.nome);

@@ -12,7 +12,8 @@ function reducer(state = isAuthenticated(), action) {
     }
 
     else if(action.type === 'LOGIN') {
-         return state;
+        console.log('REACT')
+        return state;
     }
 
     return state;
