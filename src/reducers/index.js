@@ -1,26 +1,27 @@
-import {createStore} from 'redux';
+import { createStore } from "redux";
+import { combineReducers } from "redux";
 
 //Auth
-import {getUserName, isAuthenticated, login, logout} from '../services/auth'
+import { getUserName, isAuthenticated, login, logout } from "../services/auth";
 
 const ISLOGGED = {
-    Auth: isAuthenticated(),
-    userName: getUserName()
+	Auth: isAuthenticated(),
+	userName: getUserName(),
+};
+
+function authReducer(state = isAuthenticated(), action) {
+	if (action.type === "LOGOUT") {
+		logout();
+		return false;
+	} else if (action.type === "LOGIN") {
+		return true;
+	}
+
+	return state;
 }
 
-function reducer(state = isAuthenticated(), action) {
-    if(action.type === 'LOGOUT') {
-        logout();
-        return false;
-    }
+//const IsLogged = createStore(reducer);
 
-    else if(action.type === 'LOGIN') {
-        return true;
-    }
-
-    return state;
-}
-
-const IsLogged = createStore(reducer);
-
-export default IsLogged;
+export default combineReducers({
+	IsLogged: authReducer,
+});
