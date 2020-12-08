@@ -1,10 +1,12 @@
 import React from "react";
+
+//Router dom
 import ReactDOM from "react-dom";
+
+//Provider
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-
-import IsLogged from "./reducers";
 
 import App from "./app";
 
@@ -14,7 +16,7 @@ import "./styles/global.css";
 //Alert provider
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
-import reducers from "./reducers";
+import reducers from "./store/reducers";
 
 const options = {
 	position: positions.TOP_CENTER,

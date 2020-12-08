@@ -60,12 +60,32 @@ img.sys-logo {
     color:unset;
 }
 
+#login-button {
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+    align-items: center;
+}
+
+#login-button a {
+    text-decoration: none;
+    font-size: 1rem;
+}
+
 @media (min-width: 1200px) {
-    header#page-header {
+    header#page-header, #login-button {
         width: 100%;
         max-width: var(--page-max-width);
         padding: 0.6rem 0 0 0;
         align-self: center;
+    }
+
+    #login-button {
+        justify-content: right!important;
+    }
+    
+    #login-button a {
+        font-size: 0.8rem;
     }
 
     div#header-content {

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 //Router
 import { Link, useHistory } from "react-router-dom";
@@ -6,14 +6,13 @@ import { Link, useHistory } from "react-router-dom";
 //Redux connect
 import { connect } from "react-redux";
 
-import { signIn } from "../actions";
+import { signIn } from "../store/actions";
 
 //Auth
-import { login, isAuthenticated, getUserName } from "../services/auth";
+import { isAuthenticated } from "../services/auth";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
-import api from "../services/api";
 
 //CSS
 import "../styles/login.css";
@@ -27,14 +26,8 @@ function initialState() {
 
 function loginREDUX() {
 	return {
-<<<<<<< HEAD
-		type: 'LOGIN',
-		userName: getUserName(),
-    }
-=======
 		type: "LOGIN",
 	};
->>>>>>> 330dbaa0781e51bf3a3bf56854996518d71c3510
 }
 
 function Login({ dispatch, isLogged, signIn }) {

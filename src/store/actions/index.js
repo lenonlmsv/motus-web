@@ -1,5 +1,5 @@
-import api from "../services/api";
-import { login } from "../services/auth";
+import api from "../../services/api";
+import { login } from "../../services/auth";
 
 export const signIn = (email, senha) => {
 	api.defaults.headers.post["Content-Type"] = "application/json";
