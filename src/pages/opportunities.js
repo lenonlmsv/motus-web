@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
@@ -9,32 +10,37 @@ import OpportunitiesList from "../components/opportunities/OpportunitiesList";
 import "../styles/opportunities.css";
 
 //Methods
-import {getOpportunities} from '../services/methods'
+import { getOpportunities } from "../services/methods";
 
-function Opportunities() {
+import { fetchOpportunitiesRedux } from "../store/actions";
+
+function Opportunities(props) {
 	const [error, setError] = useState(null);
-	const [opportunities, setOpportunities] = useState([]);
+	//const [opportunities, setOpportunities] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [postsPerPage, setPostsPerPage] = useState(5);
-	const [search, setSearch] = useState('')
+	const [search, setSearch] = useState("");
 
-	async function fetchOpportunities(searchText) {
+	const totalItems = 100;
+
+	/*async function fetchOpportunities(searchText) {
 		setLoading(true);
 		try {
-			let response = '';
-			response = await getOpportunities(1,searchText) //await api.get("/oportunidade/1/10");
+			let response = "";
+			response = await getOpportunities(1, searchText); //await api.get("/oportunidade/1/10");
 			setOpportunities(response.data.responseData);
 			setLoading(false);
 		} catch (e) {
 			console.log(e);
 			setError(e);
 		}
-	};
+	}*/
 
 	useEffect(() => {
-		fetchOpportunities('');
-	},[]);
+		props.fetchOpportunitiesRedux(1, totalItems, search);
+		//fetchOpportunities("");
+	}, []);
 
 	const indexOfLastPost = currentPage * postsPerPage;
 	const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -46,7 +52,6 @@ function Opportunities() {
 
 	return (
 		<div id="page-opportunities" className="page-position">
-
 			<BackgroundTitle
 				title={"Junte-se a nós!"}
 				description={
@@ -54,66 +59,68 @@ function Opportunities() {
 				}
 			/>
 
-			{
-			
-			error === null ? (
+			{error === null ? (
 				<div>
-					<div id='search'>
-					<div id='search-items'>
-						<input
-							id='search-input'
-							type='text'
-							value={search}
-							placeholder='SCRUM Master...'
-							onChange={(e) => setSearch(e.target.value)}/>
-						<div>
-							<button 
-								id='clean-field'
-								className='button button-secondary'
-								onClick={() => {fetchOpportunities(''); setSearch('')}}>
-								Limpar</button>
-
-							<button 
-								id='search-button'
-								className='button button-primary'
-								onClick={() => fetchOpportunities(search)}
+					<div id="search">
+						<div id="search-items">
+							<input
+								id="search-input"
+								type="text"
+								value={search}
+								placeholder="SCRUM Master..."
+								onChange={(e) => setSearch(e.target.value)}
+							/>
+							<div>
+								<button
+									id="clean-field"
+									className="button button-secondary"
+									onClick={() => {
+										//fetchOpportunities("");
+										props.fetchOpportunitiesRedux(
+											1,
+											totalItems,
+											search
+										);
+										setSearch("");
+									}}
 								>
-								Buscar vagas</button>	
+									Limpar
+								</button>
+
+								<button
+									id="search-button"
+									className="button button-primary"
+									onClick={() =>
+										props.fetchOpportunitiesRedux(
+											1,
+											totalItems,
+											search
+										)
+									} //fetchOpportunities(search)}
+								>
+									Buscar vagas
+								</button>
+							</div>
 						</div>
 					</div>
-				</div>
 
 					<OpportunitiesList
-						opportunities={opportunities}
+						//opportunities={opportunities}
+						opportunities={props.opportunities}
 						loading={loading}
 					/>
-					{/*<Pagination
-						postsPerPage={postsPerPage}
-						totalPosts={opportunities.length}
-						paginate={paginate}
-					/>*/}
 				</div>
 			) : (
 				<div>Erro ao buscar dados...</div>
 			)}
-			{/*<
-			List
-				opportunities={opportunities}
-				loading={loading}
-			/>
-			<Pagination
-				postsPerPage={postsPerPage}
-				totalPosts={posts.length}
-				paginate={paginate}
-			/>}
-			{/*<OpportunitiesCard
-				jobType="Estagiario"
-				jobDescription="Descrição teste"
-				workTime="Das 8 as 20"
-				habilities="Ser top que nem o Lenon no React"
-			/>*/}
 		</div>
 	);
 }
 
-export default Opportunities;
+const mapStateToProps = (state) => {
+	return { opportunities: state.opportunities };
+};
+
+export default connect(mapStateToProps, { fetchOpportunitiesRedux })(
+	Opportunities
+);

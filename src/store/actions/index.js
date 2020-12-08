@@ -19,13 +19,16 @@ export const signIn = (email, senha) => {
 	};
 };
 
-/*export const fetchOpportunities = () => {
+export const fetchOpportunitiesRedux = (page, totalItems, searchText) => {
+	searchText !== "" && (searchText = `?busca=${searchText}`);
 	return async function (dispatch) {
 		console.log("Chamou a action");
-		const response = await apiMotus.get("/oportunidade/1/10");
+		const response = await api.get(
+			`/oportunidade/${page}/${totalItems}/${searchText}`
+		);
 		dispatch({
 			type: "GET_OPPORTUNITIES",
 			payload: response.data.responseData,
 		});
 	};
-};*/
+};
