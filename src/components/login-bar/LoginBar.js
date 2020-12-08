@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import "./styles/login-bar.css";
 
 //Components
-import { getHashId, getUserName } from "../../services/auth";
+import { getHashId } from "../../services/auth";
 
 function logoutREDUX() {
 	return {
@@ -18,14 +18,14 @@ function logoutREDUX() {
 	};
 }
 
-function LoginBar({ isLogged, dispatch }) {
+function LoginBar({ isLogged, userName, dispatch }) {
 	const hashId = getHashId();
 
 	if (isLogged) {
 		return (
 			<div id="login-bar">
 				<div className="div-limited display-flex">
-					<p className="hide-long-content">{`Candidato(a) ${getUserName()}`}</p>
+					<p className="hide-long-content">{`Candidato(a) ${userName}`}</p>
 				</div>
 
 				<div className="logout-options">
@@ -46,7 +46,11 @@ function LoginBar({ isLogged, dispatch }) {
 		return (
 			<div id='login-button'>
 				<Link to="/login" className="">
-					Acessar sistema
+					{"Login | "}
+				</Link>
+
+				<Link to="/cadastro" className="">
+					{' Cadastre-se'}
 				</Link>
 			</div>
 		);
@@ -54,7 +58,10 @@ function LoginBar({ isLogged, dispatch }) {
 }
 
 const mapStateToProps = (state) => {
-	return { isLogged: state.IsLogged };
+	return { 
+		isLogged: state.IsLogged,
+		userName: state.UserName,
+	};
 };
 
 export default connect(mapStateToProps)(LoginBar);

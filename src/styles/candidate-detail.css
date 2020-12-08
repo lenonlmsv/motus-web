@@ -99,6 +99,10 @@
     text-overflow: ellipsis;
 }
 
+.input-error {
+    border: 2.5px solid #EC4F4F!important;
+}
+
 @media (min-width: 1200px) {
     #page-candidate-details main form {
         width: 40vw;

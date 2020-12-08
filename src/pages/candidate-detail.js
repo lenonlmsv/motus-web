@@ -6,10 +6,10 @@ import {Link, useParams, useHistory} from 'react-router-dom';
 //CSS
 import "../styles/candidate-detail.css";
 
-
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
 import ResumesList from '../components/resumes-list/ResumesList'
+import {InputPhoneNumber, InputPhone} from '../components/Input'
 
 //API and Auth
 import api from "../services/api";
@@ -76,7 +76,7 @@ function CandidateDetails() {
         catch (error) {
             console.log(error)
         }        
-    }, [params.id])
+    }, [])
     
     // const checkFileType = (fileType) => {
     //     const acceptedTypes = [
@@ -255,7 +255,7 @@ function CandidateDetails() {
                             </span>
                          </label>
 
-                        <input 
+                        {/* <input 
                             id="phone-number" 
                             value={cellNumber}
                             type="text"
@@ -264,18 +264,22 @@ function CandidateDetails() {
                             minLength="11"
                             title="Somente números"
                             onChange={event => {setCellNumber(event.target.value)}}
-                            required/>
+                            required/> */}
+                        
+                        <InputPhoneNumber
+                            value={cellNumber}
+                            onChange={event => {setCellNumber(event.target.value)}}/>
                     </div>
 
                     <div className="input-block">
-                        <label htmlFor="phone">
+                        <label>
                             Telefone
                             <span>
                                 Formato: 10 dígitos com DDD (2133333333)
                             </span>                            
                         </label>
                             
-                        <input 
+                        {/* <input 
                             id="phone" 
                             value={phone}
                             type="text"
@@ -284,7 +288,12 @@ function CandidateDetails() {
                             minLength="10"
                             title="Somente números"
                             onChange={event => {setPhone(event.target.value)}}
-                            required/>
+                            required/> */}
+
+                        <InputPhone
+                            value={phone}
+                            onChange={event => {setPhone(event.target.value)}}/>
+                            
                     </div>
 
                     {/* <div className="input-block">

@@ -9,7 +9,6 @@ export async function loginUser(data) {
         await api.post("/api/service/login", data).then((response) => {
             const string = response.data.split(" ");
             const token = string[1]; //Get token
-            //login(token); //Store token
         });
     }   
 
@@ -149,7 +148,7 @@ export async function sendVideoResume(file) {
     }
 
     catch(e) {
-        console.log(e.message)
+        console.log(e.message);
         switch (e.message) {
             case 'Network Error': return {status: 'error', message: 'Arquivo maior que o permitido'};
             default: return {status: 'error', message: 'Erro interno'};

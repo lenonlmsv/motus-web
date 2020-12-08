@@ -11,6 +11,7 @@ import { FaDownload, FaTrash } from "react-icons/fa";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
+import {InputPhoneNumber, InputPhone} from '../components/Input'
 
 //API and Auth
 import api from "../services/api";
@@ -178,6 +179,7 @@ export default function CandidateSignUp() {
                             id="name" 
                             value={name}
                             type="text"
+                            placeholder='Nome'
                             maxLength="50"
                             onChange={event => {setName(event.target.value)}}
                             required/>
@@ -193,6 +195,7 @@ export default function CandidateSignUp() {
                         <input 
                             type="email" 
                             id="email"
+                            placeholder='candidato@email.com'
                             maxLength="40"
                             onChange={event => {setEmail(event.target.value)}}
                             value={email}
@@ -210,6 +213,7 @@ export default function CandidateSignUp() {
                         <input 
                             id='linkedin'
                             type='text'
+                            placeholder='www.linkedin.com.br/in/candidato'
                             maxLength="100"
                             onChange={event => {setLinkedin(event.target.value)}}
                             value={linkedin}
@@ -220,40 +224,50 @@ export default function CandidateSignUp() {
                         <label htmlFor="phone-number">
                             Celular
                             <span>
-                                Formato: 11 dígitos com DDD (21999999999)
+                                Formato: 11 dígitos com DDD (21) 99999-9999
                             </span>
                          </label>
 
-                        <input 
+                         {/* <input 
                             id="phone-number" 
                             value={cellNumber}
                             type="text"
-                            pattern = "[0-9]+"
-                            maxLength="11"
-                            minLength="11"
+                            placeholder='(00) 00000-0000'
+                            pattern = "[0-9()\\- ]+"
+                            maxLength="14"
+                            minLength="14"
                             title="Somente números"
                             onChange={event => {setCellNumber(event.target.value)}}
-                            required/>
+                            required/>  */}
+
+                        <InputPhoneNumber
+                            value={cellNumber}
+                            onChange={event => {setCellNumber(event.target.value)}}/>
                     </div>
 
                     <div className="input-block">
                         <label htmlFor="phone">
                             Telefone
                             <span>
-                                Formato: 10 dígitos com DDD (2133333333)
+                                Formato: 10 dígitos com DDD (21) 3333-3333
                             </span>                            
                         </label>
+
+                        <InputPhone
+                            value={phone}
+                            onChange={event => {setPhone(event.target.value)}}/>
                             
-                        <input 
+                        {/* <input 
                             id="phone" 
                             value={phone}
                             type="text"
                             pattern = "[0-9]+"
+                            placeholder='(00) 0000-0000'
                             maxLength="10"
                             minLength="10"
                             title="Somente números"
                             onChange={event => {setPhone(event.target.value)}}
-                            required/>
+                            required/> */}
                     </div>
 
                     <div className="input-block">
@@ -266,6 +280,7 @@ export default function CandidateSignUp() {
                         <input 
                             id="password" 
                             value={password}
+                            placeholder='Senha'
                             maxLength="10"
                             type="password"
                             onChange={event => {setPassword(event.target.value)}}

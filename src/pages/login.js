@@ -5,7 +5,8 @@ import { Link, useHistory } from "react-router-dom";
 
 //Redux connect
 import { connect } from "react-redux";
-import { signIn } from "../store/actions";
+import { signIn as signInAction } from "../store/actions/login-bar";
+import { setName as setNameAction } from "../store/actions/set-user-name";
 
 //Auth
 import { isAuthenticated } from "../services/auth";
@@ -23,13 +24,7 @@ function initialState() {
 	return { user: "", password: "" };
 }
 
-function loginREDUX() {
-	return {
-		type: "LOGIN",
-	};
-}
-
-function Login({ dispatch, isLogged, signIn }) {
+function Login({ isLogged, setName, signIn }) {
 	const alert = useAlert();
 
 	const showError = (message) => {
@@ -55,6 +50,8 @@ function Login({ dispatch, isLogged, signIn }) {
 		e.preventDefault();
 
 		signIn(user, password);
+		
+		setTimeout(() => setName(),500) //Tempo necessário para o localstorage ser preenchido
 
 		/*const dataObj = {
 			login: user,
@@ -105,6 +102,7 @@ function Login({ dispatch, isLogged, signIn }) {
 							value={user}
 							type="text"
 							maxLength="50"
+							placeholder='candidato@email.com'
 							onChange={(event) => {
 								setUser(event.target.value);
 							}}
@@ -118,6 +116,7 @@ function Login({ dispatch, isLogged, signIn }) {
 						<input
 							id="password"
 							name="password"
+							placeholder='Senha'
 							value={password}
 							type="password"
 							maxLength="10"
@@ -159,4 +158,9 @@ const mapStateToProps = (state) => {
 	return { isLogged: state.IsLogged };
 };
 
-export default connect(mapStateToProps, { signIn })(Login);
+const mapDispatchToProps = dispatch => ({
+	signIn: (user, password) => dispatch(signInAction(user, password)),
+	setName: () => dispatch(setNameAction())
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login)// { signIn })(Login);
