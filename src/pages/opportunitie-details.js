@@ -4,6 +4,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
 import OpportunitiesDetailCard from "../components/opportunities/OpportunitiesDetailCard";
+import {getUserName} from '../services/auth'
 
 import { connect } from "react-redux";
 //Methods
@@ -23,7 +24,7 @@ import { useAlert } from "react-alert";
 
 export const userCandidature = createContext();
 
-function OpportunitieDetail(props, userName) {
+function OpportunitieDetail(props) {
 	//History
 	const history = useHistory();
 
@@ -119,7 +120,7 @@ function OpportunitieDetail(props, userName) {
 				<div>
 					<div id="record-videos">
 						<p>
-							{`Olá, ${userName}. Você está se candidatando a
+							{`Olá, ${getUserName()}. Você está se candidatando a
 							vaga de ${
 								opportunity.titulo
 							}. Já temos seu CV, agora precisamos que você responda as perguntas abaixo. Por favor, responda as questões abaixo em vídeo:`}
@@ -188,7 +189,7 @@ function OpportunitieDetail(props, userName) {
 const mapStateToProps = (state) => {
 	return { 
 		opportunity: state.opportunities,
-		userName: state.UserName,
+		userNameRedux: state.UserName,
 	};
 };
 
