@@ -13,9 +13,6 @@ import {
 	checkIsCandidate,
 } from "../services/methods";
 
-//Auth
-import { getUserName } from "../services/auth";
-
 //CSS
 import "../styles/opportunitie-details.css";
 
@@ -26,7 +23,7 @@ import { useAlert } from "react-alert";
 
 export const userCandidature = createContext();
 
-function OpportunitieDetail(props) {
+function OpportunitieDetail(props, userName) {
 	//History
 	const history = useHistory();
 
@@ -122,7 +119,7 @@ function OpportunitieDetail(props) {
 				<div>
 					<div id="record-videos">
 						<p>
-							{`Olá, ${getUserName()}. Você está se candidatando a
+							{`Olá, ${userName}. Você está se candidatando a
 							vaga de ${
 								opportunity.titulo
 							}. Já temos seu CV, agora precisamos que você responda as perguntas abaixo. Por favor, responda as questões abaixo em vídeo:`}
@@ -189,7 +186,10 @@ function OpportunitieDetail(props) {
 }
 
 const mapStateToProps = (state) => {
-	return { opportunity: state.opportunities };
+	return { 
+		opportunity: state.opportunities,
+		userName: state.UserName,
+	};
 };
 
 export default connect(mapStateToProps, { fetchOpportunityRedux })(
