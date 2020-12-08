@@ -22,7 +22,7 @@ export const signIn = (email, senha) => {
 export const fetchOpportunitiesRedux = (page, totalItems, searchText) => {
 	searchText !== "" && (searchText = `?busca=${searchText}`);
 	return async function (dispatch) {
-		console.log("Chamou a action");
+		//console.log("Chamou a action");
 		const response = await api.get(
 			`/oportunidade/${page}/${totalItems}/${searchText}`
 		);
@@ -32,3 +32,20 @@ export const fetchOpportunitiesRedux = (page, totalItems, searchText) => {
 		});
 	};
 };
+
+export const fetchOpportunityRedux = (idOpportunity = 0) => {
+	//console.log("Tá na action");
+	return async function (dispatch) {
+		//console.log("Chamou a action");
+		const response = await api.get(`/oportunidade/${idOpportunity}`);
+		dispatch({
+			type: "GET_OPPORTUNITY",
+			payload: response.data.responseData,
+		});
+	};
+};
+
+/*export const fetchOpportunityRedux = (idOpportunity = 0) => {
+	//console.log("Tá na action");
+	return { type: "GET_OPPORTUNITY", payload: parseInt(idOpportunity) };
+};*/
