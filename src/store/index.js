@@ -4,6 +4,6 @@ import thunk from "redux-thunk";
 
 import rootReducers from './reducers'
 
-const store = createStore(rootReducers, applyMiddleware(thunk));; // 2) ARMAZENADO O ESTADO INICIAL NA STORE      
+const store = createStore(rootReducers, applyMiddleware(thunk));   
 
 export default store;
