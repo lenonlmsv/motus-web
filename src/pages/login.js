@@ -5,7 +5,6 @@ import { Link, useHistory } from "react-router-dom";
 
 //Redux connect
 import { connect } from "react-redux";
-
 import { signIn } from "../store/actions";
 
 //Auth

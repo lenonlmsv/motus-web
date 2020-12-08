@@ -5,8 +5,6 @@ import ReactDOM from "react-dom";
 
 //Provider
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
 
 import App from "./app";
 
@@ -16,7 +14,11 @@ import "./styles/global.css";
 //Alert provider
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
-import reducers from "./store/reducers";
+import reducers from "./store";
+
+//Reducer provider
+//const store = createStore(reducers, applyMiddleware(thunk));
+import store from './store'
 
 const options = {
 	position: positions.TOP_CENTER,
@@ -25,7 +27,6 @@ const options = {
 	transition: transitions.SCALE,
 };
 
-const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
 	<React.StrictMode>
