@@ -9,9 +9,6 @@ import OpportunitiesList from "../components/opportunities/OpportunitiesList";
 //CSS
 import "../styles/opportunities.css";
 
-//Methods
-import { getOpportunities } from "../services/methods";
-
 import { fetchOpportunitiesRedux } from "../store/actions";
 
 function Opportunities(props) {
