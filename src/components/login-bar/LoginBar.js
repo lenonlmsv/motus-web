@@ -20,7 +20,7 @@ function logoutREDUX() {
 
 function LoginBar({ isLogged, userName, dispatch }) {
 	const hashId = getHashId();
-
+	
 	if (isLogged) {
 		return (
 			<div id="login-bar">

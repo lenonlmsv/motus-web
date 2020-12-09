@@ -50,7 +50,7 @@ function VideoRecord() {
 		//If will be used to record video answers
 		//api.get('') Pegar dados da api
 
-		const timeSeconds = "90";
+		const timeSeconds = "90"; //Tempo de resposta da pergunta
 
 		return (
 			<div id="page-video-recorder" className="page-position">
@@ -62,7 +62,7 @@ function VideoRecord() {
 				<div id="div-recoder">
 					<VideoRecorderBlock 
 						time={timeSeconds}
-						returnTo={''} />
+						returnTo={params.id} />
 				</div>
 			</div>
 		);
