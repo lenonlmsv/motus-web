@@ -64,8 +64,8 @@ export const getCandidaturasRedux = () => {
 	return async function (dispatch) {
 		//console.log("Chamou a action");
 		const response = await api.get(`candidatura/`);
-		console.log("candidatura");
-		console.log(response.data.responseData);
+		//console.log("candidatura");
+		//console.log(response.data.responseData);
 		dispatch({
 			type: "GET_CANDIDATURA",
 			payload: response.data.responseData,

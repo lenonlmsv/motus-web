@@ -38,15 +38,13 @@ function OpportunitieDetail(props) {
 
 	//	const item = useSelector((state) => state.items[slug]);
 	//if (state)
-	const IsCandidato =
-		typeof useSelector((state) => {
-			console.log(state.candidatura.vagaId);
-			console.log(params.id);
-			return parseInt(state.candidatura.vagaId) === parseInt(params.id);
-		}) === "undefined"
-			? false
-			: true;
+	const IsCandidato = props.candidaturas.filter(
+		(candidato) => candidato.vagaId === parseInt(params.id)
+	);
 
+	console.log("Candidaturas");
+	console.log(props.candidaturas);
+	console.log("Is candidato");
 	console.log(IsCandidato);
 	//Alert
 	const alert = useAlert();
@@ -86,11 +84,9 @@ function OpportunitieDetail(props) {
 
 		//Checar se o usuário tem a candidatura
 		//fetchOpportunity();
-		//console.log("console de opportunity - entrou");
-		//console.log("id:" + params.id);
+
 		props.getCandidaturasRedux();
 		props.fetchOpportunityRedux(params.id);
-		//console.log("console de opportunity - saiu");
 		//setCheckCandidate();
 	}, []);
 
@@ -124,7 +120,7 @@ function OpportunitieDetail(props) {
 				/>
 
 				{
-					/*!ifIsCandidate*/ !IsCandidato && (
+					/*!ifIsCandidate*/ IsCandidato.length === 0 && (
 						<button
 							onClick={() =>
 								props.createCandidaturaRedux(params.id)
@@ -138,7 +134,7 @@ function OpportunitieDetail(props) {
 			</div>
 
 			{
-				/*ifIsCandidate*/ IsCandidato && (
+				/*ifIsCandidate*/ IsCandidato.length !== 0 && (
 					<div>
 						<div id="record-videos">
 							<p>
@@ -213,10 +209,10 @@ const mapStateToProps = (state, ownProps) => {
 	return {
 		opportunity: state.opportunities,
 		userNameRedux: state.UserName,
-		/*candidaturas:
-			state.candidatura .find(
+		candidaturas:
+			state.candidatura /*.find(
 			(candidato) => candidato.vagaId === ownProps.params.id
-		),*/
+		),*/,
 	};
 };
 

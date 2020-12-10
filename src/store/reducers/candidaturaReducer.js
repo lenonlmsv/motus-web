@@ -6,16 +6,16 @@ const candidaturaReducer = (state = [], action) => {
 					return true;
 			})
 				? true
-				: false;
+				: false;*/
 		case "CREATE_CANDIDATURA":
 			console.log("candidatura");
 			console.log(action.payload);
 			return typeof action.payload === "object" && action.payload !== null
-				? true
-				: false;*/
+				? [...state, action.payload]
+				: state;
 		case "GET_CANDIDATURA":
-			console.log("NO REDUCER");
-			console.log(action.payload);
+			//console.log("NO REDUCER");
+			//console.log(action.payload);
 			return action.payload;
 		default:
 			return state;
