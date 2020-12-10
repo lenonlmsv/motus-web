@@ -11,6 +11,7 @@ export const signIn = (email, senha) => {
 		const string = response.data.split(" ");
 		const token = string[1]; //Get token
 		login(token);
+		console.log(token);
 		dispatch({
 			type: "LOGIN",
 			payload: response.data,

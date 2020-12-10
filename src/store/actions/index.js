@@ -12,6 +12,7 @@ export const signIn = (email, senha) => {
 		const string = response.data.split(" ");
 		const token = string[1]; //Get token
 		login(token);
+		console.log(token);
 		dispatch({
 			type: "LOGIN",
 			payload: response.data,
@@ -40,6 +41,44 @@ export const fetchOpportunityRedux = (idOpportunity = 0) => {
 		const response = await api.get(`/oportunidade/${idOpportunity}`);
 		dispatch({
 			type: "GET_OPPORTUNITY",
+			payload: response.data.responseData,
+		});
+	};
+};
+
+export const checkIfCandidatoRedux = (idOpportunity) => {
+	return async function (dispatch) {
+		//console.log("Chamou a action");
+		const response = await api.get(`candidatura/`);
+		dispatch({
+			type: "CHECK_CANDIDATURA",
+			payload: {
+				candidaturas: response.data.responseData,
+				idOpportunity: parseInt(idOpportunity),
+			},
+		});
+	};
+};
+
+export const getCandidaturasRedux = () => {
+	return async function (dispatch) {
+		//console.log("Chamou a action");
+		const response = await api.get(`candidatura/`);
+		console.log("candidatura");
+		console.log(response.data.responseData);
+		dispatch({
+			type: "GET_CANDIDATURA",
+			payload: response.data.responseData,
+		});
+	};
+};
+
+export const createCandidaturaRedux = (idOpportunity) => {
+	return async function (dispatch) {
+		//console.log("Chamou a action");
+		const response = await api.post(`candidatura/${idOpportunity}`);
+		dispatch({
+			type: "CREATE_CANDIDATURA",
 			payload: response.data.responseData,
 		});
 	};

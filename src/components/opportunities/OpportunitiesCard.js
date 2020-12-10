@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import OpportunitiesDetailCard from "./OpportunitiesDetailCard";
+
+import { getCandidaturasRedux } from "../../store/actions";
 
 //CSS
 import "../../styles/opportunities.css";
 
 //Icons
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
+import { connect } from "react-redux";
 
 const OpportunitiesCard = ({
 	jobId,
@@ -15,6 +18,8 @@ const OpportunitiesCard = ({
 	jobType,
 	workTime,
 	habilities,
+	getCandidaturasRedux,
+	IsCandidato,
 }) => {
 	//States;
 	const [card, setCard] = useState("opportunities-card-closed");
@@ -27,6 +32,10 @@ const OpportunitiesCard = ({
 
 	//History
 	const history = useHistory();
+
+	useEffect(() => {
+		getCandidaturasRedux();
+	}, []);
 
 	const openCard = () => {
 		setCard("");
@@ -88,9 +97,24 @@ const OpportunitiesCard = ({
 				>
 					Candidate-se
 				</button>
+				{console.log(IsCandidato)}
+				{IsCandidato ? (
+					<div>Você já está concorrendo a esta vaga!!!</div>
+				) : null}
 			</div>
 		</div>
 	);
 };
 
-export default OpportunitiesCard;
+const mapStateToProps = (state, ownProps) => {
+	//console.log(state);
+	return {
+		IsCandidato: state.candidatura.find(
+			(candidato) => candidato.vagaId === ownProps.jobId
+		),
+	};
+};
+
+export default connect(mapStateToProps, { getCandidaturasRedux })(
+	OpportunitiesCard
+);
