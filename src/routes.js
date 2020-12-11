@@ -4,7 +4,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 //Authentication
-import { isAuthenticated } from './services/auth'
+import { isAuthenticated } from "./services/auth";
 
 //Components
 import PageHeader from "./components/page-header/Page-header";
@@ -16,70 +16,71 @@ import OpportunitieDetail from "./pages/opportunitie-details";
 import Login from "./pages/login";
 import VideoResume from "./pages/video-resume";
 import VideoRecord from "./pages/video-recorder";
-import CandidateDetails from './pages/candidate-detail';
-import PageNotFound from './pages/page-not-found'
-import CandidateSignUp from './pages/candidate-signup'
+import CandidateDetails from "./pages/candidate-detail";
+import PageNotFound from "./pages/page-not-found";
+import CandidateSignUp from "./pages/candidate-signup";
+import CandidateDetailsTeste from "./pages/candidate-detail-teste";
 
-const PrivateRoute = ({ component: Component, ...rest }) => ( //Bloqueia de acordo com a autenticação
-	<Route {...rest} render={props => (
-		isAuthenticated() ? (
-			<Component {...props}/>
-		) : (
-			<Redirect to={{ pathname: '/login', state: { from: props.location }}}/>
-		)
-	)}
+const PrivateRoute = (
+	{ component: Component, ...rest } //Bloqueia de acordo com a autenticação
+) => (
+	<Route
+		{...rest}
+		render={(props) =>
+			isAuthenticated() ? (
+				<Component {...props} />
+			) : (
+				<Redirect
+					to={{ pathname: "/login", state: { from: props.location } }}
+				/>
+			)
+		}
 	/>
-)
+);
 
 function Routes() {
 	return (
 		<BrowserRouter>
-			<PageHeader/>
+			<PageHeader />
 
-				<Switch style={{alignSelf:"center"}}>
-					<Route 
-						path="/" 
-						exact 
-						component={Opportunities}/>
-					
-					<Route
-						path="/oportunidades"
-						exact
-						component={Opportunities}
-					/>
+			<Switch style={{ alignSelf: "center" }}>
+				<Route path="/" exact component={Opportunities} />
 
-					<Route 
-						path="/login" 
-						component={Login}/>
+				<Route path="/oportunidades" exact component={Opportunities} />
 
-					<PrivateRoute
-						path="/candidato/:id"
-						component={CandidateDetails}/>
+				<Route path="/login" component={Login} />
 
-					<Route
-						path="/cadastro"
-						component={CandidateSignUp}/>	
+				<PrivateRoute
+					path="/candidato/:id"
+					component={CandidateDetails}
+				/>
 
-					<PrivateRoute
-						path="/oportunidades/:id"
-						component={OpportunitieDetail}
-					/>
+				{
+					//TODO: Excluir depois, apenas um teste
+				}
+				<PrivateRoute
+					path="/candidatoteste/:id"
+					component={CandidateDetailsTeste}
+				/>
 
-					<PrivateRoute 
-						path="/video-curriculo" 
-						component={VideoResume} />
-					
-					<PrivateRoute 
-						path="/gravar-video/:id" 
-						component={VideoRecord} />
-					
-					<Route 
-						path="*" 
-						component={PageNotFound}/>
-				</Switch>
-				
-			<PageFooter/>
+				<Route path="/cadastro" component={CandidateSignUp} />
 
+				<PrivateRoute
+					path="/oportunidades/:id"
+					component={OpportunitieDetail}
+				/>
+
+				<PrivateRoute path="/video-curriculo" component={VideoResume} />
+
+				<PrivateRoute
+					path="/gravar-video/:id"
+					component={VideoRecord}
+				/>
+
+				<Route path="*" component={PageNotFound} />
+			</Switch>
+
+			<PageFooter />
 		</BrowserRouter>
 	);
 }
