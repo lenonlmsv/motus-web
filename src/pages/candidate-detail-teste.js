@@ -211,6 +211,7 @@ function CandidateDetailsTeste() {
 							</span>
 						</label>
 					</div>
+					
 					<ResumesList />
 					<div class="display-flex button-send">
 						<Link to="/" className="button button-secondary">
@@ -226,6 +227,10 @@ function CandidateDetailsTeste() {
 					</div>
 				</form>
 			</main>
+
+			<div id ="my-candidatures" className="content-tab">
+				Minhas candidaturas
+			</div>
 		</div>
 	);
 }
