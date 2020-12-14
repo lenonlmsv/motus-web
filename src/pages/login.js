@@ -5,7 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 
 //Redux connect
 import { connect } from "react-redux";
-import { signIn as signInAction } from "../store/actions/login-bar";
+import { signIn as signInAction } from "../store/actions";
 import { setName as setNameAction } from "../store/actions/set-user-name";
 
 //Auth
@@ -49,9 +49,9 @@ function Login({ isLogged, setName, signIn }) {
 	async function onSubmit(e) {
 		e.preventDefault();
 
-		signIn(user, password);
-		
-		setTimeout(() => setName(),800) //Tempo necessário para o localstorage ser preenchido
+		signIn(user, password, alert);
+
+		setTimeout(() => setName(), 800); //Tempo necessário para o localstorage ser preenchido
 
 		/*const dataObj = {
 			login: user,
@@ -102,7 +102,7 @@ function Login({ isLogged, setName, signIn }) {
 							value={user}
 							type="text"
 							maxLength="50"
-							placeholder='candidato@email.com'
+							placeholder="candidato@email.com"
 							onChange={(event) => {
 								setUser(event.target.value);
 							}}
@@ -116,7 +116,7 @@ function Login({ isLogged, setName, signIn }) {
 						<input
 							id="password"
 							name="password"
-							placeholder='Senha'
+							placeholder="Senha"
 							value={password}
 							type="password"
 							maxLength="10"
@@ -158,9 +158,10 @@ const mapStateToProps = (state) => {
 	return { isLogged: state.IsLogged };
 };
 
-const mapDispatchToProps = dispatch => ({
-	signIn: (user, password) => dispatch(signInAction(user, password)),
-	setName: () => dispatch(setNameAction())
-})
+const mapDispatchToProps = (dispatch) => ({
+	signIn: (user, password, alert) =>
+		dispatch(signInAction(user, password, alert)),
+	setName: () => dispatch(setNameAction()),
+});
 
-export default connect(mapStateToProps,mapDispatchToProps)(Login)// { signIn })(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login); // { signIn })(Login);

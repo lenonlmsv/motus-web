@@ -1,5 +1,6 @@
 import api from "../../services/api";
 import { login } from "../../services/auth";
+//import Alert from "../../components/Alert";
 import setUserName from "../reducers/set-user-name";
 
 const ShowError = (message, alert) => {
@@ -12,29 +13,37 @@ const ShowSuccess = (message, alert) => {
 	alert.show(message, { type: "success" });
 };
 
-export const signIn = (email, senha) => {
+export const signIn = (email, senha, alert) => {
 	api.defaults.headers.post["Content-Type"] = "application/json";
 	return async function (dispatch) {
-		console.log("Chamou a action");
-		const response = await api.post("/api/service/login", {
-			login: email,
-			password: senha,
-		});
-		const string = response.data.split(" ");
-		const token = string[1]; //Get token
-		login(token);
-		console.log(token);
-		dispatch({
-			type: "LOGIN",
-			payload: response.data,
-		});
+		try {
+			const response = await api.post("/api/service/login", {
+				login: email,
+				password: senha,
+			});
+			const string = response.data.split(" ");
+			const token = string[1]; //Get token
+			login(token);
+			ShowSuccess("Login realizado com sucesso", alert);
+			dispatch({
+				type: "LOGIN",
+				payload: response.data,
+			});
+		} catch (error) {
+			switch (error.message) {
+				case "Request failed with status code 403":
+					ShowError("Usuário não encontrado", alert);
+					break;
+				default:
+					ShowError("Erro inesperado ao realizar login", alert);
+			}
+		}
 	};
 };
 
 export const fetchOpportunitiesRedux = (page, totalItems, searchText) => {
 	searchText !== "" && (searchText = `?busca=${searchText}`);
 	return async function (dispatch) {
-		//console.log("Chamou a action");
 		const response = await api.get(
 			`/oportunidade/${page}/${totalItems}/${searchText}`
 		);
@@ -46,9 +55,7 @@ export const fetchOpportunitiesRedux = (page, totalItems, searchText) => {
 };
 
 export const fetchOpportunityRedux = (idOpportunity = 0) => {
-	//console.log("Tá na action");
 	return async function (dispatch) {
-		//console.log("Chamou a action");
 		const response = await api.get(`/oportunidade/${idOpportunity}`);
 		dispatch({
 			type: "GET_OPPORTUNITY",
@@ -59,7 +66,6 @@ export const fetchOpportunityRedux = (idOpportunity = 0) => {
 
 export const checkIfCandidatoRedux = (idOpportunity) => {
 	return async function (dispatch) {
-		//console.log("Chamou a action");
 		const response = await api.get(`candidatura/`);
 		dispatch({
 			type: "CHECK_CANDIDATURA",
@@ -73,10 +79,8 @@ export const checkIfCandidatoRedux = (idOpportunity) => {
 
 export const getCandidaturasRedux = () => {
 	return async function (dispatch) {
-		//console.log("Chamou a action");
 		const response = await api.get(`candidatura/`);
-		//console.log("candidatura");
-		//console.log(response.data.responseData);
+
 		dispatch({
 			type: "GET_CANDIDATURA",
 			payload: response.data.responseData,
@@ -86,7 +90,6 @@ export const getCandidaturasRedux = () => {
 
 export const createCandidaturaRedux = (idOpportunity) => {
 	return async function (dispatch) {
-		//console.log("Chamou a action");
 		const response = await api.post(`candidatura/${idOpportunity}`);
 		dispatch({
 			type: "CREATE_CANDIDATURA",
@@ -106,7 +109,6 @@ export const fetchCandidato = () => {
 };
 
 export const updateCandidato = (candidato, alert, history) => {
-	//const history = useHistory();
 	return async function (dispatch) {
 		try {
 			api.defaults.headers.post["Content-Type"] = "application/json"; //USAR FORMATO JSON
@@ -128,8 +130,3 @@ export const updateCandidato = (candidato, alert, history) => {
 		});
 	};
 };
-
-/*export const fetchOpportunityRedux = (idOpportunity = 0) => {
-	//console.log("Tá na action");
-	return { type: "GET_OPPORTUNITY", payload: parseInt(idOpportunity) };
-};*/

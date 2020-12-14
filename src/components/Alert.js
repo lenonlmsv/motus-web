@@ -1,19 +1,11 @@
-//import React from 'react'
+import React from "react";
 
-//import { useAlert } from 'react-alert'
+import { useAlert } from "react-alert";
 
-// const alert = useAlert()
+function Alert(message) {
+	const alert = useAlert();
+	return alert.show("message");
+	//return alert.show(message);
+}
 
-// export default alert;
-
-// function Alert({m, alert}) {
-//     return (
-//         <button onClick={()=> {
-//             alert.show(m)
-//         }}> 
-//             Clique aqui
-//         </button>
-//     )
-// }
-
-//export default withAlert() (Alert) 
+export default Alert;
