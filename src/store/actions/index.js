@@ -1,16 +1,14 @@
 import api from "../../services/api";
 import { login } from "../../services/auth";
 import setUserName from "../reducers/set-user-name";
-import { useAlert } from "react-alert";
-import { useHistory } from "react-router-dom";
 
-const ShowError = (message) => {
-	const alert = useAlert();
+const ShowError = (message, alert) => {
+	//const alert = useAlert();
 	alert.show(message, { type: "error" });
 };
 
-const ShowSuccess = (message) => {
-	const alert = useAlert();
+const ShowSuccess = (message, alert) => {
+	//const alert = useAlert();
 	alert.show(message, { type: "success" });
 };
 
@@ -107,7 +105,7 @@ export const fetchCandidato = () => {
 	};
 };
 
-export const UpdateCandidato = (candidato) => {
+export const updateCandidato = (candidato, alert, history) => {
 	//const history = useHistory();
 	return async function (dispatch) {
 		try {
@@ -117,16 +115,17 @@ export const UpdateCandidato = (candidato) => {
 
 			await api.post("/candidato", json);
 			//setUserName(candidato.nome);
-			//ShowSuccess("Usuário alterado com sucesso");
-			//history.push("/oportunidades");
-			dispatch({
-				type: "UPDATE_CANDIDATO",
-				payload: candidato,
-			});
+			ShowSuccess("Usuário alterado com sucesso", alert);
+			history.push("/oportunidades");
 		} catch (error) {
 			console.log(`${error.message}`);
-			//ShowError("Erro ao editar usuário. Tente novamente!");
+			ShowError("Erro ao editar usuário. Tente novamente!", alert);
 		}
+
+		dispatch({
+			type: "UPDATE_CANDIDATO",
+			payload: candidato,
+		});
 	};
 };
 
