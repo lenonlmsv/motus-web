@@ -1,5 +1,18 @@
 import api from "../../services/api";
 import { login } from "../../services/auth";
+import setUserName from "../reducers/set-user-name";
+import { useAlert } from "react-alert";
+import { useHistory } from "react-router-dom";
+
+const ShowError = (message) => {
+	const alert = useAlert();
+	alert.show(message, { type: "error" });
+};
+
+const ShowSuccess = (message) => {
+	const alert = useAlert();
+	alert.show(message, { type: "success" });
+};
 
 export const signIn = (email, senha) => {
 	api.defaults.headers.post["Content-Type"] = "application/json";
@@ -81,6 +94,39 @@ export const createCandidaturaRedux = (idOpportunity) => {
 			type: "CREATE_CANDIDATURA",
 			payload: response.data.responseData,
 		});
+	};
+};
+
+export const fetchCandidato = () => {
+	return async function (dispatch) {
+		const response = await api.get(`/candidato`);
+		dispatch({
+			type: "GET_CANDIDATO",
+			payload: response.data.responseData,
+		});
+	};
+};
+
+export const UpdateCandidato = (candidato) => {
+	//const history = useHistory();
+	return async function (dispatch) {
+		try {
+			api.defaults.headers.post["Content-Type"] = "application/json"; //USAR FORMATO JSON
+
+			let json = JSON.stringify(candidato);
+
+			await api.post("/candidato", json);
+			//setUserName(candidato.nome);
+			//ShowSuccess("Usuário alterado com sucesso");
+			//history.push("/oportunidades");
+			dispatch({
+				type: "UPDATE_CANDIDATO",
+				payload: candidato,
+			});
+		} catch (error) {
+			console.log(`${error.message}`);
+			//ShowError("Erro ao editar usuário. Tente novamente!");
+		}
 	};
 };
 

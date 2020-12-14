@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 //Router dom
 import { Link, useParams, useHistory } from "react-router-dom";
 
+import { UpdateCandidato } from "../store/actions";
+
 //CSS
 import "../styles/candidate-detail.css";
 
@@ -14,51 +16,27 @@ import { InputPhoneNumber, InputPhone } from "../components/Input";
 //API and Auth
 import api from "../services/api";
 import { getHashId, setUserName } from "../services/auth";
-import { fetchCandidato, UpdateCandidato } from "../store/actions";
+import { fetchCandidato } from "../store/actions";
 
 //Alert
 import { useAlert } from "react-alert";
 import { connect } from "react-redux";
-import CandidatoForm from "../components/CandidatoForm";
 
-function CandidateDetailsTeste(props) {
-	const alert = useAlert();
+const CandidatoForm = (props) => {
+	const [candidato, setCandidato] = useState({});
 
-	const showError = (message) => {
-		alert.show(message, { type: "error" });
-	};
-
-	const showSuccess = (message) => {
-		alert.show(message, { type: "success" });
-	};
+	console.log("Inicio candidato props");
+	console.log(props.candidato);
+	console.log(candidato);
+	console.log("Fim candidato props");
 
 	const history = useHistory();
-	const params = useParams();
-
-	//Form data
-	const [candidato, setCandidato] = useState({
-		celular: "",
-		email: "",
-		hashId: "",
-		linkedin: "",
-		login: "",
-		nome: "",
-		telefone: "",
-	});
-
-	useEffect(() => {
-		try {
-			props.fetchCandidato();
-			setCandidato(props.candidato);
-		} catch (error) {
-			console.log(error);
-		}
-	}, []);
 
 	async function handleSubmit(e) {
 		e.preventDefault();
+		props.UpdateCandidato(candidato);
 
-		try {
+		/*try {
 			api.defaults.headers.post["Content-Type"] = "application/json"; //USAR FORMATO JSON
 
 			let json = JSON.stringify(candidato);
@@ -70,10 +48,13 @@ function CandidateDetailsTeste(props) {
 		} catch (error) {
 			console.log(`${error.message}`);
 			showError("Erro ao editar usuário. Tente novamente!");
-		}
+		}*/
 	}
 
-<<<<<<< HEAD
+	useEffect(() => {
+		setCandidato(props.candidato);
+	}, []);
+
 	return (
 		<div id="page-candidate-details" className="page-position">
 			<BackgroundTitle
@@ -95,7 +76,6 @@ function CandidateDetailsTeste(props) {
 									...candidato,
 									nome: event.target.value,
 								});
-								//setName(event.target.value);
 							}}
 							required
 						/>
@@ -114,7 +94,6 @@ function CandidateDetailsTeste(props) {
 									...candidato,
 									email: event.target.value,
 								});
-								//setEmail(event.target.value);
 							}}
 							value={candidato.email}
 							//disabled
@@ -135,7 +114,6 @@ function CandidateDetailsTeste(props) {
 									...candidato,
 									linkedin: event.target.value,
 								});
-								//setLinkedin(event.target.value);
 							}}
 							value={candidato.linkedin}
 							required
@@ -156,7 +134,6 @@ function CandidateDetailsTeste(props) {
 									...candidato,
 									celular: event.target.value,
 								});
-								//setCellNumber(event.target.value);
 							}}
 						/>
 					</div>
@@ -175,7 +152,6 @@ function CandidateDetailsTeste(props) {
 									...candidato,
 									telefone: event.target.value,
 								});
-								//setPhone(event.target.value);
 							}}
 						/>
 					</div>
@@ -203,9 +179,8 @@ function CandidateDetailsTeste(props) {
 							</span>
 						</label>
 					</div>
-					
 					<ResumesList />
-					<div class="display-flex button-send">
+					<div className="display-flex button-send">
 						<Link to="/" className="button button-secondary">
 							Ver oportunidades
 						</Link>
@@ -216,25 +191,24 @@ function CandidateDetailsTeste(props) {
 						>
 							Enviar
 						</button>
+
+						<button
+							type="submit"
+							className="button button-primary send-form"
+							//onClick={() => setCandidato(props.candidato)}
+						>
+							teste
+						</button>
 					</div>
 				</form>
 			</main>
-
-			<div id ="my-candidatures" className="content-tab">
-				Minhas candidaturas
-			</div>
 		</div>
 	);
-=======
-	return <CandidatoForm />;
->>>>>>> 34898f59e88482b0204ffb80bfa39ea966fcd133
-}
+};
 
 const mapStateToProps = (state) => {
 	console.log(state);
 	return { candidato: state.candidato };
 };
 
-export default connect(mapStateToProps, { fetchCandidato })(
-	CandidateDetailsTeste
-);
+export default connect(mapStateToProps, { UpdateCandidato })(CandidatoForm);

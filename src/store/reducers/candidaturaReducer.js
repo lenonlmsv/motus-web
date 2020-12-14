@@ -8,8 +8,8 @@ const candidaturaReducer = (state = [], action) => {
 				? true
 				: false;*/
 		case "CREATE_CANDIDATURA":
-			console.log("candidatura");
-			console.log(action.payload);
+			//console.log("candidatura");
+			//console.log(action.payload);
 			return typeof action.payload === "object" && action.payload !== null
 				? [...state, action.payload]
 				: state;
