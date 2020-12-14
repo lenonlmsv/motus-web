@@ -72,13 +72,12 @@ function Opportunities(props) {
 									id="clean-field"
 									className="button button-secondary"
 									onClick={() => {
-										//fetchOpportunities("");
+										setSearch("");
 										props.fetchOpportunitiesRedux(
 											1,
 											totalItems,
-											search
+											""
 										);
-										setSearch("");
 									}}
 								>
 									Limpar
