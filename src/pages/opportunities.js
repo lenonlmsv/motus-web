@@ -92,7 +92,7 @@ function Opportunities(props) {
 											totalItems,
 											search
 										)
-									} //fetchOpportunities(search)}
+									}
 								>
 									Buscar vagas
 								</button>
