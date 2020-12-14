@@ -51,7 +51,7 @@ function Login({ isLogged, setName, signIn }) {
 
 		signIn(user, password);
 		
-		setTimeout(() => setName(),500) //Tempo necessário para o localstorage ser preenchido
+		setTimeout(() => setName(),800) //Tempo necessário para o localstorage ser preenchido
 
 		/*const dataObj = {
 			login: user,

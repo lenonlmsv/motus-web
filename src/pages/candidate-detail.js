@@ -10,6 +10,7 @@ import "../styles/candidate-detail.css";
 import BackgroundTitle from "../components/background-title/Background-title";
 import ResumesList from '../components/resumes-list/ResumesList'
 import {InputPhoneNumber, InputPhone} from '../components/Input'
+import OpportunitiesBlock from '../components/opportunities-block/Opportunities-block'
 
 //API and Auth
 import api from "../services/api";
@@ -194,13 +195,45 @@ function CandidateDetails() {
         }
     }
 
+    function removeDisplay() {
+        const divs = document.querySelectorAll('.tab-item');
+        Object.keys(divs).map((key) => {
+            divs[key].classList.remove('display-none')
+        })
+
+        const buttons = document.querySelectorAll('#tab-buttons button');
+        Object.keys(buttons).map((key) => {
+            buttons[key].classList.remove('button-selected')
+        })
+    }
+
+    function changeTab(e, tabItem) {
+        removeDisplay()
+        const divs = document.querySelectorAll('.tab-item');
+        Object.keys(divs).map((key) => {
+            const item = divs[key]
+            item.id !== tabItem && item.classList.add('display-none')
+        })
+
+        e.target.classList.add('button-selected')
+        console.log(e.target.classList)
+    }
+
     return (
         <div id='page-candidate-details' className="page-position">
             <BackgroundTitle  
                 title={`Meus dados`}
                 description={'Confira seus dados cadastrados'}/>
 
-            <main className='display-flex'>                    
+            <div id='tab-buttons'>
+                <button
+                    className='button-selected'
+                    onClick={(e) => changeTab(e,'tab-info')}>Meu cadastro</button>
+				<button
+                    onClick={(e) => changeTab(e,'tab-history')}>Minhas candidaturas</button>
+			</div>
+
+            <main id='tab-info' className='display-flex tab-item'>                    
                 <form className="create-candidate" onSubmit={handleSubmit}>
                     <div className="input-block">
                         <label htmlFor="name">
@@ -357,13 +390,6 @@ function CandidateDetails() {
 
                     <ResumesList/>
 
-                    {/* <div className="file-details ">
-                        <FaTrash color={'red'} onClick={removeResume}/>
-                        <FaDownload color={'blue'} onClick={downloadResume}/>
-                        <p>{resume.name}</p>
-                    </div>  */}
-
-
                     <div class='display-flex button-send'>
                         <Link to="/" className="button button-secondary">
                             Ver oportunidades
@@ -373,9 +399,12 @@ function CandidateDetails() {
                             Enviar
                         </button>
                     </div>
-
                 </form>
             </main>
+            
+            <div id='tab-history' className='tab-item display-none'>
+                <OpportunitiesBlock/>
+            </div>
         </div>
         )
     }

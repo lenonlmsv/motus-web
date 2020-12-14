@@ -6,14 +6,7 @@ import { Link, useParams, useHistory } from "react-router-dom";
 //CSS
 import "../styles/candidate-detail.css";
 
-//Components
-import BackgroundTitle from "../components/background-title/Background-title";
-import ResumesList from "../components/resumes-list/ResumesList";
-import { InputPhoneNumber, InputPhone } from "../components/Input";
-
 //API and Auth
-import api from "../services/api";
-import { getHashId, setUserName } from "../services/auth";
 import { fetchCandidato, UpdateCandidato } from "../store/actions";
 
 //Alert

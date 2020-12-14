@@ -81,6 +81,7 @@ function OpportunitieDetail(props) {
 				console.log(e);
 			}
 		};
+		fetchOpportunity()
 
 		//Checar se o usuário tem a candidatura
 		//fetchOpportunity();

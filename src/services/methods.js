@@ -123,6 +123,25 @@ export async function checkIsCandidate() {
     }
 }
 
+export async function getCandidatures() {
+    try {
+        const response = await api.get(`candidatura/`);
+        
+        if(response.data.responseData.length === 0) {
+            return false;
+        } 
+
+        else {
+            const opp = response.data.responseData;
+            return opp;
+        }
+    }
+
+    catch(e){
+        console.log(e)
+    }
+}
+
 export function createCandidature(vagaId) {
     try {
         const response = api.post(`candidatura/${vagaId}`);

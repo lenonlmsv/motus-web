@@ -102,7 +102,7 @@ const OpportunitiesCard = ({
 					Visualizar vaga
 				</button>
 
-				{IsCandidato.length !== 0 ? (
+				{/* {IsCandidato.length !== 0 ? (
 					<div>Você já está concorrendo a esta vaga!!!</div>
 				) : (
 					<button
@@ -111,7 +111,7 @@ const OpportunitiesCard = ({
 					>
 						Candidate-se
 					</button>
-				)}
+				)} */}
 			</div>
 		</div>
 	);
