@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
 import OpportunitiesList from "../components/opportunities/OpportunitiesList";
-//import Pagination from "../components/Pagination";
 
 //CSS
 import "../styles/opportunities.css";
@@ -20,19 +19,6 @@ function Opportunities(props) {
 	const [search, setSearch] = useState("");
 
 	const totalItems = 100;
-
-	/*async function fetchOpportunities(searchText) {
-		setLoading(true);
-		try {
-			let response = "";
-			response = await getOpportunities(1, searchText); //await api.get("/oportunidade/1/10");
-			setOpportunities(response.data.responseData);
-			setLoading(false);
-		} catch (e) {
-			console.log(e);
-			setError(e);
-		}
-	}*/
 
 	useEffect(() => {
 		props.fetchOpportunitiesRedux(1, totalItems, search);
