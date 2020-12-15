@@ -36,16 +36,11 @@ function OpportunitieDetail(props) {
 	const params = useParams();
 	params.id === ":id" && history.push("/oportunidades");
 
-	//	const item = useSelector((state) => state.items[slug]);
 	//if (state)
 	const IsCandidato = props.candidaturas.filter(
 		(candidato) => candidato.vagaId === parseInt(params.id)
 	);
 
-	console.log("Candidaturas");
-	console.log(props.candidaturas);
-	console.log("Is candidato");
-	console.log(IsCandidato);
 	//Alert
 	const alert = useAlert();
 
@@ -81,7 +76,7 @@ function OpportunitieDetail(props) {
 				console.log(e);
 			}
 		};
-		fetchOpportunity()
+		fetchOpportunity();
 
 		//Checar se o usuário tem a candidatura
 		//fetchOpportunity();
@@ -102,7 +97,6 @@ function OpportunitieDetail(props) {
 			setIfIsCandidate(true);
 		}
 	}
-	//console.log(props.IsCandidato);
 	return (
 		<div id="page-opportunitie-details" className="page-position">
 			<BackgroundTitle title={props.opportunity.titulo} description="" />

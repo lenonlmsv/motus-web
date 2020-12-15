@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 //Router dom
 import { Link, useParams, useHistory } from "react-router-dom";
 
-import { UpdateCandidato } from "../store/actions";
+import { updateCandidato } from "../store/actions";
 
 //CSS
 import "../styles/candidate-detail.css";
@@ -31,29 +31,17 @@ const CandidatoForm = (props) => {
 	console.log("Fim candidato props");
 
 	const history = useHistory();
+	const alert = useAlert();
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		props.UpdateCandidato(candidato);
-
-		/*try {
-			api.defaults.headers.post["Content-Type"] = "application/json"; //USAR FORMATO JSON
-
-			let json = JSON.stringify(candidato);
-
-			await api.post("/candidato", json);
-			setUserName(candidato.nome);
-			showSuccess("Usuário alterado com sucesso");
-			history.push("/oportunidades");
-		} catch (error) {
-			console.log(`${error.message}`);
-			showError("Erro ao editar usuário. Tente novamente!");
-		}*/
+		props.updateCandidato(candidato, alert, history);
 	}
 
 	useEffect(() => {
+		console.log("Usou useEffect");
 		setCandidato(props.candidato);
-	}, []);
+	}, [props.candidato]);
 
 	return (
 		<div id="page-candidate-details" className="page-position">
@@ -211,4 +199,4 @@ const mapStateToProps = (state) => {
 	return { candidato: state.candidato };
 };
 
-export default connect(mapStateToProps, { UpdateCandidato })(CandidatoForm);
+export default connect(mapStateToProps, { updateCandidato })(CandidatoForm);

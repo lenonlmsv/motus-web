@@ -1,42 +1,49 @@
 import api from "../../services/api";
 import { login } from "../../services/auth";
+//import Alert from "../../components/Alert";
 import setUserName from "../reducers/set-user-name";
-import { useAlert } from "react-alert";
-import { useHistory } from "react-router-dom";
 
-const ShowError = (message) => {
-	const alert = useAlert();
+const ShowError = (message, alert) => {
+	//const alert = useAlert();
 	alert.show(message, { type: "error" });
 };
 
-const ShowSuccess = (message) => {
-	const alert = useAlert();
+const ShowSuccess = (message, alert) => {
+	//const alert = useAlert();
 	alert.show(message, { type: "success" });
 };
 
-export const signIn = (email, senha) => {
+export const signIn = (email, senha, alert) => {
 	api.defaults.headers.post["Content-Type"] = "application/json";
 	return async function (dispatch) {
-		console.log("Chamou a action");
-		const response = await api.post("/api/service/login", {
-			login: email,
-			password: senha,
-		});
-		const string = response.data.split(" ");
-		const token = string[1]; //Get token
-		login(token);
-		console.log(token);
-		dispatch({
-			type: "LOGIN",
-			payload: response.data,
-		});
+		try {
+			const response = await api.post("/api/service/login", {
+				login: email,
+				password: senha,
+			});
+			const string = response.data.split(" ");
+			const token = string[1]; //Get token
+			login(token);
+			ShowSuccess("Login realizado com sucesso", alert);
+			dispatch({
+				type: "LOGIN",
+				payload: response.data,
+			});
+		} catch (error) {
+			switch (error.message) {
+				case "Request failed with status code 403":
+					ShowError("Usuário não encontrado", alert);
+					break;
+				default:
+					ShowError("Erro inesperado ao realizar login", alert);
+			}
+		}
 	};
 };
 
 export const fetchOpportunitiesRedux = (page, totalItems, searchText) => {
 	searchText !== "" && (searchText = `?busca=${searchText}`);
 	return async function (dispatch) {
-		//console.log("Chamou a action");
 		const response = await api.get(
 			`/oportunidade/${page}/${totalItems}/${searchText}`
 		);
@@ -48,9 +55,7 @@ export const fetchOpportunitiesRedux = (page, totalItems, searchText) => {
 };
 
 export const fetchOpportunityRedux = (idOpportunity = 0) => {
-	//console.log("Tá na action");
 	return async function (dispatch) {
-		//console.log("Chamou a action");
 		const response = await api.get(`/oportunidade/${idOpportunity}`);
 		dispatch({
 			type: "GET_OPPORTUNITY",
@@ -61,7 +66,6 @@ export const fetchOpportunityRedux = (idOpportunity = 0) => {
 
 export const checkIfCandidatoRedux = (idOpportunity) => {
 	return async function (dispatch) {
-		//console.log("Chamou a action");
 		const response = await api.get(`candidatura/`);
 		dispatch({
 			type: "CHECK_CANDIDATURA",
@@ -75,10 +79,8 @@ export const checkIfCandidatoRedux = (idOpportunity) => {
 
 export const getCandidaturasRedux = () => {
 	return async function (dispatch) {
-		//console.log("Chamou a action");
 		const response = await api.get(`candidatura/`);
-		//console.log("candidatura");
-		//console.log(response.data.responseData);
+
 		dispatch({
 			type: "GET_CANDIDATURA",
 			payload: response.data.responseData,
@@ -88,7 +90,6 @@ export const getCandidaturasRedux = () => {
 
 export const createCandidaturaRedux = (idOpportunity) => {
 	return async function (dispatch) {
-		//console.log("Chamou a action");
 		const response = await api.post(`candidatura/${idOpportunity}`);
 		dispatch({
 			type: "CREATE_CANDIDATURA",
@@ -107,8 +108,7 @@ export const fetchCandidato = () => {
 	};
 };
 
-export const UpdateCandidato = (candidato) => {
-	//const history = useHistory();
+export const updateCandidato = (candidato, alert, history) => {
 	return async function (dispatch) {
 		try {
 			api.defaults.headers.post["Content-Type"] = "application/json"; //USAR FORMATO JSON
@@ -117,20 +117,16 @@ export const UpdateCandidato = (candidato) => {
 
 			await api.post("/candidato", json);
 			//setUserName(candidato.nome);
-			//ShowSuccess("Usuário alterado com sucesso");
-			//history.push("/oportunidades");
-			dispatch({
-				type: "UPDATE_CANDIDATO",
-				payload: candidato,
-			});
+			ShowSuccess("Usuário alterado com sucesso", alert);
+			history.push("/oportunidades");
 		} catch (error) {
 			console.log(`${error.message}`);
-			//ShowError("Erro ao editar usuário. Tente novamente!");
+			ShowError("Erro ao editar usuário. Tente novamente!", alert);
 		}
+
+		dispatch({
+			type: "UPDATE_CANDIDATO",
+			payload: candidato,
+		});
 	};
 };
-
-/*export const fetchOpportunityRedux = (idOpportunity = 0) => {
-	//console.log("Tá na action");
-	return { type: "GET_OPPORTUNITY", payload: parseInt(idOpportunity) };
-};*/

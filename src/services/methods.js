@@ -16,7 +16,6 @@ export async function loginUser(data) {
         console.log(error.message)
     }
 }
-
  
 export async function deleteResume(resumeHashId) {
     try {
