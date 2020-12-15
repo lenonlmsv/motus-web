@@ -12,8 +12,8 @@ export async function loginUser(data) {
         });
     }   
 
-    catch(e) {
-        console.log(e.message)
+    catch(error) {
+        console.log(error.message)
     }
 }
 

@@ -203,7 +203,7 @@ function CandidateDetails() {
 
         const buttons = document.querySelectorAll('#tab-buttons button');
         Object.keys(buttons).map((key) => {
-            buttons[key].classList.remove('button-selected')
+            buttons[key].classList.add('button-hide')
         })
     }
 
@@ -215,8 +215,7 @@ function CandidateDetails() {
             item.id !== tabItem && item.classList.add('display-none')
         })
 
-        e.target.classList.add('button-selected')
-        console.log(e.target.classList)
+        e.target.classList.remove('button-hide')
     }
 
     return (
@@ -227,15 +226,16 @@ function CandidateDetails() {
 
             <div id='tab-buttons'>
                 <button
-                    className='button-selected'
+                    className='button-tab'
                     onClick={(e) => changeTab(e,'tab-info')}>Meu cadastro</button>
 				<button
+                    className='button-tab button-hide'
                     onClick={(e) => changeTab(e,'tab-history')}>Minhas candidaturas</button>
 			</div>
 
             <main id='tab-info' className='display-flex tab-item'>                    
-                <form className="create-candidate" onSubmit={handleSubmit}>
-                    <div className="input-block">
+                <form onSubmit={handleSubmit}>
+                    <div className="input-block ">
                         <label htmlFor="name">
                             Nome</label>
                         <input 

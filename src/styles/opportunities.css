@@ -101,34 +101,7 @@
     font-size: 1rem;
 }
 
-#history-block {
-    margin: 1.2rem 0 0 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-#history-block > p {
-    font-size: 1.5rem;
-    color: var(--color-font-secondary);
-    font-weight: bold;
-}
-
-#history-block > div {
-    width: 100%;
-    margin: 0.5rem 0 0 0;
-}
-
-#history-block > div span {
-    color: rgba(0,0,0,0.75);
-}
-
-#history-block > div p {
-    font-size: 1.3rem;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
 
 @media (min-width: 800px) {
     #search-items {
@@ -152,7 +125,5 @@
         padding: 0.5rem;
     }
 
-    #history-block > div {
-        width: 40vw;
-    }
+
 }
