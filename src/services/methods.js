@@ -46,10 +46,22 @@ export async function getResumes() {
 
 export async function downloadResume(resumeHashId, fileName) {
     let a = document.createElement('a');
-    a.href = api.get(`/candidato-curriculo/download/${resumeHashId}`);
-    a.style = 'display:none';
-    a.download = fileName;
-    a.click();      
+    //a.href = api.get(`/candidato-curriculo/download/${resumeHashId}`);
+    try {
+        const link = await api.get(`/candidato-curriculo/download/${resumeHashId}`);
+        //const teste = window.URL.createObjectURL(link.data)
+        //const blob = new Blob(link.data, {type:'text'})
+        console.log(link)
+        a.href = link
+        a.style = 'display:none';
+        a.download = fileName;
+        a.click();     
+    }
+    
+    catch (e) {
+        console.log(e)
+    }
+     
 }
 
 export async function sendResume(resume) {

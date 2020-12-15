@@ -19,6 +19,12 @@
     background-position: center;
 }
 
+.div-image-dotted strong {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .div-image-content {
     font-size: 2.5rem;
     color: var(--color-font-primary);

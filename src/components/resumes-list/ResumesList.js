@@ -22,7 +22,7 @@ export default function ResumesList() {
         }
 
         setResumesAPI()
-    })
+    }, [])
     
     const alert = useAlert();
 
@@ -62,6 +62,10 @@ export default function ResumesList() {
         else {
             return false;
         }
+    }
+
+    async function downloadResumeAPI(hashId, filename) {
+        await downloadResume(hashId, filename)
     }
 
     function handleResume(e) {
@@ -127,7 +131,7 @@ export default function ResumesList() {
 
                             <FaDownload 
                                 color={'blue'} 
-                                onClick={() => downloadResume(resumes[key].hashId, resumes[key].nomeArquivo)}/>
+                                onClick={() => downloadResumeAPI(resumes[key].hashId, resumes[key].nomeArquivo)}/>
 
                             <p>{resumes[key].nomeArquivo}</p>
                         </div>
