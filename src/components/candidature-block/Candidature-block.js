@@ -51,7 +51,7 @@ function CandidatureBlock() {
                     return (
                         <div key={item.id}>
                             <span>{getDate(date)}</span>
-                            <p>{item.vagaId}</p>
+                            <p>{item.titulo}</p>
                         </div>)
                 })}
             </div>
