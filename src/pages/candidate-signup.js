@@ -43,6 +43,7 @@ export default function CandidateSignUp() {
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [resume, setResume] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('')
      
     const checkFileType = (fileType) => {
         const acceptedTypes = [
@@ -107,6 +108,10 @@ export default function CandidateSignUp() {
 
     async function handleSubmit(e) {
         e.preventDefault();
+
+        if(!checkPasswords()) {
+            return;
+        }
             
         if(resume === '') { //Checa se o currículo foi anexado
             document.querySelector('div.input-flex.input-block').classList.add('input-error');
@@ -159,9 +164,22 @@ export default function CandidateSignUp() {
             history.push('/login');
         }
             
-        catch (error) {
-            showError("Erro ao criar usuário. Tente novamente!")
+        catch (e) {
+            const error = e.toString()
+            switch (error) {
+                case ('Error: Request failed with status code 400') : 
+                    showError("E-mail já cadastrado!");
+            }
         }
+    }
+
+    function checkPasswords() {
+        if(password !== confirmPassword) {
+            showError('As senhas informadas não são iguais')
+            return false;
+        }
+
+        return true
     }
 
     return (
@@ -284,6 +302,23 @@ export default function CandidateSignUp() {
                             maxLength="10"
                             type="password"
                             onChange={event => {setPassword(event.target.value)}}
+                            required/>
+                    </div>
+
+                    <div className="input-block">
+                        <label htmlFor="confirm-password">Senha
+                            <span>
+                                Confirme sua senha
+                            </span>
+                        </label>
+                            
+                        <input 
+                            id="confirm-password" 
+                            value={confirmPassword}
+                            placeholder='Confirmar senha'
+                            maxLength="10"
+                            type="password"
+                            onChange={event => {setConfirmPassword(event.target.value)}}
                             required/>
                     </div>
 

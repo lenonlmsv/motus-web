@@ -10,7 +10,7 @@ import "../styles/candidate-detail.css";
 import BackgroundTitle from "../components/background-title/Background-title";
 import ResumesList from '../components/resumes-list/ResumesList'
 import {InputPhoneNumber, InputPhone} from '../components/Input'
-import OpportunitiesBlock from '../components/opportunities-block/Opportunities-block'
+import CandidatureBlock from '../components/candidature-block/Candidature-block'
 
 //API and Auth
 import api from "../services/api";
@@ -39,8 +39,6 @@ function CandidateDetails() {
     const [linkedin, setLinkedin] = useState('');
     const [cellNumber, setCellNumber] = useState('')
     const [phone, setPhone] = useState('');
-    //const [password, setPassword] = useState('');
-    //const [resume, setResume] = useState('')
     
     useEffect(() => {
         try {
@@ -78,83 +76,9 @@ function CandidateDetails() {
             console.log(error)
         }        
     }, [])
-    
-    // const checkFileType = (fileType) => {
-    //     const acceptedTypes = [
-    //         //Checar tipos de arquivo aceitos
-    //         {name:'application/msword', type:' .doc'},
-    //         {name:'application/vnd.openxmlformats-officedocument.wordprocessingml.document', type:' .docx'},
-    //         {name:'application/pdf', type:' .pdf'}
-    //     ]
-        
-    //     const isValid = acceptedTypes.find(type => type.name == fileType);
-
-    //     if(isValid !== undefined) {
-    //         return true;
-    //     }
-
-    //     else {
-    //         return false;
-    //     }
-    // }
-    
-    // const handleResume = (e) => {
-    //     //Valida o tipo do arquivo
-    //     const fileTypeName = e.target.files[0];
-    //     const isFormat = checkFileType(fileTypeName.type);
-        
-    //     if(isFormat) {
-    //         //Enviar para o backend
-    //         document.querySelector('div.input-flex.input-block').classList.remove('input-error');           
-    //         document.querySelector('div.input-flex.input-block label span').classList.remove('text-error');
-    //         document.querySelector('div.file-details').classList.remove('display-none')
-    //         setResume(fileTypeName)          
-    //     }
-        
-    //     else {
-    //         //Erro no arquivo
-    //         document.querySelector('div.input-flex.input-block').classList.add('input-error');
-    //         document.querySelector('div.input-flex.input-block label span').classList.add('text-error');
-    //         document.querySelector('div.file-details').classList.add('display-none')   
-    //     }
-
-    //     sendResume(e);
-    // }
-
-    // const sendResume = (e) => {
-    //     const selectedResume = e.target.files[0];
-    //     setResume(selectedResume);
-    // }
-
-    // const removeResume = () => {
-    //     setResume('');
-    //     document.querySelector('div.file-details').classList.add('display-none');
-    // }
-
-    // function downloadResume(e) {     
-    //     let a = document.createElement('a')
-    //     a.style = 'display:none';
-    //     a.download = resume.name;
-        
-    //     if (resume.hashId == undefined) {
-    //         const resumeURL = window.URL.createObjectURL(resume);
-    //         a.href = resumeURL;
-    //     }
-        
-    //     else {
-    //         a.href = api.get(`/candidato-curriculo/download/${resume.hashId}`);
-    //     }
-    //     a.click();
-    // }
 
     async function handleSubmit(e) {
         e.preventDefault();
-            
-        // if(resume === '') { //Checa se o currículo foi anexado
-        //     document.querySelector('div.input-flex.input-block').classList.add('input-error');
-        //     document.querySelector('div.input-flex.input-block label span').classList.add('text-error');
-        //     return;
-        // }
 
         const data = {
             "celular": cellNumber,
@@ -173,16 +97,6 @@ function CandidateDetails() {
             let json = JSON.stringify(data);
 
             await api.post('/candidato', json);
-
-            // api.defaults.headers.post['Content-Type'] = 'multipart/form-data'; //USAR FORMATO DE ARQUIVO
-
-            // const userResume = new FormData();
-
-            // userResume.append('arquivo', resume);
-            // userResume.append('name', resume.name);
-            // userResume.append('tipoCurriculo', 'DOCUMENTO');
-
-            // await api.post('candidato-curriculo', userResume);
             
             setUserName(data.nome)
             showSuccess('Usuário alterado com sucesso');
@@ -391,19 +305,21 @@ function CandidateDetails() {
                     <ResumesList/>
 
                     <div class='display-flex button-send'>
-                        <Link to="/" className="button button-secondary">
-                            Ver oportunidades
-                        </Link>
-
                         <button type="submit" className="button button-primary send-form">
                             Enviar
                         </button>
                     </div>
                 </form>
             </main>
+
+            <div class='display-flex button-send'>
+                <Link to="/" className="button button-secondary">
+                    Ver oportunidades
+                </Link>
+            </div>
             
             <div id='tab-history' className='tab-item display-none'>
-                <OpportunitiesBlock/>
+                <CandidatureBlock/>
             </div>
         </div>
         )

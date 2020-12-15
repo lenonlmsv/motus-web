@@ -12,6 +12,7 @@ import { FaExclamation } from "react-icons/fa";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
+import loadingImg from '../images/loading.gif'
 
 //Methods
 import {sendVideoResume} from '../services/methods'
@@ -35,6 +36,7 @@ function VideoResume() {
     const [error, setError] = useState('');
     const [showError, setShowError] = useState('hide-error')
     const [resumeFile, setResumeFile] = useState('')
+    const [loading, setLoading] = useState('not-loading')
 
     const checkFileType = (fileType) => {
         const acceptedTypes = [
@@ -63,7 +65,9 @@ function VideoResume() {
     const history = useHistory();
 
     async function submitResume() {
+        setLoading('loading')
         const response = await sendVideoResume(resumeFile);
+        setLoading('not-loading')
         if(response.status == 'error'){
             showErrorMessage(response.message)
             return
@@ -89,6 +93,9 @@ function VideoResume() {
 
     return (
         <div id="page-video-resume" className="page-position">
+            <div id='loading-div' className={loading}>
+                <img src={loadingImg}/>
+            </div>
             <BackgroundTitle 
                 title={'Envie seu vídeo currículo'}
                 description={' história da Sys Manager é construída com a contribuição de uma equipe talentosa empenhada em sempre entregar a melhor solução para os clientes.'}/>
