@@ -41,26 +41,46 @@ export const signIn = (email, senha, alert) => {
 	};
 };
 
-export const fetchOpportunitiesRedux = (page, totalItems, searchText) => {
+export const fetchOpportunitiesRedux = (
+	page,
+	totalItems,
+	searchText,
+	alert
+) => {
 	searchText !== "" && (searchText = `?busca=${searchText}`);
 	return async function (dispatch) {
-		const response = await api.get(
-			`/oportunidade/${page}/${totalItems}/${searchText}`
-		);
-		dispatch({
-			type: "GET_OPPORTUNITIES",
-			payload: response.data.responseData,
-		});
+		try {
+			const response = await api.get(
+				`/oportunidade/${page}/${totalItems}/${searchText}`
+			);
+			dispatch({
+				type: "GET_OPPORTUNITIES",
+				payload: response.data.responseData,
+			});
+		} catch (error) {
+			switch (error.message) {
+				default:
+					ShowError("Erro inesperado ao buscar oportunidades", alert);
+			}
+		}
 	};
 };
 
 export const fetchOpportunityRedux = (idOpportunity = 0) => {
 	return async function (dispatch) {
-		const response = await api.get(`/oportunidade/${idOpportunity}`);
-		dispatch({
-			type: "GET_OPPORTUNITY",
-			payload: response.data.responseData,
-		});
+		try {
+			const response = await api.get(`/oportunidade/${idOpportunity}`);
+			dispatch({
+				type: "GET_OPPORTUNITY",
+				payload: response.data.responseData,
+			});
+		} catch (error) {
+			switch (error.message) {
+				default:
+					//ShowError("Erro inesperado ao buscar oportunidade", alert);
+					break;
+			}
+		}
 	};
 };
 
@@ -79,22 +99,38 @@ export const checkIfCandidatoRedux = (idOpportunity) => {
 
 export const getCandidaturasRedux = () => {
 	return async function (dispatch) {
-		const response = await api.get(`candidatura/`);
+		try {
+			const response = await api.get(`candidatura/`);
 
-		dispatch({
-			type: "GET_CANDIDATURA",
-			payload: response.data.responseData,
-		});
+			dispatch({
+				type: "GET_CANDIDATURA",
+				payload: response.data.responseData,
+			});
+		} catch (error) {
+			switch (error.message) {
+				default:
+					//ShowError("Erro inesperado ao criar candidatura", alert);
+					break;
+			}
+		}
 	};
 };
 
 export const createCandidaturaRedux = (idOpportunity) => {
 	return async function (dispatch) {
-		const response = await api.post(`candidatura/${idOpportunity}`);
-		dispatch({
-			type: "CREATE_CANDIDATURA",
-			payload: response.data.responseData,
-		});
+		try {
+			const response = await api.post(`candidatura/${idOpportunity}`);
+			dispatch({
+				type: "CREATE_CANDIDATURA",
+				payload: response.data.responseData,
+			});
+		} catch (error) {
+			switch (error.message) {
+				default:
+					//ShowError("Erro inesperado ao criar candidatura", alert);
+					break;
+			}
+		}
 	};
 };
 

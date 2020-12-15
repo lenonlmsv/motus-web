@@ -9,6 +9,7 @@ import OpportunitiesList from "../components/opportunities/OpportunitiesList";
 import "../styles/opportunities.css";
 
 import { fetchOpportunitiesRedux } from "../store/actions";
+import { useAlert } from "react-alert";
 
 function Opportunities(props) {
 	const [error, setError] = useState(null);
@@ -17,11 +18,12 @@ function Opportunities(props) {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [postsPerPage, setPostsPerPage] = useState(5);
 	const [search, setSearch] = useState("");
+	const alert = useAlert();
 
 	const totalItems = 100;
 
 	useEffect(() => {
-		props.fetchOpportunitiesRedux(1, totalItems, search);
+		props.fetchOpportunitiesRedux(1, totalItems, search, alert);
 		//fetchOpportunities("");
 	}, []);
 
@@ -62,7 +64,8 @@ function Opportunities(props) {
 										props.fetchOpportunitiesRedux(
 											1,
 											totalItems,
-											""
+											"",
+											alert
 										);
 									}}
 								>
@@ -76,7 +79,8 @@ function Opportunities(props) {
 										props.fetchOpportunitiesRedux(
 											1,
 											totalItems,
-											search
+											search,
+											alert
 										)
 									}
 								>
