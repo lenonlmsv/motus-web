@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
 import OpportunitiesList from "../components/opportunities/OpportunitiesList";
+import OpportunitiesEmpty from '../components/opportunities/OpportunitiesEmpty'
 
 //CSS
 import "../styles/opportunities.css";
@@ -23,7 +24,7 @@ function Opportunities(props) {
 	const [search, setSearch] = useState("");
 	const alert = useAlert();
 
-	const totalItems = 2;
+	const totalItems = 10;
 
 	const handleChangePage = (event, newPage) => {
 		props.fetchOpportunitiesRedux(newPage, totalItems, search, alert);
@@ -114,7 +115,8 @@ function Opportunities(props) {
 						/>
 					</div>
 					{props.opportunities.totalPage > 1 ? (
-						<div>
+						
+						<div id='div-pagination'>
 							<Pagination
 								count={props.opportunities.totalPage}
 								shape="rounded"
@@ -128,7 +130,7 @@ function Opportunities(props) {
 					) : null}
 				</div>
 			) : (
-				<div>Não existem vagas para isso no momento</div>
+				<OpportunitiesEmpty />
 			)}
 		</div>
 	);

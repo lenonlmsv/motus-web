@@ -101,7 +101,18 @@
     font-size: 1rem;
 }
 
+div#div-pagination {
+    display: flex;
+    justify-content: center;
+    margin: 1rem  0 0 0;
+}
 
+nav.MuiPagination-root ul li button {
+    width: 2rem;
+    height: 2rem;
+    min-width: unset !important;
+    font-size: 1rem;
+}
 
 @media (min-width: 800px) {
     #search-items {
@@ -119,7 +130,9 @@
         width: auto;
     }
 
-
+    div#div-pagination {
+        justify-content: left;
+    }
     #search-items button {
         margin: 0 0 0 1rem;
         padding: 0.5rem;

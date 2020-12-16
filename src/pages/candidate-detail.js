@@ -311,15 +311,16 @@ function CandidateDetails() {
                 </form>
             </main>
 
+            <div id='tab-history' className='tab-item display-none'>
+                <CandidatureBlock/>
+            </div>
+            
             <div class='display-flex button-send'>
                 <Link to="/" className="button button-secondary">
                     Ver oportunidades
                 </Link>
             </div>
             
-            <div id='tab-history' className='tab-item display-none'>
-                <CandidatureBlock/>
-            </div>
         </div>
         )
     }
