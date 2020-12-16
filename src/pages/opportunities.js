@@ -10,29 +10,42 @@ import "../styles/opportunities.css";
 
 import { fetchOpportunitiesRedux } from "../store/actions";
 import { useAlert } from "react-alert";
+//import Pagination from "../components/Pagination";
+
+import Pagination from "@material-ui/lab/Pagination";
 
 function Opportunities(props) {
-	const [error, setError] = useState(null);
+	//const [error, setError] = useState(null);
 	//const [opportunities, setOpportunities] = useState([]);
 	const [loading, setLoading] = useState(false);
-	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage, setPostsPerPage] = useState(5);
+	//const [currentPage, setCurrentPage] = useState(1);
+	//const [postsPerPage, setPostsPerPage] = useState(5);
 	const [search, setSearch] = useState("");
 	const alert = useAlert();
 
-	const totalItems = 100;
+	const totalItems = 2;
+
+	const handleChangePage = (event, newPage) => {
+		props.fetchOpportunitiesRedux(newPage, totalItems, search, alert);
+	};
 
 	useEffect(() => {
 		props.fetchOpportunitiesRedux(1, totalItems, search, alert);
 		//fetchOpportunities("");
 	}, []);
 
-	const indexOfLastPost = currentPage * postsPerPage;
-	const indexOfFirstPost = indexOfLastPost - postsPerPage;
+	//const indexOfLastPost = currentPage * postsPerPage;
+	//const indexOfFirstPost = indexOfLastPost - postsPerPage;
 	//const currentPosts = opportunities.slice(indexOfFirstPost, indexOfLastPost);
 	//Muda pagina
 	const paginate = (pageNumber) => {
-		setCurrentPage(pageNumber);
+		//setCurrentPage(pageNumber);
+	};
+
+	const handleKeyPress = (event) => {
+		if (event.key === "Enter") {
+			props.fetchOpportunitiesRedux(1, totalItems, search, alert);
+		}
 	};
 
 	return (
@@ -53,6 +66,7 @@ function Opportunities(props) {
 							value={search}
 							placeholder="SCRUM Master..."
 							onChange={(e) => setSearch(e.target.value)}
+							onKeyPress={handleKeyPress}
 						/>
 						<div>
 							<button
@@ -91,13 +105,30 @@ function Opportunities(props) {
 			</div>
 			{typeof props.opportunities.responseData !== "undefined" &&
 			props.opportunities.responseData.length > 0 ? (
-				<OpportunitiesList
-					//opportunities={opportunities}
-					opportunities={props.opportunities.responseData}
-					loading={loading}
-				/>
+				<div>
+					<div>
+						<OpportunitiesList
+							//opportunities={opportunities}
+							opportunities={props.opportunities.responseData}
+							loading={loading}
+						/>
+					</div>
+					{props.opportunities.totalPage > 1 ? (
+						<div>
+							<Pagination
+								count={props.opportunities.totalPage}
+								shape="rounded"
+								size="large"
+								variant="outlined"
+								//showFirstButton
+								//showLastButton
+								onChange={handleChangePage}
+							/>
+						</div>
+					) : null}
+				</div>
 			) : (
-				<div>Teste....</div>
+				<div>Não existem vagas para isso no momento</div>
 			)}
 		</div>
 	);

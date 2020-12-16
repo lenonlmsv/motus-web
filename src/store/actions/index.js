@@ -110,7 +110,7 @@ export const getCandidaturasRedux = (alert) => {
 		} catch (error) {
 			switch (error.message) {
 				default:
-					ShowError("Erro inesperado ao buscar candidaturas", alert);
+					//ShowError("Erro inesperado ao buscar candidaturas", alert);
 					break;
 			}
 		}
