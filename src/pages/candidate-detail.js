@@ -66,7 +66,6 @@ function CandidateDetails() {
                     setCellNumber(data.celular);
                     setPhone(data.telefone);
                     setLinkedin(data.linkedin)
-                    
                 })
             }
             getData()
@@ -306,7 +305,7 @@ function CandidateDetails() {
 
                     <div class='display-flex button-send'>
                         <button type="submit" className="button button-primary send-form">
-                            Enviar
+                            Atualizar dados
                         </button>
                     </div>
                 </form>

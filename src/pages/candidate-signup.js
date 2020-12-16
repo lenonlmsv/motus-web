@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 //Router dom
 import {Link, useHistory} from 'react-router-dom';
@@ -346,6 +346,7 @@ export default function CandidateSignUp() {
                         <p>{resume.name}</p>
                     </div>
 
+                    
 
                     <div class='display-flex button-send'>
                         <Link to="/" className="button button-secondary">
@@ -356,7 +357,6 @@ export default function CandidateSignUp() {
                             Enviar
                         </button>
                     </div>
-
                 </form>
             </main>
         </div>

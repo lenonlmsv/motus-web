@@ -5,7 +5,7 @@ import { login } from "./auth";
 require("dotenv").config();
 
 const api = axios.create({
-	baseURL: "http://localhost:8000/",
+	baseURL: process.env.REACT_APP_API_ENDPOINT,
 });
 
 export const APILogin = (json) => {

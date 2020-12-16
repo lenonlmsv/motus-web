@@ -1,5 +1,8 @@
 import api from './api'
 
+//Base64
+import * as base64Methods from '../base64'
+
 export async function loginUser(data) {
     try {
         api.defaults.headers.post['Content-Type'] = 'application/json'; //USAR FORMATO JSON
@@ -47,12 +50,22 @@ export async function getResumes() {
 export async function downloadResume(resumeHashId, fileName) {
     let a = document.createElement('a');
     //a.href = api.get(`/candidato-curriculo/download/${resumeHashId}`);
+
     try {
         const link = await api.get(`/candidato-curriculo/download/${resumeHashId}`);
         //const teste = window.URL.createObjectURL(link.data)
         //const blob = new Blob(link.data, {type:'text'})
+
+        //const base64 = btoa(unescape(encodeURIComponent(link.data)))
+        //const data = new Blob([link.data], {type: 'application/octet-stream;charset=UTF-8'})//[link.data]), {type: 'application/msword;charset=UTF-8'});
+
+        const base64 = base64Methods.base64encode(link.data, 'charset=UTF-8');
+        const base64Dec = base64Methods.base64decode(base64, 'charset=UTF-8');
+        const data = new Blob([base64Dec]);
+        const url = window.URL.createObjectURL(data);
+
         console.log(link)
-        a.href = link
+        a.href = url//data:application/octet-stream;base64,${link}`
         a.style = 'display:none';
         a.download = fileName;
         a.click();     
