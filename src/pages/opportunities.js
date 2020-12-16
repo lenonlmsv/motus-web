@@ -44,63 +44,76 @@ function Opportunities(props) {
 				}
 			/>
 
-			{error === null ? (
-				<div>
-					<div id="search">
-						<div id="search-items">
-							<input
-								id="search-input"
-								type="text"
-								value={search}
-								placeholder="SCRUM Master..."
-								onChange={(e) => setSearch(e.target.value)}
-							/>
-							<div>
-								<button
-									id="clean-field"
-									className="button button-secondary"
-									onClick={() => {
-										setSearch("");
-										props.fetchOpportunitiesRedux(
-											1,
-											totalItems,
-											"",
-											alert
-										);
-									}}
-								>
-									Limpar
-								</button>
+			<div>
+				<div id="search">
+					<div id="search-items">
+						<input
+							id="search-input"
+							type="text"
+							value={search}
+							placeholder="SCRUM Master..."
+							onChange={(e) => setSearch(e.target.value)}
+						/>
+						<div>
+							<button
+								id="clean-field"
+								className="button button-secondary"
+								onClick={() => {
+									setSearch("");
+									props.fetchOpportunitiesRedux(
+										1,
+										totalItems,
+										"",
+										alert
+									);
+								}}
+							>
+								Limpar
+							</button>
 
-								<button
-									id="search-button"
-									className="button button-primary"
-									onClick={() =>
-										props.fetchOpportunitiesRedux(
-											1,
-											totalItems,
-											search,
-											alert
-										)
-									}
-								>
-									Buscar vagas
-								</button>
-							</div>
+							<button
+								id="search-button"
+								className="button button-primary"
+								onClick={() =>
+									props.fetchOpportunitiesRedux(
+										1,
+										totalItems,
+										search,
+										alert
+									)
+								}
+							>
+								Buscar vagas
+							</button>
 						</div>
 					</div>
-
-					<OpportunitiesList
-						//opportunities={opportunities}
-						opportunities={props.opportunities}
-						loading={loading}
-					/>
 				</div>
+			</div>
+			{typeof props.opportunities.responseData !== "undefined" &&
+			props.opportunities.responseData.length > 0 ? (
+				<OpportunitiesList
+					//opportunities={opportunities}
+					opportunities={props.opportunities.responseData}
+					loading={loading}
+				/>
 			) : (
-				<div>Erro ao buscar dados...</div>
+				<div>Teste....</div>
 			)}
 		</div>
 	);
+}
+
+{
+	/*
+	props.opportunities.responseData !== "undefined" ? (
+		<OpportunitiesList
+			//opportunities={opportunities}
+			opportunities={props.opportunities.responseData}
+			loading={loading}
+		/>
+	) : (
+		<div>Teste....</div>
+	);*/
 }
 
 const mapStateToProps = (state) => {

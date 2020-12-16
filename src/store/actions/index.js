@@ -55,7 +55,7 @@ export const fetchOpportunitiesRedux = (
 			);
 			dispatch({
 				type: "GET_OPPORTUNITIES",
-				payload: response.data.responseData,
+				payload: response.data,
 			});
 		} catch (error) {
 			switch (error.message) {
@@ -72,7 +72,7 @@ export const fetchOpportunityRedux = (idOpportunity, alert) => {
 			const response = await api.get(`/oportunidade/${idOpportunity}`);
 			dispatch({
 				type: "GET_OPPORTUNITY",
-				payload: response.data.responseData,
+				payload: response.data,
 			});
 		} catch (error) {
 			switch (error.message) {

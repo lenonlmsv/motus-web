@@ -99,7 +99,10 @@ function OpportunitieDetail(props) {
 	}
 	return (
 		<div id="page-opportunitie-details" className="page-position">
-			<BackgroundTitle title={props.opportunity.titulo} description="" />
+			<BackgroundTitle
+				title={props.opportunity.responseData.titulo}
+				description=""
+			/>
 
 			<div className="opportunitie-detail-description">
 				{
@@ -108,10 +111,14 @@ function OpportunitieDetail(props) {
 				}
 
 				<OpportunitiesDetailCard
-					jobDescription={props.opportunity.descricaoVaga}
+					jobDescription={
+						props.opportunity.responseData.descricaoVaga
+					}
 					jobType={"Não informado"}
-					workTime={props.opportunity.horarioTrabalho}
-					habilities={props.opportunity.requisitoDesejavel}
+					workTime={props.opportunity.responseData.horarioTrabalho}
+					habilities={
+						props.opportunity.responseData.requisitoDesejavel
+					}
 				/>
 
 				{
