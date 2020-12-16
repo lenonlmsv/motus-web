@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+//reCaptcha
+import ReCAPTCHA  from 'react-google-recaptcha'
 
 //Router dom
 import {Link, useHistory} from 'react-router-dom';
@@ -32,6 +35,8 @@ export default function CandidateSignUp() {
     }
 
     const history = useHistory();
+
+    const captchaKey = process.env.REACT_APP_CAPTCHA_KEY
 
     isAuthenticated() && history.push(`/candidato/${getHashId()}`);
 
@@ -106,6 +111,10 @@ export default function CandidateSignUp() {
         a.click();
     }
 
+    const checkCaptcha = (v) => {
+        console.log(v)
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
 
@@ -118,6 +127,8 @@ export default function CandidateSignUp() {
             document.querySelector('div.input-flex.input-block label span').classList.add('text-error');
             return;
         }
+
+
 
         const data = {
             "email":email,
@@ -346,6 +357,12 @@ export default function CandidateSignUp() {
                         <p>{resume.name}</p>
                     </div>
 
+                    <div>
+                        <ReCAPTCHA
+                            sitekey={captchaKey}
+                            onChange={value => checkCaptcha(value)}
+                            />
+                    </div>
 
                     <div class='display-flex button-send'>
                         <Link to="/" className="button button-secondary">
@@ -356,7 +373,6 @@ export default function CandidateSignUp() {
                             Enviar
                         </button>
                     </div>
-
                 </form>
             </main>
         </div>
