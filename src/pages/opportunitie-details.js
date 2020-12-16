@@ -76,13 +76,13 @@ function OpportunitieDetail(props) {
 				console.log(e);
 			}
 		};
-		fetchOpportunity();
+		//fetchOpportunity();
 
 		//Checar se o usuário tem a candidatura
 		//fetchOpportunity();
 
-		props.getCandidaturasRedux();
-		props.fetchOpportunityRedux(params.id);
+		props.getCandidaturasRedux(alert);
+		props.fetchOpportunityRedux(params.id, alert);
 		//setCheckCandidate();
 	}, []);
 
@@ -99,7 +99,10 @@ function OpportunitieDetail(props) {
 	}
 	return (
 		<div id="page-opportunitie-details" className="page-position">
-			<BackgroundTitle title={props.opportunity.titulo} description="" />
+			<BackgroundTitle
+				title={props.opportunity.responseData.titulo}
+				description=""
+			/>
 
 			<div className="opportunitie-detail-description">
 				{
@@ -108,17 +111,21 @@ function OpportunitieDetail(props) {
 				}
 
 				<OpportunitiesDetailCard
-					jobDescription={props.opportunity.descricaoVaga}
+					jobDescription={
+						props.opportunity.responseData.descricaoVaga
+					}
 					jobType={"Não informado"}
-					workTime={props.opportunity.horarioTrabalho}
-					habilities={props.opportunity.requisitoDesejavel}
+					workTime={props.opportunity.responseData.horarioTrabalho}
+					habilities={
+						props.opportunity.responseData.requisitoDesejavel
+					}
 				/>
 
 				{
 					/*!ifIsCandidate*/ IsCandidato.length === 0 && (
 						<button
 							onClick={() =>
-								props.createCandidaturaRedux(params.id)
+								props.createCandidaturaRedux(params.id, alert)
 							}
 							className="button button-secondary opportunitie-button"
 						>

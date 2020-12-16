@@ -13,6 +13,7 @@ import "../../styles/opportunities.css";
 //Icons
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { connect } from "react-redux";
+import { useAlert } from "react-alert";
 
 const OpportunitiesCard = ({
 	jobId,
@@ -36,9 +37,10 @@ const OpportunitiesCard = ({
 
 	//History
 	const history = useHistory();
+	const alert = useAlert();
 
 	useEffect(() => {
-		getCandidaturasRedux();
+		getCandidaturasRedux(alert);
 	}, []);
 
 	const openCard = () => {
@@ -106,7 +108,7 @@ const OpportunitiesCard = ({
 					<div>Você já está concorrendo a esta vaga!!!</div>
 				) : (
 					<button
-						onClick={() => createCandidaturaRedux(jobId)}
+						onClick={() => createCandidaturaRedux(jobId, alert)}
 						className="button button-secondary opportunitie-button"
 					>
 						Candidate-se

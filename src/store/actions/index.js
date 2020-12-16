@@ -55,35 +55,36 @@ export const fetchOpportunitiesRedux = (
 			);
 			dispatch({
 				type: "GET_OPPORTUNITIES",
-				payload: response.data.responseData,
+				payload: response.data,
 			});
 		} catch (error) {
 			switch (error.message) {
 				default:
-					ShowError("Erro inesperado ao buscar oportunidades", alert);
+					ShowError("Erro inesperado ao buscar oportunidade", alert);
 			}
 		}
 	};
 };
 
-export const fetchOpportunityRedux = (idOpportunity = 0) => {
+export const fetchOpportunityRedux = (idOpportunity, alert) => {
 	return async function (dispatch) {
 		try {
 			const response = await api.get(`/oportunidade/${idOpportunity}`);
 			dispatch({
 				type: "GET_OPPORTUNITY",
-				payload: response.data.responseData,
+				payload: response.data,
 			});
 		} catch (error) {
 			switch (error.message) {
 				default:
-					//ShowError("Erro inesperado ao buscar oportunidade", alert);
+					ShowError("Erro inesperado ao buscar oportunidade", alert);
 					break;
 			}
 		}
 	};
 };
 
+//N sendo usado em lugar nenhum por enquanto
 export const checkIfCandidatoRedux = (idOpportunity) => {
 	return async function (dispatch) {
 		const response = await api.get(`candidatura/`);
@@ -97,7 +98,7 @@ export const checkIfCandidatoRedux = (idOpportunity) => {
 	};
 };
 
-export const getCandidaturasRedux = () => {
+export const getCandidaturasRedux = (alert) => {
 	return async function (dispatch) {
 		try {
 			const response = await api.get(`candidatura/`);
@@ -109,17 +110,20 @@ export const getCandidaturasRedux = () => {
 		} catch (error) {
 			switch (error.message) {
 				default:
-					//ShowError("Erro inesperado ao criar candidatura", alert);
+					//ShowError("Erro inesperado ao buscar candidaturas", alert);
 					break;
 			}
 		}
 	};
 };
 
-export const createCandidaturaRedux = (idOpportunity) => {
+export const createCandidaturaRedux = (idOpportunity, alert) => {
 	return async function (dispatch) {
 		try {
 			const response = await api.post(`candidatura/${idOpportunity}`);
+
+			ShowSuccess("Candidatura criada com sucesso", alert);
+
 			dispatch({
 				type: "CREATE_CANDIDATURA",
 				payload: response.data.responseData,
@@ -127,7 +131,7 @@ export const createCandidaturaRedux = (idOpportunity) => {
 		} catch (error) {
 			switch (error.message) {
 				default:
-					//ShowError("Erro inesperado ao criar candidatura", alert);
+					ShowError("Erro inesperado ao criar candidatura", alert);
 					break;
 			}
 		}
