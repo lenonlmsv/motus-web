@@ -136,7 +136,7 @@ function Login({ isLogged, setName, signIn }) {
 					<div id="options">
 						<Link to="/cadastro">Cadastre-se</Link>
 
-						<Link to="/">Esqueci minha senha</Link>
+						<Link to="/recuperar-senha">Esqueci minha senha</Link>
 					</div>
 
 					<div className="submit-button">

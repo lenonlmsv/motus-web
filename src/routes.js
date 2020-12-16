@@ -20,6 +20,7 @@ import CandidateDetails from "./pages/candidate-detail";
 import PageNotFound from "./pages/page-not-found";
 import CandidateSignUp from "./pages/candidate-signup";
 import CandidateDetailsTeste from "./pages/candidate-detail-teste";
+import RecuperarSenha from "./pages/recuperar-senha";
 
 const PrivateRoute = (
 	{ component: Component, ...rest } //Bloqueia de acordo com a autenticação
@@ -47,6 +48,12 @@ function Routes() {
 				<Route path="/" exact component={Opportunities} />
 
 				<Route path="/oportunidades" exact component={Opportunities} />
+
+				<Route
+					path="/recuperar-senha"
+					exact
+					component={RecuperarSenha}
+				/>
 
 				<Route path="/login" component={Login} />
 
