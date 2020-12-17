@@ -5,7 +5,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import BackgroundTitle from "../components/background-title/Background-title";
 import OpportunitiesDetailCard from "../components/opportunities/OpportunitiesDetailCard";
 import { getUserName } from "../services/auth";
-import QuestionsBlock from '../components/questions-block/Questions-block';
+import QuestionsBlock from "../components/questions-block/Questions-block";
 
 import { connect, useSelector } from "react-redux";
 //Methods
@@ -145,14 +145,14 @@ function OpportunitieDetail(props) {
 							<p>
 								{`Olá, ${getUserName()}. Você está se candidatando a
 							vaga de ${
-								opportunity.titulo
+								props.opportunity.responseData.titulo
 							}. Já temos seu CV, agora precisamos que você responda as perguntas abaixo. Por favor, responda as questões abaixo em vídeo:`}
 							</p>
 
 							<p></p>
 						</div>
 
-						<QuestionsBlock/>
+						<QuestionsBlock />
 					</div>
 				)
 			}
