@@ -39,7 +39,7 @@ function VideoResume() {
     const [error, setError] = useState('');
     const [showError, setShowError] = useState('hide-error')
     const [resumeFile, setResumeFile] = useState('')
-    const [loading, setLoading] = useState('not-loading')
+    const [loading, setLoading] = useState(false)
 
     // const checkFileType = (fileType) => {
     //     const acceptedTypes = [
@@ -68,9 +68,9 @@ function VideoResume() {
     const history = useHistory();
 
     async function submitResume() {
-        setLoading('loading')
+        setLoading(true)
         const response = await sendVideoResume(resumeFile);
-        setLoading('not-loading')
+        setLoading(false)
         if(response.status == 'error'){
             showErrorMessage(response.message)
             return
@@ -97,9 +97,6 @@ function VideoResume() {
 
     return (
         <div id="page-video-resume" className="page-position">
-            <div id='loading-div' className={loading}>
-                <img src={loadingImg}/>
-            </div>
             <BackgroundTitle 
                 title={'Envie seu vídeo currículo'}
                 description={' história da Sys Manager é construída com a contribuição de uma equipe talentosa empenhada em sempre entregar a melhor solução para os clientes.'}/>
@@ -133,6 +130,15 @@ function VideoResume() {
                         O recrutador quer te conhecer melhor. Vamos lá?
                     </p>
 
+                    {
+                        loading ? (
+                            <img style={{
+                                width:'2rem',
+                                margin: '1rem'}} 
+                                src={loadingImg}/>
+                        )
+                        :
+                        (
                     <div className="video-buttons">
                         <label htmlFor="video-resume" className="button button-secondary">
                             Selecionar vídeo
@@ -155,6 +161,9 @@ function VideoResume() {
                             className='button button-secondary send-button'>Enviar</button>
                         }
                     </div>
+                        )
+                    }
+
                     
                     {resumeFile && 
                         <div id="selected-file">

@@ -5,6 +5,7 @@ import { useHistory, useParams } from 'react-router-dom';
 
 //Icons
 import { FaDownload, FaStop, FaRecordVinyl, FaShare} from 'react-icons/fa';
+import loadingImg from '../../images/loading.gif'
 
 //Methods
 import {sendVideoResume} from '../../services/methods'
@@ -21,6 +22,7 @@ function VideoRecorderBlock(props) {
     //States
     const [isCameraAllowed, setIsCameraAllowed] = useState(false);
     const [returnTo, setreturnTo] = useState(props.returnTo);
+    const [loading, setLoading] = useState(false)
     
     const alert = useAlert();
 
@@ -63,7 +65,7 @@ function VideoRecorderBlock(props) {
                 };
                 setIsCameraAllowed(true);
                 //Destination after record video
-                props.returnTo === '' && setreturnTo('params.id')
+                props.returnTo === '' && setreturnTo('')
             })
 
             .catch(function(error) {
@@ -79,6 +81,8 @@ function VideoRecorderBlock(props) {
             videoBitsPerSecond : 500000, 
             mimeType : 'video/webm'}
         );
+
+        hideButtons(['#buttonDownload', '#buttonSend'])
 
         let record = document.querySelector('#buttonRecord');
         let stop = document.querySelector('#buttonStop');
@@ -173,18 +177,19 @@ function VideoRecorderBlock(props) {
     
     const sendOnClick = async (file) => {
         if (params.id === 'video-curriculo') {
+            setLoading(true)
             const response = await sendVideoResume(file);
+            //setLoading(false)
             if(response.status == 'error'){
                 showErrorMessage(response.message);
                 return
             }
             showSuccess('Vídeo currículo enviado com sucesso!');
             stopStreaming()
-            history.push(returnTo)
+            //history.push(returnTo)
         }
 
         else {
-             
             showSuccess('Vídeo resposta enviado com sucesso!');
             stopStreaming()
             history.push(`/oportunidades/${params.id}`)
@@ -227,29 +232,31 @@ function VideoRecorderBlock(props) {
 
     //Mostrar e ocultar botões
     const showButtons = (ids) => {
+        typeof ids !== 'object' && console.log('objeto inválido')
         ids.map(id => {
             ids == '' ? console.log('Argumento necessário') :
-            document.querySelector(id).classList.remove('displayNone');
+            document.querySelector(id).classList.remove('display-none');
         })
     }
 
     const hideButtons = (ids) => {
+        typeof ids !== 'object' && console.log('objeto inválido')
         ids.map(id => {
             ids == '' ? console.log('Argumento necessário') :
-            document.querySelector(id).classList.add('displayNone');
+            document.querySelector(id).classList.add('display-none');
         })
     }
 
     const showVideoRecorded = (media) => {
-        document.querySelector('video.videoStream').classList.add('displayNone');
+        document.querySelector('video.videoStream').classList.add('display-none');
         let video = document.querySelector('#video-recorded');
-        video.classList.remove('displayNone');
+        video.classList.remove('display-none');
         video.src = media;
     }
 
     const hidevideoRecorded = () => {
-        document.querySelector('video.videoStream').classList.remove('displayNone');
-        document.querySelector('#video-recorded').classList.add('displayNone');
+        document.querySelector('video.videoStream').classList.remove('display-none');
+        document.querySelector('#video-recorded').classList.add('display-none');
     }   
 
     return (
@@ -272,34 +279,35 @@ function VideoRecorderBlock(props) {
             
 
             <video className='videoStream' autoPlay muted></video>
-            <video id="video-recorded" muted="false" className='displayNone' controls="true"></video>
+            <video id="video-recorded" muted="false" className='display-none' controls="true"></video>
             
             <div id="timerContainer" className="displayFlex">
                 <p className="timer"></p>
             </div>
             
             {
-                isCameraAllowed &&
-                    <div> 
+                isCameraAllowed && (
+                    !loading && isCameraAllowed ? 
+                    (<div> 
                         <div className="div-buttons displayFlex">
                             <button id="buttonRecord" className="button button-secondary">
                                 <FaRecordVinyl/>
                                 Gravar
                             </button>
 
-                            <button id="buttonStop" className="button button-secondary displayNone">
+                            <button id="buttonStop" className="button button-secondary display-none">
                                 <FaStop/>
                                 Parar
                             </button>
 
-                            <button id="buttonDownload" className="button button-secondary displayNone">
+                            <button id="buttonDownload" className="button button-secondary display-none">
                                 <FaDownload/>
                                 Baixar
                             </button>
                             
                             <button 
                                 id="buttonSend"
-                                className="button button-primary displayNone"
+                                className="button button-primary display-none"
                                 style={{cursor:'pointer'}}>
                                 <FaShare/>
                                 Enviar
@@ -309,7 +317,17 @@ function VideoRecorderBlock(props) {
                         <input id="base64String" className="input hideItens"/>
                         <input id="mimeType" className="input hideItens"/>
 
-                    </div>
+                    </div>)
+                    :
+                    (
+                        <div style={{display: 'flex', justifyContent: 'center'}}>
+                            <img style={{
+                            width:'2rem', 
+                            margin: '0 0 1rem 0'}}   
+                            src={loadingImg}/>
+                        </div>
+                    )
+                )
             }
 
             <div id="back-button">
