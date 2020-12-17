@@ -2,16 +2,7 @@ import api from "../../services/api";
 import { login } from "../../services/auth";
 //import Alert from "../../components/Alert";
 import setUserName from "../reducers/set-user-name";
-
-const ShowError = (message, alert) => {
-	//const alert = useAlert();
-	alert.show(message, { type: "error" });
-};
-
-const ShowSuccess = (message, alert) => {
-	//const alert = useAlert();
-	alert.show(message, { type: "success" });
-};
+import { ShowError, ShowSuccess } from "../../services/methods";
 
 export const signIn = (email, senha, alert) => {
 	api.defaults.headers.post["Content-Type"] = "application/json";
