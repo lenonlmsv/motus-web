@@ -178,9 +178,18 @@ div.button-send button.send-form {
     white-space: nowrap;
 }
 
+#div-captcha {
+    display: flex;
+    justify-content: center;
+}
+
 @media (min-width: 1200px) {
     #page-candidate-details main form {
         width: 50vw;
+    }
+
+    #div-captcha {
+        justify-content: left;
     }
 
     .file-details svg {

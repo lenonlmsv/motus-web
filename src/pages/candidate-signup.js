@@ -36,7 +36,7 @@ export default function CandidateSignUp() {
 
     const history = useHistory();
 
-    const captchaKey = process.env.REACT_APP_CAPTCHA_KEY
+    const captchaKey = process.env.REACT_APP_CAPTCHA_KEY;
 
     isAuthenticated() && history.push(`/candidato/${getHashId()}`);
 
@@ -112,7 +112,7 @@ export default function CandidateSignUp() {
     }
 
     const checkCaptcha = (v) => {
-        console.log(v)
+        console.log(v);
     }
 
     async function handleSubmit(e) {
@@ -357,7 +357,7 @@ export default function CandidateSignUp() {
                         <p>{resume.name}</p>
                     </div>
 
-                    <div>
+                    <div id='div-captcha'>
                         <ReCAPTCHA
                             sitekey={captchaKey}
                             onChange={value => checkCaptcha(value)}
