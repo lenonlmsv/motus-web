@@ -197,4 +197,36 @@ export async function sendVideoAnswer() {
 	}
 }
 
-export default function Methods() {}
+export async function getQuestions() {
+    try {
+        const questions = 5 //5
+    }
+
+    catch(e) {
+        console.log(e)
+    }
+}
+
+export async function sendAnswer() {
+    try {
+        const questions = 5 //5
+    }
+
+    catch(e) {
+        console.log(e)
+    }
+}
+
+export async function checkAnswer() {
+    try {
+        const questions = 5 //5
+    }
+
+    catch(e) {
+        console.log(e)
+    }
+}
+
+export default function Methods() {
+
+}

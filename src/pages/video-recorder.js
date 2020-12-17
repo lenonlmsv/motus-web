@@ -62,7 +62,8 @@ function VideoRecord() {
 				<div id="div-recoder">
 					<VideoRecorderBlock 
 						time={timeSeconds}
-						returnTo={params.id} />
+						returnTo={params.id} 
+						question={'Fale um pouco sobre sua trajetória profissional e suas dificuldades na carreira'}/>
 				</div>
 			</div>
 		);
