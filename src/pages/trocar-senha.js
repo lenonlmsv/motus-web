@@ -37,7 +37,7 @@ const TrocarSenha = () => {
 				<form className="create-candidate" onSubmit={handleSubmit}>
 					<div className="input-block">
 						<label htmlFor="password">
-							Senha
+							Senha antiga
 							<span>Digite sua antiga senha</span>
 						</label>
 
@@ -55,7 +55,7 @@ const TrocarSenha = () => {
 					</div>
 					<div className="input-block">
 						<label htmlFor="password">
-							Senha
+							Senha antiga
 							<span>Repita sua antiga senha</span>
 						</label>
 
@@ -73,7 +73,7 @@ const TrocarSenha = () => {
 					</div>
 					<div className="input-block">
 						<label htmlFor="password">
-							Senha
+							Nova senha
 							<span>Digite sua nova senha</span>
 						</label>
 
