@@ -71,6 +71,11 @@ export const fetchOpportunityRedux = (idOpportunity, alert) => {
 					ShowError("Erro inesperado ao buscar oportunidade", alert);
 					break;
 			}
+			var empty = [];
+			dispatch({
+				type: "OPPORTUNITY_ERROR",
+				payload: { responseData: {} },
+			});
 		}
 	};
 };

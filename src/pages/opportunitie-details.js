@@ -48,6 +48,11 @@ function OpportunitieDetail(props) {
 		alert.show(m, { type: "success" });
 	};
 
+	if (typeof props.opportunity.responseData !== "undefined") {
+		if (Object.keys(props.opportunity.responseData).length === 0) {
+			history.push("/oportunidades");
+		}
+	}
 	//States
 	const [opportunity, setOpportunity] = useState([]);
 	const [ifIsCandidate, setIfIsCandidate] = useState(false);
@@ -79,7 +84,6 @@ function OpportunitieDetail(props) {
 
 		props.getCandidaturasRedux(alert);
 		props.fetchOpportunityRedux(params.id, alert);
-		//setCheckCandidate();
 	}, []);
 
 	function createNewCandidature() {
@@ -93,6 +97,8 @@ function OpportunitieDetail(props) {
 			setIfIsCandidate(true);
 		}
 	}
+	//console.log(props.opportunity);
+
 	return typeof props.opportunity.responseData !== "undefined" ? (
 		<div id="page-opportunitie-details" className="page-position">
 			<BackgroundTitle
