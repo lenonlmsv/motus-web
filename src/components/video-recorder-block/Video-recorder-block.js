@@ -262,6 +262,15 @@ function VideoRecorderBlock(props) {
                 </div>
             }
 
+            {
+                isCameraAllowed && 
+                <div id='question'>
+                    <p>{props.question}</p>
+                </div>
+
+            }
+            
+
             <video className='videoStream' autoPlay muted></video>
             <video id="video-recorded" muted="false" className='displayNone' controls="true"></video>
             

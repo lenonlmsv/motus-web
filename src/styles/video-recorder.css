@@ -49,6 +49,18 @@ video {
     font-size: 1rem;
 }
 
+#question {
+    display: flex; 
+    justify-content: center;
+    margin:  0 0 0.5rem 0;
+}
+
+#question p {
+    font-size: 1.5rem;
+    color: var(--color-font-secondary);
+    text-align: center;
+}
+
 @media (min-width: 1200px) {
     #recorder-block {
         display: flex;
