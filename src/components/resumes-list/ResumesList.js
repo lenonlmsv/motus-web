@@ -4,8 +4,10 @@ import React, { useState, useEffect } from 'react';
 import './styles/resumes-list.css'
 
 //Alert
-
 import { useAlert } from 'react-alert'
+
+//Functions
+import {checkFileTypeFiles} from '../../services/functions'
 
 //Icons
 import { FaDownload, FaTrash } from "react-icons/fa";
@@ -45,24 +47,24 @@ export default function ResumesList() {
         }
     }
 
-    const checkFileType = (fileType) => {
-        const acceptedTypes = [
-            //Checar tipos de arquivo aceitos
-            {name:'application/msword', type:' .doc'},
-            {name:'application/vnd.openxmlformats-officedocument.wordprocessingml.document', type:' .docx'},
-            {name:'application/pdf', type:' .pdf'}
-        ]
+    // const checkFileType = (fileType) => {
+    //     const acceptedTypes = [
+    //         //Checar tipos de arquivo aceitos
+    //         {name:'application/msword', type:' .doc'},
+    //         {name:'application/vnd.openxmlformats-officedocument.wordprocessingml.document', type:' .docx'},
+    //         {name:'application/pdf', type:' .pdf'}
+    //     ]
         
-        const isValid = acceptedTypes.find(type => type.name == fileType);
+    //     const isValid = acceptedTypes.find(type => type.name == fileType);
 
-        if(isValid !== undefined) {
-            return true;
-        }
+    //     if(isValid !== undefined) {
+    //         return true;
+    //     }
 
-        else {
-            return false;
-        }
-    }
+    //     else {
+    //         return false;
+    //     }
+    // }
 
     async function downloadResumeAPI(hashId, filename) {
         await downloadResume(hashId, filename)
@@ -71,9 +73,9 @@ export default function ResumesList() {
     function handleResume(e) {
         //Valida o tipo do arquivo
         const file = e.target.files[0];
-        const isFormat = checkFileType(file.type);
+        const isFormat = checkFileTypeFiles(file.type);
         
-        if(isFormat) {
+        if(isFormat.valid) {
             //Enviar para o backend
             document.querySelector('div.input-flex.input-block').classList.remove('input-error');           
             document.querySelector('div.input-flex.input-block label span').classList.remove('text-error');
@@ -88,6 +90,7 @@ export default function ResumesList() {
             document.querySelector('div.input-flex.input-block').classList.add('input-error');
             document.querySelector('div.input-flex.input-block label span').classList.add('text-error');
             //document.querySelector('div.file-details').classList.add('display-none')   
+            showError(`Erro: ${isFormat.acceptedFormats}`)
         }
 
     }

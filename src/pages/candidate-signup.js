@@ -23,6 +23,9 @@ import { getHashId, isAuthenticated, login, logout } from "../services/auth";
 //Alert
 import { useAlert } from 'react-alert';
 
+//Functions
+import {checkFileTypeFiles} from '../services/functions'
+
 export default function CandidateSignUp() {
     const alert = useAlert();
     
@@ -50,31 +53,31 @@ export default function CandidateSignUp() {
     const [resume, setResume] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('')
      
-    const checkFileType = (fileType) => {
-        const acceptedTypes = [
-            //Checar tipos de arquivo aceitos
-            {name:'application/msword', type:' .doc'},
-            {name:'application/vnd.openxmlformats-officedocument.wordprocessingml.document', type:' .docx'},
-            {name:'application/pdf', type:' .pdf'}
-        ]
+    // const checkFileType = (fileType) => {
+    //     const acceptedTypes = [
+    //         //Checar tipos de arquivo aceitos
+    //         {name:'application/msword', type:' .doc'},
+    //         {name:'application/vnd.openxmlformats-officedocument.wordprocessingml.document', type:' .docx'},
+    //         {name:'application/pdf', type:' .pdf'}
+    //     ]
         
-        const isValid = acceptedTypes.find(type => type.name == fileType);
+    //     const isValid = acceptedTypes.find(type => type.name == fileType);
 
-        if(isValid !== undefined) {
-            return true;
-        }
+    //     if(isValid !== undefined) {
+    //         return true;
+    //     }
 
-        else {
-            return false;
-        }
-    }
+    //     else {
+    //         return false;
+    //     }
+    // }
 
     const handleResume = (e) => {
         //Valida o tipo do arquivo
         const fileTypeName = e.target.files[0];
-        const isFormat = checkFileType(fileTypeName.type);
+        const isFormat = checkFileTypeFiles(fileTypeName.type);
         
-        if(isFormat) {
+        if(isFormat.valid) {
             //Enviar para o backend
             document.querySelector('div.input-flex.input-block').classList.remove('input-error');           
             document.querySelector('div.input-flex.input-block label span').classList.remove('text-error');
@@ -86,7 +89,8 @@ export default function CandidateSignUp() {
             //Erro no arquivo
             document.querySelector('div.input-flex.input-block').classList.add('input-error');
             document.querySelector('div.input-flex.input-block label span').classList.add('text-error');
-            document.querySelector('div.file-details').classList.add('display-none')   
+            document.querySelector('div.file-details').classList.add('display-none');
+            showError(`Erro: ${isFormat.acceptedFormats}`)   
         }
 
         sendResume(e);
@@ -127,8 +131,6 @@ export default function CandidateSignUp() {
             document.querySelector('div.input-flex.input-block label span').classList.add('text-error');
             return;
         }
-
-
 
         const data = {
             "email":email,

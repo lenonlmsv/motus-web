@@ -5,6 +5,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import BackgroundTitle from "../components/background-title/Background-title";
 import OpportunitiesDetailCard from "../components/opportunities/OpportunitiesDetailCard";
 import { getUserName } from "../services/auth";
+import QuestionsBlock from '../components/questions-block/Questions-block';
 
 import { connect, useSelector } from "react-redux";
 //Methods
@@ -149,51 +150,7 @@ function OpportunitieDetail(props) {
 							<p></p>
 						</div>
 
-						<div id="video-questions">
-							<div className="questions">
-								<div className="question">
-									Fale um pouco sobre você{" "}
-									<FaCheck className="question-check" />
-								</div>
-
-								<div className="actions">
-									<label
-										htmlFor="send-video"
-										className="send-button"
-									>
-										<FaUpload className="send-button-icon" />
-										Enviar Vídeo
-									</label>
-
-									<input
-										id="send-video"
-										type="file"
-										className="send-button"
-										style={{ display: "none" }}
-									/>
-
-									<Link
-										to={`/gravar-video/${params.id}`}
-										className="send-button"
-									>
-										{
-											//Retornar para video/:id
-										}
-										<FaRecordVinyl className="send-button-icon" />
-										Gravar vídeo
-									</Link>
-
-									<button className="send-button">
-										<FaDownload className="send-button-icon" />
-										Download
-									</button>
-								</div>
-							</div>
-						</div>
-
-						<div id="message">
-							<p>Parabéns! Você está concorrendo a esta vaga!</p>
-						</div>
+						<QuestionsBlock/>
 					</div>
 				)
 			}

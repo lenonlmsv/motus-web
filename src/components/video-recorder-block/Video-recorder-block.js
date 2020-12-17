@@ -185,9 +185,9 @@ function VideoRecorderBlock(props) {
 
         else {
              
-            showSuccess('Vídeo currículo enviado com sucesso!');
+            showSuccess('Vídeo resposta enviado com sucesso!');
             stopStreaming()
-            //history.push(`/oportunidades/${params.id}`)
+            history.push(`/oportunidades/${params.id}`)
         }
 
         //let video = document.querySelector('video.videoStream');

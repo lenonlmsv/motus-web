@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
+//Functions
+import {checkFileTypeVideos} from '../services/functions'
+
 //Youtube dependencie
 import Youtube from "react-youtube";
 
@@ -38,29 +41,29 @@ function VideoResume() {
     const [resumeFile, setResumeFile] = useState('')
     const [loading, setLoading] = useState('not-loading')
 
-    const checkFileType = (fileType) => {
-        const acceptedTypes = [
-            //Checar tipos de arquivo aceitos
-            {name:'video/mp4', type:' .mp4'},
-            {name:'video/webm', type:' .webm'}
-        ]
+    // const checkFileType = (fileType) => {
+    //     const acceptedTypes = [
+    //         //Checar tipos de arquivo aceitos
+    //         {name:'video/mp4', type:' .mp4'},
+    //         {name:'video/webm', type:' .webm'}
+    //     ]
         
-        const isValid = acceptedTypes.find(type => type.name == fileType);
+    //     const isValid = acceptedTypes.find(type => type.name == fileType);
 
-        if(isValid !== undefined) {
-            return true;
-        }
+    //     if(isValid !== undefined) {
+    //         return true;
+    //     }
 
-        else {
-            //Mostra os formatos em mensagem na tela
-            const formats = acceptedTypes.map(format => {
-                return (format.type);
-            })
+    //     else {
+    //         //Mostra os formatos em mensagem na tela
+    //         const formats = acceptedTypes.map(format => {
+    //             return (format.type);
+    //         })
 
-            setError(`Os formatos aceitos são ${formats}`)
-            return false;
-        }
-    }
+    //         setError(`Os formatos aceitos são ${formats}`)
+    //         return false;
+    //     }
+    // }
   
     const history = useHistory();
 
@@ -79,15 +82,16 @@ function VideoResume() {
 
     const handleVideoResume = (event) => {
         const fileTypeName = event.target.files[0].type;
-        const isFormat = checkFileType(fileTypeName);
+        const isFormat = checkFileTypeVideos(fileTypeName)//checkFileType(fileTypeName);
                 
-        if(isFormat) {
+        if(isFormat.valid) {
             setShowError('hide-error');
             setResumeFile(event.target.files[0]);
         }
         else {
-            setShowError('error-div');
+            //setShowError('error-div');
             setResumeFile('')
+            showErrorMessage(`Erro: ${isFormat.acceptedFormats}`)
         }
     }   
 
