@@ -76,10 +76,6 @@ function OpportunitieDetail(props) {
 				console.log(e);
 			}
 		};
-		//fetchOpportunity();
-
-		//Checar se o usuário tem a candidatura
-		//fetchOpportunity();
 
 		props.getCandidaturasRedux(alert);
 		props.fetchOpportunityRedux(params.id, alert);
@@ -97,7 +93,7 @@ function OpportunitieDetail(props) {
 			setIfIsCandidate(true);
 		}
 	}
-	return (
+	return typeof props.opportunity.responseData !== "undefined" ? (
 		<div id="page-opportunitie-details" className="page-position">
 			<BackgroundTitle
 				title={props.opportunity.responseData.titulo}
@@ -204,7 +200,7 @@ function OpportunitieDetail(props) {
 				</Link>
 			</div>
 		</div>
-	);
+	) : null;
 }
 
 const mapStateToProps = (state, ownProps) => {
