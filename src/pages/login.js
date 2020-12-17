@@ -137,6 +137,9 @@ function Login({ isLogged, setName, signIn }) {
 						<Link to="/cadastro">Cadastre-se</Link>
 
 						<Link to="/recuperar-senha">Esqueci minha senha</Link>
+						{/*só pra commitar*/}
+						{/*só pra commitar*/}
+						{/*só pra commitar*/}
 					</div>
 
 					<div className="submit-button">
