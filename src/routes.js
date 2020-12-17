@@ -21,6 +21,7 @@ import PageNotFound from "./pages/page-not-found";
 import CandidateSignUp from "./pages/candidate-signup";
 import CandidateDetailsTeste from "./pages/candidate-detail-teste";
 import RecuperarSenha from "./pages/recuperar-senha";
+import TrocarSenhar from "./pages/trocar-senha";
 
 const PrivateRoute = (
 	{ component: Component, ...rest } //Bloqueia de acordo com a autenticação
@@ -61,6 +62,8 @@ function Routes() {
 					path="/candidato/:id"
 					component={CandidateDetails}
 				/>
+
+				<PrivateRoute path="/trocar-senha" component={TrocarSenhar} />
 
 				{
 					//TODO: Excluir depois, apenas um teste
