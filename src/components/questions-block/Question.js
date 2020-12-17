@@ -19,9 +19,16 @@ import {useAlert} from 'react-alert';
 export default function Question(props) {
     const params = useParams();
 
+    console.log(props)
+
+    //const initial = {id: props.id, isLoading: false}
+
     //States
     const [isSend, setIsSend] = useState(false)
     const [loading, setLoading] = useState(false)
+
+    // const loading = true;
+    // const isSend = true
     
     const alert = useAlert()
 
@@ -34,13 +41,18 @@ export default function Question(props) {
     }
 
     function handleSubmit(e) {
+        e.preventDefault();
+
         const fileTypeName = e.target.files[0].type;
         const isFormat = checkFileTypeVideos(fileTypeName);
     
+        console.log(e)
+        console.log(props.id)
+
         if(isFormat.valid) {
             setLoading(true)
             setTimeout(() => {
-                setLoading(false);
+                //setLoading(false);
                 setIsSend(true)
             },3000)
             
@@ -57,7 +69,7 @@ export default function Question(props) {
         <div id="video-questions">
             <div className="questions">
                 <div className="question">
-                        {props.id, props.question}{" "}
+                        {props.question}{" "}
                     {
                         isSend && <FaCheck className="question-check" />
                     }
@@ -85,7 +97,7 @@ export default function Question(props) {
                         id="send-video"
                         type="file"
                         className="send-button"
-                        onChange={handleSubmit}
+                        onChange={e => handleSubmit(e)}
                         style={{ display: "none" }}
                     />
 

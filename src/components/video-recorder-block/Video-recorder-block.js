@@ -14,7 +14,7 @@ import {sendVideoResume} from '../../services/methods'
 import { useAlert } from 'react-alert';
 
 function VideoRecorderBlock(props) {
-    useEffect(() => { setRecord()}, [])
+    useEffect(() => { setRecord() }, [])
 
     //Params
     const params = useParams();
@@ -98,7 +98,7 @@ function VideoRecorderBlock(props) {
             chunks = [];
             
             showButtons(['#buttonStop']);
-            hideButtons(['#buttonRecord', '#buttonDownload', '#buttonSend']);
+            hideButtons(['#back-button', '#buttonRecord', '#buttonDownload', '#buttonSend']);
             hidevideoRecorded();
 
             startT();                
@@ -121,7 +121,7 @@ function VideoRecorderBlock(props) {
         stop.onclick = function() {
             mediaRecorder.stop();
             hideButtons(['#buttonStop'])
-            showButtons(['#buttonRecord', '#buttonDownload', '#buttonSend'])
+            showButtons(['#buttonRecord', '#back-button', '#buttonDownload', '#buttonSend'])
         }
         
         mediaRecorder.onstop = function(e) {
@@ -176,27 +176,28 @@ function VideoRecorderBlock(props) {
     }
     
     const sendOnClick = async (file) => {
+        hideButtons(['#back-button']);
         if (params.id === 'video-curriculo') {
             setLoading(true)
             const response = await sendVideoResume(file);
-            //setLoading(false)
+            setLoading(false)
             if(response.status == 'error'){
                 showErrorMessage(response.message);
                 return
             }
             showSuccess('Vídeo currículo enviado com sucesso!');
             stopStreaming()
-            //history.push(returnTo)
+            history.push(returnTo)
         }
 
         else {
-            showSuccess('Vídeo resposta enviado com sucesso!');
+            setLoading(true)
+            //Call API
+            //setLoading(true)
             stopStreaming()
+            showSuccess('Vídeo resposta enviado com sucesso!');
             history.push(`/oportunidades/${params.id}`)
         }
-
-        //let video = document.querySelector('video.videoStream');
-        //stopStreaming(video)
         
     }
     
@@ -324,14 +325,19 @@ function VideoRecorderBlock(props) {
                             <img style={{
                             width:'2rem', 
                             margin: '0 0 1rem 0'}}   
-                            src={loadingImg}/>
+                            src={loadingImg}
+                            alt='Loading...'/>
                         </div>
                     )
                 )
             }
 
             <div id="back-button">
-                    <button onClick={() => {history.push(`/oportunidades/${returnTo}`)}} className="button button-secondary">
+                    <button 
+                        onClick={() => {
+                        stopStreaming()
+                        history.push(`/oportunidades/${returnTo}`)}} 
+                        className="button button-secondary">
                         Voltar
                     </button>
             </div>
