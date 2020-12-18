@@ -39,8 +39,7 @@ export default function QuestionsBlock() {
         }
         fecthQuestions()
     }, [])
-    
-    console.log(typeof questions)
+   
     const alert = useAlert()
 
     function showSucess(m) {
@@ -77,6 +76,14 @@ export default function QuestionsBlock() {
         <div>
             {  
                 Object.keys(questions).map((key) => {
+                    const idToLink = questions[key].id
+                    const questionToLink = questions[key].descricao
+                    const timeToLink = (
+                        questions[key].tempoVideo === null ? 
+                        '90' 
+                        : questions[key].tempoVideo
+                    )
+
                     return (
                         <div key={questions[key].id} id="video-questions">
                             <div className="questions">
@@ -114,7 +121,14 @@ export default function QuestionsBlock() {
                                     /> */}
 
                                     <Link
-                                        to={`/gravar-video/${params.id}`}
+                                        to={{
+                                            pathname: `/gravar-video/${params.id}`,
+                                            state: {
+                                                idToLink,
+                                                questionToLink,
+                                                timeToLink,
+                                            }
+                                        }}
                                         className="send-button"
                                     >
                                         {

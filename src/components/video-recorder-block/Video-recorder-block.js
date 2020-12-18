@@ -38,6 +38,9 @@ function VideoRecorderBlock(props) {
     //History
     const history = useHistory();
 
+    //QuestionId
+    const id = props.questionId;
+
     let cron;
     let tempo = props.time; //Tempo limite de gravação
     let chunks = [];
@@ -273,6 +276,7 @@ function VideoRecorderBlock(props) {
         if(isFormat.valid) {
             setLoading(true);   
             stopStreaming()
+            props.questionId;
             //CHAMAR API
             //setLoading(false); 
             //history.push(`/oportunidades/${returnTo}`)     
@@ -296,7 +300,7 @@ function VideoRecorderBlock(props) {
             {
                 isCameraAllowed && 
                 <div id='question'>
-                    <p>{props.question}</p>
+                    <p>{props.questionDescription}</p>
                 </div>
 
             }

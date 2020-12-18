@@ -12,7 +12,15 @@ import "../styles/video-recorder.css";
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
 
-function VideoRecord() {
+function VideoRecord(props) {
+	const questionProps = {
+		time : props.location.state.timeToLink.toString(),
+		question: props.location.state.questionToLink,
+		id: props.location.state.idToLink,
+	}
+
+	console.log(questionProps)
+	
 	const params = useParams();
 
 	String.prototype.toMMSS = function () {
@@ -50,20 +58,22 @@ function VideoRecord() {
 		//If will be used to record video answers
 		//api.get('') Pegar dados da api
 
-		const timeSeconds = "90"; //Tempo de resposta da pergunta
+		const timeSeconds = questionProps.time; //Tempo de resposta da pergunta
+		const timeFormat = timeSeconds.toMMSS()
 
 		return (
 			<div id="page-video-recorder" className="page-position">
 				<BackgroundTitle
 					title="Gravar vídeo"
-					description={`Você terá até ${timeSeconds.toMMSS()} para responder esta pergunta`}
+					description={`Você terá até ${timeFormat} para responder esta pergunta`}
 				/>
 
 				<div id="div-recoder">
 					<VideoRecorderBlock 
 						time={timeSeconds}
-						returnTo={params.id} 
-						question={'Fale um pouco sobre sua trajetória profissional e suas dificuldades na carreira'}/>
+						returnTo={params.id}
+						questionId={questionProps.id}
+						questionDescription={questionProps.question}/>
 				</div>
 			</div>
 		);
