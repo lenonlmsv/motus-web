@@ -77,11 +77,11 @@ video {
         width: 60%;
     }
 
-    .div-buttons button {
+    .div-buttons button, .div-buttons label {
         font-size: 1.5rem;
     }
 
-    .div-buttons button svg {
+    .div-buttons button svg, .div-buttons label svg {
         margin-right: 0.5rem;
     }
 }
