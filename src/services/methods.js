@@ -1,4 +1,7 @@
 import api from "./api";
+
+//userName
+import {getUserName} from './auth'
 //Base64
 //import * as base64Methods from "../base64";
 export const ShowSuccess = (message, alert) => {
@@ -199,15 +202,7 @@ export async function sendVideoResume(file) {
 	}
 }
 
-export async function sendVideoAnswer() {
-	try {
-		await api.post;
-	} catch (e) {
-		console.log(e.message);
-	}
-}
-
-export async function getQuestions() {
+export async function getVideoQuestions() {
 	try {
 		//const questions = 5
 		const response = await api.get("/pergunta");
@@ -218,17 +213,31 @@ export async function getQuestions() {
 	}
 }
 
-export async function sendAnswer() {
+export async function sendVideoAnswer(file, questionId, opportunityId) {
+	const user = getUserName()
+
+	api.defaults.headers.post["Content-Type"] = "multipart/form-data";
+
+	const data = new FormData();
+
+	data.append("arquivo", file);
+	data.append("name", `video-resposta-${user}-id${questionId}`);
+	data.append("perguntaId", questionId);
+	data.append("vagaId", opportunityId);	
+	
 	try {
-		const questions = 5; //5
-	} catch (e) {
+		await api.post('/candidatura-video', data);
+		return {status: 'ok', message: 'Vídeo enviado com sucesso'}
+	} 
+	
+	catch (e) {
 		console.log(e);
+		return {status: 'error', message: 'Erro ao enviar vídeo'}
 	}
 }
 
-export async function checkAnswer() {
+export async function checkVideoAnswer() {
 	try {
-		const questions = 5; //5
 	} catch (e) {
 		console.log(e);
 	}

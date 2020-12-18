@@ -8,7 +8,7 @@ import { FaDownload, FaUpload, FaStop, FaRecordVinyl, FaShare} from 'react-icons
 import loadingImg from '../../images/loading.gif'
 
 //Methods
-import {sendVideoResume} from '../../services/methods'
+import {sendVideoResume, sendVideoAnswer} from '../../services/methods'
 import {checkFileTypeVideos} from '../../services/functions'
 
 //Alert
@@ -276,7 +276,8 @@ function VideoRecorderBlock(props) {
         if(isFormat.valid) {
             setLoading(true);   
             stopStreaming()
-            props.questionId;
+            console.lof(e.target.files[0], id, params.id)
+            //const response = sendVideoAnswer(e.target.files[0], id, params.id)
             //CHAMAR API
             //setLoading(false); 
             //history.push(`/oportunidades/${returnTo}`)     

@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 
 //Methods
-import {getQuestions} from '../../services/methods'
+import {getVideoQuestions} from '../../services/methods'
 
 //Functions
 import {checkFileTypeVideos} from '../../services/functions'
@@ -27,7 +27,7 @@ export default function QuestionsBlock() {
 
     useEffect(() => {
         async function fecthQuestions() {
-            const response = await getQuestions()
+            const response = await getVideoQuestions()
 
             if(response === null) {
                 showError('Erro ao buscar dados. Tente novamente')
