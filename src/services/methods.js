@@ -26,6 +26,16 @@ export async function loginUser(data) {
 	}
 }
 
+export async function getVideoCurriculo(vagaId) {
+	try {
+		const response = await api.get(`candidatura-video/${vagaId}`);
+
+		return response;
+	} catch (error) {
+		return error;
+	}
+}
+
 export async function deleteResume(resumeHashId) {
 	try {
 		await api.post(`candidato-curriculo/delete/${resumeHashId}`);
@@ -198,38 +208,30 @@ export async function sendVideoAnswer() {
 }
 
 export async function getQuestions() {
-    try {
+	try {
 		//const questions = 5
-		const response = await api.get('/pergunta');
+		const response = await api.get("/pergunta");
 		return response;
-    }
-
-    catch(e) {
-		console.log(e)
-		return null
-    }
+	} catch (e) {
+		console.log(e);
+		return null;
+	}
 }
 
 export async function sendAnswer() {
-    try {
-        const questions = 5 //5
-    }
-
-    catch(e) {
-        console.log(e)
-    }
+	try {
+		const questions = 5; //5
+	} catch (e) {
+		console.log(e);
+	}
 }
 
 export async function checkAnswer() {
-    try {
-        const questions = 5 //5
-    }
-
-    catch(e) {
-        console.log(e)
-    }
+	try {
+		const questions = 5; //5
+	} catch (e) {
+		console.log(e);
+	}
 }
 
-export default function Methods() {
-
-}
+export default function Methods() {}

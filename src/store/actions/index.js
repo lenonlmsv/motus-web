@@ -15,6 +15,7 @@ export const signIn = (email, senha, alert) => {
 			const string = response.data.split(" ");
 			const token = string[1]; //Get token
 			login(token);
+			//console.log(token);
 			ShowSuccess("Login realizado com sucesso", alert);
 			dispatch({
 				type: "LOGIN",
