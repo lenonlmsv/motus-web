@@ -3,8 +3,8 @@ import React, {useEffect, useState} from "react";
 //Router
 import { Link, useHistory, useParams } from "react-router-dom";
 
-//Question
-import Question from './Question'
+//Methods
+import {getQuestions} from '../../services/methods'
 
 //Functions
 import {checkFileTypeVideos} from '../../services/functions'
@@ -21,17 +21,26 @@ export default function QuestionsBlock() {
 
     //const initial = {id: props.id, isLoading: false}
 
-    const QuestionList = [
-        {id:'1', description: "Fale seus pontos fortes e fracos", isLoading: false, isSent:false}, 
-        {id:'2', description: "Fale sobre seu último trabalho", isLoading: true, isSent:false},
-        {id:'3', description: "Fale sobre um desafio que você teve de resolver", isLoading: false, isSent:false},
-        {id:'4', description: "Fale sobre sua tecnologia preferida", isLoading: false, isSent:false},
-    ]
-
     //States
-    const [questions, setQuestions] = useState(QuestionList)
+    const [questions, setQuestions] = useState('')
     const [isCompleted, setIsCompleted] = useState(true)
+
+    useEffect(() => {
+        async function fecthQuestions() {
+            const response = await getQuestions()
+
+            if(response === null) {
+                showError('Erro ao buscar dados. Tente novamente')
+            }
+            
+            else {
+                setQuestions(response.data.responseData)
+            }
+        }
+        fecthQuestions()
+    }, [])
     
+    console.log(typeof questions)
     const alert = useAlert()
 
     function showSucess(m) {
@@ -72,7 +81,7 @@ export default function QuestionsBlock() {
                         <div key={questions[key].id} id="video-questions">
                             <div className="questions">
                                 <div className="question">
-                                        {questions[key].description}{" "}
+                                        {questions[key].descricao}{" "}
                                     {
                                         questions[key].isSent && <FaCheck className="question-check" />
                                     }

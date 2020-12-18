@@ -273,7 +273,14 @@ function CandidateDetails() {
 							htmlFor="change-password"
 							style={{ cursor: "pointer" }}
 						>
-							<Link to="/trocar-senha">Redefinir senha</Link>
+							<Link 
+								style={{textDecoration:'none', 
+									color:'var(--color-font-primary)'}} 
+								to="/trocar-senha">Redefinir Senha
+							</Link>
+							<span>
+								Alterar senha de acesso
+							</span>
 							{/*<span>
                                     Você receberá um e-mail parar alterar a senha de acesso
                                 </span>*/}

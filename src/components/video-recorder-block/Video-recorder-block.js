@@ -274,8 +274,8 @@ function VideoRecorderBlock(props) {
             setLoading(true);   
             stopStreaming()
             //CHAMAR API
-            //atualizar página
-            history.push(`/oportunidades/${returnTo}`)     
+            //setLoading(false); 
+            //history.push(`/oportunidades/${returnTo}`)     
             showSuccess('Vídeo enviado com sucesso')
         }
         else {

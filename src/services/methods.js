@@ -199,11 +199,14 @@ export async function sendVideoAnswer() {
 
 export async function getQuestions() {
     try {
-        const questions = 5 //5
+		//const questions = 5
+		const response = await api.get('/pergunta');
+		return response;
     }
 
     catch(e) {
-        console.log(e)
+		console.log(e)
+		return null
     }
 }
 
