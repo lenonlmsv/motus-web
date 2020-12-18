@@ -26,11 +26,15 @@ video {
     color: var(--color-font-primary);
 }
 
-.div-buttons button {
+.div-buttons button, .div-buttons label {
     font-size: 1.2rem;
 }
 
-.div-buttons button svg {
+.div-buttons label {
+    margin: 0 0.5rem 0 0;
+}
+
+.div-buttons button svg, .div-buttons label svg  {
     margin-right: 0.2rem;
 }
 

@@ -22,7 +22,7 @@ export default function QuestionsBlock() {
     //const initial = {id: props.id, isLoading: false}
 
     const QuestionList = [
-        {id:'1', description: "Fale seus pontos fortes e fracos", isLoading: false, isSent:true}, 
+        {id:'1', description: "Fale seus pontos fortes e fracos", isLoading: false, isSent:false}, 
         {id:'2', description: "Fale sobre seu último trabalho", isLoading: true, isSent:false},
         {id:'3', description: "Fale sobre um desafio que você teve de resolver", isLoading: false, isSent:false},
         {id:'4', description: "Fale sobre sua tecnologia preferida", isLoading: false, isSent:false},
@@ -40,9 +40,9 @@ export default function QuestionsBlock() {
 
     function showError(m) {
         alert.show(m, {type: 'error'})
-    }
+    }    
 
-    function handleSubmit(item, e) {
+    function handleSubmit(e, item) {
         console.log(item)
 
         const fileTypeName = e.target.files[0].type;
@@ -67,7 +67,7 @@ export default function QuestionsBlock() {
     return (
         <div>
             {  
-                Object.keys(questions).map(key => {
+                Object.keys(questions).map((key) => {
                     return (
                         <div key={questions[key].id} id="video-questions">
                             <div className="questions">
@@ -80,7 +80,7 @@ export default function QuestionsBlock() {
                                 </div>
 
                                 <div className="actions">
-                                    <label
+                                    {/* <label
                                         htmlFor="send-video"
                                         className="send-button"
                                     >
@@ -100,9 +100,9 @@ export default function QuestionsBlock() {
                                         id="send-video"
                                         type="file"
                                         className="send-button"
-                                        onChange={e => handleSubmit(questions[key].id,e)}
+                                        onChange={e => handleSubmit(e, questions)}
                                         style={{ display: "none" }}
-                                    />
+                                    /> */}
 
                                     <Link
                                         to={`/gravar-video/${params.id}`}
@@ -112,7 +112,7 @@ export default function QuestionsBlock() {
                                             //Retornar para video/:id
                                         }
                                         <FaRecordVinyl className="send-button-icon" />
-                                        Gravar vídeo
+                                        Gravar ou enviar vídeo
                                     </Link>
 
                                     <button className="send-button">
@@ -125,8 +125,9 @@ export default function QuestionsBlock() {
                     )}
                 )
             }
-            
+
             {
+                
                 isCompleted && (
                     <div id="message">
                         <p>Parabéns! Você está concorrendo a esta vaga!</p>

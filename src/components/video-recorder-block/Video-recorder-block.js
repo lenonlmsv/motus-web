@@ -4,17 +4,18 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 //Icons
-import { FaDownload, FaStop, FaRecordVinyl, FaShare} from 'react-icons/fa';
+import { FaDownload, FaUpload, FaStop, FaRecordVinyl, FaShare} from 'react-icons/fa';
 import loadingImg from '../../images/loading.gif'
 
 //Methods
 import {sendVideoResume} from '../../services/methods'
+import {checkFileTypeVideos} from '../../services/functions'
 
 //Alert
 import { useAlert } from 'react-alert';
 
 function VideoRecorderBlock(props) {
-    useEffect(() => { setRecord() }, [])
+    useEffect(() => { setRecord() }, []) 
 
     //Params
     const params = useParams();
@@ -65,7 +66,10 @@ function VideoRecorderBlock(props) {
                 };
                 setIsCameraAllowed(true);
                 //Destination after record video
-                props.returnTo === '' && setreturnTo('')
+                if(props.returnTo === '') {
+                    setreturnTo('');
+                    hideButtons(['#buttonUpload'])
+                }
             })
 
             .catch(function(error) {
@@ -98,7 +102,7 @@ function VideoRecorderBlock(props) {
             chunks = [];
             
             showButtons(['#buttonStop']);
-            hideButtons(['#back-button', '#buttonRecord', '#buttonDownload', '#buttonSend']);
+            hideButtons(['#buttonUpload, #back-button', '#buttonRecord', '#buttonDownload', '#buttonSend']);
             hidevideoRecorded();
 
             startT();                
@@ -258,7 +262,26 @@ function VideoRecorderBlock(props) {
     const hidevideoRecorded = () => {
         document.querySelector('video.videoStream').classList.remove('display-none');
         document.querySelector('#video-recorded').classList.add('display-none');
-    }   
+    }
+
+    function handleSubmit(e) {
+        console.error(e)
+        
+        const fileTypeName = e.target.files[0].type;
+        const isFormat = checkFileTypeVideos(fileTypeName);
+
+        if(isFormat.valid) {
+            setLoading(true);   
+            stopStreaming()
+            //CHAMAR API
+            //atualizar página
+            history.push(`/oportunidades/${returnTo}`)     
+            showSuccess('Vídeo enviado com sucesso')
+        }
+        else {
+            showErrorMessage(`Erro: ${isFormat.acceptedFormats}`)
+        }
+    }
 
     return (
         <div id="recorder-block">
@@ -291,6 +314,23 @@ function VideoRecorderBlock(props) {
                     !loading && isCameraAllowed ? 
                     (<div> 
                         <div className="div-buttons displayFlex">
+                            <label
+                                id='buttonUpload'
+                                htmlFor="send-video"
+                                className="button button-secondary"
+                            >
+                                <FaUpload className="send-button-icon" />
+                                Enviar Vídeo
+                            </label>
+
+                            <input
+                                id="send-video"
+                                type="file"
+                                className="display-none"
+                                onChange={e => handleSubmit(e)}
+                                style={{ display: "none" }}
+                            />
+
                             <button id="buttonRecord" className="button button-secondary">
                                 <FaRecordVinyl/>
                                 Gravar
