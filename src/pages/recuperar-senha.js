@@ -27,8 +27,8 @@ const RecuperarSenha = () => {
 			console.log(error);
 			console.log(json);
 			ShowError(
-				"Não foi possível encontrar o email informado no nosso banco de dados",
-				//error.menssage,
+				//"Não foi possível encontrar o email informado no nosso banco de dados",
+				error.response.data.menssage,
 				alert
 			);
 		}
