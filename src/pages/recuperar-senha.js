@@ -3,23 +3,35 @@ import BackgroundTitle from "../components/background-title/Background-title";
 import { Link, useHistory } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { ShowError, ShowSuccess } from "../services/methods";
+import api from "../services/api";
 
 const RecuperarSenha = () => {
 	const [email, setEmail] = useState("");
 	const history = useHistory();
 	const alert = useAlert();
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		//try {
-		ShowSuccess("Um email será enviado para você em alguns minutos", alert);
-		history.push("/oportunidades");
-		/*} catch (error) {
+		try {
+			api.defaults.headers.post["Content-Type"] = "multipart/form-data"; //USAR FORMATO DE ARQUIVO
+
+			const data = new FormData();
+			data.append("email", email);
+
+			const response = await api.post("candidato/esqueci-senha", data);
+
+			ShowSuccess(response.data.menssage, alert);
+			history.push("/oportunidades");
+		} catch (error) {
+			const json = JSON.stringify(error);
+			console.log(error);
+			console.log(json);
 			ShowError(
 				"Não foi possível encontrar o email informado no nosso banco de dados",
+				//error.menssage,
 				alert
 			);
-		}*/
+		}
 	};
 
 	return (
