@@ -109,7 +109,6 @@ export async function downloadResume(resumeHashId, fileName) {
 		// const data = new Blob([base64Dec]);
 		// const url = window.URL.createObjectURL(data);
 
-		console.log(link);
 		//a.href = url//data:application/octet-stream;base64,${link}`
 		a.style = "display:none";
 		a.download = fileName;
@@ -255,17 +254,29 @@ export async function sendVideoAnswer(file, questionId, opportunityId) {
 
 	try {
 		await api.post("/candidatura-video", data);
-		return { status: "ok", message: "Vídeo enviado com sucesso" };
+		const response = { status: "ok", message: "Vídeo enviado com sucesso" };
+		return response;
 	} catch (e) {
-		console.log(e);
-		return { status: "error", message: "Erro ao enviar vídeo" };
+		console.log(e.message);
+		const response = { status: null, message: `Erro ao enviar arquivo` };
+		return response;
 	}
 }
 
-export async function checkVideoAnswer() {
+export async function checkRecordedQuestions(opportunityId) {
 	try {
+		const itens = await api.get(`/candidatura-video/${opportunityId}`);
+		let response = [];
+		itens.data.responseData.map((item) => {
+			response.push(item.perguntaId);
+		});
+
+		const returnResponse = Array.from(new Set(response));
+		return returnResponse;
 	} catch (e) {
-		console.log(e);
+		console.log(e.message);
+		const response = { status: null, message: `Erro ao enviar arquivo` };
+		return response;
 	}
 }
 

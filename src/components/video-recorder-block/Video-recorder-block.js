@@ -199,9 +199,14 @@ function VideoRecorderBlock(props) {
 
         else {
             setLoading(true)
-            //Call API
-            //setLoading(true)
+            const response = await sendVideoAnswer(file, id, params.id)
             stopStreaming()
+
+            if(response.status === null) {
+                showErrorMessage(response.message);
+                history.push(`/oportunidades/${returnTo}`)     
+                return
+            }
             showSuccess('Vídeo resposta enviado com sucesso!');
             history.push(`/oportunidades/${params.id}`)
         }
@@ -267,20 +272,23 @@ function VideoRecorderBlock(props) {
         document.querySelector('#video-recorded').classList.add('display-none');
     }
 
-    function handleSubmit(e) {
-        console.error(e)
-        
+    async function handleSubmit(e) {       
         const fileTypeName = e.target.files[0].type;
         const isFormat = checkFileTypeVideos(fileTypeName);
 
         if(isFormat.valid) {
             setLoading(true);   
+            const response = await sendVideoAnswer(e.target.files[0], id, params.id);
+
             stopStreaming()
-            console.lof(e.target.files[0], id, params.id)
-            //const response = sendVideoAnswer(e.target.files[0], id, params.id)
-            //CHAMAR API
-            //setLoading(false); 
-            //history.push(`/oportunidades/${returnTo}`)     
+            if(response.status === null) {
+                showErrorMessage(response.message);
+                history.push(`/oportunidades/${returnTo}`)     
+                return
+            }
+
+            setLoading(false); 
+            history.push(`/oportunidades/${returnTo}`)     
             showSuccess('Vídeo enviado com sucesso')
         }
         else {
