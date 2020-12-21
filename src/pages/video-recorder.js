@@ -13,13 +13,24 @@ import "../styles/video-recorder.css";
 import BackgroundTitle from "../components/background-title/Background-title";
 
 function VideoRecord(props) {
-	const questionProps = {
-		time : props.location.state.timeToLink.toString(),
-		question: props.location.state.questionToLink,
-		id: props.location.state.idToLink,
+	const checkState = props.location.state;
+	let questionProps;
+	if(checkState !== undefined) {
+		questionProps = {
+			time : props.location.state.timeToLink.toString(),
+			question: props.location.state.questionToLink,
+			id: props.location.state.idToLink,
+		}
+	}
+	else {
+		questionProps = {
+			time : '',
+			question: '',
+			id: '',
+		}
 	}
 
-	console.log(questionProps)
+	console.log(props)
 	
 	const params = useParams();
 

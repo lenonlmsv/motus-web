@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 
 //Methods
-import {getVideoQuestions} from '../../services/methods'
+import {getVideoQuestions, checkRecordedQuestions} from '../../services/methods'
 
 //Functions
 import {checkFileTypeVideos} from '../../services/functions'
@@ -15,6 +15,7 @@ import {useAlert} from 'react-alert';
 //Icons
 import { FaUpload, FaDownload, FaRecordVinyl, FaCheck } from "react-icons/fa";
 import loadingImg from '../../images/loading.gif'
+import { renderIntoDocument } from "react-dom/test-utils";
 
 export default function QuestionsBlock() {
     const params = useParams();
@@ -23,9 +24,22 @@ export default function QuestionsBlock() {
 
     //States
     const [questions, setQuestions] = useState('')
+    const [recordedQuestions, setRecordedQuestions] = useState('')
     const [isCompleted, setIsCompleted] = useState(true)
 
     useEffect(() => {
+        async function fecthRecordedQuestions(id) {
+            const response = await checkRecordedQuestions(id)
+            if(response === null) {
+                showError('Erro ao buscar dados.')
+            }
+
+            else {
+                //console.log('valores respondidos', response.data.responseData)
+                setRecordedQuestions(response);
+            }
+        }
+
         async function fecthQuestions() {
             const response = await getVideoQuestions()
 
@@ -34,12 +48,50 @@ export default function QuestionsBlock() {
             }
             
             else {
-                setQuestions(response.data.responseData)
+                const answeredValues = recordedQuestions;
+                
+                if(answeredValues.length !== 0) {
+
+                    let questionsAPI = []
+                    
+                    response.data.responseData.forEach(item => {
+                        questionsAPI.push({
+                            isAnswered:false,
+                            item,
+                        })
+                    })
+
+                    questionsAPI.forEach(item => {
+                        answeredValues.forEach((questionId)=> {
+                            if(questionId === item.item.id) {
+                                item.isAnswered = true
+                            }
+                        })
+                    }) 
+                
+                    setQuestions(questionsAPI)    
+                }
+
+                else {
+                    let questionsAPI = []
+                    
+                    response.data.responseData.forEach(item => {
+                        questionsAPI.push({
+                            isAnswered:false,
+                            item,
+                        })
+                    })
+                    
+                    setQuestions(questionsAPI) 
+                }
+
             }
         }
-        fecthQuestions()
-    }, [])
-   
+
+        fecthRecordedQuestions(params.id);
+        fecthQuestions();
+    }, params.id)
+
     const alert = useAlert()
 
     function showSucess(m) {
@@ -51,8 +103,6 @@ export default function QuestionsBlock() {
     }    
 
     function handleSubmit(e, item) {
-        console.log(item)
-
         const fileTypeName = e.target.files[0].type;
         const isFormat = checkFileTypeVideos(fileTypeName);
 
@@ -76,21 +126,21 @@ export default function QuestionsBlock() {
         <div>
             {  
                 Object.keys(questions).map((key) => {
-                    const idToLink = questions[key].id
-                    const questionToLink = questions[key].descricao
+                    const idToLink = questions[key].item.id
+                    const questionToLink = questions[key].item.descricao
                     const timeToLink = (
-                        questions[key].tempoVideo === null ? 
+                        questions[key].item.tempoVideo === null ? 
                         '90' 
-                        : questions[key].tempoVideo
+                        : questions[key].item.tempoVideo
                     )
 
                     return (
                         <div key={questions[key].id} id="video-questions">
                             <div className="questions">
                                 <div className="question">
-                                        {questions[key].descricao}{" "}
+                                        {questions[key].item.descricao}{" "}
                                     {
-                                        questions[key].isSent && <FaCheck className="question-check" />
+                                        questions[key].isAnswered && <FaCheck className="question-check" />
                                     }
                                     
                                 </div>
