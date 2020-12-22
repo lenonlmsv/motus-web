@@ -99,7 +99,7 @@ function VideoResume() {
         <div id="page-video-resume" className="page-position">
             <BackgroundTitle 
                 title={'Envie seu vídeo currículo'}
-                description={' história da Sys Manager é construída com a contribuição de uma equipe talentosa empenhada em sempre entregar a melhor solução para os clientes.'}/>
+                description={'A história da Sys Manager é construída com a contribuição de uma equipe talentosa empenhada em sempre entregar a melhor solução para os clientes.'}/>
             
             <div className="page-video-content">
                 <div className="video-marketing">
