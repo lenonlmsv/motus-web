@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+//Router dom
+import {Link} from "react-router-dom";
+
 //CSS
 import './styles/resumes-list.css'
 
@@ -109,10 +112,11 @@ export default function ResumesList() {
             <div className="input-flex input-block">
                 <label 
                     htmlFor='resume'
-                    className=''>
-                        <strong>Envie seu currículo</strong>
+                    className="label-span">
+
+                        <Link className="link-underline">Envie currículo</Link>
                         <span>
-                            Formatos .doc, .docx ou .pdf
+                            (Envie seu currículo nos formatos .doc, .docx ou .pdf)
                         </span>
                     
                 </label>
@@ -128,12 +132,12 @@ export default function ResumesList() {
                     return (
                         <div key={resumes.key} className="file-list">
                             <FaTrash 
-                                color={'red'} 
+                                color={'grey'} 
                                 onClick={() => {
                                     deleteResumeAPI(resumes[key].hashId)}}/>
 
                             <FaDownload 
-                                color={'blue'} 
+                                color={'var(--color-font-primary)'} 
                                 onClick={() => downloadResumeAPI(resumes[key].hashId, resumes[key].nomeArquivo)}/>
 
                             <p>{resumes[key].nomeArquivo}</p>
