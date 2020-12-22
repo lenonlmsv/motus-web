@@ -61,9 +61,9 @@ const TrocarSenha = () => {
 			<main className="display-flex">
 				<form className="create-candidate" onSubmit={handleSubmit}>
 					<div className="input-block">
-						<label htmlFor="password">
+						<label htmlFor="password" className="label-span">
 							Senha antiga
-							<span>Digite sua antiga senha</span>
+							<span>(Digite sua antiga senha)</span>
 						</label>
 
 						<input
@@ -79,9 +79,9 @@ const TrocarSenha = () => {
 						/>
 					</div>
 					<div className="input-block">
-						<label htmlFor="password">
+						<label htmlFor="password" className="label-span">
 							Nova senha
-							<span>Digite sua nova senha</span>
+							<span>(Digite sua nova senha)</span>
 						</label>
 
 						<input
@@ -97,9 +97,9 @@ const TrocarSenha = () => {
 						/>
 					</div>
 					<div className="input-block">
-						<label htmlFor="password">
+						<label htmlFor="password" className="label-span">
 							Confirme nova senha
-							<span>Repita sua nova senha</span>
+							<span>(Repita sua nova senha)</span>
 						</label>
 
 						<input

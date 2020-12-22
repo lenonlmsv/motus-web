@@ -25,7 +25,7 @@ function LoginBar({ isLogged, userName, dispatch }) {
 		return (
 			<div id="login-bar">
 				<div className="div-limited display-flex">
-					<p className="hide-long-content">{`Candidato(a) ${userName}`}</p>
+					<p className="hide-long-content">{`Candidato(a) ${userName},`}</p>
 				</div>
 
 				<div className="logout-options">

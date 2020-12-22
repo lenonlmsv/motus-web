@@ -19,6 +19,10 @@
     display: none!important;
 }
 
+input[type=text] {
+
+}
+
 .input-error {
     border: 1px solid red;
 }
@@ -34,14 +38,18 @@
 #page-candidate-details main form {
     width: 100%;
     max-width: var(--page-max-width);
-    border: 1px solid rgba(0,0,0,0.5);
-    padding: 0.8rem;
+    border: 1px solid #cecece;
+    padding: 40px;
     border-radius: 10px;
     z-index: 1;
 }
 
 #page-candidate-details main form.create-candidate {
     border: none;
+}
+
+.create-candidate {
+    width: 40vw!important;
 }
 
 .input-block + .input-block {
@@ -51,29 +59,29 @@
 .input-block label {
     display: block;
     font-size: 1.3rem;
-    color: var(--color-font-primary)
+    color: var(--color-font-primary);
 }
 
 .input-block label span {
     display: block;
-    font-size: 0.8rem;
+    font-size: 15px;
     color: rgba(0,0,0,0.75);
 }
 
 .input-block input {
     width: 100%;
-    border-radius: 5px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     border: 1px solid rgba(0,0,0,0.3);
     margin: 0.3rem 0 0 0;
-    padding: 0.2rem;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 .input-flex {
     display: flex;
     align-items: center;
     border-radius: 5px;
-    padding: 0.2rem;
+    padding: 0;
     margin: 2rem 0 0 0;
 }
 
@@ -82,7 +90,7 @@
 }
 
 .button-send {
-    margin: 1.2rem 0 0 0;
+    margin: 60px 0 0 0;
 }
 
 div.button-send button.send-form {
@@ -128,38 +136,63 @@ div.button-send button.send-form {
 
 #tab-buttons .button-tab {
     color: rgba(0,0,0,0.75);
-    font-size: 1rem;
+    font-size: 16px;
     height: 2rem;
-    padding: 0.5rem;
+    padding: 10px;
     line-height: 0;
     margin: 0 0 0.5rem 0;
-    border-top: 1px solid rgba(0,0,0,0.5);
-    border-left: 1px solid rgba(0,0,0,0.5);
-    border-right: 1px solid rgba(0,0,0,0.5);
-    border-bottom: 0;
+    border-top: 1px solid #cecece;
+    border-left: 1px solid #cecece;
+    border-right: 1px solid #cecece;
+    border-bottom: 1px solid #fff;
     margin-bottom: -1px;
     z-index: 10;    
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.link-underline {
+    font-size: 1.3rem;
+}
+
+
+#tab-buttons button:first-child {
+    border-top-left-radius: 10px;
+}
+
+#tab-buttons button:last-child {
+    border-top-right-radius: 10px;
 }
 
 #tab-buttons .button-hide {
-    background-color: rgba(0,0,0,0.25);
-    border-bottom: 0;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #cecece;
 }
 
+.label-span {
+    display: block!important;
+    align-items: center!important;
+}
+
+.label-link {
+    margin-bottom: 20px;
+}
+
+button:focus { outline:0 !important; }
+
 #history-block {
+    padding: 50px;
     margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    border: 1px solid rgba(0,0,0,0.5);
-    padding: 1rem 0.6rem 0.6rem 0.6rem;
+    border: 1px solid #cecece;
     border-radius: 10px;
 }
 
 #history-block > p {
     font-size: 1.5rem;
-    color: var(--color-font-secondary);
-    font-weight: bold;
+    color: var(--color-font-primary);
+    margin-bottom: 20px;
 }
 
 #history-block > div {
@@ -229,5 +262,20 @@ div.button-send button.send-form {
         width: 50vw;
         display: flex;
         justify-content: center;
+    } 
+
+    .label-span {
+        display: flex!important;
+        align-items: center!important;
+    }
+
+    .input-block label span {
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+
+    #tab-buttons .button-tab {
+        font-size: 22px;
+        padding: 30px;
     }
 }

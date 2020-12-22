@@ -63,7 +63,8 @@ function Routes() {
 					component={CandidateDetails}
 				/>
 
-				<PrivateRoute path="/trocar-senha" component={TrocarSenhar} />
+				<PrivateRoute path="/trocar-senha" 
+				component={TrocarSenhar} />
 
 				{
 					//TODO: Excluir depois, apenas um teste

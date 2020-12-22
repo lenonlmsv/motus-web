@@ -6,16 +6,16 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    margin-top: 30px;
 }
 
 #login-bar p {
     color: var(--color-font-primary);
-    font-size: 1.1rem;
+    font-size: 22px;
 }
 
 #login-bar a {
-    text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 18px;
     margin-left: 0.2rem;
 }
 

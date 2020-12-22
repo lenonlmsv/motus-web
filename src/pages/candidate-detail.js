@@ -129,7 +129,6 @@ function CandidateDetails() {
 		<div id="page-candidate-details" className="page-position">
 			<BackgroundTitle
 				title={`Meus dados`}
-				description={"Confira seus dados cadastrados"}
 			/>
 
 			<div id="tab-buttons">
@@ -149,7 +148,7 @@ function CandidateDetails() {
 
 			<main id="tab-info" className="display-flex tab-item">
 				<form onSubmit={handleSubmit}>
-					<div className="input-block ">
+					<div className="input-block">
 						<label htmlFor="name">Nome</label>
 						<input
 							id="name"
@@ -164,10 +163,9 @@ function CandidateDetails() {
 					</div>
 
 					<div className="input-block">
-						<label htmlFor="email">
+						<label htmlFor="email" className="label-span">
 							E-mail
-							<span>O seu e-mail não pode ser alterado</span>
-						</label>
+							<span>(O seu e-mail não pode ser alterado)</span></label>
 						<input
 							type="email"
 							id="email"
@@ -181,9 +179,9 @@ function CandidateDetails() {
 					</div>
 
 					<div className="input-block">
-						<label htmlFor="linkedin">
+						<label htmlFor="linkedin"  className="label-span">
 							Linkedin
-							<span>Informe a url para seu perfil</span>
+							<span>(Informe a url para seu perfil)</span>
 						</label>
 
 						<input
@@ -199,10 +197,10 @@ function CandidateDetails() {
 					</div>
 
 					<div className="input-block">
-						<label htmlFor="phone-number">
+						<label htmlFor="phone-number" className="label-span">
 							Celular
 							<span>
-								Formato: 11 dígitos com DDD (21999999999)
+								(Formato: 11 dígitos com DDD. Exp.: 21999999999)
 							</span>
 						</label>
 
@@ -226,10 +224,10 @@ function CandidateDetails() {
 					</div>
 
 					<div className="input-block">
-						<label>
+						<label className="label-span">
 							Telefone
 							<span>
-								Formato: 10 dígitos com DDD (2133333333)
+								(Formato: 10 dígitos com DDD. Exp.: 2133333333)
 							</span>
 						</label>
 
@@ -271,16 +269,11 @@ function CandidateDetails() {
 					<div className="input-block">
 						<label
 							htmlFor="change-password"
+							className="label-link"
 							style={{ cursor: "pointer" }}
 						>
-							<Link 
-								style={{textDecoration:'none', 
-									color:'var(--color-font-primary)'}} 
-								to="/trocar-senha">Redefinir Senha
+							<Link to='/trocar-senha' className="link-underline">Redefinir senha
 							</Link>
-							<span>
-								Alterar senha de acesso
-							</span>
 							{/*<span>
                                     Você receberá um e-mail parar alterar a senha de acesso
                                 </span>*/}
@@ -288,14 +281,14 @@ function CandidateDetails() {
 					</div>
 
 					<div className="input-block">
-						<label
+						<label className="label-span label-link"
 							htmlFor="send-video"
 							style={{ cursor: "pointer" }}
 							onClick={() => history.push("/video-curriculo")}
 						>
-							Vídeo Currículo
+							<Link className="link-underline">Enviar vídeo currículo</Link>
 							<span>
-								Grave seu vídeo currículo e aumente suas chances
+								(Grave seu vídeo currículo e aumente suas chances)
 							</span>
 						</label>
 					</div>
@@ -325,7 +318,7 @@ function CandidateDetails() {
 							type="submit"
 							className="button button-primary send-form"
 						>
-							Atualizar dados
+							Salvar
 						</button>
 					</div>
 				</form>
