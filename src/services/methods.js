@@ -1,7 +1,8 @@
 import api from "./api";
 
 //userName
-import {getUserName} from './auth'
+import { getUserName } from "./auth";
+import { useAlert } from "react-alert";
 //Base64
 //import * as base64Methods from "../base64";
 export const ShowSuccess = (message, alert) => {
@@ -26,6 +27,33 @@ export async function loginUser(data) {
 		});
 	} catch (error) {
 		console.log(error.message);
+	}
+}
+
+export async function changePassword(
+	senhaAntiga,
+	novaSenha,
+	confirmarNovaSenha
+) {
+	//const alert = useAlert();
+	//let response;
+	try {
+		api.defaults.headers.post["Content-Type"] = "multipart/form-data"; //USAR FORMATO DE ARQUIVO
+
+		const data = new FormData();
+		data.append("antigaSenha", senhaAntiga);
+		data.append("confirmacaoSenha", confirmarNovaSenha);
+		data.append("novaSenha", novaSenha);
+
+		const response = await api.post("candidato/alterar-senha", data);
+
+		console.log(response);
+		return response.data;
+	} catch (err) {
+		console.log("msg de erro");
+		console.log(err);
+		//console.log(response);
+		return err;
 	}
 }
 
@@ -213,7 +241,7 @@ export async function getVideoQuestions() {
 }
 
 export async function sendVideoAnswer(file, questionId, opportunityId) {
-	const user = getUserName()
+	const user = getUserName();
 
 	api.defaults.headers.post["Content-Type"] = "multipart/form-data";
 
@@ -222,17 +250,15 @@ export async function sendVideoAnswer(file, questionId, opportunityId) {
 	data.append("arquivo", file);
 	data.append("name", `video-resposta-${user}-id${questionId}`);
 	data.append("perguntaId", questionId);
-	data.append("vagaId", opportunityId);	
-	
+	data.append("vagaId", opportunityId);
+
 	try {
-		await api.post('/candidatura-video', data);
-		const response = {status: 'ok', message: 'Vídeo enviado com sucesso'}
-		return response
-	} 
-	
-	catch (e) {
-		console.log(e.message)
-		const response = {status: null, message: `Erro ao enviar arquivo`}
+		await api.post("/candidatura-video", data);
+		const response = { status: "ok", message: "Vídeo enviado com sucesso" };
+		return response;
+	} catch (e) {
+		console.log(e.message);
+		const response = { status: null, message: `Erro ao enviar arquivo` };
 		return response;
 	}
 }
@@ -241,17 +267,15 @@ export async function checkRecordedQuestions(opportunityId) {
 	try {
 		const itens = await api.get(`/candidatura-video/${opportunityId}`);
 		let response = [];
-		itens.data.responseData.map(item => {
-			response.push(item.perguntaId)
-		})
+		itens.data.responseData.map((item) => {
+			response.push(item.perguntaId);
+		});
 
 		const returnResponse = Array.from(new Set(response));
-		return returnResponse
-	} 
-	
-	catch (e) {
-		console.log(e.message)
-		const response = {status: null, message: `Erro ao enviar arquivo`}
+		return returnResponse;
+	} catch (e) {
+		console.log(e.message);
+		const response = { status: null, message: `Erro ao enviar arquivo` };
 		return response;
 	}
 }
