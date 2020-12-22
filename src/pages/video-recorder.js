@@ -29,8 +29,6 @@ function VideoRecord(props) {
 			id: '',
 		}
 	}
-
-	console.log(props)
 	
 	const params = useParams();
 
