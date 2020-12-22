@@ -117,6 +117,8 @@ export const getCandidaturasRedux = (alert) => {
 export const createCandidaturaRedux = (idOpportunity, alert) => {
 	return async function (dispatch) {
 		try {
+			api.defaults.headers.post["Content-Type"] = "application/json";
+
 			const response = await api.post(`candidatura/${idOpportunity}`);
 
 			ShowSuccess("Candidatura criada com sucesso", alert);
@@ -125,6 +127,7 @@ export const createCandidaturaRedux = (idOpportunity, alert) => {
 				type: "CREATE_CANDIDATURA",
 				payload: response.data.responseData,
 			});
+			
 		} catch (error) {
 			switch (error.message) {
 				default:

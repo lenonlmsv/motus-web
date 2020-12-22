@@ -176,6 +176,31 @@ div.button-send button.send-form {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    justify-content: left;
+}
+
+#history-block > a {
+    text-decoration: none;
+    width: 100%;
+}
+
+#history-block .content-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#history-block .content-div span {
+    color: rgba(0,0,0,0.8);
+}
+
+#history-block .content-div p {
+    text-align: justify;
+}
+
+#history-block > a + a {
+    margin: 0.5rem 0 0 0;
 }
 
 #div-captcha {
@@ -186,6 +211,10 @@ div.button-send button.send-form {
 @media (min-width: 1200px) {
     #page-candidate-details main form {
         width: 50vw;
+    }
+
+    #history-block .content-div {
+        align-items: initial;
     }
 
     #div-captcha {

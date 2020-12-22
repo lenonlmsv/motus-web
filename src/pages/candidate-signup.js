@@ -189,9 +189,9 @@ export default function CandidateSignUp() {
 
 			await api.post("candidato-curriculo", userResume);
 
-			await logout();
+			//await logout();
 			showSuccess("Usuário criado com sucesso!");
-			history.push("/login");
+			history.push("/oportunidades");
 		} catch (e) {
 			const error = e.toString();
 			switch (error) {

@@ -25,7 +25,7 @@ export default function QuestionsBlock() {
     //States
     const [questions, setQuestions] = useState('')
     const [recordedQuestions, setRecordedQuestions] = useState('')
-    const [isCompleted, setIsCompleted] = useState(true)
+    const [isCompleted, setIsCompleted] = useState(false)
 
     useEffect(() => {
         async function fecthRecordedQuestions(id) {
@@ -37,39 +37,39 @@ export default function QuestionsBlock() {
             else {
                 //console.log('valores respondidos', response.data.responseData)
                 setRecordedQuestions(response);
+                return response;
             }
         }
 
         async function fecthQuestions() {
             const response = await getVideoQuestions()
+            const answers = await fecthRecordedQuestions(params.id)
 
             if(response === null) {
                 showError('Erro ao buscar dados. Tente novamente')
             }
             
             else {
-                const answeredValues = recordedQuestions;
+                //const answeredValues = recordedQuestions;
                 
-                if(answeredValues.length !== 0) {
-
-                    let questionsAPI = []
-                    
-                    response.data.responseData.forEach(item => {
-                        questionsAPI.push({
+                if(answers.length !== 0) {                   
+                    const questionsAPI = response.data.responseData.map(item => {
+                        return ({
                             isAnswered:false,
                             item,
                         })
                     })
 
                     questionsAPI.forEach(item => {
-                        answeredValues.forEach((questionId)=> {
+                        answers.forEach((questionId)=> {
                             if(questionId === item.item.id) {
                                 item.isAnswered = true
                             }
                         })
                     }) 
-                
-                    setQuestions(questionsAPI)    
+
+                    setQuestions(questionsAPI);
+                    checkAllAnswers();   
                 }
 
                 else {
@@ -81,14 +81,22 @@ export default function QuestionsBlock() {
                             item,
                         })
                     })
-                    
-                    setQuestions(questionsAPI) 
-                }
 
+                    setQuestions(questionsAPI);
+                }
             }
         }
 
-        fecthRecordedQuestions(params.id);
+        function checkAllAnswers() {
+            //Checa se todas as perguntas estão respondidas
+            const questionsCheck = Object.keys(questions).map(key => {
+                return questions[key].item.id;
+            })
+            
+            questionsCheck === recordedQuestions && setIsCompleted(true) 
+        }
+
+        //fecthRecordedQuestions(params.id);
         fecthQuestions();
     }, params.id)
 
@@ -107,7 +115,6 @@ export default function QuestionsBlock() {
         const isFormat = checkFileTypeVideos(fileTypeName);
 
         if(isFormat.valid) {
-            //setQuestions(true)
             setTimeout(() => {
                 //setLoading(false);
                 //setIsSend(true)
