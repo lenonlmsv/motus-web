@@ -116,6 +116,10 @@
     display: none;
 }
 
+.page-position {
+    background-color: red;
+}
+
 @media (min-width: 1200px) {
     #loading-div.loading {
         height: 170%;
