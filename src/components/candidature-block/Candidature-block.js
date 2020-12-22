@@ -47,7 +47,7 @@ function CandidatureBlock() {
 				let link = `/oportunidades/${item.vagaId}`;
 				return (
 					<Link to={link}>
-						<div key={item.id}>
+						<div className='content-div' key={item.id}>
 							<span>{getDate(date)}</span>
 							<p>{item.titulo}</p>
 						</div>
