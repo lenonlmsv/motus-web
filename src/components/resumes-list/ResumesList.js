@@ -113,8 +113,8 @@ export default function ResumesList() {
                 <label 
                     htmlFor='resume'
                     className="label-span">
-
-                        <Link className="link-underline">Envie currículo</Link>
+                        <p style={{textDecoration:'underline'}}>Envie currículo</p>
+                        {/* <Link className="link-underline"></Link> */}
                         <span>
                             (Envie seu currículo nos formatos .doc, .docx ou .pdf)
                         </span>

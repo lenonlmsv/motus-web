@@ -1,7 +1,7 @@
 import React from "react";
 
 //CSS
-import "./styles/opportunities.css";
+import "./styles/opportunities-component.css";
 
 import noOpportunities from '../../images/no-opportunities.svg'
 
