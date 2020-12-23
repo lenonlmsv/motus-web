@@ -21,32 +21,34 @@ const TrocarSenha = () => {
 		//history.push("/oportunidades");
 
 		if (newConfirmedPassword === newPassword) {
-			try {
-				api.defaults.headers.post["Content-Type"] =
-					"multipart/form-data"; //USAR FORMATO DE ARQUIVO
+			//try {
+			api.defaults.headers.post["Content-Type"] = "multipart/form-data"; //USAR FORMATO DE ARQUIVO
 
-				const data = new FormData();
-				data.append("antigaSenha", password);
-				data.append("confirmacaoSenha", newConfirmedPassword);
-				data.append("novaSenha", newPassword);
+			const data = new FormData();
+			data.append("antigaSenha", password);
+			data.append("confirmacaoSenha", newConfirmedPassword);
+			data.append("novaSenha", newPassword);
 
-				const response = await api.post(
-					"candidato/alterar-senha",
-					data
-				);
-
-				ShowSuccess(response.data.menssage, alert);
-				//console.log();
-				history.push("/candidato/:id");
-				//return response.data;
-			} catch (err) {
+			await api
+				.post("candidato/alterar-senha", data)
+				.then((response) => {
+					ShowSuccess(response.data.menssage, alert);
+					history.push("/candidato/:id");
+				})
+				.catch(function (error) {
+					//const json = JSON.stringify(error);
+					ShowError(error.response.data.message, alert);
+					//console.log(json);
+				});
+			//return response.data;
+			/*} catch (err) {
 				const json = JSON.stringify(err);
 				console.log("msg de erro");
 				console.log(err.data);
 				console.log(json);
 				//console.log(response);
 				//return err;
-			}
+			}*/
 		} else {
 			ShowError("Sua nova senha não confere com a confirmação");
 		}
