@@ -46,6 +46,7 @@
 
 #page-login #submit-error p {
     color: red;
+    font-weight: normal;
 }
 
 @media (min-width: 1200px) {
