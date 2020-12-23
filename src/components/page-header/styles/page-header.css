@@ -68,7 +68,6 @@ img.sys-logo {
 }
 
 #login-button a {
-    text-decoration: none;
     font-size: 1rem;
 }
 
@@ -85,11 +84,11 @@ img.sys-logo {
     }
 
     #login-button {
-        justify-content: right!important;
+        justify-content: flex-end!important;
     }
     
     #login-button a {
-        font-size: 0.8rem;
+        font-size: 18px;        
     }
 
 

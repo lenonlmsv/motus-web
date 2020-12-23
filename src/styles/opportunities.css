@@ -16,15 +16,31 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 1rem 0;
+    padding: 30px 20px;
     font-family: var(--font-family-light);
     border: unset;
     cursor: pointer;
     color: rgba(0,0,0,0.9);
 }
 
+.opportunities-card h3 {
+    padding-right: 40px;  
+    font-size: 18px;
+    color: #505050;
+}
+
 .opportunities-card-closed { /* Used to hide / show opportunitie*/
     border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.div-car strong {
+    color: var(--color-font-primary);
+}
+
+.vagasDisp {
+    font-weight: 100;
+    margin-bottom: 25px;
+    color: var(--color-font-primary);
 }
 
 #page-opportunities .opportunities-list {
@@ -39,7 +55,7 @@
 }
 
 #page-opportunities .opportunitie-description {
-    padding: 0.3rem 0 1rem 0;
+    padding: 0 20px 40px 20px;
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid rgba(0,0,0,0.2);
@@ -80,11 +96,9 @@
 
 #search-items input {
     width: 100%;
-    border-radius: 12px;
-    border: 1px solid rgba(0,0,0,0.5);
-    font-size: 1.2rem;
-    padding: 5px;
-    margin: 0.5rem;
+    border: 1px solid rgba(0,0,0,0.3);
+    font-size: 1rem;
+    padding: 10px;
 }
 
 #search-items div{
@@ -101,6 +115,10 @@
     font-size: 1rem;
 }
 
+#search-button {    
+    width: 154px;
+}
+
 div#div-pagination {
     display: flex;
     justify-content: center;
@@ -114,14 +132,19 @@ nav.MuiPagination-root ul li button {
     font-size: 1rem;
 }
 
+.MuiPaginationItem-page.Mui-selected {
+    background-color: var(--color-font-primary)!important;
+    color: #fff;
+}
+
 @media (min-width: 800px) {
     #search-items {
         flex-direction: row;
-        margin: 0 0 1rem 0;
+        margin-bottom: 50px;
     }
 
     #search-items input {
-        width: 80%;
+        width: 100%;
         margin: 0;
         height: 100%;
     }
@@ -131,11 +154,10 @@ nav.MuiPagination-root ul li button {
     }
 
     div#div-pagination {
-        justify-content: left;
+        margin: 60px 0 80px 0;
     }
     #search-items button {
         margin: 0 0 0 1rem;
-        padding: 0.5rem;
     }
 
 

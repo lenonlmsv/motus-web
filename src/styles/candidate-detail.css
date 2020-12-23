@@ -19,10 +19,6 @@
     display: none!important;
 }
 
-input[type=text] {
-
-}
-
 .input-error {
     border: 1px solid red;
 }

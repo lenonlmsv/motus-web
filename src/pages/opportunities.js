@@ -65,7 +65,7 @@ function Opportunities(props) {
 							id="search-input"
 							type="text"
 							value={search}
-							placeholder="SCRUM Master..."
+							placeholder="Pesquise aqui..."
 							onChange={(e) => setSearch(e.target.value)}
 							onKeyPress={handleKeyPress}
 						/>
@@ -108,6 +108,9 @@ function Opportunities(props) {
 			props.opportunities.responseData.length > 0 ? (
 				<div>
 					<div>
+
+						<h2 className='vagasDisp'>Vagas disponíveis</h2>
+
 						<OpportunitiesList
 							//opportunities={opportunities}
 							opportunities={props.opportunities.responseData}

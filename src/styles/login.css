@@ -56,7 +56,8 @@
     }
 
     #page-login main form {
-        width: 50vw;
+        width: 30vw;
+        margin-bottom: 70px;
     }
 
     #page-login #options {
