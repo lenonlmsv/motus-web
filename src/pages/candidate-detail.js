@@ -15,7 +15,7 @@ import CandidatureBlock from "../components/candidature-block/Candidature-block"
 //API and Auth
 import api from "../services/api";
 import { getHashId, setUserName } from "../services/auth";
-import {checkVideoResume, downloadResume,  deleteResume} from '../services/methods'
+import {checkVideoResume, downloadFile,  deleteResume} from '../services/methods'
 
 //Icons
 import { FaDownload, FaTrash } from "react-icons/fa";
@@ -132,7 +132,7 @@ function CandidateDetails() {
 	}
 
 	function downloadResumeAPI(hashId, filename) {
-		downloadResume(hashId, filename)
+		downloadFile(hashId, filename)
 	}
 
 	return (

@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import { Link, useParams } from "react-router-dom";
 
 //Methods
-import {getVideoQuestions, checkRecordedQuestions} from '../../services/methods'
+import {getVideoQuestions, downloadVideoAnswer, checkRecordedQuestions} from '../../services/methods'
 
 //Alert
 import {useAlert} from 'react-alert';
@@ -16,12 +16,11 @@ import loadingImg from '../../images/loading.gif'
 export default function QuestionsBlock() {
     const params = useParams();
 
-    //const initial = {id: props.id, isLoading: false}
-
     //States
     const [questions, setQuestions] = useState('')
     const [recordedQuestions, setRecordedQuestions] = useState('')
     const [isCompleted, setIsCompleted] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         async function fecthRecordedQuestions(id) {
@@ -56,7 +55,6 @@ export default function QuestionsBlock() {
 
                     questionsAPI.forEach(item => {
                         answers.forEach((questionId)=> {
-                            console.log('AQUI', item, questionId)
                             if(questionId === item.item.id) {
                                 item.isAnswered = true
                             }
@@ -98,6 +96,8 @@ export default function QuestionsBlock() {
         fecthQuestions();
     }, params.id)
 
+    //console.log('questions', questions)
+
     const alert = useAlert()
 
     function showSucess(m) {
@@ -108,8 +108,12 @@ export default function QuestionsBlock() {
         alert.show(m, {type: 'error'})
     } 
 
-    function downloadVideo() {
-
+    function downloadVideo(questionId) {
+        setIsLoading(true)
+        console.log('loading', isLoading)
+        const opportunityId = params.id;
+        downloadVideoAnswer(opportunityId, questionId)
+        setTimeout(() => setIsLoading(false), 2000) 
     }
 
     return (
@@ -153,14 +157,15 @@ export default function QuestionsBlock() {
                                         <FaRecordVinyl className="send-button-icon" />
                                         Gravar ou enviar vídeo
                                     </Link>
-                                {
-                                    questions[key].isAnswered && (
-                                        <button onClick={downloadVideo} className="send-button">
-                                            <FaDownload className="send-button-icon" />
-                                            Download
-                                        </button>
-                                    )
-                                }
+                                
+                                    { //Mostra o botão de download de acordo com as respostas disponíveis
+                                        questions[key].isAnswered && (
+                                            <button onClick={() => {downloadVideo(questions[key].item.id)}} className="send-button">
+                                                <FaDownload className="send-button-icon" />
+                                                Download
+                                            </button>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>

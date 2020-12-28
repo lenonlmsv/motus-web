@@ -90,14 +90,39 @@ export async function getResumes() {
 	}
 }
 
-export async function downloadResume(resumeHashId, fileName) {
+export async function downloadFile(fileHashId, fileName) {
 	const apiKey = process.env.REACT_APP_API_KEY
 	const apiURL = process.env.REACT_APP_API_ENDPOINT
 	
 	let a = document.createElement("a");
-	a.href = `${apiURL}candidato-curriculo/download/${resumeHashId}/${apiKey}`
+	a.href = `${apiURL}candidato-curriculo/download/${fileHashId}/${apiKey}`
 	a.style = "display:none";
 	a.download = fileName;
+	console.log('hash', fileHashId)
+	console.log('url', a.href)
+	a.click();
+}
+
+async function getRecordedQuestions(opportunityId) {
+	try {
+		let response = await api.get(`/candidatura-video/${opportunityId}`);
+		return { status: 'ok', itens: response.data.responseData };
+
+	} catch (e) {
+		console.log(e.message);
+		const response = { status: null, message: `Erro ao enviar arquivo` };
+		return response;
+	}
+}
+
+export async function downloadVideoAnswer(opportunityId, questionId) {
+	//Pega a lista de currículos vídeos enviada
+	const response = await getRecordedQuestions(opportunityId);
+	const userVideo = response.itens.find(item => item.perguntaId === questionId)
+
+	let a = document.createElement("a");
+	a.href = userVideo.urlArquivo;
+	a.style = "display:none";
 	a.click();
 }
 

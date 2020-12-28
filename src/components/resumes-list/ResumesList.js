@@ -14,7 +14,7 @@ import {checkFileTypeFiles} from '../../services/functions'
 
 //Icons
 import { FaDownload, FaTrash } from "react-icons/fa";
-import { getResumes, deleteResume, downloadResume, sendResume } from '../../services/methods';
+import { getResumes, deleteResume, downloadFile, sendResume } from '../../services/methods';
 import loadingImg from '../../images/loading.gif'
 
 export default function ResumesList() {
@@ -55,7 +55,7 @@ export default function ResumesList() {
     }
 
     async function downloadResumeAPI(hashId, filename) {
-        await downloadResume(hashId, filename)
+        await downloadFile(hashId, filename)
     }
 
     async function handleResume(e) {
