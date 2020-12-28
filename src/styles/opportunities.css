@@ -105,6 +105,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-top: 30px;
 }
 
 #search-items button + button{
@@ -151,6 +152,7 @@ nav.MuiPagination-root ul li button {
 
     #search-items div {
         width: auto;
+        margin-top: 0px;
     }
 
     div#div-pagination {

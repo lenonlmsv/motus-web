@@ -130,7 +130,7 @@ function OpportunitieDetail(props) {
 							onClick={() =>
 								props.createCandidaturaRedux(params.id, alert)
 							}
-							className="button button-secondary opportunitie-button"
+							className="button button-primary opportunitie-button"
 						>
 							Quero me candidatar
 						</button>
@@ -159,7 +159,7 @@ function OpportunitieDetail(props) {
 
 			<div className="return">
 				<Link to="/oportunidades/" className="button button-secondary">
-					Ver oportunidades
+					Ver outras oportunidades
 				</Link>
 			</div>
 		</div>

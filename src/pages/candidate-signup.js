@@ -220,7 +220,7 @@ export default function CandidateSignUp() {
 			<main className="display-flex">
 				<form className="create-candidate" onSubmit={handleSubmit}>
 					<div className="input-block">
-						<label htmlFor="name">Nome</label>
+						<label htmlFor="name" className="label-span">Nome</label>
 						<input
 							id="name"
 							value={name}
@@ -235,10 +235,10 @@ export default function CandidateSignUp() {
 					</div>
 
 					<div className="input-block">
-						<label htmlFor="email">
+						<label htmlFor="email" className="label-span">
 							E-mail
 							<span>
-								Seu email será usado como login de acesso
+								(Seu email será usado como login de acesso)
 							</span>
 						</label>
 						<input
@@ -255,9 +255,9 @@ export default function CandidateSignUp() {
 					</div>
 
 					<div className="input-block">
-						<label htmlFor="linkedin">
+						<label htmlFor="linkedin" className="label-span">
 							Linkedin
-							<span>Informe a url para seu perfil</span>
+							<span>(Informe a url para seu perfil)</span>
 						</label>
 
 						<input
@@ -274,10 +274,10 @@ export default function CandidateSignUp() {
 					</div>
 
 					<div className="input-block">
-						<label htmlFor="phone-number">
+						<label htmlFor="phone-number" className="label-span">
 							Celular
 							<span>
-								Formato: 11 dígitos com DDD (21) 99999-9999
+								(Formato: 11 dígitos com DDD. Exp.: (21) 99999-9999)
 							</span>
 						</label>
 
@@ -302,10 +302,10 @@ export default function CandidateSignUp() {
 					</div>
 
 					<div className="input-block">
-						<label htmlFor="phone">
+						<label htmlFor="phone" className="label-span">
 							Telefone
 							<span>
-								Formato: 10 dígitos com DDD (21) 3333-3333
+								(Formato: 10 dígitos com DDD. Exp.: (21) 3333-3333)
 							</span>
 						</label>
 
@@ -330,10 +330,10 @@ export default function CandidateSignUp() {
 					</div>
 
 					<div className="input-block">
-						<label htmlFor="password">
+						<label htmlFor="password" className="label-span">
 							Senha
 							<span>
-								Informe uma senha para acesso ao sistema
+								(Informe uma senha para acesso ao sistema)
 							</span>
 						</label>
 
@@ -351,9 +351,9 @@ export default function CandidateSignUp() {
 					</div>
 
 					<div className="input-block">
-						<label htmlFor="confirm-password">
+						<label htmlFor="confirm-password" className="label-span">
 							Senha
-							<span>Confirme sua senha</span>
+							<span>(Confirme sua senha)</span>
 						</label>
 
 						<input
@@ -370,9 +370,9 @@ export default function CandidateSignUp() {
 					</div>
 
 					<div className="input-flex input-block">
-						<label htmlFor="resume" className="">
-							<strong>Envie seu currículo</strong>
-							<span>Formatos .doc, .docx ou .pdf</span>
+						<label htmlFor="resume" className="label-span">
+						<p style={{textDecoration:'underline'}}>Envie seu currículo</p>
+							<span>(Envie seu currículo nos formatos .doc, .docx ou .pdf)</span>
 						</label>
 
 						<input

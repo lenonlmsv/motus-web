@@ -172,7 +172,9 @@ div.button-send button.send-form {
 
 .label-link {
     margin-bottom: 20px;
-}
+    text-decoration: underline;
+} 
+
 
 button:focus { outline:0 !important; }
 

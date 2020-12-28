@@ -40,6 +40,8 @@ body {
     overflow-x: hidden;
 }
 
+button:focus, input { outline:0 !important; }
+
 .router-content {
    display: flex;
    justify-content: center;
