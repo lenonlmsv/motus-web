@@ -15,6 +15,10 @@ import CandidatureBlock from "../components/candidature-block/Candidature-block"
 //API and Auth
 import api from "../services/api";
 import { getHashId, setUserName } from "../services/auth";
+import {checkVideoResume, downloadResume,  deleteResume} from '../services/methods'
+
+//Icons
+import { FaDownload, FaTrash } from "react-icons/fa";
 
 //Alert
 import { useAlert } from "react-alert";
@@ -39,25 +43,14 @@ function CandidateDetails() {
 	const [linkedin, setLinkedin] = useState("");
 	const [cellNumber, setCellNumber] = useState("");
 	const [phone, setPhone] = useState("");
+	const [videoResume, setVideoResume] = useState('');
 
 	useEffect(() => {
 		try {
-			const getData = async function () {
+			async function getData() {
 				api.defaults.headers.post["Content-Type"] = "application/json";
 
 				await api.get(`/candidato`).then((response) => {
-					try {
-						// api.get(`/candidato-curriculo/DOCUMENTO`).then(response => {
-						//     setResume({
-						//         'name' : response.data.responseData[0].nomeArquivo,
-						//         'hashId': response.data.responseData[0].hashId,
-						//     });
-						// //document.querySelector('div.file-details').classList.remove('display-none');
-						// });
-					} catch (error) {
-						showError("Erro ao buscar currículo");
-					}
-
 					const data = response.data.responseData;
 					setName(data.nome);
 					setEmail(data.email);
@@ -65,7 +58,15 @@ function CandidateDetails() {
 					setPhone(data.telefone);
 					setLinkedin(data.linkedin);
 				});
+
+				getVideoResume()
 			};
+
+			async function getVideoResume() {
+				const videoResumeList = await checkVideoResume();
+				videoResumeList.status === 'ok' && setVideoResume(videoResumeList.data)
+			}
+
 			getData();
 		} catch (error) {
 			console.log(error);
@@ -123,6 +124,15 @@ function CandidateDetails() {
 		});
 
 		e.target.classList.remove("button-hide");
+	}
+
+	function deleteResumeAPI(hashId) {
+		deleteResume(hashId)
+		setVideoResume('')
+	}
+
+	function downloadResumeAPI(hashId, filename) {
+		downloadResume(hashId, filename)
 	}
 
 	return (
@@ -291,25 +301,29 @@ function CandidateDetails() {
 								(Grave seu vídeo currículo e aumente suas chances)
 							</span>
 						</label>
+
+						{
+							videoResume !== '' &&
+								videoResume.map(vResume => {
+									return (
+										<div className='file-list'>
+											<FaTrash 
+												color={'grey'} 
+												onClick={() => {
+												deleteResumeAPI(vResume.hashId)}}/>
+		
+											<FaDownload 
+												color={'var(--color-font-primary)'} 
+												onClick={() => 
+												downloadResumeAPI(
+													vResume.hashId,
+													vResume.nomeArquivo)}/>
+											<p>{vResume.nomeArquivo}</p>
+										</div>
+									)
+								})
+						}
 					</div>
-
-					{/* <div className="input-flex input-block">
-                        <label 
-                            htmlFor='resume'
-                            className=''>
-                                <strong>Envie seu currículo</strong>
-                                <span>
-                                    Formatos .doc, .docx ou .pdf
-                                </span>
-                            
-                        </label>
-
-                        <input 
-                            id="resume"
-                            type='file'
-                            className='display-none'
-                            onChange={handleResume}/>
-                    </div> */}
 
 					<ResumesList />
 

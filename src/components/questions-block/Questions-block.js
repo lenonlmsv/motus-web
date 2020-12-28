@@ -1,21 +1,17 @@
 import React, {useEffect, useState} from "react";
 
 //Router
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 //Methods
 import {getVideoQuestions, checkRecordedQuestions} from '../../services/methods'
-
-//Functions
-import {checkFileTypeVideos} from '../../services/functions'
 
 //Alert
 import {useAlert} from 'react-alert';
 
 //Icons
-import { FaUpload, FaDownload, FaRecordVinyl, FaCheck } from "react-icons/fa";
+import { FaDownload, FaRecordVinyl, FaCheck } from "react-icons/fa";
 import loadingImg from '../../images/loading.gif'
-import { renderIntoDocument } from "react-dom/test-utils";
 
 export default function QuestionsBlock() {
     const params = useParams();
@@ -49,9 +45,7 @@ export default function QuestionsBlock() {
                 showError('Erro ao buscar dados. Tente novamente')
             }
             
-            else {
-                //const answeredValues = recordedQuestions;
-                
+            else {               
                 if(answers.length !== 0) {                   
                     const questionsAPI = response.data.responseData.map(item => {
                         return ({
@@ -62,6 +56,7 @@ export default function QuestionsBlock() {
 
                     questionsAPI.forEach(item => {
                         answers.forEach((questionId)=> {
+                            console.log('AQUI', item, questionId)
                             if(questionId === item.item.id) {
                                 item.isAnswered = true
                             }
@@ -92,11 +87,14 @@ export default function QuestionsBlock() {
             const questionsCheck = Object.keys(questions).map(key => {
                 return questions[key].item.id;
             })
+
+            // const recQuesitons = recordedQuestions.map(recQuestion => {
+            //     return recQuesitons
+            // })
             
             questionsCheck === recordedQuestions && setIsCompleted(true) 
         }
 
-        //fecthRecordedQuestions(params.id);
         fecthQuestions();
     }, params.id)
 
@@ -108,25 +106,10 @@ export default function QuestionsBlock() {
 
     function showError(m) {
         alert.show(m, {type: 'error'})
-    }    
+    } 
 
-    function handleSubmit(e, item) {
-        const fileTypeName = e.target.files[0].type;
-        const isFormat = checkFileTypeVideos(fileTypeName);
+    function downloadVideo() {
 
-        if(isFormat.valid) {
-            setTimeout(() => {
-                //setLoading(false);
-                //setIsSend(true)
-            },3000)
-            
-            //CHAMAR API
-            //atualizar página
-            showSucess('Vídeo enviado com sucesso')
-        }
-        else {
-            showError(`Erro: ${isFormat.acceptedFormats}`)
-        }
     }
 
     return (
@@ -153,30 +136,6 @@ export default function QuestionsBlock() {
                                 </div>
 
                                 <div className="actions">
-                                    {/* <label
-                                        htmlFor="send-video"
-                                        className="send-button"
-                                    >
-                                        {
-                                            questions[key].isLoading ? (<img style={{
-                                                width:'1rem', 
-                                                margin: '0 0.5rem 0 0'}}   
-                                                src={loadingImg}/>)
-                                            : 
-                                            <FaUpload className="send-button-icon" />
-                                        }
-                                    
-                                        Enviar Vídeo
-                                    </label>
-
-                                    <input
-                                        id="send-video"
-                                        type="file"
-                                        className="send-button"
-                                        onChange={e => handleSubmit(e, questions)}
-                                        style={{ display: "none" }}
-                                    /> */}
-
                                     <Link
                                         to={{
                                             pathname: `/gravar-video/${params.id}`,
@@ -194,11 +153,14 @@ export default function QuestionsBlock() {
                                         <FaRecordVinyl className="send-button-icon" />
                                         Gravar ou enviar vídeo
                                     </Link>
-
-                                    <button className="send-button">
-                                        <FaDownload className="send-button-icon" />
-                                        Download
-                                    </button>
+                                {
+                                    questions[key].isAnswered && (
+                                        <button onClick={downloadVideo} className="send-button">
+                                            <FaDownload className="send-button-icon" />
+                                            Download
+                                        </button>
+                                    )
+                                }
                                 </div>
                             </div>
                         </div>

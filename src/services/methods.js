@@ -91,31 +91,14 @@ export async function getResumes() {
 }
 
 export async function downloadResume(resumeHashId, fileName) {
+	const apiKey = process.env.REACT_APP_API_KEY
+	const apiURL = process.env.REACT_APP_API_ENDPOINT
+	
 	let a = document.createElement("a");
-	//a.href = api.get(`/candidato-curriculo/download/${resumeHashId}`);
-
-	try {
-		const link = await api.get(
-			`/candidato-curriculo/download/${resumeHashId}`
-		);
-		//const teste = window.URL.createObjectURL(link.data)
-		//const blob = new Blob(link.data, {type:'text'})
-
-		//const base64 = btoa(unescape(encodeURIComponent(link.data)))
-		//const data = new Blob([link.data], {type: 'application/octet-stream;charset=UTF-8'})//[link.data]), {type: 'application/msword;charset=UTF-8'});
-
-		// const base64 = base64Methods.base64encode(link.data, 'charset=UTF-8');
-		// const base64Dec = base64Methods.base64decode(base64, 'charset=UTF-8');
-		// const data = new Blob([base64Dec]);
-		// const url = window.URL.createObjectURL(data);
-
-		//a.href = url//data:application/octet-stream;base64,${link}`
-		a.style = "display:none";
-		a.download = fileName;
-		a.click();
-	} catch (e) {
-		console.log(e);
-	}
+	a.href = `${apiURL}candidato-curriculo/download/${resumeHashId}/${apiKey}`
+	a.style = "display:none";
+	a.download = fileName;
+	a.click();
 }
 
 export async function sendResume(resume) {
@@ -128,9 +111,32 @@ export async function sendResume(resume) {
 		data.append("name", resume.name);
 		data.append("tipoCurriculo", "DOCUMENTO");
 
-		api.post("/candidato-curriculo", data);
+		await api.post("/candidato-curriculo", data);
+		return {
+			status: 'ok'
+		}
 	} catch (e) {
 		console.log(e);
+		return {
+			status: null
+		}
+	}
+}
+
+export async function checkVideoResume() {
+	try {	 
+		const response = await api.get(`candidato-curriculo/VIDEO`);
+		if(response.data.responseData === []) {
+			return []
+		}
+
+		else {
+			return {status: 'ok', data: response.data.responseData}
+		}
+	}
+
+	catch(e) {
+		return {status: 'error'}
 	}
 }
 
@@ -266,7 +272,7 @@ export async function sendVideoAnswer(file, questionId, opportunityId) {
 export async function checkRecordedQuestions(opportunityId) {
 	try {
 		const itens = await api.get(`/candidatura-video/${opportunityId}`);
-		let response = [];
+		let response = []
 		itens.data.responseData.map((item) => {
 			response.push(item.perguntaId);
 		});
