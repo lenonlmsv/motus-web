@@ -92,7 +92,7 @@ function Login({ isLogged, setName, signIn }) {
 			<main>
 				<form onSubmit={onSubmit}>
 					<div className="input-block">
-						<label htmlFor="user">
+						<label htmlFor="user" className="label-span">
 							Login
 							<span>Informe o e-mail para login</span>
 						</label>
