@@ -67,7 +67,7 @@
 
 .video-buttons .button-primary  {
     margin: 1rem 0;
-    color: #fff;
+    color: var(--color-font-standard);
 }
 
 .button-secondary {
@@ -95,7 +95,7 @@
 }
 
 #loading-div.loading {
-    background-color: #fff;
+    background-color: var(--color-background);
     opacity: 0.5;
     width: 100%;
     height: 280%;

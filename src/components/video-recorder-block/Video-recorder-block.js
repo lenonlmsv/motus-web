@@ -11,7 +11,7 @@ import {
 	FaRecordVinyl,
 	FaShare,
 } from "react-icons/fa";
-import loadingImg from "../../images/loading.gif";
+import {imageLoading} from '../../images/images'
 
 //Methods
 import { sendVideoResume, sendVideoAnswer } from "../../services/methods";
@@ -422,7 +422,7 @@ function VideoRecorderBlock(props) {
 								width: "2rem",
 								margin: "0 0 1rem 0",
 							}}
-							src={loadingImg}
+							src={imageLoading}
 							alt="Loading..."
 						/>
 					</div>

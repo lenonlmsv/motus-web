@@ -140,10 +140,10 @@ div.button-send button.send-form {
     border-top: 1px solid #cecece;
     border-left: 1px solid #cecece;
     border-right: 1px solid #cecece;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid var(--color-font-standard);
     margin-bottom: -1px;
     z-index: 10;    
-    background-color: #fff;
+    background-color: var(--color-background);
     cursor: pointer;
 }
 

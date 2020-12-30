@@ -2,14 +2,14 @@
     --color-background: #FFF;
     --color-font-primary: #0047a8;
     --color-font-secondary: #ea0870;
-
+    --color-font-standard: #fff;
+    --color-footer-dark: #4A4A49;
+    --color-footer-darker: #3C3C3C;
+    
     --font-family-bold: Bariol Regular, sans-serif;
     --font-family-light: Bariols Light, sans-serif;
 
-    --image-logo: ../images/logo-sys-with-name.svg;
-    --image-not-found: ../images/image-not-found.png;
-
-    --page-max-width: 1140px;
+    --page-max-width: 1200px; /*Max width da página quando na visualização web*/
 }
 
 @font-face {
@@ -84,7 +84,7 @@ button:focus, input { outline:0 !important; }
 
 .button-primary {
     background-color: var(--color-font-primary);
-    color: #fff;
+    color: var(--color-font-standard);
     border: 0;
 }
 

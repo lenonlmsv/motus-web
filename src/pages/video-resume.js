@@ -15,7 +15,7 @@ import { FaExclamation } from "react-icons/fa";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
-import loadingImg from '../images/loading.gif'
+import {imageLoading} from '../images/images'
 
 //Methods
 import {sendVideoResume} from '../services/methods'
@@ -135,7 +135,7 @@ function VideoResume() {
                             <img style={{
                                 width:'2rem',
                                 margin: '1rem'}} 
-                                src={loadingImg}/>
+                                src={imageLoading}/>
                         )
                         :
                         (

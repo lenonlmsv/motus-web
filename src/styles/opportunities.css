@@ -135,7 +135,7 @@ nav.MuiPagination-root ul li button {
 
 .MuiPaginationItem-page.Mui-selected {
     background-color: var(--color-font-primary)!important;
-    color: #fff;
+    color: var(--color-font-standard);
 }
 
 @media (min-width: 800px) {

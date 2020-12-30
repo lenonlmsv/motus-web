@@ -97,7 +97,7 @@
     justify-content: center;
     align-items: center;
     background-color: green;
-    color: #fff;
+    color: var(--color-font-standard);
     border-radius: 10px;
     width: 100%;
     padding: 0.6rem;

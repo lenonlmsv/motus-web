@@ -15,7 +15,7 @@ import {checkFileTypeFiles} from '../../services/functions'
 //Icons
 import { FaDownload, FaTrash } from "react-icons/fa";
 import { getResumes, deleteResume, downloadFile, sendResume } from '../../services/methods';
-import loadingImg from '../../images/loading.gif'
+import {imageLoading} from '../../images/images'
 
 export default function ResumesList() {
     const [resumes, setResumes] = useState({});
@@ -140,7 +140,7 @@ export default function ResumesList() {
                 )
                 :
                 (
-                    <img style={{width:'40px', margin:'20px'}} src={loadingImg}/>
+                    <img style={{width:'40px', margin:'20px'}} src={imageLoading}/>
                 )
             }
 

@@ -21,6 +21,7 @@ header#page-header .container-links {
     justify-content: center;
 }
 
+
 img.sys-logo {
     width: 100%;
     height: 100%;
@@ -34,7 +35,7 @@ img.sys-logo {
 
 .linkedinIcon {
     background-color: #0A66C2;
-    color: #fff;
+    color: var(--color-font-standard);
     width: 1.5em;
     height: 1.5em;
     position: relative;
@@ -48,7 +49,7 @@ img.sys-logo {
 
 .linkedinIcon:hover{
     color: #0A66C2;
-    background-color: #fff;
+    background-color: var(--color-font-standard);
 }
 
 .backButton {
@@ -141,7 +142,7 @@ img.sys-logo {
         display: inline;
         position: absolute;
         top: calc(100% + 3px);
-        background-color: #fff;
+        background-color: var(--color-font-standard);
         z-index: 10;
     }
 

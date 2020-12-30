@@ -5,7 +5,8 @@ import { Link, useHistory, useParams } from "react-router-dom";
 
 //Icons
 import { FaUpload, FaDownload, FaRecordVinyl, FaCheck } from "react-icons/fa";
-import loadingImg from '../../images/loading.gif'
+import {imageLoading} from '../../images/images'
+
 
 //Methods
 
@@ -85,7 +86,7 @@ export default function Question(props) {
                             loading ? (<img style={{
                                 width:'1rem', 
                                 margin: '0 0.5rem 0 0'}}   
-                                src={loadingImg}/>)
+                                src={imageLoading}/>)
                             : 
                             <FaUpload className="send-button-icon" />
                         }

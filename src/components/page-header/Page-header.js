@@ -4,10 +4,11 @@ import React, { useState } from 'react';
 import './styles/page-header.css'
 
 //Routes
-import { Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
-//Images
-import sysLogo from '../../images/logo-sys-with-name.svg'
+//Images    
+import {imageLogo} from '../../images/images.js'
+
 import { AiOutlineDown } from 'react-icons/ai';
 import { FaLinkedinIn } from 'react-icons/fa';
 
@@ -34,7 +35,10 @@ function PageHeader(props) {
             <header id="page-header">
                 <div className="container-logo">
                     <a href="https://www.sysmanager.com.br">
-                        <img className='sys-logo' src={sysLogo} alt='Sys-Logo'/>
+                        <img 
+                            className='sys-logo' 
+                            src={imageLogo} 
+                            alt='Sys-Logo'/>
                     </a>
                 </div>
 

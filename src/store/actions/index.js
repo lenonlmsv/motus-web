@@ -1,7 +1,5 @@
 import api from "../../services/api";
 import { login } from "../../services/auth";
-//import Alert from "../../components/Alert";
-import setUserName from "../reducers/set-user-name";
 import { ShowError, ShowSuccess } from "../../services/methods";
 
 export const signIn = (email, senha, alert) => {

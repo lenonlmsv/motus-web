@@ -1,11 +1,12 @@
 import React from "react";
 
-import loadingImage from '../../images/loading.gif'
+//Images
+import {imageLoading} from '../../images/images'
 
 const OpportunitiesLoadingCard = () => {
 	return (
 		<div style={{display:'flex', justifyContent:'center'}}>
-			<img alt="Carregando" src={loadingImage}/>;
+			<img alt="Carregando" src={imageLoading}/>;
 		</div>
 	)
 }

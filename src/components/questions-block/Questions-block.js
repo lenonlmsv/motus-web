@@ -11,7 +11,6 @@ import {useAlert} from 'react-alert';
 
 //Icons
 import { FaDownload, FaRecordVinyl, FaCheck } from "react-icons/fa";
-import loadingImg from '../../images/loading.gif'
 
 export default function QuestionsBlock() {
     const params = useParams();
