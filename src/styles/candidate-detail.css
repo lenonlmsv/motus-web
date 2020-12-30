@@ -35,17 +35,12 @@
     width: 100%;
     max-width: var(--page-max-width);
     border: 1px solid #cecece;
-    padding: 40px;
     border-radius: 10px;
     z-index: 1;
 }
 
 #page-candidate-details main form.create-candidate {
     border: none;
-}
-
-.create-candidate {
-    width: 40vw!important;
 }
 
 .input-block + .input-block {
@@ -240,8 +235,14 @@ button:focus { outline:0 !important; }
 }
 
 @media (min-width: 1200px) {
+
+    .create-candidate {
+        width: 40vw!important;
+    }
+
     #page-candidate-details main form {
         width: 50vw;
+        padding: 40px;
     }
 
     #history-block .content-div {
