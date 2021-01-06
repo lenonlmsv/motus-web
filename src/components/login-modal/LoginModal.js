@@ -46,15 +46,9 @@ const LoginModal = ({ functionClose }) => {
 					},
 				}}
 			>
-				<IconButton
-					variant="contained"
-					color="primary"
-					component="span"
-					onClick={() => closeModal()}
-					className={"button-close"}
-				>
-					<GrFormClose className={"button-close-icon"} />
-				</IconButton>
+				<Link onClick={() => closeModal()} className="button-close">
+					<GrFormClose className="button-close-icon" />
+				</Link>
 
 				<Login closeModal={closeModal} />
 			</ReactModal>
