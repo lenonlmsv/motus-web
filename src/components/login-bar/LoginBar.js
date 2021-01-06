@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "@material-ui/core";
 
 //Router dom
 import { Link } from "react-router-dom";
@@ -24,8 +25,13 @@ function LoginBar({ isLogged, userName, dispatch }) {
 	const [isLogar, setIsLogar] = useState(false);
 	const hashId = getHashId();
 
+	const closeModal = () => {
+		setIsLogar(false);
+	};
+
 	const openModal = () => {
 		setIsLogar(true);
+
 		//setIsLogar(false);
 	};
 
@@ -52,15 +58,15 @@ function LoginBar({ isLogged, userName, dispatch }) {
 		);
 	} else {
 		return (
-			<div id="login-button" onClick={() => openModal()}>
-				<Link to="" className="">
+			<div id="login-button">
+				<Button to="" className="" onClick={() => openModal()}>
 					{"Login | "}
-				</Link>
+				</Button>
 
 				<Link to="/cadastro" className="">
 					{" Cadastre-se"}
 				</Link>
-				{isLogar ? <LoginModal /> : null}
+				{isLogar ? <LoginModal functionClose={closeModal} /> : null}
 			</div>
 		);
 	}

@@ -19,12 +19,13 @@ import "../styles/login.css";
 
 //Alert
 import { useAlert } from "react-alert";
+import { Button } from "@material-ui/core";
 
 function initialState() {
 	return { user: "", password: "" };
 }
 
-function LoginComponent({ isLogged, setName, signIn }) {
+function LoginComponent({ isLogged, setName, signIn, closeModal }) {
 	const alert = useAlert();
 
 	const showError = (message) => {
@@ -42,6 +43,7 @@ function LoginComponent({ isLogged, setName, signIn }) {
 
 	useEffect(() => {
 		if (isLogged) {
+			closeModal();
 			history.push("/oportunidades");
 		}
 	}, [isLogged]);
@@ -52,6 +54,9 @@ function LoginComponent({ isLogged, setName, signIn }) {
 		signIn(user, password, alert);
 
 		setTimeout(() => setName(), 800); //Tempo necessário para o localstorage ser preenchido
+		if (isAuthenticated()) closeModal();
+
+		console.log("Chegou aqui");
 	}
 
 	return (
@@ -110,9 +115,12 @@ function LoginComponent({ isLogged, setName, signIn }) {
 					</div>
 
 					<div className="submit-button">
-						<Link to="/" className="button button-secondary">
-							Ver oportunidades
-						</Link>
+						<button
+							className="button button-secondary"
+							onClick={() => closeModal()}
+						>
+							Cancelar
+						</button>
 
 						<button type="submit" className="button button-primary">
 							Acessar

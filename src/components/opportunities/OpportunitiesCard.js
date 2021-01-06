@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import OpportunitiesDetailCard from "./OpportunitiesDetailCard";
 
+import LoginModal from "../login-modal/LoginModal";
+
+import { isAuthenticated } from "../../services/auth";
+
 import {
 	getCandidaturasRedux,
 	createCandidaturaRedux,
@@ -35,6 +39,8 @@ const OpportunitiesCard = ({
 	const ArrowUp = <AiOutlineUp style={{ color: "rgba(0,0,0,0.5)" }} />;
 	const [iconState, setIconState] = useState(ArrowDown);
 
+	const [modalIsOpen, setModalIsOpen] = useState(false);
+
 	//History
 	const history = useHistory();
 	const alert = useAlert();
@@ -42,6 +48,10 @@ const OpportunitiesCard = ({
 	useEffect(() => {
 		getCandidaturasRedux(alert);
 	}, []);
+
+	const closeModal = () => {
+		setModalIsOpen(false);
+	};
 
 	const openCard = () => {
 		setCard("");
@@ -62,10 +72,13 @@ const OpportunitiesCard = ({
 	const checkUservideo = () => {
 		//Checar se o usuário tem vídeo currículo cadastrado
 		const isVideoRecored = true;
+		const isLogged = isAuthenticated();
 
-		isVideoRecored
-			? history.push(`/oportunidades/${jobId}`)
-			: history.push("/video-curriculo");
+		isLogged
+			? isVideoRecored
+				? history.push(`/oportunidades/${jobId}`)
+				: history.push("/video-curriculo")
+			: setModalIsOpen(true);
 	};
 
 	return (
@@ -115,6 +128,7 @@ const OpportunitiesCard = ({
 					</button>
 				)} */}
 			</div>
+			{modalIsOpen ? <LoginModal functionClose={closeModal} /> : null}
 		</div>
 	);
 };

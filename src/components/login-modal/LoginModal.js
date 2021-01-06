@@ -9,12 +9,13 @@ import { GrFormClose } from "react-icons/gr";
 
 import "./styles/modal.css";
 ReactModal.setAppElement("#root");
-const LoginModal = () => {
+const LoginModal = ({ functionClose }) => {
 	const [isOpen, setIsOpen] = useState(true);
 	const history = useHistory();
 
 	const closeModal = () => {
 		setIsOpen(false);
+		functionClose();
 		console.log("modal close clicado");
 		//history.push("/oportunidades");
 	};
@@ -55,7 +56,7 @@ const LoginModal = () => {
 					<GrFormClose className={"button-close-icon"} />
 				</IconButton>
 
-				<Login />
+				<Login closeModal={closeModal} />
 			</ReactModal>
 		</div>
 	);
