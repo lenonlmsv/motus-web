@@ -59,9 +59,9 @@ function LoginBar({ isLogged, userName, dispatch }) {
 	} else {
 		return (
 			<div id="login-button">
-				<Button to="" className="" onClick={() => openModal()}>
+				<Link className="" onClick={() => openModal()}>
 					{"Login | "}
-				</Button>
+				</Link>
 
 				<Link to="/cadastro" className="">
 					{" Cadastre-se"}
