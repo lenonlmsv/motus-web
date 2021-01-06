@@ -1,99 +1,123 @@
 :root {
-    --color-background: #FFF;
-    --color-font-primary: #0047a8;
-    --color-font-secondary: #ea0870;
-    --color-font-standard: #fff;
-    --color-footer-dark: #4A4A49;
-    --color-footer-darker: #3C3C3C;
-    
-    --font-family-bold: Bariol Regular, sans-serif;
-    --font-family-light: Bariols Light, sans-serif;
+	--color-background: #f5f5f5;
+	--color-font-primary: #0047a8;
+	--color-font-secondary: #ea0870;
+	--color-font-standard: #fff;
+	--color-footer-dark: #4a4a49;
+	--color-footer-darker: #3c3c3c;
 
-    --page-max-width: 1200px; /*Max width da página quando na visualização web*/
+	--font-family-bold: Bariol Regular, sans-serif;
+	--font-family-light: Bariols Light, sans-serif;
+
+	--page-max-width: 1200px; /*Max width da página quando na visualização web*/
 }
 
 @font-face {
-    font-family: Bariol Regular;
-    src: url(../fonts/bariol_regular-webfont.ttf); 
+	font-family: Bariol Regular;
+	src: url(../fonts/bariol_regular-webfont.ttf);
 }
 
 @font-face {
-    font-family: Bariol Light;
-    src: url(../fonts/bariol_light-webfont.ttf); 
+	font-family: Bariol Light;
+	src: url(../fonts/bariol_light-webfont.ttf);
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: var(--font-family-bold);
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: var(--font-family-bold);
 }
 
 html {
-    scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 body {
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--color-background);
-    overflow-x: hidden;
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--color-background);
+	overflow-x: hidden;
 }
 
-button:focus, input { outline:0 !important; }
+button:focus,
+input {
+	outline: 0 !important;
+}
 
 .router-content {
-   display: flex;
-   justify-content: center;
-   min-height: 150px;
-   flex-direction: column;
+	display: flex;
+	justify-content: center;
+	min-height: 150px;
+	flex-direction: column;
 }
 
 .page-position {
-    align-self: center;
+	align-self: center;
 }
 
 .hide-long-content {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px 35px;
-    border-radius: 50px;
-    width: auto;
-    max-width: auto;
-    text-decoration: none;
-    transition: 0.4s;
-    border: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 15px 35px;
+	border-radius: 50px;
+	width: auto;
+	max-width: auto;
+	text-decoration: none;
+	transition: 0.4s;
+	border: 0;
 }
 
 .button-secondary {
-    border: 1px solid var(--color-font-primary);
-    color: var(--color-font-primary);
+	border: 1px solid var(--color-font-primary);
+	color: var(--color-font-primary);
 }
 
 .button-secondary:hover {
-    border: 1px solid var(--color-font-secondary);
-    color: var(--color-font-secondary);
+	border: 1px solid var(--color-font-secondary);
+	color: var(--color-font-secondary);
 }
 
 .button-primary {
-    background-color: var(--color-font-primary);
-    color: var(--color-font-standard);
-    border: 0;
+	background-color: var(--color-font-primary);
+	color: var(--color-font-standard);
+	border: 0;
 }
 
 .button-primary:hover {
-    background-color: var(--color-font-secondary);
+	background-color: var(--color-font-secondary);
 }
 
 a:visited {
-    color: var(--color-font-primary);
+	color: var(--color-font-primary);
+}
+
+.ReactModal__Overlay {
+	opacity: 1;
+	transform: translateX(0px);
+	/*transition: all 500ms ease-in;*/
+	animation: fadeIn 3s ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+.ReactModal__Overlay--before-close {
+	opacity: 0;
+	transform: translateX(0px);
+}
+.button-close {
+	right: 0;
+	position: absolute;
 }
 
 /*

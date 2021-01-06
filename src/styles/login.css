@@ -1,67 +1,68 @@
-#page-login {
+/*#page-login {
     width: 90vw;
     max-width: var(--page-max-width);
-}
+}*/
 
 .submit-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1.5rem 0 0 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 1.5rem 0 0 0;
 }
 
-.submit-button button, .submit-button a {
-    font-size: 1.1rem;
-    cursor: pointer;
+.submit-button button,
+.submit-button a {
+	font-size: 1.1rem;
+	cursor: pointer;
 }
 
 .submit-button a + button {
-    margin-left: 0.7rem;
+	margin-left: 0.7rem;
 }
 
 #page-login #options {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0.8rem 0 0 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0.8rem 0 0 0;
 }
 
 #page-login #options a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 #page-login #options a + a {
-    margin-left: 1rem;
-    font-size: 1rem;
+	margin-left: 1rem;
+	font-size: 1rem;
 }
 
 #page-login #submit-error {
-    border: 1px solid red;
-    border-radius: 10px;
-    padding: 0.5rem 0.2rem;
-    margin: 1rem 0;
-    display: flex;
-    justify-content: center;
+	border: 1px solid red;
+	border-radius: 10px;
+	padding: 0.5rem 0.2rem;
+	margin: 1rem 0;
+	display: flex;
+	justify-content: center;
 }
 
 #page-login #submit-error p {
-    color: red;
-    font-weight: normal;
+	color: red;
+	font-weight: normal;
 }
 
-@media (min-width: 1200px) {
-    #page-login main {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
+/*@media (min-width: 1200px) {
+	#page-login main {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
 
-    #page-login main form {
-        width: 30vw;
-        margin-bottom: 70px;
-    }
+	#page-login main form {
+		width: 30vw;
+		margin-bottom: 70px;
+	}
 
-    #page-login #options {
-        justify-content: left;
-    }
-}
+	#page-login #options {
+		justify-content: left;
+	}
+}*/

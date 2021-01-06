@@ -1,46 +1,45 @@
 #image-background-dotted {
-    display: flex;
-    justify-content: center;
-    width: auto;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 2.5rem;
+	display: flex;
+	justify-content: center;
+	width: auto;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 2.5rem;
 }
 
 .div-image-dotted {
-    background-image: url(../images/dotted-background.svg);
-    background-repeat: no-repeat;
-    position: relative;
-    width: 100%;
-    height: 11rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-position: center;
+	background-image: url(../images/dotted-background.svg);
+	background-repeat: no-repeat;
+	position: relative;
+	width: 100%;
+	height: 11rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-position: center;
 }
 
 .div-image-dotted strong {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .div-image-content {
-    font-size: 2.5rem;
-    color: var(--color-font-primary);
-    font-weight: normal;
-    text-align: center;
+	font-size: 2.5rem;
+	color: var(--color-font-primary);
+	font-weight: normal;
+	text-align: center;
 }
 
 .div-description {
-    display: flex;
-    justify-content: center;
-    font-size: 1.4rem;
-    margin-top: -2rem;
-    z-index: 10;
+	display: flex;
+	justify-content: center;
+	font-size: 1.4rem;
+	margin-top: -2rem;
 }
 
 .div-description p {
-    text-align: center;
-    margin-top: 25px;
+	text-align: center;
+	margin-top: 25px;
 }

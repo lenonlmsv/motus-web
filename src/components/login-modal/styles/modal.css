@@ -1,0 +1,16 @@
+.button-close {
+	right: 0;
+	position: absolute !important;
+	cursor: pointer !important;
+	padding-left: 30px !important;
+
+	margin: -15px 20px 0 0 !important;
+}
+
+.input-block:first-child {
+	margin-top: 10px;
+}
+
+.button-close-icon {
+	font-size: 30px !important;
+}

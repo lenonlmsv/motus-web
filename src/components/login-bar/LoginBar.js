@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 //Router dom
 import { Link } from "react-router-dom";
@@ -12,6 +12,8 @@ import "./styles/login-bar.css";
 //Components
 import { getHashId } from "../../services/auth";
 
+import LoginModal from "../login-modal/LoginModal";
+
 function logoutREDUX() {
 	return {
 		type: "LOGOUT",
@@ -19,8 +21,14 @@ function logoutREDUX() {
 }
 
 function LoginBar({ isLogged, userName, dispatch }) {
+	const [isLogar, setIsLogar] = useState(false);
 	const hashId = getHashId();
-	
+
+	const openModal = () => {
+		setIsLogar(true);
+		//setIsLogar(false);
+	};
+
 	if (isLogged) {
 		return (
 			<div id="login-bar">
@@ -44,21 +52,22 @@ function LoginBar({ isLogged, userName, dispatch }) {
 		);
 	} else {
 		return (
-			<div id='login-button'>
-				<Link to="/login" className="">
+			<div id="login-button" onClick={() => openModal()}>
+				<Link to="" className="">
 					{"Login | "}
 				</Link>
 
 				<Link to="/cadastro" className="">
-					{' Cadastre-se'}
+					{" Cadastre-se"}
 				</Link>
+				{isLogar ? <LoginModal /> : null}
 			</div>
 		);
 	}
 }
 
 const mapStateToProps = (state) => {
-	return { 
+	return {
 		isLogged: state.IsLogged,
 		userName: state.UserName,
 	};
