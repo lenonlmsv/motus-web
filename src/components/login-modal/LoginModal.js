@@ -37,12 +37,13 @@ const LoginModal = ({ functionClose }) => {
 					content: {
 						borderRadius: 35,
 						padding: "40px",
-						maxWidth: 600,
+						maxWidth: 550,
 						marginLeft: "50%",
-						left: -300,
-						height: 420,
-						marginTop: -210,
+						left: -275,
+						height: 400,
+						marginTop: -195,
 						top: "50%",
+						width: '100%',
 					},
 				}}
 			>

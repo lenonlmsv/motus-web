@@ -10,6 +10,10 @@
 	margin: 1.5rem 0 0 0;
 }
 
+.submit-button button {
+	margin: 0 15px;
+}
+
 .submit-button button,
 .submit-button a {
 	font-size: 1.1rem;
