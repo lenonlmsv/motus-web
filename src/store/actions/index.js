@@ -19,6 +19,7 @@ export const signIn = (email, senha, alert) => {
 				type: "LOGIN",
 				payload: response.data,
 			});
+			return true;
 		} catch (error) {
 			switch (error.message) {
 				case "Request failed with status code 403":
@@ -27,6 +28,7 @@ export const signIn = (email, senha, alert) => {
 				default:
 					ShowError("Erro inesperado ao realizar login", alert);
 			}
+			return false;
 		}
 	};
 };
@@ -125,7 +127,6 @@ export const createCandidaturaRedux = (idOpportunity, alert) => {
 				type: "CREATE_CANDIDATURA",
 				payload: response.data.responseData,
 			});
-			
 		} catch (error) {
 			switch (error.message) {
 				default:

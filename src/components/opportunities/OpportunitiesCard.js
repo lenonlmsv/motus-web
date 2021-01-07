@@ -51,6 +51,7 @@ const OpportunitiesCard = ({
 
 	const closeModal = () => {
 		setModalIsOpen(false);
+		console.log("OpCard fehcou");
 	};
 
 	const openCard = () => {

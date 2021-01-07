@@ -27,6 +27,7 @@ function LoginBar({ isLogged, userName, dispatch }) {
 
 	const closeModal = () => {
 		setIsLogar(false);
+		console.log("Is logar falso");
 	};
 
 	const openModal = () => {
@@ -58,14 +59,16 @@ function LoginBar({ isLogged, userName, dispatch }) {
 		);
 	} else {
 		return (
-			<div id="login-button">
-				<Link className="" onClick={() => openModal()}>
-					{"Login | "}
-				</Link>
+			<div>
+				<div id="login-button">
+					<Link className="" onClick={() => openModal()}>
+						{"Login | "}
+					</Link>
 
-				<Link to="/cadastro" className="">
-					{" Cadastre-se"}
-				</Link>
+					<Link to="/cadastro" className="">
+						{" Cadastre-se"}
+					</Link>
+				</div>
 				{isLogar ? <LoginModal functionClose={closeModal} /> : null}
 			</div>
 		);

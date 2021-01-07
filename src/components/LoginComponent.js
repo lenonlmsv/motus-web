@@ -48,15 +48,33 @@ function LoginComponent({ isLogged, setName, signIn, closeModal }) {
 		}
 	}, [isLogged]);
 
+	const handleKeyPress = (event) => {
+		if (event.key === "Enter") {
+			onSubmit(event);
+		}
+	};
+
+	const tryCloseModal = () => {
+		console.log("TryClose");
+		if (isLogged) {
+			closeModal();
+			console.log("funcionou");
+			//history.push("/oportunidades");
+		}
+	};
+
 	async function onSubmit(e) {
 		e.preventDefault();
 
-		signIn(user, password, alert);
+		try {
+			signIn(user, password, alert);
 
-		setTimeout(() => setName(), 800); //Tempo necessário para o localstorage ser preenchido
-		if (isAuthenticated()) closeModal();
-
-		console.log("Chegou aqui");
+			setTimeout(() => setName(), 800); //Tempo necessário para o localstorage ser preenchido
+			setTimeout(() => tryCloseModal(), 1000);
+			console.log("Chegou aqui");
+		} catch (err) {
+			console.log("ERROR NO LOGIN");
+		}
 	}
 
 	return (
@@ -78,6 +96,7 @@ function LoginComponent({ isLogged, setName, signIn, closeModal }) {
 							onChange={(event) => {
 								setUser(event.target.value);
 							}}
+							onKeyPress={handleKeyPress}
 							required
 						/>
 					</div>
@@ -95,6 +114,7 @@ function LoginComponent({ isLogged, setName, signIn, closeModal }) {
 							onChange={(event) => {
 								setPassword(event.target.value);
 							}}
+							onKeyPress={handleKeyPress}
 							required
 						/>
 					</div>
@@ -106,9 +126,16 @@ function LoginComponent({ isLogged, setName, signIn, closeModal }) {
 					</div> */}
 
 					<div id="options">
-						<Link to="/cadastro">Cadastre-se</Link>
+						<Link to="/cadastro" onClick={() => closeModal()}>
+							Cadastre-se
+						</Link>
 
-						<Link to="/recuperar-senha">Esqueci minha senha</Link>
+						<Link
+							to="/recuperar-senha"
+							onClick={() => closeModal()}
+						>
+							Esqueci minha senha
+						</Link>
 						{/*só pra commitar*/}
 						{/*só pra commitar*/}
 						{/*só pra commitar*/}
