@@ -27,7 +27,7 @@ function LoginBar({ isLogged, userName, dispatch }) {
 
 	const closeModal = () => {
 		setIsLogar(false);
-		//console.log("Is logar falso");
+		////console.log("Is logar falso");
 	};
 
 	const openModal = () => {

@@ -14,7 +14,7 @@ export const signIn = (email, senha, alert) => {
 			const string = response.data.split(" ");
 			const token = string[1]; //Get token
 			login(token);
-			//console.log(token);
+			////console.log(token);
 			ShowSuccess("Login realizado com sucesso", alert);
 			dispatch({
 				type: "LOGIN",
@@ -160,7 +160,7 @@ export const updateCandidato = (candidato, alert, history) => {
 			ShowSuccess("Usuário alterado com sucesso", alert);
 			history.push("/oportunidades");
 		} catch (error) {
-			console.log(`${error.message}`);
+			//console.log(`${error.message}`);
 			ShowError("Erro ao editar usuário. Tente novamente!", alert);
 		}
 

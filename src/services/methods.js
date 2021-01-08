@@ -26,7 +26,7 @@ export async function loginUser(data) {
 			const token = string[1]; //Get token
 		});
 	} catch (error) {
-		console.log(error.message);
+		//console.log(error.message);
 	}
 }
 
@@ -47,12 +47,12 @@ export async function changePassword(
 
 		const response = await api.post("candidato/alterar-senha", data);
 
-		console.log(response);
+		//console.log(response);
 		return response.data;
 	} catch (err) {
-		console.log("msg de erro");
-		console.log(err);
-		//console.log(response);
+		//console.log("msg de erro");
+		//console.log(err);
+		////console.log(response);
 		return err;
 	}
 }
@@ -71,7 +71,7 @@ export async function deleteResume(resumeHashId) {
 	try {
 		await api.post(`candidato-curriculo/delete/${resumeHashId}`);
 	} catch (e) {
-		console.log(e.message);
+		//console.log(e.message);
 	}
 }
 
@@ -85,31 +85,30 @@ export async function getResumes() {
 
 		return responseOut;
 	} catch (e) {
-		console.log(e);
+		//console.log(e);
 		return null;
 	}
 }
 
 export async function downloadFile(fileHashId, fileName) {
-	const apiKey = process.env.REACT_APP_API_KEY
-	const apiURL = process.env.REACT_APP_API_ENDPOINT
-	
+	const apiKey = process.env.REACT_APP_API_KEY;
+	const apiURL = process.env.REACT_APP_API_ENDPOINT;
+
 	let a = document.createElement("a");
-	a.href = `${apiURL}candidato-curriculo/download/${fileHashId}/${apiKey}`
+	a.href = `${apiURL}candidato-curriculo/download/${fileHashId}/${apiKey}`;
 	a.style = "display:none";
 	a.download = fileName;
-	console.log('hash', fileHashId)
-	console.log('url', a.href)
+	//console.log('hash', fileHashId)
+	//console.log('url', a.href)
 	a.click();
 }
 
 async function getRecordedQuestions(opportunityId) {
 	try {
 		let response = await api.get(`/candidatura-video/${opportunityId}`);
-		return { status: 'ok', itens: response.data.responseData };
-
+		return { status: "ok", itens: response.data.responseData };
 	} catch (e) {
-		console.log(e.message);
+		//console.log(e.message);
 		const response = { status: null, message: `Erro ao enviar arquivo` };
 		return response;
 	}
@@ -118,7 +117,9 @@ async function getRecordedQuestions(opportunityId) {
 export async function downloadVideoAnswer(opportunityId, questionId) {
 	//Pega a lista de currículos vídeos enviada
 	const response = await getRecordedQuestions(opportunityId);
-	const userVideo = response.itens.find(item => item.perguntaId === questionId)
+	const userVideo = response.itens.find(
+		(item) => item.perguntaId === questionId
+	);
 
 	let a = document.createElement("a");
 	a.href = userVideo.urlArquivo;
@@ -138,30 +139,26 @@ export async function sendResume(resume) {
 
 		await api.post("/candidato-curriculo", data);
 		return {
-			status: 'ok'
-		}
+			status: "ok",
+		};
 	} catch (e) {
-		console.log(e);
+		//console.log(e);
 		return {
-			status: null
-		}
+			status: null,
+		};
 	}
 }
 
 export async function checkVideoResume() {
-	try {	 
+	try {
 		const response = await api.get(`candidato-curriculo/VIDEO`);
-		if(response.data.responseData === []) {
-			return []
+		if (response.data.responseData === []) {
+			return [];
+		} else {
+			return { status: "ok", data: response.data.responseData };
 		}
-
-		else {
-			return {status: 'ok', data: response.data.responseData}
-		}
-	}
-
-	catch(e) {
-		return {status: 'error'}
+	} catch (e) {
+		return { status: "error" };
 	}
 }
 
@@ -175,7 +172,7 @@ export async function getOpportunities(page, search) {
 		);
 		return opportunities;
 	} catch (e) {
-		console.log(e);
+		//console.log(e);
 		return null;
 	}
 }
@@ -185,7 +182,7 @@ export async function getOpportunitieDetail(vagaId) {
 		const opportunitie = await api.get(`/oportunidade/${vagaId}`);
 		return opportunitie;
 	} catch (e) {
-		console.log(e);
+		//console.log(e);
 		return null;
 	}
 }
@@ -207,7 +204,7 @@ export async function checkIsCandidate() {
 			};
 		}
 	} catch (e) {
-		console.log(e);
+		//console.log(e);
 	}
 }
 
@@ -222,7 +219,7 @@ export async function getCandidatures() {
 			return opp;
 		}
 	} catch (e) {
-		console.log(e);
+		//console.log(e);
 	}
 }
 
@@ -231,7 +228,7 @@ export function createCandidature(vagaId) {
 		const response = api.post(`candidatura/${vagaId}`);
 		return response;
 	} catch (e) {
-		console.log(e);
+		//console.log(e);
 	}
 }
 
@@ -247,7 +244,7 @@ export async function sendVideoResume(file) {
 		await api.post("/candidato-curriculo", data);
 		return { status: "ok", message: "" };
 	} catch (e) {
-		console.log(e.message);
+		//console.log(e.message);
 		switch (e.message) {
 			case "Network Error":
 				return {
@@ -266,7 +263,7 @@ export async function getVideoQuestions() {
 		const response = await api.get("/pergunta");
 		return response;
 	} catch (e) {
-		console.log(e);
+		//console.log(e);
 		return null;
 	}
 }
@@ -288,7 +285,7 @@ export async function sendVideoAnswer(file, questionId, opportunityId) {
 		const response = { status: "ok", message: "Vídeo enviado com sucesso" };
 		return response;
 	} catch (e) {
-		console.log(e.message);
+		//console.log(e.message);
 		const response = { status: null, message: `Erro ao enviar arquivo` };
 		return response;
 	}
@@ -297,7 +294,7 @@ export async function sendVideoAnswer(file, questionId, opportunityId) {
 export async function checkRecordedQuestions(opportunityId) {
 	try {
 		const itens = await api.get(`/candidatura-video/${opportunityId}`);
-		let response = []
+		let response = [];
 		itens.data.responseData.map((item) => {
 			response.push(item.perguntaId);
 		});
@@ -305,7 +302,7 @@ export async function checkRecordedQuestions(opportunityId) {
 		const returnResponse = Array.from(new Set(response));
 		return returnResponse;
 	} catch (e) {
-		console.log(e.message);
+		//console.log(e.message);
 		const response = { status: null, message: `Erro ao enviar arquivo` };
 		return response;
 	}

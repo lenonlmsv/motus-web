@@ -86,6 +86,7 @@ function VideoRecorderBlock(props) {
 				})
 
 				.catch(function (error) {
+					//#TODO verficar isso aqui
 					console.log(
 						"Não foi possível acesso a câmera. Erro: " +
 							error.name +
@@ -270,12 +271,14 @@ function VideoRecorderBlock(props) {
 
 	//Mostrar e ocultar botões
 	const showButtons = (ids) => {
-		typeof ids !== "object" && console.log("objeto inválido");
-		ids.map((id) => {
-			ids == ""
-				? console.log("Argumento necessário")
-				: document.querySelector(id).classList.remove("display-none");
-		});
+		typeof ids !== "object" && //console.log("objeto inválido");
+			ids.map((id) => {
+				ids == ""
+					? console.log("Argumento necessário")
+					: document
+							.querySelector(id)
+							.classList.remove("display-none");
+			});
 	};
 
 	const hideButtons = (ids) => {

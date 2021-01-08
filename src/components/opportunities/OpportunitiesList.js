@@ -16,7 +16,7 @@ const OpportunitiesList = ({ opportunities, loading }) => {
 				setOpportunities(response.data.responseData);
 				setLoading(false);
 			} catch (e) {
-				console.log(e);
+				//console.log(e);
 			}
 		};
 

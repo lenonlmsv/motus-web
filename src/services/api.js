@@ -22,10 +22,10 @@ export const APILogin = (json) => {
 api.interceptors.request.use(async (config) => {
 	const token = getToken();
 	if (token) {
-		//console.log("Tem token");
+		////console.log("Tem token");
 		config.headers.Authorization = `Bearer ${token}`;
 	} else {
-		//console.log("Não tem token");
+		////console.log("Não tem token");
 	}
 	return config;
 });

@@ -24,7 +24,7 @@ function CandidateDetailsTeste(props) {
 		try {
 			props.fetchCandidato();
 		} catch (error) {
-			console.log(error);
+			//console.log(error);
 		}
 	}, []);
 
@@ -32,7 +32,7 @@ function CandidateDetailsTeste(props) {
 }
 
 const mapStateToProps = (state) => {
-	console.log(state);
+	//console.log(state);
 	return { candidato: state.candidato };
 };
 

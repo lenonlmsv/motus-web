@@ -15,7 +15,11 @@ import CandidatureBlock from "../components/candidature-block/Candidature-block"
 //API and Auth
 import api from "../services/api";
 import { getHashId, setUserName } from "../services/auth";
-import {checkVideoResume, downloadFile,  deleteResume} from '../services/methods'
+import {
+	checkVideoResume,
+	downloadFile,
+	deleteResume,
+} from "../services/methods";
 
 //Icons
 import { FaDownload, FaTrash } from "react-icons/fa";
@@ -43,7 +47,7 @@ function CandidateDetails() {
 	const [linkedin, setLinkedin] = useState("");
 	const [cellNumber, setCellNumber] = useState("");
 	const [phone, setPhone] = useState("");
-	const [videoResume, setVideoResume] = useState('');
+	const [videoResume, setVideoResume] = useState("");
 
 	useEffect(() => {
 		try {
@@ -59,17 +63,18 @@ function CandidateDetails() {
 					setLinkedin(data.linkedin);
 				});
 
-				getVideoResume()
-			};
+				getVideoResume();
+			}
 
 			async function getVideoResume() {
 				const videoResumeList = await checkVideoResume();
-				videoResumeList.status === 'ok' && setVideoResume(videoResumeList.data)
+				videoResumeList.status === "ok" &&
+					setVideoResume(videoResumeList.data);
 			}
 
 			getData();
 		} catch (error) {
-			console.log(error);
+			//console.log(error);
 		}
 	}, []);
 
@@ -98,7 +103,7 @@ function CandidateDetails() {
 			showSuccess("Usuário alterado com sucesso");
 			history.push("/oportunidades");
 		} catch (error) {
-			console.log(`${error.message}`);
+			//console.log(`${error.message}`);
 			showError("Erro ao editar usuário. Tente novamente!");
 		}
 	}
@@ -127,19 +132,17 @@ function CandidateDetails() {
 	}
 
 	function deleteResumeAPI(hashId) {
-		deleteResume(hashId)
-		setVideoResume('')
+		deleteResume(hashId);
+		setVideoResume("");
 	}
 
 	function downloadResumeAPI(hashId, filename) {
-		downloadFile(hashId, filename)
+		downloadFile(hashId, filename);
 	}
 
 	return (
 		<div id="page-candidate-details" className="page-position">
-			<BackgroundTitle
-				title={`Meus dados`}
-			/>
+			<BackgroundTitle title={`Meus dados`} />
 
 			<div id="tab-buttons">
 				<button
@@ -175,7 +178,8 @@ function CandidateDetails() {
 					<div className="input-block">
 						<label htmlFor="email" className="label-span">
 							E-mail
-							<span>(O seu e-mail não pode ser alterado)</span></label>
+							<span>(O seu e-mail não pode ser alterado)</span>
+						</label>
 						<input
 							type="email"
 							id="email"
@@ -189,7 +193,7 @@ function CandidateDetails() {
 					</div>
 
 					<div className="input-block">
-						<label htmlFor="linkedin"  className="label-span">
+						<label htmlFor="linkedin" className="label-span">
 							Linkedin
 							<span>(Informe a url para seu perfil)</span>
 						</label>
@@ -282,7 +286,8 @@ function CandidateDetails() {
 							className="label-link"
 							style={{ cursor: "pointer" }}
 						>
-							<Link to='/trocar-senha' className="link-underline">Redefinir senha
+							<Link to="/trocar-senha" className="link-underline">
+								Redefinir senha
 							</Link>
 							{/*<span>
                                     Você receberá um e-mail parar alterar a senha de acesso
@@ -291,38 +296,45 @@ function CandidateDetails() {
 					</div>
 
 					<div className="input-block">
-						<label className="label-span label-link"
+						<label
+							className="label-span label-link"
 							htmlFor="send-video"
 							style={{ cursor: "pointer" }}
 							onClick={() => history.push("/video-curriculo")}
 						>
-							<Link className="link-underline">Enviar vídeo currículo</Link>
+							<Link className="link-underline">
+								Enviar vídeo currículo
+							</Link>
 							<span>
-								(Grave seu vídeo currículo e aumente suas chances)
+								(Grave seu vídeo currículo e aumente suas
+								chances)
 							</span>
 						</label>
 
-						{
-							videoResume !== '' &&
-								videoResume.map(vResume => {
-									return (
-										<div className='file-list'>
-											<FaTrash 
-												color={'grey'} 
-												onClick={() => {
-												deleteResumeAPI(vResume.hashId)}}/>
-		
-											<FaDownload 
-												color={'var(--color-font-primary)'} 
-												onClick={() => 
+						{videoResume !== "" &&
+							videoResume.map((vResume) => {
+								return (
+									<div className="file-list">
+										<FaTrash
+											color={"grey"}
+											onClick={() => {
+												deleteResumeAPI(vResume.hashId);
+											}}
+										/>
+
+										<FaDownload
+											color={"var(--color-font-primary)"}
+											onClick={() =>
 												downloadResumeAPI(
 													vResume.hashId,
-													vResume.nomeArquivo)}/>
-											<p>{vResume.nomeArquivo}</p>
-										</div>
-									)
-								})
-						}
+													vResume.nomeArquivo
+												)
+											}
+										/>
+										<p>{vResume.nomeArquivo}</p>
+									</div>
+								);
+							})}
 					</div>
 
 					<ResumesList />

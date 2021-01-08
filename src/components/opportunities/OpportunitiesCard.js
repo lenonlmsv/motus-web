@@ -51,7 +51,7 @@ const OpportunitiesCard = ({
 
 	const closeModal = () => {
 		setModalIsOpen(false);
-		console.log("OpCard fehcou");
+		//console.log("OpCard fehcou");
 	};
 
 	const openCard = () => {
@@ -135,7 +135,7 @@ const OpportunitiesCard = ({
 };
 
 const mapStateToProps = (state, ownProps) => {
-	//console.log(state);
+	////console.log(state);
 	return {
 		IsCandidato: state.candidatura.filter(
 			(candidato) => candidato.vagaId === ownProps.jobId

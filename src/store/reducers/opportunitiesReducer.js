@@ -5,7 +5,7 @@ const opportunitiesReducer = (state = [], action) => {
 		case "GET_OPPORTUNITY":
 			return action.payload;
 		case "OPPORTUNITY_ERROR":
-			//console.log("TA NO ERRO");
+			////console.log("TA NO ERRO");
 			return action.payload;
 		default:
 			return state;

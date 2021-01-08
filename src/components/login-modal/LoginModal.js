@@ -16,7 +16,7 @@ const LoginModal = ({ functionClose }) => {
 	const closeModal = () => {
 		setIsOpen(false);
 		functionClose();
-		console.log("modal close clicado");
+		//console.log("modal close clicado");
 		//history.push("/oportunidades");
 	};
 

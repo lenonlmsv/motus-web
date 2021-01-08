@@ -79,7 +79,7 @@ function OpportunitieDetail(props) {
 				opportunities != undefined &&
 					setIfIsCandidate(checkIfIsCandidate.status);
 			} catch (e) {
-				console.log(e);
+				//console.log(e);
 			}
 		};
 
@@ -98,7 +98,7 @@ function OpportunitieDetail(props) {
 			setIfIsCandidate(true);
 		}
 	}
-	//console.log(props.opportunity);
+	////console.log(props.opportunity);
 
 	return typeof props.opportunity.responseData !== "undefined" ? (
 		<div id="page-opportunitie-details" className="page-position">

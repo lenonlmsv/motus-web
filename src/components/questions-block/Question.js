@@ -1,124 +1,117 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 //Router
 import { Link, useHistory, useParams } from "react-router-dom";
 
 //Icons
 import { FaUpload, FaDownload, FaRecordVinyl, FaCheck } from "react-icons/fa";
-import {imageLoading} from '../../images/images'
-
+import { imageLoading } from "../../images/images";
 
 //Methods
 
-
 //Functions
-import {checkFileTypeVideos} from '../../services/functions'
+import { checkFileTypeVideos } from "../../services/functions";
 
 //Alert
-import {useAlert} from 'react-alert';
+import { useAlert } from "react-alert";
 
 export default function Question(props) {
-    const params = useParams();
+	const params = useParams();
 
-    console.log(props)
+	//console.log(props)
 
-    //const initial = {id: props.id, isLoading: false}
+	//const initial = {id: props.id, isLoading: false}
 
-    //States
-    const [isSend, setIsSend] = useState(false)
-    const [loading, setLoading] = useState(false)
+	//States
+	const [isSend, setIsSend] = useState(false);
+	const [loading, setLoading] = useState(false);
 
-    // const loading = true;
-    // const isSend = true
-    
-    const alert = useAlert()
+	// const loading = true;
+	// const isSend = true
 
-    function showSucess(m) {
-        alert.show(m, {type: 'success'})
-    }
+	const alert = useAlert();
 
-    function showError(m) {
-        alert.show(m, {type: 'error'})
-    }
+	function showSucess(m) {
+		alert.show(m, { type: "success" });
+	}
 
-    function handleSubmit(e) {
-        e.preventDefault();
+	function showError(m) {
+		alert.show(m, { type: "error" });
+	}
 
-        const fileTypeName = e.target.files[0].type;
-        const isFormat = checkFileTypeVideos(fileTypeName);
-    
-        console.log(e)
-        console.log(props.id)
+	function handleSubmit(e) {
+		e.preventDefault();
 
-        if(isFormat.valid) {
-            setLoading(true)
-            setTimeout(() => {
-                //setLoading(false);
-                setIsSend(true)
-            },3000)
-            
-            //CHAMAR API
-            //atualizar página
-            showSucess('Vídeo enviado com sucesso')
-        }
-        else {
-            showError(`Erro: ${isFormat.acceptedFormats}`)
-        }
-    }
+		const fileTypeName = e.target.files[0].type;
+		const isFormat = checkFileTypeVideos(fileTypeName);
 
-    return (
-        <div id="video-questions">
-            <div className="questions">
-                <div className="question">
-                        {props.question}{" "}
-                    {
-                        isSend && <FaCheck className="question-check" />
-                    }
-                    
-                </div>
+		//console.log(e)
+		//console.log(props.id)
 
-                <div className="actions">
-                    <label
-                        htmlFor="send-video"
-                        className="send-button"
-                    >
-                        {
-                            loading ? (<img style={{
-                                width:'1rem', 
-                                margin: '0 0.5rem 0 0'}}   
-                                src={imageLoading}/>)
-                            : 
-                            <FaUpload className="send-button-icon" />
-                        }
-                       
-                        Enviar Vídeo
-                    </label>
+		if (isFormat.valid) {
+			setLoading(true);
+			setTimeout(() => {
+				//setLoading(false);
+				setIsSend(true);
+			}, 3000);
 
-                    <input
-                        id="send-video"
-                        type="file"
-                        className="send-button"
-                        onChange={e => handleSubmit(e)}
-                        style={{ display: "none" }}
-                    />
+			//CHAMAR API
+			//atualizar página
+			showSucess("Vídeo enviado com sucesso");
+		} else {
+			showError(`Erro: ${isFormat.acceptedFormats}`);
+		}
+	}
 
-                    <Link
-                        to={`/gravar-video/${params.id}`}
-                        className="send-button"
-                    >
-                        {
-                            //Retornar para video/:id
-                        }
-                        <FaRecordVinyl className="send-button-icon" />
-                        Gravar vídeo
-                    </Link>
+	return (
+		<div id="video-questions">
+			<div className="questions">
+				<div className="question">
+					{props.question}{" "}
+					{isSend && <FaCheck className="question-check" />}
+				</div>
 
-                    <button className="send-button">
-                        <FaDownload className="send-button-icon" />
-                        Download
-                    </button>
-                </div>
-            </div>
-        </div>
-    )
+				<div className="actions">
+					<label htmlFor="send-video" className="send-button">
+						{loading ? (
+							<img
+								style={{
+									width: "1rem",
+									margin: "0 0.5rem 0 0",
+								}}
+								src={imageLoading}
+							/>
+						) : (
+							<FaUpload className="send-button-icon" />
+						)}
+						Enviar Vídeo
+					</label>
+
+					<input
+						id="send-video"
+						type="file"
+						className="send-button"
+						onChange={(e) => handleSubmit(e)}
+						style={{ display: "none" }}
+					/>
+
+					<Link
+						to={`/gravar-video/${params.id}`}
+						className="send-button"
+					>
+						{
+							//Retornar para video/:id
+						}
+						<FaRecordVinyl className="send-button-icon" />
+						Gravar vídeo
+					</Link>
+
+					<button className="send-button">
+						<FaDownload className="send-button-icon" />
+						Download
+					</button>
+				</div>
+			</div>
+		</div>
+	);
 }

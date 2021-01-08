@@ -128,7 +128,7 @@ export default function CandidateSignUp() {
 	};
 
 	const checkCaptcha = (v) => {
-		console.log(v);
+		//console.log(v);
 	};
 
 	async function handleSubmit(e) {

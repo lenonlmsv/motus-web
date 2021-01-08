@@ -38,15 +38,15 @@ const TrocarSenha = () => {
 				.catch(function (error) {
 					//const json = JSON.stringify(error);
 					ShowError(error.response.data.message, alert);
-					//console.log(json);
+					////console.log(json);
 				});
 			//return response.data;
 			/*} catch (err) {
 				const json = JSON.stringify(err);
-				console.log("msg de erro");
-				console.log(err.data);
-				console.log(json);
-				//console.log(response);
+				//console.log("msg de erro");
+				//console.log(err.data);
+				//console.log(json);
+				////console.log(response);
 				//return err;
 			}*/
 		} else {

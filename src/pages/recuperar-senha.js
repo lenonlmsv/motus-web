@@ -24,8 +24,8 @@ const RecuperarSenha = () => {
 			history.push("/oportunidades");
 		} catch (error) {
 			const json = JSON.stringify(error);
-			console.log(error);
-			console.log(json);
+			//console.log(error);
+			//console.log(json);
 			ShowError(
 				//"Não foi possível encontrar o email informado no nosso banco de dados",
 				error.response.data.menssage,

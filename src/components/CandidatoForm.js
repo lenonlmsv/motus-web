@@ -25,10 +25,10 @@ import { connect } from "react-redux";
 const CandidatoForm = (props) => {
 	const [candidato, setCandidato] = useState({});
 
-	console.log("Inicio candidato props");
-	console.log(props.candidato);
-	console.log(candidato);
-	console.log("Fim candidato props");
+	//console.log("Inicio candidato props");
+	//console.log(props.candidato);
+	//console.log(candidato);
+	//console.log("Fim candidato props");
 
 	const history = useHistory();
 	const alert = useAlert();
@@ -39,7 +39,7 @@ const CandidatoForm = (props) => {
 	}
 
 	useEffect(() => {
-		console.log("Usou useEffect");
+		//console.log("Usou useEffect");
 		setCandidato(props.candidato);
 	}, [props.candidato]);
 
@@ -195,7 +195,7 @@ const CandidatoForm = (props) => {
 };
 
 const mapStateToProps = (state) => {
-	console.log(state);
+	//console.log(state);
 	return { candidato: state.candidato };
 };
 
