@@ -58,7 +58,10 @@ const RecuperarSenha = () => {
 						/>
 					</div>
 					<div className="submit-button">
-						<Link to="/login" className="button button-secondary">
+						<Link
+							to="/oportunidades"
+							className="button button-secondary"
+						>
 							Voltar
 						</Link>
 						<button
