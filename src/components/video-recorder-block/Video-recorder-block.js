@@ -11,7 +11,7 @@ import {
 	FaRecordVinyl,
 	FaShare,
 } from "react-icons/fa";
-import {imageLoading} from '../../images/images'
+import { imageLoading } from "../../images/images";
 
 //Methods
 import { sendVideoResume, sendVideoAnswer } from "../../services/methods";
@@ -431,7 +431,9 @@ function VideoRecorderBlock(props) {
 			<div id="back-button">
 				<button
 					onClick={() => {
-						stopStreaming();
+						if (isCameraAllowed) {
+							stopStreaming();
+						}
 						history.push(`/oportunidades/${returnTo}`);
 					}}
 					className="button button-secondary"
