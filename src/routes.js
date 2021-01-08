@@ -13,7 +13,7 @@ import PageFooter from "./components/page-footer/Page-footer";
 //Pages
 import Opportunities from "./pages/opportunities";
 import OpportunitieDetail from "./pages/opportunitie-details";
-import Login from "./pages/login";
+
 import VideoResume from "./pages/video-resume";
 import VideoRecord from "./pages/video-recorder";
 import CandidateDetails from "./pages/candidate-detail";
@@ -22,7 +22,6 @@ import CandidateSignUp from "./pages/candidate-signup";
 import CandidateDetailsTeste from "./pages/candidate-detail-teste";
 import RecuperarSenha from "./pages/recuperar-senha";
 import TrocarSenhar from "./pages/trocar-senha";
-import LoginModal from "./components/login-modal/LoginModal";
 
 const PrivateRoute = (
 	{ component: Component, ...rest } //Bloqueia de acordo com a autenticação
@@ -59,8 +58,6 @@ function Routes() {
 					exact
 					component={RecuperarSenha}
 				/>
-
-				<Route path="/login" component={LoginModal} />
 
 				<PrivateRoute
 					path="/candidato/:id"

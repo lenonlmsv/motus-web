@@ -6,10 +6,11 @@ export const signIn = (email, senha, alert) => {
 	api.defaults.headers.post["Content-Type"] = "application/json";
 	return async function (dispatch) {
 		try {
-			const response = await api.post("/api/service/login", {
+			let json = JSON.stringify({
 				login: email,
 				password: senha,
 			});
+			const response = await api.post("/api/service/login", json);
 			const string = response.data.split(" ");
 			const token = string[1]; //Get token
 			login(token);

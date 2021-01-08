@@ -5,7 +5,6 @@ import OpportunitiesEmpty from "./OpportunitiesEmpty";
 import OpportunitiesLoadingCard from "./OpportunitiesLoadingCard";
 
 const OpportunitiesList = ({ opportunities, loading }) => {
-
 	/*const [opportunities, setOpportunities] = useState([]);
 	const [loading, setLoading] = useState(false);
 
@@ -26,9 +25,7 @@ const OpportunitiesList = ({ opportunities, loading }) => {
 */
 	return loading ? (
 		<OpportunitiesLoadingCard />
-	) : 
-	
-	opportunities !== "undefined" && opportunities.length > 0 ? (
+	) : opportunities !== "undefined" && opportunities.length > 0 ? (
 		opportunities.map((array) => {
 			return (
 				<div key={array.id}>
@@ -42,9 +39,7 @@ const OpportunitiesList = ({ opportunities, loading }) => {
 				</div>
 			);
 		})
-	) : 
-	
-	loading ? (
+	) : loading ? (
 		<OpportunitiesLoadingCard />
 	) : (
 		<OpportunitiesEmpty />

@@ -41,13 +41,13 @@ function LoginComponent({ isLogged, setName, signIn, closeModal }) {
 	const [password, setPassword] = useState(initialState.password);
 	//const [display, setDisplay] = useState("display-none");
 
-	useEffect(() => {
+	/*useEffect(() => {
 		if (isLogged) {
 			closeModal();
 			history.push("/oportunidades");
 		}
 	}, [isLogged]);
-
+*/
 	const handleKeyPress = (event) => {
 		if (event.key === "Enter") {
 			onSubmit(event);
@@ -55,7 +55,7 @@ function LoginComponent({ isLogged, setName, signIn, closeModal }) {
 	};
 
 	const tryCloseModal = () => {
-		console.log("TryClose");
+		//console.log("TryClose");
 		if (isAuthenticated()) {
 			closeModal();
 			history.push("/oportunidades");

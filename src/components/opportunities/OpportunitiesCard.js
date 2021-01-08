@@ -46,7 +46,7 @@ const OpportunitiesCard = ({
 	const alert = useAlert();
 
 	useEffect(() => {
-		getCandidaturasRedux(alert);
+		//getCandidaturasRedux(alert);
 	}, []);
 
 	const closeModal = () => {
