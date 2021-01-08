@@ -189,9 +189,9 @@ export default function CandidateSignUp() {
 
 			await api.post("candidato-curriculo", userResume);
 
-			await logout();
+			//await logout();
 			showSuccess("Usuário criado com sucesso!");
-			history.push("/oportunidades");
+			setTimeout(() => history.push("/oportunidades"), 800);
 		} catch (e) {
 			const error = e.toString();
 			switch (error) {
@@ -220,7 +220,9 @@ export default function CandidateSignUp() {
 			<main className="display-flex">
 				<form className="create-candidate" onSubmit={handleSubmit}>
 					<div className="input-block">
-						<label htmlFor="name" className="label-span">Nome</label>
+						<label htmlFor="name" className="label-span">
+							Nome
+						</label>
 						<input
 							id="name"
 							value={name}
@@ -277,7 +279,8 @@ export default function CandidateSignUp() {
 						<label htmlFor="phone-number" className="label-span">
 							Celular
 							<span>
-								(Formato: 11 dígitos com DDD. Exp.: (21) 99999-9999)
+								(Formato: 11 dígitos com DDD. Exp.: (21)
+								99999-9999)
 							</span>
 						</label>
 
@@ -305,7 +308,8 @@ export default function CandidateSignUp() {
 						<label htmlFor="phone" className="label-span">
 							Telefone
 							<span>
-								(Formato: 10 dígitos com DDD. Exp.: (21) 3333-3333)
+								(Formato: 10 dígitos com DDD. Exp.: (21)
+								3333-3333)
 							</span>
 						</label>
 
@@ -351,7 +355,10 @@ export default function CandidateSignUp() {
 					</div>
 
 					<div className="input-block">
-						<label htmlFor="confirm-password" className="label-span">
+						<label
+							htmlFor="confirm-password"
+							className="label-span"
+						>
 							Senha
 							<span>(Confirme sua senha)</span>
 						</label>
@@ -371,8 +378,13 @@ export default function CandidateSignUp() {
 
 					<div className="input-flex input-block">
 						<label htmlFor="resume" className="label-span">
-						<p style={{textDecoration:'underline'}}>Envie seu currículo</p>
-							<span>(Envie seu currículo nos formatos .doc, .docx ou .pdf)</span>
+							<p style={{ textDecoration: "underline" }}>
+								Envie seu currículo
+							</p>
+							<span>
+								(Envie seu currículo nos formatos .doc, .docx ou
+								.pdf)
+							</span>
 						</label>
 
 						<input

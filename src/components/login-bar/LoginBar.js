@@ -59,7 +59,7 @@ function LoginBar({ isLogged, userName, dispatch }) {
 		);
 	} else {
 		return (
-			<div>
+			<>
 				<div id="login-button">
 					<Link className="" onClick={() => openModal()}>
 						{"Login | "}
@@ -70,7 +70,7 @@ function LoginBar({ isLogged, userName, dispatch }) {
 					</Link>
 				</div>
 				{isLogar ? <LoginModal functionClose={closeModal} /> : null}
-			</div>
+			</>
 		);
 	}
 }

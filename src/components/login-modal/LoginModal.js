@@ -25,6 +25,7 @@ const LoginModal = ({ functionClose }) => {
 			<ReactModal
 				isOpen={isOpen}
 				closeTimeoutMS={1000}
+				onRequestClose={() => closeModal()}
 				style={{
 					overlay: {
 						position: "fixed",
@@ -43,7 +44,7 @@ const LoginModal = ({ functionClose }) => {
 						height: 400,
 						marginTop: -195,
 						top: "50%",
-						width: '100%',
+						width: "100%",
 					},
 				}}
 			>

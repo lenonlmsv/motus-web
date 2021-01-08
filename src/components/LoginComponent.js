@@ -56,11 +56,13 @@ function LoginComponent({ isLogged, setName, signIn, closeModal }) {
 
 	const tryCloseModal = () => {
 		console.log("TryClose");
-		if (isLogged) {
+		if (isAuthenticated()) {
 			closeModal();
-			console.log("funcionou");
+			history.push("/oportunidades");
+			//console.log("funcionou");
 			//history.push("/oportunidades");
 		}
+		//console.log("isLogged: " + isLogged);
 	};
 
 	async function onSubmit(e) {
@@ -70,10 +72,10 @@ function LoginComponent({ isLogged, setName, signIn, closeModal }) {
 			signIn(user, password, alert);
 
 			setTimeout(() => setName(), 800); //Tempo necessário para o localstorage ser preenchido
-			setTimeout(() => tryCloseModal(), 1000);
-			console.log("Chegou aqui");
+			setTimeout(() => tryCloseModal(), 800);
+			//console.log("Chegou aqui: " + signIIIN);
 		} catch (err) {
-			console.log("ERROR NO LOGIN");
+			//console.log("ERROR NO LOGIN");
 		}
 	}
 
