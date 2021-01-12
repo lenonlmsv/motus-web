@@ -10,7 +10,7 @@ function PageFooter() {
 	return (
 		<footer id="page-footer">
 			<div className="div-footer">
-				<div>
+				<div className="endereco-footer">
 					<div className="div-info">
 						<strong>São Paulo | Matriz</strong>
 						<p>R. Manoel A. Ferreirinha, 671</p>

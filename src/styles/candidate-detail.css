@@ -36,6 +36,7 @@
 	max-width: var(--page-max-width);
 	border: 1px solid #cecece;
 	border-radius: 10px;
+	padding: 35px;
 }
 
 #page-candidate-details main form.create-candidate {
@@ -48,13 +49,13 @@
 
 .input-block label {
 	display: block;
-	font-size: 1.3rem;
+	font-size: 15px;
 	color: var(--color-font-primary);
 }
 
 .input-block label span {
 	display: block;
-	font-size: 15px;
+	font-size: 13px;
 	color: rgba(0, 0, 0, 0.75);
 }
 
@@ -85,11 +86,6 @@
 
 div.button-send button.send-form {
 	cursor: pointer;
-}
-
-.button-send button,
-.button-send a {
-	font-size: 1.2rem;
 }
 
 .button-send a + button {
@@ -133,11 +129,12 @@ div.button-send button.send-form {
 	border-top: 1px solid #cecece;
 	border-left: 1px solid #cecece;
 	border-right: 1px solid #cecece;
-	border-bottom: 1px solid var(--color-font-standard);
+	border-bottom: 1px solid #f5f5f5;
 	margin-bottom: -1px;
 	z-index: 10;
 	background-color: var(--color-background);
 	cursor: pointer;
+	padding: 20px;
 }
 
 .link-underline {
@@ -186,9 +183,9 @@ button:focus {
 }
 
 #history-block > p {
-	font-size: 1.5rem;
+	font-size: 20px;
 	color: var(--color-font-primary);
-	margin-bottom: 20px;
+	margin-bottom: 35px;
 }
 
 #history-block > div {
@@ -272,11 +269,10 @@ button:focus {
 
 	.input-block label span {
 		margin-left: 5px;
-		margin-top: 5px;
 	}
 
 	#tab-buttons .button-tab {
-		font-size: 22px;
+		font-size: 15px;
 		padding: 30px;
 	}
 }

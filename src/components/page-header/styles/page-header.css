@@ -1,5 +1,5 @@
 #page-header {
-    color: var(--color-font-primary);
+    color: var(--color-font-primary)!important;
     padding: 1rem;
     display: flex;
     align-items: center;
@@ -142,7 +142,6 @@ img.sys-logo {
         display: inline;
         position: absolute;
         top: calc(100% + 3px);
-        background-color: var(--color-font-standard);
         z-index: 10;
     }
 
@@ -162,7 +161,7 @@ img.sys-logo {
     }
 
     .container-links .link-item {
-        font-size: 0.8rem;
+        font-size: 11px;
         font-weight: 600;
         letter-spacing: 0.5px;
         height: 100%;
@@ -171,7 +170,7 @@ img.sys-logo {
         transition: left 250ms ease-in-out, right 250ms ease-in-out;
     }
 
-    .container-links .link-item:hover {
+    .container-links .link-item:hover, .link-item-active {
         border-bottom: 3px solid var(--color-font-secondary);
     }
 

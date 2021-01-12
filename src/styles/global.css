@@ -18,8 +18,12 @@
 }
 
 @font-face {
-	font-family: Bariol Light;
-	
+	font-family: Comfortaa;
+	src: url(../fonts/Comfortaa-Regular.ttf);
+}
+
+@font-face {
+	font-family: Bariol Light;	
 	src: url(../fonts/bariol_light-webfont.ttf);
 }
 
@@ -27,7 +31,7 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	font-family: var(--font-family-bold);
+	font-family: "Comfortaa";
 }
 
 html {
@@ -74,6 +78,7 @@ input {
 	text-decoration: none;
 	transition: 0.4s;
 	border: 0;
+	font-size: 14px;
 }
 
 .button-secondary {

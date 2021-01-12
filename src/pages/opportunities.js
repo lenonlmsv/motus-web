@@ -98,7 +98,7 @@ function Opportunities(props) {
 									)
 								}
 							>
-								Buscar vagas
+								Buscar
 							</button>
 						</div>
 					</div>

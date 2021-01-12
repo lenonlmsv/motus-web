@@ -75,7 +75,7 @@ function PageHeader(props) {
                         RESULTADOS
                     </a>
 
-                        <Link to="/" className="link-item">
+                        <Link to="/" className="link-item link-item-active">
                         JUNTE-SE A NÓS 
                         </Link>
 
