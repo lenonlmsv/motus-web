@@ -144,6 +144,11 @@ div.button-send button.send-form {
 	font-size: 1.3rem;
 }
 
+.link-underline-disabled {
+	font-size: 1.3rem;
+	pointer-events: none;
+}
+
 #tab-buttons button:first-child {
 	border-top-left-radius: 10px;
 }

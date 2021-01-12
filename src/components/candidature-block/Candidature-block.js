@@ -35,25 +35,31 @@ function CandidatureBlock() {
 		return `${days[weekday]}, ${day}/${month}/${year}`;
 	};
 
-	return candidature.length === 0 ? (
-		<OpportunitiesLoadingCard />
-	) : candidature === false ? (
-		<p style={{ display: "none" }}>Sem registros</p>
+	return (candidature !== null) & (candidature !== undefined) ? (
+		candidature.length === 0 ? (
+			<OpportunitiesLoadingCard />
+		) : candidature === false ? (
+			<p style={{ display: "none" }}>Sem registros</p>
+		) : (
+			<div id="history-block">
+				<p>Histórico de candidaturas</p>
+				{candidature.map((item) => {
+					let date = new Date(item.criadoEm);
+					let link = `/oportunidades/${item.vagaId}`;
+					return (
+						<Link to={link}>
+							<div className="content-div" key={item.id}>
+								<span>{getDate(date)}</span>
+								<p>{item.titulo}</p>
+							</div>
+						</Link>
+					);
+				})}
+			</div>
+		)
 	) : (
-		<div id="history-block">
-			<p>Histórico de candidaturas</p>
-			{candidature.map((item) => {
-				let date = new Date(item.criadoEm);
-				let link = `/oportunidades/${item.vagaId}`;
-				return (
-					<Link to={link}>
-						<div className='content-div' key={item.id}>
-							<span>{getDate(date)}</span>
-							<p>{item.titulo}</p>
-						</div>
-					</Link>
-				);
-			})}
+		<div id="history-block" style={{ color: "red", fontSize: "20px" }}>
+			Ops! Tivemos uma instabilidade...
 		</div>
 	);
 }

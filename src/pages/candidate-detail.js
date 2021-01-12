@@ -48,6 +48,7 @@ function CandidateDetails() {
 	const [cellNumber, setCellNumber] = useState("");
 	const [phone, setPhone] = useState("");
 	const [videoResume, setVideoResume] = useState("");
+	const [errorOnUserGet, setErrorOnUserGet] = useState(false);
 
 	useEffect(() => {
 		try {
@@ -64,6 +65,8 @@ function CandidateDetails() {
 				});
 
 				getVideoResume();
+
+				setErrorOnUserGet(true);
 			}
 
 			async function getVideoResume() {
@@ -74,7 +77,9 @@ function CandidateDetails() {
 
 			getData();
 		} catch (error) {
+			setErrorOnUserGet(true);
 			//console.log(error);
+			//console.log("tá aqui");
 		}
 	}, []);
 
@@ -161,6 +166,11 @@ function CandidateDetails() {
 
 			<main id="tab-info" className="display-flex tab-item">
 				<form onSubmit={handleSubmit}>
+					{errorOnUserGet ? (
+						<div style={{ color: "red", fontSize: "20px" }}>
+							Ops! Tivemos uma instabilidade...
+						</div>
+					) : null}
 					<div className="input-block">
 						<label htmlFor="name">Nome</label>
 						<input
@@ -172,6 +182,7 @@ function CandidateDetails() {
 								setName(event.target.value);
 							}}
 							required
+							disabled={errorOnUserGet}
 						/>
 					</div>
 
@@ -188,7 +199,7 @@ function CandidateDetails() {
 								setEmail(event.target.value);
 							}}
 							value={email}
-							disabled
+							disabled={true}
 						/>
 					</div>
 
@@ -207,6 +218,7 @@ function CandidateDetails() {
 							}}
 							value={linkedin}
 							required
+							disabled={errorOnUserGet}
 						/>
 					</div>
 
@@ -234,6 +246,7 @@ function CandidateDetails() {
 							onChange={(event) => {
 								setCellNumber(event.target.value);
 							}}
+							disabled={errorOnUserGet}
 						/>
 					</div>
 
@@ -245,23 +258,28 @@ function CandidateDetails() {
 							</span>
 						</label>
 
-						{/* <input 
-                            id="phone" 
-                            value={phone}
-                            type="text"
-                            pattern = "[0-9]+"
-                            maxLength="10"
-                            minLength="10"
-                            title="Somente números"
-                            onChange={event => {setPhone(event.target.value)}}
-                            required/> */}
+						{
+							<input
+								id="phone"
+								value={phone}
+								type="text"
+								pattern="[0-9]+"
+								maxLength="30"
+								minLength="0"
+								title="Somente números"
+								onChange={(event) => {
+									setPhone(event.target.value);
+								}}
+								disabled={errorOnUserGet}
+							/>
+						}
 
-						<InputPhone
+						{/*<InputPhone
 							value={phone}
 							onChange={(event) => {
 								setPhone(event.target.value);
 							}}
-						/>
+						/>*/}
 					</div>
 
 					{/* <div className="input-block">
@@ -286,7 +304,14 @@ function CandidateDetails() {
 							className="label-link"
 							style={{ cursor: "pointer" }}
 						>
-							<Link to="/trocar-senha" className="link-underline">
+							<Link
+								to="/trocar-senha"
+								className={
+									errorOnUserGet
+										? "link-underline-disabled"
+										: "link-underline"
+								}
+							>
 								Redefinir senha
 							</Link>
 							{/*<span>
@@ -299,12 +324,21 @@ function CandidateDetails() {
 						<label
 							className="label-span label-link"
 							htmlFor="send-video"
-							style={{ cursor: "pointer" }}
-							onClick={() => history.push("/video-curriculo")}
+							style={
+								errorOnUserGet
+									? { cursor: "pointer" }
+									: {
+											cursor: "pointer",
+											pointerEvents: "none",
+									  }
+							}
+							onClick={
+								errorOnUserGet
+									? null
+									: () => history.push("/video-curriculo")
+							}
 						>
-							<Link className="link-underline">
-								Enviar vídeo currículo
-							</Link>
+							Enviar vídeo currículo
 							<span>
 								(Grave seu vídeo currículo e aumente suas
 								chances)
