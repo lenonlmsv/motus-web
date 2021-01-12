@@ -30,6 +30,8 @@
 	color: var(--color-font-primary);
 	font-weight: normal;
 	text-align: center;
+	font-family: "Comfortaa";
+	font-size: 32px;
 }
 
 .div-description {
@@ -42,4 +44,8 @@
 .div-description p {
 	text-align: center;
 	margin-top: 25px;
+	font-family: "Comfortaa";
+	font-size: 17px;
+    max-width: 690px;
+    line-height: 1.8;
 }
