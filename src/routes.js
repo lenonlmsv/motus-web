@@ -16,9 +16,9 @@ import OportunidadeDetalhes from "./pages/Oportunidades/OportunidadeDetalhes";
 
 import VideoResume from "./pages/video-resume";
 import VideoRecord from "./pages/video-recorder";
-import CandidateDetails from "./pages/candidate-detail";
+import CandidatoDetalhes from "./pages/Candidato/CandidatoDetalhes";
 import PageNotFound from "./pages/page-not-found";
-import CandidateSignUp from "./pages/candidate-signup";
+import CandidatoAcesso from "./pages/Candidato/CandidatoAcesso";
 import CandidateDetailsTeste from "./pages/candidate-detail-teste";
 import RecuperarSenha from "./pages/recuperar-senha";
 import TrocarSenhar from "./pages/trocar-senha";
@@ -61,7 +61,7 @@ function Routes() {
 
 				<PrivateRoute
 					path="/candidato/:id"
-					component={CandidateDetails}
+					component={CandidatoDetalhes}
 				/>
 
 				<PrivateRoute path="/trocar-senha" component={TrocarSenhar} />
@@ -74,7 +74,7 @@ function Routes() {
 					component={CandidateDetailsTeste}
 				/>
 
-				<Route path="/cadastro" component={CandidateSignUp} />
+				<Route path="/cadastro" component={CandidatoAcesso} />
 
 				<PrivateRoute
 					path="/oportunidades/:id"

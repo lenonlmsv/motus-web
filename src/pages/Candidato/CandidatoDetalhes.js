@@ -4,22 +4,22 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 
 //CSS
-import "../styles/candidate-detail.css";
+import "./Styles/CandidatoDetalhes.css";
 
 //Components
-import BackgroundTitle from "../components/background-title/Background-title";
-import ResumesList from "../components/resumes-list/ResumesList";
-import { InputPhoneNumber, InputPhone } from "../components/Input";
-import CandidatureBlock from "../components/candidature-block/Candidature-block";
+import BackgroundTitle from "../../components/background-title/Background-title";
+import ResumesList from "../../components/resumes-list/ResumesList";
+import { InputPhoneNumber, InputPhone } from "./Componentes/Input";
+import CandidatureBlock from "../../components/candidature-block/Candidature-block";
 
 //API and Auth
-import api from "../services/api";
-import { getHashId, setUserName } from "../services/auth";
+import api from "../../services/api";
+import { getHashId, setUserName } from "../../services/auth";
 import {
 	checkVideoResume,
 	downloadFile,
 	deleteResume,
-} from "../services/methods";
+} from "../../services/methods";
 
 //Icons
 import { FaDownload, FaTrash } from "react-icons/fa";
@@ -27,7 +27,7 @@ import { FaDownload, FaTrash } from "react-icons/fa";
 //Alert
 import { useAlert } from "react-alert";
 
-function CandidateDetails() {
+function CandidatoDetalhes() {
 	const alert = useAlert();
 
 	const showError = (message) => {
@@ -396,4 +396,4 @@ function CandidateDetails() {
 	);
 }
 
-export default CandidateDetails;
+export default CandidatoDetalhes;

@@ -7,26 +7,26 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { Link, useHistory } from "react-router-dom";
 
 //CSS
-import "../styles/candidate-detail.css";
+import "./Styles/CandidatoDetalhes.css";
 
 //Icons
 import { FaDownload, FaTrash } from "react-icons/fa";
 
 //Components
-import BackgroundTitle from "../components/background-title/Background-title";
-import { InputPhoneNumber, InputPhone } from "../components/Input";
+import BackgroundTitle from "../../components/background-title/Background-title";
+import { InputPhoneNumber, InputPhone } from "./Componentes/Input";
 
 //API and Auth
-import api from "../services/api";
-import { getHashId, isAuthenticated, login, logout } from "../services/auth";
+import api from "../../services/api";
+import { getHashId, isAuthenticated, login, logout } from "../../services/auth";
 
 //Alert
 import { useAlert } from "react-alert";
 
 //Functions
-import { checkFileTypeFiles } from "../services/functions";
+import { checkFileTypeFiles } from "../../services/functions";
 
-export default function CandidateSignUp() {
+export default function CandidatoAcesso() {
 	const alert = useAlert();
 
 	const showError = (message) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+/*import React, { useEffect, useState } from "react";
 
 //Router dom
 import { Link, useParams, useHistory } from "react-router-dom";
@@ -39,3 +39,4 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, { fetchCandidato })(
 	CandidateDetailsTeste
 );
+*/

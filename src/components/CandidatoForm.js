@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+/*import React, { useEffect, useState } from "react";
 
 //Router dom
 import { Link, useParams, useHistory } from "react-router-dom";
@@ -11,7 +11,7 @@ import "../styles/candidate-detail.css";
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
 import ResumesList from "../components/resumes-list/ResumesList";
-import { InputPhoneNumber, InputPhone } from "../components/Input";
+import { InputPhoneNumber, InputPhone } from "../pages/Candidato/Componentes/Input";
 
 //API and Auth
 import api from "../services/api";
@@ -199,4 +199,4 @@ const mapStateToProps = (state) => {
 	return { candidato: state.candidato };
 };
 
-export default connect(mapStateToProps, { updateCandidato })(CandidatoForm);
+export default connect(mapStateToProps, { updateCandidato })(CandidatoForm);*/
