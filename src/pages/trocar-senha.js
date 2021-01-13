@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BackgroundTitle from "../components/background-title/Background-title";
+import BackgroundTitle from "./ComponentesGlobais/BackgroundTitle/BackgroundTitle";
 import { Link, useHistory } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { ShowError, ShowSuccess, changePassword } from "../services/methods";

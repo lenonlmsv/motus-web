@@ -7,8 +7,8 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { isAuthenticated } from "./services/auth";
 
 //Components
-import PageHeader from "./components/page-header/Page-header";
-import PageFooter from "./components/page-footer/Page-footer";
+import PageHeader from "./pages/ComponentesGlobais/PageHeader/PageHeader";
+import PageFooter from "./pages/ComponentesGlobais/PageFooter/PageFooter";
 
 //Pages
 import Oportunidades from "./pages/Oportunidades/Oportunidades";

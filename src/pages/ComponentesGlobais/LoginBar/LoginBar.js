@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 //CSS
-import "./styles/login-bar.css";
+import "./Styles/LoginBar.css";
 
 //Components
 import { getHashId } from "../../../services/auth";

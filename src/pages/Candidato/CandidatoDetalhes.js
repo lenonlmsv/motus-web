@@ -7,8 +7,8 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import "./Styles/CandidatoDetalhes.css";
 
 //Components
-import BackgroundTitle from "../../components/background-title/Background-title";
-import ResumesList from "../../components/resumes-list/ResumesList";
+import BackgroundTitle from "../ComponentesGlobais/BackgroundTitle/BackgroundTitle";
+import ResumesList from "./Componentes/CurriculoLista/CurriculoLista";
 import { InputPhoneNumber, InputPhone } from "./Componentes/Input";
 import CandidaturaLista from "./Componentes/CandidaturaLista";
 

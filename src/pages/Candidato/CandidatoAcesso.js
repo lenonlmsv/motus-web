@@ -13,7 +13,7 @@ import "./Styles/CandidatoDetalhes.css";
 import { FaDownload, FaTrash } from "react-icons/fa";
 
 //Components
-import BackgroundTitle from "../../components/background-title/Background-title";
+import BackgroundTitle from "../ComponentesGlobais/BackgroundTitle/BackgroundTitle";
 import { InputPhoneNumber, InputPhone } from "./Componentes/Input";
 
 //API and Auth

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 //Components
-import BackgroundTitle from "../../components/background-title/Background-title";
+import BackgroundTitle from "../ComponentesGlobais/BackgroundTitle/BackgroundTitle";
 import OpportunitiesList from "./Componentes/OpportunitiesList";
 import OpportunitiesEmpty from "./Componentes/OpportunitiesEmpty";
 

@@ -12,7 +12,7 @@ import { setName as setNameAction } from "../../../store/actions/set-user-name";
 import { isAuthenticated } from "../../../services/auth";
 
 //Components
-import BackgroundTitle from "../../../components/background-title/Background-title";
+import BackgroundTitle from "../BackgroundTitle/BackgroundTitle";
 
 //CSS
 import "./Styles/Login.css";

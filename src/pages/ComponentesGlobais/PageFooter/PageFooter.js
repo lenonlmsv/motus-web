@@ -1,7 +1,7 @@
 import React from "react";
 
 //CSS
-import "./styles/page-footer.css";
+import "./Styles/PageFooter.css";
 
 //Image
 import ImageSys from "./images/sys-image-footer.png";

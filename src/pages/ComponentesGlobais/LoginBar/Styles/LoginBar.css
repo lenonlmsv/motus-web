@@ -1,0 +1,43 @@
+#login-bar {
+	width: 90vw;
+	max-width: var(--page-max-width);
+	align-self: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 30px;
+}
+
+#login-bar p {
+	color: var(--color-font-primary);
+	font-size: 18px;
+}
+
+#login-bar a {
+	font-size: 16px;
+	margin-left: 0.2rem;
+}
+
+#login-bar div.div-limited {
+	width: 100%;
+}
+
+#login-bar .logout-options {
+	align-items: center;
+	display: flex;
+}
+
+@media (min-width: 1200px) {
+	#login-bar {
+		flex-direction: row;
+	}
+
+	#login-bar div.div-limited {
+		width: unset;
+	}
+
+	#login-bar .logout-options a + a {
+		margin: 0 0 0 0.2rem;
+	}
+}

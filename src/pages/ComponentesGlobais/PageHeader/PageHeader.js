@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 
 //CSS
-import "./styles/page-header.css";
+import "./Styles/PageHeader.css";
 
 //Routes
 import { Link } from "react-router-dom";
 
 //Images
-import { imageLogo } from "../../images/images.js";
+import { imageLogo } from "../../../images/images.js";
 
 import { AiOutlineDown } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
 //Components
-import LoginBar from "../../pages/ComponentesGlobais/LoginBar/LoginBar";
+import LoginBar from "../LoginBar/LoginBar";
 
 function PageHeader(props) {
 	const [showItens, setShowItens] = useState("hover-content-hide");

@@ -10,26 +10,25 @@ import { useParams } from "react-router-dom";
 import "../styles/video-recorder.css";
 
 //Components
-import BackgroundTitle from "../components/background-title/Background-title";
+import BackgroundTitle from "./ComponentesGlobais/BackgroundTitle/BackgroundTitle";
 
 function VideoRecord(props) {
 	const checkState = props.location.state;
 	let questionProps;
-	if(checkState !== undefined) {
+	if (checkState !== undefined) {
 		questionProps = {
-			time : props.location.state.timeToLink.toString(),
+			time: props.location.state.timeToLink.toString(),
 			question: props.location.state.questionToLink,
 			id: props.location.state.idToLink,
-		}
-	}
-	else {
+		};
+	} else {
 		questionProps = {
-			time : '',
-			question: '',
-			id: '',
-		}
+			time: "",
+			question: "",
+			id: "",
+		};
 	}
-	
+
 	const params = useParams();
 
 	String.prototype.toMMSS = function () {
@@ -57,9 +56,7 @@ function VideoRecord(props) {
 				/>
 
 				<div id="div-recoder">
-					<VideoRecorderBlock 
-						time={timeSeconds} 
-						returnTo={''}/>
+					<VideoRecorderBlock time={timeSeconds} returnTo={""} />
 				</div>
 			</div>
 		);
@@ -68,7 +65,7 @@ function VideoRecord(props) {
 		//api.get('') Pegar dados da api
 
 		const timeSeconds = questionProps.time; //Tempo de resposta da pergunta
-		const timeFormat = timeSeconds.toMMSS()
+		const timeFormat = timeSeconds.toMMSS();
 
 		return (
 			<div id="page-video-recorder" className="page-position">
@@ -78,11 +75,12 @@ function VideoRecord(props) {
 				/>
 
 				<div id="div-recoder">
-					<VideoRecorderBlock 
+					<VideoRecorderBlock
 						time={timeSeconds}
 						returnTo={params.id}
 						questionId={questionProps.id}
-						questionDescription={questionProps.question}/>
+						questionDescription={questionProps.question}
+					/>
 				</div>
 			</div>
 		);

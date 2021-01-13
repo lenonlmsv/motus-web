@@ -2,10 +2,10 @@ import React, { createContext, useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 
 //Components
-import BackgroundTitle from "../../components/background-title/Background-title";
+import BackgroundTitle from "../ComponentesGlobais/BackgroundTitle/BackgroundTitle";
 import OpportunitiesDetailCard from "./Componentes/OpportunitiesDetailCard";
 import { getUserName } from "../../services/auth";
-import QuestionsBlock from "../../components/questions-block/Questions-block";
+import QuestionsBlock from "./Componentes/questions-block/Questions-block";
 
 import { connect, useSelector } from "react-redux";
 //Methods
