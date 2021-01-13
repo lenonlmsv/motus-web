@@ -51,36 +51,35 @@ function CandidateDetails() {
 	const [errorOnUserGet, setErrorOnUserGet] = useState(false);
 
 	useEffect(() => {
-		try {
-			async function getData() {
-				api.defaults.headers.post["Content-Type"] = "application/json";
+		async function getVideoResume() {
+			const videoResumeList = await checkVideoResume();
+			videoResumeList.status === "ok" &&
+				setVideoResume(videoResumeList.data);
+		}
 
-				await api.get(`/candidato`).then((response) => {
-					const data = response.data.responseData;
-					setName(data.nome);
-					setEmail(data.email);
-					setCellNumber(data.celular);
-					setPhone(data.telefone);
-					setLinkedin(data.linkedin);
-				});
+		async function getData() {
+			api.defaults.headers.post["Content-Type"] = "application/json";
+
+			try {
+				const response = await api.get(`/candidato`);
+
+				const data = response.data.responseData;
+				setName(data.nome);
+				setEmail(data.email);
+				setCellNumber(data.celular);
+				setPhone(data.telefone);
+				setLinkedin(data.linkedin);
 
 				getVideoResume();
 
+				setErrorOnUserGet(false);
+			} catch (error) {
 				setErrorOnUserGet(true);
+				console.log(error);
 			}
-
-			async function getVideoResume() {
-				const videoResumeList = await checkVideoResume();
-				videoResumeList.status === "ok" &&
-					setVideoResume(videoResumeList.data);
-			}
-
-			getData();
-		} catch (error) {
-			setErrorOnUserGet(true);
-			//console.log(error);
-			//console.log("tá aqui");
 		}
+
+		getData();
 	}, []);
 
 	async function handleSubmit(e) {
