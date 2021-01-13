@@ -11,9 +11,9 @@ import { connect } from "react-redux";
 import "./styles/login-bar.css";
 
 //Components
-import { getHashId } from "../../services/auth";
+import { getHashId } from "../../../services/auth";
 
-import LoginModal from "../login-modal/LoginModal";
+import LoginModal from "../LoginModal/LoginModal";
 
 function logoutREDUX() {
 	return {

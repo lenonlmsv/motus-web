@@ -5,17 +5,17 @@ import { Link, useHistory } from "react-router-dom";
 
 //Redux connect
 import { connect } from "react-redux";
-import { signIn as signInAction } from "../store/actions";
-import { setName as setNameAction } from "../store/actions/set-user-name";
+import { signIn as signInAction } from "../../../store/actions";
+import { setName as setNameAction } from "../../../store/actions/set-user-name";
 
 //Auth
-import { isAuthenticated } from "../services/auth";
+import { isAuthenticated } from "../../../services/auth";
 
 //Components
-import BackgroundTitle from "../components/background-title/Background-title";
+import BackgroundTitle from "../../../components/background-title/Background-title";
 
 //CSS
-import "../styles/login.css";
+import "./Styles/Login.css";
 
 //Alert
 import { useAlert } from "react-alert";
@@ -25,7 +25,7 @@ function initialState() {
 	return { user: "", password: "" };
 }
 
-function LoginComponent({ isLogged, setName, signIn, closeModal }) {
+function Login({ isLogged, setName, signIn, closeModal }) {
 	const alert = useAlert();
 
 	const showError = (message) => {
@@ -171,4 +171,4 @@ const mapDispatchToProps = (dispatch) => ({
 	setName: () => dispatch(setNameAction()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginComponent); // { signIn })(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login); // { signIn })(Login);

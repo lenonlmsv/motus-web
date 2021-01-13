@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
-import Login from "../LoginComponent";
+import Login from "./Login";
 import { Button } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import { Link, useHistory } from "react-router-dom";
 
 import { GrFormClose } from "react-icons/gr";
 
-import "./styles/modal.css";
+import "./Styles/LoginModal.css";
 ReactModal.setAppElement("#root");
 const LoginModal = ({ functionClose }) => {
 	const [isOpen, setIsOpen] = useState(true);

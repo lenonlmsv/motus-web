@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import OpportunitiesDetailCard from "./OpportunitiesDetailCard";
 
-import LoginModal from "../../../components/login-modal/LoginModal";
+import LoginModal from "../../ComponentesGlobais/LoginModal/LoginModal";
 
 import { isAuthenticated } from "../../../services/auth";
 
