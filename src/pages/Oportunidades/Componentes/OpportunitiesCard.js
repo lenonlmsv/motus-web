@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import OpportunitiesDetailCard from "./OpportunitiesDetailCard";
 
-import LoginModal from "../login-modal/LoginModal";
+import LoginModal from "../../../components/login-modal/LoginModal";
 
-import { isAuthenticated } from "../../services/auth";
+import { isAuthenticated } from "../../../services/auth";
 
 import {
 	getCandidaturasRedux,
 	createCandidaturaRedux,
-} from "../../store/actions";
+} from "../../../store/actions";
 
 //CSS
-import "../../styles/opportunities.css";
+import "../../../styles/opportunities.css";
 
 //Icons
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";

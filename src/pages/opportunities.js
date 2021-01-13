@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 
 //Components
 import BackgroundTitle from "../components/background-title/Background-title";
-import OpportunitiesList from "../components/opportunities/OpportunitiesList";
-import OpportunitiesEmpty from '../components/opportunities/OpportunitiesEmpty'
+import OpportunitiesList from "./Oportunidades/Componentes/OpportunitiesList";
+import OpportunitiesEmpty from "./Oportunidades/Componentes/OpportunitiesEmpty";
 
 //CSS
 import "../styles/opportunities.css";
@@ -108,8 +108,7 @@ function Opportunities(props) {
 			props.opportunities.responseData.length > 0 ? (
 				<div>
 					<div>
-
-						<h2 className='vagasDisp'>Vagas disponíveis</h2>
+						<h2 className="vagasDisp">Vagas disponíveis</h2>
 
 						<OpportunitiesList
 							//opportunities={opportunities}
@@ -118,8 +117,7 @@ function Opportunities(props) {
 						/>
 					</div>
 					{props.opportunities.totalPage > 1 ? (
-						
-						<div id='div-pagination'>
+						<div id="div-pagination">
 							<Pagination
 								count={props.opportunities.totalPage}
 								shape="rounded"

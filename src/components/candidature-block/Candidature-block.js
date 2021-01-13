@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 //Methods
 import { getCandidatures } from "../../services/methods";
-import OpportunitiesLoadingCard from "../opportunities/OpportunitiesLoadingCard";
+import OpportunitiesLoadingCard from "../../pages/Oportunidades/Componentes/OpportunitiesLoadingCard";
 import { Link } from "react-router-dom";
 
 function CandidatureBlock() {
