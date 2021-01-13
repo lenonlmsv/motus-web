@@ -1,6 +1,7 @@
 import React from "react";
 
 //CSS
+import "../Styles/Oportunidades.css";
 import "../Styles/OportunidadesComponentes.css";
 
 import { imageEmpty } from "../../../images/images";

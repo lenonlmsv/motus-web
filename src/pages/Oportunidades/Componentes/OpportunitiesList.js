@@ -4,6 +4,10 @@ import OpportunitiesCard from "./OpportunitiesCard";
 import OpportunitiesEmpty from "./OpportunitiesEmpty";
 import OpportunitiesLoadingCard from "./OpportunitiesLoadingCard";
 
+//CSS
+import "../Styles/Oportunidades.css";
+import "../Styles/OportunidadesComponentes.css";
+
 const OpportunitiesList = ({ opportunities, loading }) => {
 	/*const [opportunities, setOpportunities] = useState([]);
 	const [loading, setLoading] = useState(false);

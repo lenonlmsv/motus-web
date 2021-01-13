@@ -1,5 +1,9 @@
 import React from "react";
 
+//CSS
+import "../Styles/Oportunidades.css";
+import "../Styles/OportunidadesComponentes.css";
+
 const OpportunitiesDetailCard = ({
 	jobDescription,
 	jobType,

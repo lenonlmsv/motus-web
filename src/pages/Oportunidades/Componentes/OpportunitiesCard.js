@@ -13,6 +13,7 @@ import {
 
 //CSS
 import "../Styles/Oportunidades.css";
+import "../Styles/OportunidadesComponentes.css";
 
 //Icons
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
