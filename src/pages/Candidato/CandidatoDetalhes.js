@@ -10,7 +10,7 @@ import "./Styles/CandidatoDetalhes.css";
 import BackgroundTitle from "../../components/background-title/Background-title";
 import ResumesList from "../../components/resumes-list/ResumesList";
 import { InputPhoneNumber, InputPhone } from "./Componentes/Input";
-import CandidatureBlock from "../../components/candidature-block/Candidature-block";
+import CandidaturaLista from "./Componentes/CandidaturaLista";
 
 //API and Auth
 import api from "../../services/api";
@@ -384,7 +384,7 @@ function CandidatoDetalhes() {
 			</main>
 
 			<div id="tab-history" className="tab-item display-none">
-				<CandidatureBlock />
+				<CandidaturaLista />
 			</div>
 
 			<div class="display-flex button-send">
