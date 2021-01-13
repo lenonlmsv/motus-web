@@ -5,6 +5,7 @@ const OpportunitiesDetailCard = ({
 	jobType,
 	workTime,
 	habilities,
+	numeroVagas,
 }) => {
 	return (
 		<div className="div-card">
@@ -25,9 +26,12 @@ const OpportunitiesDetailCard = ({
 					PageMaker including versions of Lorem Ipsum
 				</p>
 			)}
-			
+
 			<strong>Tipo de vaga:</strong>
 			{jobType ? <p>{jobType}</p> : <p>Sênior</p>}
+
+			<strong>Número de vagas:</strong>
+			{numeroVagas ? <p>{numeroVagas}</p> : <p>171</p>}
 
 			<strong>Horário de trabalho:</strong>
 			{workTime ? <p>{workTime}</p> : <p>Das 9 às 19h</p>}
