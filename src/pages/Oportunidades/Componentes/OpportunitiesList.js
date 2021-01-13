@@ -35,6 +35,7 @@ const OpportunitiesList = ({ opportunities, loading }) => {
 						jobDescription={array.descricaoVaga}
 						workTime={array.horarioTrabalho}
 						habilities={array.requisitoDesejavel}
+						numeroVaga={array.numeroVaga}
 					/>
 				</div>
 			);

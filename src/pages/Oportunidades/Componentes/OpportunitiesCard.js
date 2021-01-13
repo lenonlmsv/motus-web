@@ -12,7 +12,7 @@ import {
 } from "../../../store/actions";
 
 //CSS
-import "../../../styles/opportunities.css";
+import "../Styles/Oportunidades.css";
 
 //Icons
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
@@ -26,6 +26,7 @@ const OpportunitiesCard = ({
 	jobType,
 	workTime,
 	habilities,
+	numeroVaga,
 	getCandidaturasRedux,
 	IsCandidato,
 	createCandidaturaRedux,
@@ -103,6 +104,7 @@ const OpportunitiesCard = ({
 					jobType={jobType}
 					workTime={workTime}
 					habilities={habilities}
+					numeroVaga={numeroVaga}
 				/>
 
 				{

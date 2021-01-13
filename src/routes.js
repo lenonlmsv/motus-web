@@ -11,8 +11,8 @@ import PageHeader from "./components/page-header/Page-header";
 import PageFooter from "./components/page-footer/Page-footer";
 
 //Pages
-import Opportunities from "./pages/opportunities";
-import OpportunitieDetail from "./pages/opportunitie-details";
+import Oportunidades from "./pages/Oportunidades/Oportunidades";
+import OportunidadeDetalhes from "./pages/Oportunidades/OportunidadeDetalhes";
 
 import VideoResume from "./pages/video-resume";
 import VideoRecord from "./pages/video-recorder";
@@ -49,9 +49,9 @@ function Routes() {
 			<PageHeader />
 
 			<Switch style={{ alignSelf: "center" }}>
-				<Route path="/" exact component={Opportunities} />
+				<Route path="/" exact component={Oportunidades} />
 
-				<Route path="/oportunidades" exact component={Opportunities} />
+				<Route path="/oportunidades" exact component={Oportunidades} />
 
 				<Route
 					path="/recuperar-senha"
@@ -78,7 +78,7 @@ function Routes() {
 
 				<PrivateRoute
 					path="/oportunidades/:id"
-					component={OpportunitieDetail}
+					component={OportunidadeDetalhes}
 				/>
 
 				<PrivateRoute path="/video-curriculo" component={VideoResume} />

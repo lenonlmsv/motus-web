@@ -2,10 +2,10 @@ import React, { createContext, useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 
 //Components
-import BackgroundTitle from "../components/background-title/Background-title";
-import OpportunitiesDetailCard from "./Oportunidades/Componentes/OpportunitiesDetailCard";
-import { getUserName } from "../services/auth";
-import QuestionsBlock from "../components/questions-block/Questions-block";
+import BackgroundTitle from "../../components/background-title/Background-title";
+import OpportunitiesDetailCard from "./Componentes/OpportunitiesDetailCard";
+import { getUserName } from "../../services/auth";
+import QuestionsBlock from "../../components/questions-block/Questions-block";
 
 import { connect, useSelector } from "react-redux";
 //Methods
@@ -13,23 +13,23 @@ import {
 	getOpportunitieDetail,
 	createCandidature,
 	checkIsCandidate,
-} from "../services/methods";
+} from "../../services/methods";
 
 //CSS
-import "../styles/opportunities.css";
+import "./Styles/Oportunidades.css";
 
 import {
 	fetchOpportunityRedux,
 	getCandidaturasRedux,
 	createCandidaturaRedux,
-} from "../store/actions";
+} from "../../store/actions";
 //Icons
 import { FaUpload, FaDownload, FaRecordVinyl, FaCheck } from "react-icons/fa";
 import { useAlert } from "react-alert";
 
 export const userCandidature = createContext();
 
-function OpportunitieDetail(props) {
+function OportunidadeDetalhes(props) {
 	//History
 	const history = useHistory();
 
@@ -181,4 +181,4 @@ export default connect(mapStateToProps, {
 	fetchOpportunityRedux,
 	createCandidaturaRedux,
 	getCandidaturasRedux,
-})(OpportunitieDetail);
+})(OportunidadeDetalhes);

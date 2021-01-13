@@ -5,7 +5,7 @@ const OpportunitiesDetailCard = ({
 	jobType,
 	workTime,
 	habilities,
-	numeroVagas,
+	numeroVaga,
 }) => {
 	return (
 		<div className="div-card">
@@ -31,7 +31,7 @@ const OpportunitiesDetailCard = ({
 			{jobType ? <p>{jobType}</p> : <p>Sênior</p>}
 
 			<strong>Número de vagas:</strong>
-			{numeroVagas ? <p>{numeroVagas}</p> : <p>171</p>}
+			{numeroVaga ? <p>{numeroVaga}</p> : <p>171</p>}
 
 			<strong>Horário de trabalho:</strong>
 			{workTime ? <p>{workTime}</p> : <p>Das 9 às 19h</p>}

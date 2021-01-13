@@ -2,20 +2,21 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 //Components
-import BackgroundTitle from "../components/background-title/Background-title";
-import OpportunitiesList from "./Oportunidades/Componentes/OpportunitiesList";
-import OpportunitiesEmpty from "./Oportunidades/Componentes/OpportunitiesEmpty";
+import BackgroundTitle from "../../components/background-title/Background-title";
+import OpportunitiesList from "./Componentes/OpportunitiesList";
+import OpportunitiesEmpty from "./Componentes/OpportunitiesEmpty";
 
 //CSS
-import "../styles/opportunities.css";
+import "./Styles/Oportunidades.css";
+import "./Styles/OportunidadesComponentes.css";
 
-import { fetchOpportunitiesRedux } from "../store/actions";
+import { fetchOpportunitiesRedux } from "../../store/actions";
 import { useAlert } from "react-alert";
 //import Pagination from "../components/Pagination";
 
 import Pagination from "@material-ui/lab/Pagination";
 
-function Opportunities(props) {
+function Oportunidades(props) {
 	//const [error, setError] = useState(null);
 	//const [opportunities, setOpportunities] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -155,5 +156,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { fetchOpportunitiesRedux })(
-	Opportunities
+	Oportunidades
 );
