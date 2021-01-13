@@ -16,7 +16,7 @@ import {
 } from "../services/methods";
 
 //CSS
-import "../styles/opportunitie-details.css";
+import "../styles/opportunities.css";
 
 import {
 	fetchOpportunityRedux,
