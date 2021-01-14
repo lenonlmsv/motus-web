@@ -1,4 +1,4 @@
-import { getUserName } from "../../services/auth";
+/*import { getUserName } from "../../services/auth";
 
 export const setName = () => {
     const name = getUserName();
@@ -9,4 +9,4 @@ export const setName = () => {
             name: name,    
         });
     }
-}
+}*/

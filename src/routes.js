@@ -14,14 +14,14 @@ import PageFooter from "./pages/ComponentesGlobais/PageFooter/PageFooter";
 import Oportunidades from "./pages/Oportunidades/Oportunidades";
 import OportunidadeDetalhes from "./pages/Oportunidades/OportunidadeDetalhes";
 
-import VideoResume from "./pages/video-resume";
-import VideoRecord from "./pages/video-recorder";
+import VideoResume from "./pages/Videos/video-resume";
+import VideoRecord from "./pages/Videos/video-recorder";
 import CandidatoDetalhes from "./pages/Candidato/CandidatoDetalhes";
 import PageNotFound from "./pages/page-not-found";
 import CandidatoAcesso from "./pages/Candidato/CandidatoAcesso";
 import CandidateDetailsTeste from "./pages/candidate-detail-teste";
-import RecuperarSenha from "./pages/recuperar-senha";
-import TrocarSenhar from "./pages/trocar-senha";
+import RecuperarSenha from "./pages/Login/recuperar-senha";
+import TrocarSenhar from "./pages/Login/trocar-senha";
 
 const PrivateRoute = (
 	{ component: Component, ...rest } //Bloqueia de acordo com a autenticação

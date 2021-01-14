@@ -323,14 +323,7 @@ function CandidatoDetalhes() {
 						<label
 							className="label-span label-link"
 							htmlFor="send-video"
-							style={
-								errorOnUserGet
-									? { cursor: "pointer" }
-									: {
-											cursor: "pointer",
-											pointerEvents: "none",
-									  }
-							}
+							style={{ cursor: "pointer" }}
 							onClick={
 								errorOnUserGet
 									? null

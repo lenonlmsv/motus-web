@@ -1,6 +1,7 @@
 import api from "../../services/api";
-import { login } from "../../services/auth";
+import { login, getUserName } from "../../services/auth";
 import { ShowError, ShowSuccess } from "../../services/methods";
+//import {  } from "../../services/auth";
 
 export const signIn = (email, senha, alert) => {
 	api.defaults.headers.post["Content-Type"] = "application/json";
@@ -167,6 +168,17 @@ export const updateCandidato = (candidato, alert, history) => {
 		dispatch({
 			type: "UPDATE_CANDIDATO",
 			payload: candidato,
+		});
+	};
+};
+
+export const setName = () => {
+	const name = getUserName();
+
+	return function (dispatch) {
+		dispatch({
+			type: "GET_USER_NAME",
+			name: name,
 		});
 	};
 };

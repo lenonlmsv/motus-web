@@ -6,7 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 //Redux connect
 import { connect } from "react-redux";
 import { signIn as signInAction } from "../../../store/actions";
-import { setName as setNameAction } from "../../../store/actions/set-user-name";
+import { setName as setNameAction } from "../../../store/actions";
 
 //Auth
 import { isAuthenticated } from "../../../services/auth";

@@ -2,27 +2,27 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 //Functions
-import { checkFileTypeVideos } from "../services/functions";
+import { checkFileTypeVideos } from "../../services/functions";
 
 //Youtube dependencie
 import Youtube from "react-youtube";
 
 //CSS
-import "../styles/video-resume.css";
+import "./Styles/video-resume.css";
 
 //Icons
 import { FaExclamation } from "react-icons/fa";
 
 //Components
-import BackgroundTitle from "./ComponentesGlobais/BackgroundTitle/BackgroundTitle";
-import { imageLoading } from "../images/images";
+import BackgroundTitle from "../ComponentesGlobais/BackgroundTitle/BackgroundTitle";
+import { imageLoading } from "../../images/images";
 
 //Methods
-import { sendVideoResume } from "../services/methods";
+import { sendVideoResume } from "../../services/methods";
 import { useAlert } from "react-alert";
 
 //Auth
-import { getHashId } from "../services/auth";
+import { getHashId } from "../../services/auth";
 
 function VideoResume() {
 	//Alert

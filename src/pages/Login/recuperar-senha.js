@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import BackgroundTitle from "./ComponentesGlobais/BackgroundTitle/BackgroundTitle";
+import BackgroundTitle from "../ComponentesGlobais/BackgroundTitle/BackgroundTitle";
 import { Link, useHistory } from "react-router-dom";
 import { useAlert } from "react-alert";
-import { ShowError, ShowSuccess } from "../services/methods";
-import api from "../services/api";
+import { ShowError, ShowSuccess } from "../../services/methods";
+import api from "../../services/api";
 
 const RecuperarSenha = () => {
 	const [email, setEmail] = useState("");

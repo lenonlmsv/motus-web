@@ -1,16 +1,16 @@
 import React from "react";
 
 //React Camera
-import VideoRecorderBlock from "../components/video-recorder-block/Video-recorder-block";
+import VideoRecorderBlock from "./video-recorder-block/Video-recorder-block";
 
 //Router dom
 import { useParams } from "react-router-dom";
 
 //CSS
-import "../styles/video-recorder.css";
+import "./Styles/video-recorder.css";
 
 //Components
-import BackgroundTitle from "./ComponentesGlobais/BackgroundTitle/BackgroundTitle";
+import BackgroundTitle from "../ComponentesGlobais/BackgroundTitle/BackgroundTitle";
 
 function VideoRecord(props) {
 	const checkState = props.location.state;

@@ -11,11 +11,11 @@ import {
 	FaRecordVinyl,
 	FaShare,
 } from "react-icons/fa";
-import { imageLoading } from "../../images/images";
+import { imageLoading } from "../../../images/images";
 
 //Methods
-import { sendVideoResume, sendVideoAnswer } from "../../services/methods";
-import { checkFileTypeVideos } from "../../services/functions";
+import { sendVideoResume, sendVideoAnswer } from "../../../services/methods";
+import { checkFileTypeVideos } from "../../../services/functions";
 
 //Alert
 import { useAlert } from "react-alert";
