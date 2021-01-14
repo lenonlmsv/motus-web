@@ -19,7 +19,7 @@ import VideoRecord from "./pages/Videos/video-recorder";
 import CandidatoDetalhes from "./pages/Candidato/CandidatoDetalhes";
 import PageNotFound from "./pages/page-not-found";
 import CandidatoAcesso from "./pages/Candidato/CandidatoAcesso";
-import CandidateDetailsTeste from "./pages/candidate-detail-teste";
+
 import RecuperarSenha from "./pages/Login/recuperar-senha";
 import TrocarSenhar from "./pages/Login/trocar-senha";
 
@@ -69,10 +69,6 @@ function Routes() {
 				{
 					//TODO: Excluir depois, apenas um teste
 				}
-				<PrivateRoute
-					path="/candidatoteste/:id"
-					component={CandidateDetailsTeste}
-				/>
 
 				<Route path="/cadastro" component={CandidatoAcesso} />
 
