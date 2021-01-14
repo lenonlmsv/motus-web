@@ -16,6 +16,9 @@ import { useAlert } from "react-alert";
 
 import Pagination from "@material-ui/lab/Pagination";
 
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
+
 function Oportunidades(props) {
 	//const [error, setError] = useState(null);
 	//const [opportunities, setOpportunities] = useState([]);
@@ -26,6 +29,9 @@ function Oportunidades(props) {
 	const alert = useAlert();
 
 	const totalItems = 10;
+
+	const options = ["one", "two", "three"];
+	const defaultOption = options[0];
 
 	const handleChangePage = (event, newPage) => {
 		props.fetchOpportunitiesRedux(newPage, totalItems, search, alert);
@@ -50,6 +56,7 @@ function Oportunidades(props) {
 		}
 	};
 
+	const foo = () => {};
 	return (
 		<div id="page-opportunities" className="page-position">
 			<BackgroundTitle
@@ -62,6 +69,13 @@ function Oportunidades(props) {
 			<div>
 				<div id="search">
 					<div id="search-items">
+						<Dropdown
+							options={options}
+							onChange={foo()}
+							value={defaultOption}
+							placeholder="Select an option"
+						/>
+						;
 						<input
 							id="search-input"
 							type="text"
