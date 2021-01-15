@@ -229,6 +229,8 @@ export default function CandidatoAcesso() {
 			switch (error) {
 				case "Error: Request failed with status code 400":
 					showError("E-mail já cadastrado!");
+				default:
+					showError("Ops... Ocorreu um imprevisto!");
 			}
 		}
 	}
