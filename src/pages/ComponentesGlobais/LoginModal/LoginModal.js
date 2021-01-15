@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
-import Login from "./Login";
+import LoginComponente from "./LoginComponente";
 import { Button } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import { Link, useHistory } from "react-router-dom";
@@ -52,7 +52,7 @@ const LoginModal = ({ functionClose }) => {
 					<GrFormClose className="button-close-icon" />
 				</Link>
 
-				<Login closeModal={closeModal} />
+				<LoginComponente closeModal={closeModal} />
 			</ReactModal>
 		</div>
 	);

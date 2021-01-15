@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 
 //Components
-import BackgroundTitle from "../ComponentesGlobais/BackgroundTitle/BackgroundTitle";
+import TituloPagina from "../ComponentesGlobais/TituloPagina/TituloPagina";
 import OpportunitiesDetailCard from "./Componentes/OpportunitiesDetailCard";
 import { getUserName } from "../../services/auth";
 import QuestionsBlock from "./Componentes/questions-block/Questions-block";
@@ -102,7 +102,7 @@ function OportunidadeDetalhes(props) {
 
 	return typeof props.opportunity.responseData !== "undefined" ? (
 		<div id="page-opportunitie-details" className="page-position">
-			<BackgroundTitle
+			<TituloPagina
 				title={props.opportunity.responseData.titulo}
 				description=""
 			/>

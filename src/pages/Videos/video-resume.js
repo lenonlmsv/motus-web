@@ -14,7 +14,7 @@ import "./Styles/video-resume.css";
 import { FaExclamation } from "react-icons/fa";
 
 //Components
-import BackgroundTitle from "../ComponentesGlobais/BackgroundTitle/BackgroundTitle";
+import TituloPagina from "../ComponentesGlobais/TituloPagina/TituloPagina";
 import { imageLoading } from "../../images/images";
 
 //Methods
@@ -96,7 +96,7 @@ function VideoResume() {
 
 	return (
 		<div id="page-video-resume" className="page-position">
-			<BackgroundTitle
+			<TituloPagina
 				title={"Envie seu vídeo currículo"}
 				description={
 					"A história da Sys Manager é construída com a contribuição de uma equipe talentosa empenhada em sempre entregar a melhor solução para os clientes."

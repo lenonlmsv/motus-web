@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 //CSS
-import "./Styles/LoginBar.css";
+import "./Styles/BarraUsuario.css";
 
 //Components
 import { getHashId } from "../../../services/auth";
@@ -21,7 +21,7 @@ function logoutREDUX() {
 	};
 }
 
-function LoginBar({ isLogged, userName, dispatch }) {
+function BarraUsuario({ isLogged, userName, dispatch }) {
 	const [isLogar, setIsLogar] = useState(false);
 	const hashId = getHashId();
 
@@ -82,4 +82,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(LoginBar);
+export default connect(mapStateToProps)(BarraUsuario);

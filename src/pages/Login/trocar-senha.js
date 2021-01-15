@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BackgroundTitle from "../ComponentesGlobais/BackgroundTitle/BackgroundTitle";
+import TituloPagina from "../ComponentesGlobais/TituloPagina/TituloPagina";
 import { Link, useHistory } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { ShowError, ShowSuccess, changePassword } from "../../services/methods";
@@ -56,7 +56,7 @@ const TrocarSenha = () => {
 
 	return (
 		<div id="page-candidate-details" className="page-position">
-			<BackgroundTitle title={`Alterar senha`} description={""} />
+			<TituloPagina title={`Alterar senha`} description={""} />
 
 			<main className="display-flex">
 				<form className="create-candidate" onSubmit={handleSubmit}>

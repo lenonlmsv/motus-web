@@ -7,8 +7,8 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import "./Styles/CandidatoDetalhes.css";
 
 //Components
-import BackgroundTitle from "../ComponentesGlobais/BackgroundTitle/BackgroundTitle";
-import ResumesList from "./Componentes/CurriculoLista/CurriculoLista";
+import TituloPagina from "../ComponentesGlobais/TituloPagina/TituloPagina";
+import CurriculoLista from "./Componentes/CurriculoLista";
 import { InputPhoneNumber, InputPhone } from "./Componentes/Input";
 import CandidaturaLista from "./Componentes/CandidaturaLista";
 
@@ -146,7 +146,7 @@ function CandidatoDetalhes() {
 
 	return (
 		<div id="page-candidate-details" className="page-position">
-			<BackgroundTitle title={`Meus dados`} />
+			<TituloPagina title={`Meus dados`} />
 
 			<div id="tab-buttons">
 				<button
@@ -363,7 +363,7 @@ function CandidatoDetalhes() {
 							})}
 					</div>
 
-					<ResumesList />
+					<CurriculoLista />
 
 					<div class="display-flex button-send">
 						<button

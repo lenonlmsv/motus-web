@@ -13,7 +13,7 @@ import "./Styles/CandidatoDetalhes.css";
 import { FaDownload, FaTrash } from "react-icons/fa";
 
 //Components
-import BackgroundTitle from "../ComponentesGlobais/BackgroundTitle/BackgroundTitle";
+import TituloPagina from "../ComponentesGlobais/TituloPagina/TituloPagina";
 import { InputPhoneNumber, InputPhone } from "./Componentes/Input";
 
 //API and Auth
@@ -71,6 +71,19 @@ export default function CandidatoAcesso() {
 	//         return false;
 	//     }
 	// }
+
+	const verificarTelefones = (celular, numeroLivre) => {
+		const regEx = /^\([0-9]{2}\) \9[0-9]{4}-[0-9]{4}$/;
+
+		if (regEx.test(celular)) {
+			console.log("Numero Valido");
+			return false;
+		}
+		console.log(regEx.test(celular));
+		console.log("numero: " + celular);
+		console.log("Numero INValido");
+		return false;
+	};
 
 	const handleResume = (e) => {
 		//Valida o tipo do arquivo
@@ -133,6 +146,10 @@ export default function CandidatoAcesso() {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
+
+		if (!verificarTelefones(cellNumber, phone)) {
+			return;
+		}
 
 		if (!checkPasswords()) {
 			return;
@@ -212,7 +229,7 @@ export default function CandidatoAcesso() {
 
 	return (
 		<div id="page-candidate-details" className="page-position">
-			<BackgroundTitle
+			<TituloPagina
 				title={"Novo candidato"}
 				description={"Cadastre-se para concorrer!"}
 			/>
@@ -307,10 +324,7 @@ export default function CandidatoAcesso() {
 					<div className="input-block">
 						<label htmlFor="phone" className="label-span">
 							Telefone
-							<span>
-								(Formato: 10 dígitos com DDD. Exp.: (21)
-								3333-3333)
-							</span>
+							<span>(Formato: numeros, - e ())</span>
 						</label>
 
 						<InputPhone
@@ -320,17 +334,22 @@ export default function CandidatoAcesso() {
 							}}
 						/>
 
-						{/* <input 
-                            id="phone" 
-                            value={phone}
-                            type="text"
-                            pattern = "[0-9]+"
-                            placeholder='(00) 0000-0000'
-                            maxLength="10"
-                            minLength="10"
-                            title="Somente números"
-                            onChange={event => {setPhone(event.target.value)}}
-                            required/> */}
+						{/*
+							<input
+								id="phone"
+								value={phone}
+								type="text"
+								pattern="[0-9]+"
+								//placeholder="(00) 0000-0000"
+								maxLength="10"
+								minLength="1"
+								title="Somente números"
+								onChange={(event) => {
+									setPhone(event.target.value);
+								}}
+								//required
+							/>
+						*/}
 					</div>
 
 					<div className="input-block">

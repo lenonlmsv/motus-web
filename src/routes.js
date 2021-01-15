@@ -7,8 +7,8 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { isAuthenticated } from "./services/auth";
 
 //Components
-import PageHeader from "./pages/ComponentesGlobais/PageHeader/PageHeader";
-import PageFooter from "./pages/ComponentesGlobais/PageFooter/PageFooter";
+import Header from "./pages/ComponentesGlobais/Estrutura/Header";
+import Footer from "./pages/ComponentesGlobais/Estrutura/Footer";
 
 //Pages
 import Oportunidades from "./pages/Oportunidades/Oportunidades";
@@ -46,7 +46,7 @@ const PrivateRoute = (
 function Routes() {
 	return (
 		<BrowserRouter>
-			<PageHeader />
+			<Header />
 
 			<Switch style={{ alignSelf: "center" }}>
 				<Route path="/" exact component={Oportunidades} />
@@ -87,7 +87,7 @@ function Routes() {
 				<Route path="*" component={PageNotFound} />
 			</Switch>
 
-			<PageFooter />
+			<Footer />
 		</BrowserRouter>
 	);
 }

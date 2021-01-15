@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BackgroundTitle from "../ComponentesGlobais/BackgroundTitle/BackgroundTitle";
+import TituloPagina from "../ComponentesGlobais/TituloPagina/TituloPagina";
 import { Link, useHistory } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { ShowError, ShowSuccess } from "../../services/methods";
@@ -36,7 +36,7 @@ const RecuperarSenha = () => {
 
 	return (
 		<div id="page-candidate-details" className="page-position">
-			<BackgroundTitle
+			<TituloPagina
 				title={`Recuperação de senha`}
 				description={"Insira o email utilizando para criar sua conta"}
 			/>

@@ -12,11 +12,6 @@
 	--page-max-width: 1200px; /*Max width da página quando na visualização web*/
 }
 
-.letra-rosa {
-	color: pink;
-	background-color: purple;
-}
-
 @font-face {
 	font-family: Bariol Regular;
 	src: url(../fonts/bariol_regular-webfont.ttf);

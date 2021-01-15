@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 //CSS
-import "./Styles/PageHeader.css";
+import "./Styles/Header.css";
 
 //Routes
 import { Link } from "react-router-dom";
@@ -13,9 +13,9 @@ import { AiOutlineDown } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
 //Components
-import LoginBar from "../LoginBar/LoginBar";
+import BarraUsuario from "./BarraUsuario";
 
-function PageHeader(props) {
+function Header(props) {
 	const [showItens, setShowItens] = useState("hover-content-hide");
 
 	const showOnHover = () => {
@@ -116,9 +116,9 @@ function PageHeader(props) {
 				</div>
 			</header>
 
-			<LoginBar />
+			<BarraUsuario />
 		</div>
 	);
 }
 
-export default PageHeader;
+export default Header;

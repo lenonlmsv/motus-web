@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 
 //CSS
-import "./Styles/BackgroundTitle.css";
+import "./Styles/TituloPagina.css";
 
-function BackgroundTitle(props) {
+function TituloPagina(props) {
 	useEffect(() => {
 		const pageTitle = props.title;
 		document.querySelector("title").innerText = pageTitle;
@@ -22,4 +22,4 @@ function BackgroundTitle(props) {
 	);
 }
 
-export default BackgroundTitle;
+export default TituloPagina;

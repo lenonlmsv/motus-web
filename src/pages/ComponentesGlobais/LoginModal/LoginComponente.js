@@ -12,7 +12,7 @@ import { setName as setNameAction } from "../../../store/actions";
 import { isAuthenticated } from "../../../services/auth";
 
 //Components
-import BackgroundTitle from "../BackgroundTitle/BackgroundTitle";
+import TituloPagina from "../TituloPagina/TituloPagina";
 
 //CSS
 import "./Styles/Login.css";
@@ -25,7 +25,7 @@ function initialState() {
 	return { user: "", password: "" };
 }
 
-function Login({ isLogged, setName, signIn, closeModal }) {
+function LoginComponente({ isLogged, setName, signIn, closeModal }) {
 	const alert = useAlert();
 
 	const showError = (message) => {
@@ -171,4 +171,4 @@ const mapDispatchToProps = (dispatch) => ({
 	setName: () => dispatch(setNameAction()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login); // { signIn })(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginComponente); // { signIn })(Login);

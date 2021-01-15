@@ -4,13 +4,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 //CSS
-import "./Styles/CurriculoLista.css";
+import "../Styles/CurriculoLista.css";
 
 //Alert
 import { useAlert } from "react-alert";
 
 //Functions
-import { checkFileTypeFiles } from "../../../../services/functions";
+import { checkFileTypeFiles } from "../../../services/functions";
 
 //Icons
 import { FaDownload, FaTrash } from "react-icons/fa";
@@ -19,8 +19,9 @@ import {
 	deleteResume,
 	downloadFile,
 	sendResume,
-} from "../../../../services/methods";
-import { imageLoading } from "../../../../images/images";
+} from "../../../services/methods";
+
+import { imageLoading } from "../../../images/images";
 
 export default function CurriculoLista() {
 	const [resumes, setResumes] = useState({});

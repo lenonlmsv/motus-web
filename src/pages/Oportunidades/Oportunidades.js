@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 //Components
-import BackgroundTitle from "../ComponentesGlobais/BackgroundTitle/BackgroundTitle";
+import TituloPagina from "../ComponentesGlobais/TituloPagina/TituloPagina";
 import OpportunitiesList from "./Componentes/OpportunitiesList";
 import OpportunitiesEmpty from "./Componentes/OpportunitiesEmpty";
 
@@ -17,20 +17,17 @@ import { useAlert } from "react-alert";
 import Pagination from "@material-ui/lab/Pagination";
 
 import Dropdown from "react-dropdown";
-import "react-dropdown/style.css";
+//import "react-dropdown/style.css";
 
 function Oportunidades(props) {
-	//const [error, setError] = useState(null);
-	//const [opportunities, setOpportunities] = useState([]);
+	const [opportunities, setOpportunities] = useState([]);
 	const [loading, setLoading] = useState(false);
-	//const [currentPage, setCurrentPage] = useState(1);
-	//const [postsPerPage, setPostsPerPage] = useState(5);
 	const [search, setSearch] = useState("");
 	const alert = useAlert();
 
 	const totalItems = 10;
 
-	const options = ["one", "two", "three"];
+	const options = ["React", "Desenvolvedor Web", "Lider tecnico"];
 	const defaultOption = options[0];
 
 	const handleChangePage = (event, newPage) => {
@@ -59,7 +56,7 @@ function Oportunidades(props) {
 	const foo = () => {};
 	return (
 		<div id="page-opportunities" className="page-position">
-			<BackgroundTitle
+			<TituloPagina
 				title={"Junte-se a nós!"}
 				description={
 					"A história da Sys Manager é construída com a contribuição de uma equipe talentosa empenhada em sempre entregar a melhor solução para os clientes."

@@ -18,13 +18,15 @@ export const InputPhoneNumber = (props) => (
 export const InputPhone = (props) => (
 	<InputMask
 		id="phone"
-		mask="(99) 9999-9999"
+		//mask="(00) 00000-0000"
 		value={props.value}
 		onChange={props.onChange}
 		placeholder="(00) 00000-0000"
 		title="Somente números"
 		pattern="[0-9() \\-]+"
-		minLength="10"
-		required
+		minLength="8"
+		maxLength="30"
+		//required
+		disabled={props.disabled}
 	/>
 );

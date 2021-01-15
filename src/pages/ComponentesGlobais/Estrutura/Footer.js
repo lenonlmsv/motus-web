@@ -1,12 +1,12 @@
 import React from "react";
 
 //CSS
-import "./Styles/PageFooter.css";
+import "./Styles/Footer.css";
 
 //Image
 import ImageSys from "./images/sys-image-footer.png";
 
-function PageFooter() {
+function Footer() {
 	return (
 		<footer id="page-footer">
 			<div className="div-footer">
@@ -38,4 +38,4 @@ function PageFooter() {
 	);
 }
 
-export default PageFooter;
+export default Footer;

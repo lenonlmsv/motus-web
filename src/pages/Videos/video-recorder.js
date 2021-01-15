@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import "./Styles/video-recorder.css";
 
 //Components
-import BackgroundTitle from "../ComponentesGlobais/BackgroundTitle/BackgroundTitle";
+import TituloPagina from "../ComponentesGlobais/TituloPagina/TituloPagina";
 
 function VideoRecord(props) {
 	const checkState = props.location.state;
@@ -50,7 +50,7 @@ function VideoRecord(props) {
 
 		return (
 			<div id="page-video-recorder" className="page-position">
-				<BackgroundTitle
+				<TituloPagina
 					title="Gravar vídeo currículo"
 					description={`Você terá ${timeSeconds.toMMSS()} minutos para gravar seu novo vídeo currículo`}
 				/>
@@ -69,7 +69,7 @@ function VideoRecord(props) {
 
 		return (
 			<div id="page-video-recorder" className="page-position">
-				<BackgroundTitle
+				<TituloPagina
 					title="Gravar vídeo"
 					description={`Você terá até ${timeFormat} para responder esta pergunta`}
 				/>
