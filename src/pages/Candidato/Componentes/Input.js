@@ -21,9 +21,9 @@ export const InputPhone = (props) => (
 		//mask="(00) 00000-0000"
 		value={props.value}
 		onChange={props.onChange}
-		placeholder="(00) 00000-0000"
+		//placeholder="(00) 00000-0000"
 		title="Somente números"
-		pattern="[0-9() \\-]+"
+		//pattern="[0-9() \\-]+"
 		minLength="8"
 		maxLength="30"
 		//required

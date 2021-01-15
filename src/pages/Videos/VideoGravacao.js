@@ -1,18 +1,18 @@
 import React from "react";
 
 //React Camera
-import VideoRecorderBlock from "./video-recorder-block/Video-recorder-block";
+import VideoComponenteGravacao from "./VideoComponenteGravacao";
 
 //Router dom
 import { useParams } from "react-router-dom";
 
 //CSS
-import "./Styles/video-recorder.css";
+import "./Styles/VideoGravacao.css";
 
 //Components
 import TituloPagina from "../ComponentesGlobais/TituloPagina/TituloPagina";
 
-function VideoRecord(props) {
+function VideoGravacao(props) {
 	const checkState = props.location.state;
 	let questionProps;
 	if (checkState !== undefined) {
@@ -56,7 +56,7 @@ function VideoRecord(props) {
 				/>
 
 				<div id="div-recoder">
-					<VideoRecorderBlock time={timeSeconds} returnTo={""} />
+					<VideoComponenteGravacao time={timeSeconds} returnTo={""} />
 				</div>
 			</div>
 		);
@@ -75,7 +75,7 @@ function VideoRecord(props) {
 				/>
 
 				<div id="div-recoder">
-					<VideoRecorderBlock
+					<VideoComponenteGravacao
 						time={timeSeconds}
 						returnTo={params.id}
 						questionId={questionProps.id}
@@ -87,4 +87,4 @@ function VideoRecord(props) {
 	}
 }
 
-export default VideoRecord;
+export default VideoGravacao;

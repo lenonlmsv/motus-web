@@ -8,7 +8,7 @@ import { checkFileTypeVideos } from "../../services/functions";
 import Youtube from "react-youtube";
 
 //CSS
-import "./Styles/video-resume.css";
+import "./Styles/VideoDescricao.css";
 
 //Icons
 import { FaExclamation } from "react-icons/fa";
@@ -24,7 +24,7 @@ import { useAlert } from "react-alert";
 //Auth
 import { getHashId } from "../../services/auth";
 
-function VideoResume() {
+function VideoDescricao() {
 	//Alert
 	const alert = useAlert();
 
@@ -201,4 +201,4 @@ function VideoResume() {
 	);
 }
 
-export default VideoResume;
+export default VideoDescricao;

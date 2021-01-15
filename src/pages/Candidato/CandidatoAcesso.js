@@ -52,6 +52,7 @@ export default function CandidatoAcesso() {
 	const [password, setPassword] = useState("");
 	const [resume, setResume] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	//const [teste, testeSet] = useState({name: "", email: "",})
 
 	// const checkFileType = (fileType) => {
 	//     const acceptedTypes = [
@@ -75,14 +76,21 @@ export default function CandidatoAcesso() {
 	const verificarTelefones = (celular, numeroLivre) => {
 		const regEx = /^\([0-9]{2}\) \9[0-9]{4}-[0-9]{4}$/;
 
-		if (regEx.test(celular)) {
-			console.log("Numero Valido");
-			return false;
+		if (regEx.test(celular) | (phone.length > 8)) {
+			//console.log("Numero Valido");
+			return true;
 		}
-		console.log(regEx.test(celular));
-		console.log("numero: " + celular);
-		console.log("Numero INValido");
+		//console.log(regEx.test(celular));
+		//console.log("numero: " + celular);
+		//console.log("Numero INValido");
 		return false;
+	};
+
+	const constHandleFreeNumber = (e) => {
+		const newNumber = e.target.value.replace(/[^0-9()-\s+]+/, "");
+		//console.log(newNumber);
+		//	console.log(e.target.value);
+		setPhone(newNumber);
 	};
 
 	const handleResume = (e) => {
@@ -147,9 +155,10 @@ export default function CandidatoAcesso() {
 	async function handleSubmit(e) {
 		e.preventDefault();
 
-		if (!verificarTelefones(cellNumber, phone)) {
+		/*if (!verificarTelefones(cellNumber, phone)) {
+			showError("Ao menos um telefone precisa ser preenchido");
 			return;
-		}
+		}*/
 
 		if (!checkPasswords()) {
 			return;
@@ -176,12 +185,15 @@ export default function CandidatoAcesso() {
 			nome: name,
 		};
 
+		console.log("Vai pro try");
+
 		try {
 			api.defaults.headers.post["Content-Type"] = "application/json"; //USAR FORMATO JSON
 
 			let json = JSON.stringify(data);
 
 			await api.post("/inscricao", json);
+			console.log("Passou inscriçao");
 
 			let userData = {
 				login: data.login,
@@ -195,6 +207,7 @@ export default function CandidatoAcesso() {
 				const token = string[1]; //Get token
 				login(token); //Store token
 			});
+			console.log("Passou passou login");
 
 			api.defaults.headers.post["Content-Type"] = "multipart/form-data"; //USAR FORMATO DE ARQUIVO
 
@@ -206,9 +219,11 @@ export default function CandidatoAcesso() {
 
 			await api.post("candidato-curriculo", userResume);
 
+			console.log("Passou cadastro curriculo");
 			//await logout();
 			showSuccess("Usuário criado com sucesso!");
 			setTimeout(() => history.push("/oportunidades"), 800);
+			console.log("Passou timeout");
 		} catch (e) {
 			const error = e.toString();
 			switch (error) {
@@ -329,9 +344,7 @@ export default function CandidatoAcesso() {
 
 						<InputPhone
 							value={phone}
-							onChange={(event) => {
-								setPhone(event.target.value);
-							}}
+							onChange={constHandleFreeNumber}
 						/>
 
 						{/*

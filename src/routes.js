@@ -14,8 +14,8 @@ import Footer from "./pages/ComponentesGlobais/Estrutura/Footer";
 import Oportunidades from "./pages/Oportunidades/Oportunidades";
 import OportunidadeDetalhes from "./pages/Oportunidades/OportunidadeDetalhes";
 
-import VideoResume from "./pages/Videos/video-resume";
-import VideoRecord from "./pages/Videos/video-recorder";
+import VideoDescricao from "./pages/Videos/VideoDescricao";
+import VideoGravacao from "./pages/Videos/VideoGravacao";
 import CandidatoDetalhes from "./pages/Candidato/CandidatoDetalhes";
 import PageNotFound from "./pages/page-not-found";
 import CandidatoAcesso from "./pages/Candidato/CandidatoAcesso";
@@ -77,11 +77,14 @@ function Routes() {
 					component={OportunidadeDetalhes}
 				/>
 
-				<PrivateRoute path="/video-curriculo" component={VideoResume} />
+				<PrivateRoute
+					path="/video-curriculo"
+					component={VideoDescricao}
+				/>
 
 				<PrivateRoute
 					path="/gravar-video/:id"
-					component={VideoRecord}
+					component={VideoGravacao}
 				/>
 
 				<Route path="*" component={PageNotFound} />

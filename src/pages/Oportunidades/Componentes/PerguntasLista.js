@@ -8,7 +8,7 @@ import {
 	getVideoQuestions,
 	downloadVideoAnswer,
 	checkRecordedQuestions,
-} from "../../../../services/methods";
+} from "../../../services/methods";
 
 //Alert
 import { useAlert } from "react-alert";

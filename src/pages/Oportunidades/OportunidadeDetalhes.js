@@ -5,7 +5,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import TituloPagina from "../ComponentesGlobais/TituloPagina/TituloPagina";
 import OpportunitiesDetailCard from "./Componentes/OpportunitiesDetailCard";
 import { getUserName } from "../../services/auth";
-import QuestionsBlock from "./Componentes/questions-block/Questions-block";
+import QuestionsBlock from "./Componentes/PerguntasLista";
 
 import { connect, useSelector } from "react-redux";
 //Methods
