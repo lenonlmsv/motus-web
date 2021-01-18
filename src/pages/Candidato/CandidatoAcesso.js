@@ -185,15 +185,12 @@ export default function CandidatoAcesso() {
 			nome: name,
 		};
 
-		console.log("Vai pro try");
-
 		try {
 			api.defaults.headers.post["Content-Type"] = "application/json"; //USAR FORMATO JSON
 
 			let json = JSON.stringify(data);
 
 			await api.post("/inscricao", json);
-			console.log("Passou inscriçao");
 
 			let userData = {
 				login: data.login,
@@ -207,7 +204,6 @@ export default function CandidatoAcesso() {
 				const token = string[1]; //Get token
 				login(token); //Store token
 			});
-			console.log("Passou passou login");
 
 			api.defaults.headers.post["Content-Type"] = "multipart/form-data"; //USAR FORMATO DE ARQUIVO
 
@@ -219,19 +215,13 @@ export default function CandidatoAcesso() {
 
 			await api.post("candidato-curriculo", userResume);
 
-			console.log("Passou cadastro curriculo");
 			//await logout();
 			showSuccess("Usuário criado com sucesso!");
 			setTimeout(() => history.push("/oportunidades"), 800);
-			console.log("Passou timeout");
 		} catch (e) {
-			const error = e.toString();
-			switch (error) {
-				case "Error: Request failed with status code 400":
-					showError("E-mail já cadastrado!");
-				default:
-					showError("Ops... Ocorreu um imprevisto!");
-			}
+			//const error = e.toString();
+
+			showError(e.response.data.message);
 		}
 	}
 

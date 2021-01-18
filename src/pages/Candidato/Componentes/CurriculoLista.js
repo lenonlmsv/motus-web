@@ -34,6 +34,11 @@ export default function CurriculoLista() {
 				const resumeList = await getResumes();
 				if ((resumeList !== null) & (resumeList !== undefined)) {
 					setResumes(resumeList);
+					if (resumeList.length > 1) {
+						setResumeThrashColor("red");
+					} else {
+						setResumeThrashColor("gray");
+					}
 				}
 				//if (resumeList !== "null" && resumeList !== "undefined") {
 				//	if (resumeList.length > 1) {
