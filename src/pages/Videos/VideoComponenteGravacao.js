@@ -453,6 +453,13 @@ function VideoComponenteGravacao(props) {
 								console.log("Ta gravando");
 
 								closeOnExit();
+								setTimeout(
+									() =>
+										history.push(
+											`/oportunidades/${returnTo}`
+										),
+									500
+								);
 								//stopT();
 								//stopStreaming();
 							}
@@ -465,10 +472,7 @@ function VideoComponenteGravacao(props) {
 							//document.querySelector("#buttonStop").click();
 							//stopStreaming();
 						}
-						setTimeout(
-							() => history.push(`/oportunidades/${returnTo}`),
-							500
-						);
+						history.push(`/oportunidades/${returnTo}`);
 					}}
 					className="button button-secondary"
 				>
