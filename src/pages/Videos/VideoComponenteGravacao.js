@@ -115,8 +115,28 @@ function VideoComponenteGravacao(props) {
 		stop.href = "#videoN1";
 		download.href = "#videoN1";
 
+		console.log(
+			" " +
+				record +
+				" " +
+				" " +
+				stop +
+				" " +
+				" " +
+				download +
+				" " +
+				" " +
+				send +
+				" "
+		);
+
 		//Start record
 		record.onclick = function () {
+			{
+				console.log(
+					"Camera? " + isCameraAllowed + " loading: " + loading
+				);
+			}
 			chunks = [];
 
 			showButtons(["#buttonStop"]);
@@ -261,6 +281,7 @@ function VideoComponenteGravacao(props) {
 		var sec = seconds < 10 ? "0" + seconds : seconds;
 
 		document.querySelector("p.timer").innerText = min + sec; //h + min + sec;
+		//console.log(" timer " +)
 
 		// If the count down is over, write some text
 		if (tempo <= 0) {
@@ -271,14 +292,13 @@ function VideoComponenteGravacao(props) {
 
 	//Mostrar e ocultar botões
 	const showButtons = (ids) => {
-		typeof ids !== "object" && //console.log("objeto inválido");
-			ids.map((id) => {
-				ids == ""
-					? console.log("Argumento necessário")
-					: document
-							.querySelector(id)
-							.classList.remove("display-none");
-			});
+		console.log("showButton: " + ids);
+		typeof ids !== "object" && console.log("objeto inválido");
+		ids.map((id) => {
+			ids == ""
+				? console.log("Argumento necessário")
+				: document.querySelector(id).classList.remove("display-none");
+		});
 	};
 
 	const hideButtons = (ids) => {
@@ -360,8 +380,11 @@ function VideoComponenteGravacao(props) {
 				<p className="timer"></p>
 			</div>
 
+			{console.log("Camera? " + isCameraAllowed + " loading: " + loading)}
+
 			{isCameraAllowed &&
 				(!loading && isCameraAllowed ? (
+					//
 					<div>
 						<div className="div-buttons displayFlex">
 							<label
@@ -435,6 +458,7 @@ function VideoComponenteGravacao(props) {
 				<button
 					onClick={() => {
 						if (isCameraAllowed) {
+							//document.querySelector("#buttonStop").click();
 							stopStreaming();
 						}
 						history.push(`/oportunidades/${returnTo}`);
