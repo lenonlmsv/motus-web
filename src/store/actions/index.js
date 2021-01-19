@@ -39,6 +39,7 @@ export const fetchOpportunitiesRedux = (
 	page,
 	totalItems,
 	searchText,
+	cargos,
 	alert
 ) => {
 	searchText !== "" && (searchText = `?busca=${searchText}`);

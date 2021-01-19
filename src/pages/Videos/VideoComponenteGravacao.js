@@ -115,21 +115,6 @@ function VideoComponenteGravacao(props) {
 		stop.href = "#videoN1";
 		download.href = "#videoN1";
 
-		console.log(
-			" " +
-				record +
-				" " +
-				" " +
-				stop +
-				" " +
-				" " +
-				download +
-				" " +
-				" " +
-				send +
-				" "
-		);
-
 		//Start record
 		record.onclick = function () {
 			{

@@ -9,6 +9,7 @@ import OpportunitiesEmpty from "./Componentes/OpportunitiesEmpty";
 //CSS
 import "./Styles/Oportunidades.css";
 import "./Styles/OportunidadesComponentes.css";
+import "./Styles/Dropdown.css";
 
 import { fetchOpportunitiesRedux } from "../../store/actions";
 import { useAlert } from "react-alert";
@@ -17,12 +18,14 @@ import { useAlert } from "react-alert";
 import Pagination from "@material-ui/lab/Pagination";
 
 import Dropdown from "react-dropdown";
+//import { Dropdown } from "semantic-ui-react";
 //import "react-dropdown/style.css";
 
 function Oportunidades(props) {
 	const [opportunities, setOpportunities] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [search, setSearch] = useState("");
+	const [cargoEscolhido] = useState("");
 	const alert = useAlert();
 
 	const totalItems = 10;
@@ -31,11 +34,23 @@ function Oportunidades(props) {
 	const defaultOption = options[0];
 
 	const handleChangePage = (event, newPage) => {
-		props.fetchOpportunitiesRedux(newPage, totalItems, search, alert);
+		props.fetchOpportunitiesRedux(
+			newPage,
+			totalItems,
+			search,
+			cargoEscolhido,
+			alert
+		);
 	};
 
 	useEffect(() => {
-		props.fetchOpportunitiesRedux(1, totalItems, search, alert);
+		props.fetchOpportunitiesRedux(
+			1,
+			totalItems,
+			search,
+			cargoEscolhido,
+			alert
+		);
 		//fetchOpportunities("");
 	}, []);
 
@@ -53,7 +68,10 @@ function Oportunidades(props) {
 		}
 	};
 
-	const foo = () => {};
+	const onSelect = (option) => {
+		console.log(option);
+		//props.fetchOpportunitiesRedux(1, totalItems, search, alert);
+	};
 	return (
 		<div id="page-opportunities" className="page-position">
 			<TituloPagina
@@ -68,11 +86,11 @@ function Oportunidades(props) {
 					<div id="search-items">
 						<Dropdown
 							options={options}
-							onChange={foo()}
+							onChange={onSelect}
 							value={defaultOption}
 							placeholder="Select an option"
 						/>
-						;
+
 						<input
 							id="search-input"
 							type="text"
@@ -106,6 +124,7 @@ function Oportunidades(props) {
 										1,
 										totalItems,
 										search,
+										cargoEscolhido,
 										alert
 									)
 								}
