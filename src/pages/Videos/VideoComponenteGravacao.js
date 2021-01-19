@@ -32,6 +32,7 @@ function VideoComponenteGravacao(props) {
 	const [isCameraAllowed, setIsCameraAllowed] = useState(false);
 	const [returnTo, setreturnTo] = useState(props.returnTo);
 	const [loading, setLoading] = useState(false);
+	const [isGravando, setIsGravando] = useState(false);
 
 	const alert = useAlert();
 
@@ -117,11 +118,7 @@ function VideoComponenteGravacao(props) {
 
 		//Start record
 		record.onclick = function () {
-			{
-				console.log(
-					"Camera? " + isCameraAllowed + " loading: " + loading
-				);
-			}
+			setIsGravando(true);
 			chunks = [];
 
 			showButtons(["#buttonStop"]);
@@ -152,6 +149,8 @@ function VideoComponenteGravacao(props) {
 
 		//Stop record
 		stop.onclick = function () {
+			setIsGravando(false);
+			console.log("Ta aqui");
 			mediaRecorder.stop();
 			hideButtons(["#buttonStop"]);
 			showButtons([
@@ -177,6 +176,7 @@ function VideoComponenteGravacao(props) {
 				var base64data = reader.result;
 				document.querySelector("input#base64String").value = base64data;
 			};
+			//}
 
 			//Download record
 			download.onclick = () => {
@@ -275,6 +275,10 @@ function VideoComponenteGravacao(props) {
 		}
 	}
 
+	const closeOnExit = () => {
+		document.querySelector("#buttonStop").click();
+	};
+
 	//Mostrar e ocultar botões
 	const showButtons = (ids) => {
 		console.log("showButton: " + ids);
@@ -365,7 +369,9 @@ function VideoComponenteGravacao(props) {
 				<p className="timer"></p>
 			</div>
 
-			{console.log("Camera? " + isCameraAllowed + " loading: " + loading)}
+			{
+				//console.log("Camera? " + isCameraAllowed + " loading: " + loading)
+			}
 
 			{isCameraAllowed &&
 				(!loading && isCameraAllowed ? (
@@ -443,10 +449,26 @@ function VideoComponenteGravacao(props) {
 				<button
 					onClick={() => {
 						if (isCameraAllowed) {
+							if (isGravando) {
+								console.log("Ta gravando");
+
+								closeOnExit();
+								//stopT();
+								//stopStreaming();
+							}
+
+							//closeOnExit();
+							//stopT();
+							//stopStreaming();
+
+							////stopT();
 							//document.querySelector("#buttonStop").click();
-							stopStreaming();
+							//stopStreaming();
 						}
-						history.push(`/oportunidades/${returnTo}`);
+						setTimeout(
+							() => history.push(`/oportunidades/${returnTo}`),
+							500
+						);
 					}}
 					className="button button-secondary"
 				>
