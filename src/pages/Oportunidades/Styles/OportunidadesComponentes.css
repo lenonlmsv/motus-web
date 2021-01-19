@@ -29,8 +29,10 @@
 }
 
 @media (min-width: 1200px) {
+
 	#no-opportunities p {
-		font-size: 2rem;
+		font-size: 25px;
+		color: var(--color-font-primary);
 	}
 
 	#no-opportunities img {

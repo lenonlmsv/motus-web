@@ -59,8 +59,9 @@ pre code {
 	color: #333;
 	cursor: default;
 	outline: none;
-	padding: 8px 52px 8px 10px;
+	padding: 11px 20px 11px 10px;
 	transition: all 200ms ease;
+	margin-right: 15px;
 }
 
 .Dropdown-control:hover {
