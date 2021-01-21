@@ -22,6 +22,7 @@ import {
 } from "../../../services/methods";
 
 import { imageLoading } from "../../../images/images";
+import BoxLoading from "./BoxLoading";
 
 export default function CurriculoLista() {
 	const [resumes, setResumes] = useState({});
@@ -126,7 +127,7 @@ export default function CurriculoLista() {
 			<div className="input-flex input-block">
 				<label htmlFor="resume" className="label-span">
 					<p style={{ textDecoration: "underline" }}>
-						Envie currículo
+						Enviar currículo
 					</p>
 					{/* <Link className="link-underline">Envie currículo</Link> */}
 					<span>
@@ -168,10 +169,7 @@ export default function CurriculoLista() {
 					);
 				})
 			) : (
-				<img
-					style={{ width: "40px", margin: "20px" }}
-					src={imageLoading}
-				/>
+				<BoxLoading isOpen={true} />
 			)}
 		</div>
 	) : (

@@ -450,8 +450,6 @@ function VideoComponenteGravacao(props) {
 					onClick={() => {
 						if (isCameraAllowed) {
 							if (isGravando) {
-								console.log("Ta gravando");
-
 								closeOnExit();
 								setTimeout(
 									() =>
@@ -460,17 +458,7 @@ function VideoComponenteGravacao(props) {
 										),
 									500
 								);
-								//stopT();
-								//stopStreaming();
 							}
-
-							//closeOnExit();
-							//stopT();
-							//stopStreaming();
-
-							////stopT();
-							//document.querySelector("#buttonStop").click();
-							//stopStreaming();
 						}
 						history.push(`/oportunidades/${returnTo}`);
 					}}

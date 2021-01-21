@@ -8,6 +8,20 @@
 	justify-content: center;
 	align-items: center;
 }
+.box-loading {
+	display: flex;
+	align-items: center;
+	padding: 15px 20px;
+	margin-top: 30px;
+	border-radius: 20px;
+
+	background-color: #cecece;
+	color: #000;
+}
+
+.box-loading p {
+	margin-left: 20px;
+}
 
 .display-flex {
 	display: flex;

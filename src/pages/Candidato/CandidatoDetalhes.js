@@ -12,6 +12,8 @@ import CurriculoLista from "./Componentes/CurriculoLista";
 import { InputPhoneNumber, InputPhone } from "./Componentes/Input";
 import CandidaturaLista from "./Componentes/CandidaturaLista";
 
+import { imageLoading } from "../../images/images";
+
 //API and Auth
 import api from "../../services/api";
 import { getHashId, setUserName } from "../../services/auth";
@@ -26,6 +28,7 @@ import { FaDownload, FaTrash } from "react-icons/fa";
 
 //Alert
 import { useAlert } from "react-alert";
+import BoxLoading from "./Componentes/BoxLoading";
 
 function CandidatoDetalhes() {
 	const alert = useAlert();
@@ -49,6 +52,7 @@ function CandidatoDetalhes() {
 	const [phone, setPhone] = useState("");
 	const [videoResume, setVideoResume] = useState("");
 	const [errorOnUserGet, setErrorOnUserGet] = useState(false);
+	const [isSending, setIsSending] = useState(false);
 
 	useEffect(() => {
 		async function getVideoResume() {
@@ -84,6 +88,12 @@ function CandidatoDetalhes() {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
+		setIsSending(true);
+
+		let i = 0;
+		while (i < 20000) {
+			i++;
+		}
 
 		const data = {
 			celular: cellNumber,
@@ -105,9 +115,11 @@ function CandidatoDetalhes() {
 
 			setUserName(data.nome);
 			showSuccess("Usuário alterado com sucesso");
+			setIsSending(false);
 			history.push("/oportunidades");
 		} catch (error) {
 			//console.log(`${error.message}`);
+			setIsSending(false);
 			showError("Erro ao editar usuário. Tente novamente!");
 		}
 	}
@@ -298,44 +310,46 @@ function CandidatoDetalhes() {
                     </div> */}
 
 					<div className="input-block">
-						<label
+						<a
 							htmlFor="change-password"
 							className="label-link"
-							style={{ cursor: "pointer" }}
+							href="/trocar-senha"
+
+							//style={{ cursor: "pointer" }}
 						>
-							<Link
+							{/*<Link
 								to="/trocar-senha"
 								className={
 									errorOnUserGet
 										? "link-underline-disabled"
 										: "link-underline"
 								}
-							>
-								Redefinir senha
-							</Link>
+							></Link>
+							*/}
+							Redefinir senha
 							{/*<span>
                                     Você receberá um e-mail parar alterar a senha de acesso
                                 </span>*/}
-						</label>
+						</a>
 					</div>
 
 					<div className="input-block">
-						<label
-							className="label-span label-link"
+						<a
+							//className="label-link"
 							htmlFor="send-video"
-							style={{ cursor: "pointer" }}
-							onClick={
+							href="/video-curriculo"
+							//style={{ cursor: "pointer" }}
+							/*onClick={
 								errorOnUserGet
 									? null
 									: () => history.push("/video-curriculo")
-							}
+							}*/
 						>
 							Enviar vídeo currículo
-							<span>
-								(Grave seu vídeo currículo e aumente suas
-								chances)
-							</span>
-						</label>
+						</a>
+						<span>
+							(Grave seu vídeo currículo e aumente suas chances)
+						</span>
 
 						{videoResume !== "" &&
 							videoResume.map((vResume) => {
@@ -364,6 +378,7 @@ function CandidatoDetalhes() {
 					</div>
 
 					<CurriculoLista />
+					<BoxLoading isOpen={isSending} />
 
 					<div class="display-flex button-send">
 						<button

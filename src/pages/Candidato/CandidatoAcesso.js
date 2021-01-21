@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Modal from "react-modal";
 
 //reCaptcha
 import ReCAPTCHA from "react-google-recaptcha";
@@ -23,8 +24,11 @@ import { getHashId, isAuthenticated, login, logout } from "../../services/auth";
 //Alert
 import { useAlert } from "react-alert";
 
+import { imageLoading } from "../../images/images";
+
 //Functions
 import { checkFileTypeFiles } from "../../services/functions";
+import BoxLoading from "./Componentes/BoxLoading";
 
 export default function CandidatoAcesso() {
 	const alert = useAlert();
@@ -52,6 +56,7 @@ export default function CandidatoAcesso() {
 	const [password, setPassword] = useState("");
 	const [resume, setResume] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [isSending, setIsSending] = useState(false);
 	//const [teste, testeSet] = useState({name: "", email: "",})
 
 	// const checkFileType = (fileType) => {
@@ -77,12 +82,9 @@ export default function CandidatoAcesso() {
 		const regEx = /^\([0-9]{2}\) \9[0-9]{4}-[0-9]{4}$/;
 
 		if (regEx.test(celular) | (phone.length > 8)) {
-			//console.log("Numero Valido");
 			return true;
 		}
-		//console.log(regEx.test(celular));
-		//console.log("numero: " + celular);
-		//console.log("Numero INValido");
+
 		return false;
 	};
 
@@ -152,19 +154,31 @@ export default function CandidatoAcesso() {
 		//console.log(v);
 	};
 
+	const loadingForcado = (valor) => {
+		let i = 0;
+		while (i <= valor) {
+			i++;
+		}
+	};
+
 	async function handleSubmit(e) {
 		e.preventDefault();
+		setIsSending(true);
 
-		/*if (!verificarTelefones(cellNumber, phone)) {
+		if (!verificarTelefones(cellNumber, phone)) {
 			showError("Ao menos um telefone precisa ser preenchido");
+			setIsSending(false);
 			return;
-		}*/
+		}
+
+		loadingForcado(100000000);
 
 		if (!checkPasswords()) {
 			return;
 		}
 
-		if (resume === "") {
+		// #TODO: Descomentar depois
+		/*if (resume === "") {
 			//Checa se o currículo foi anexado
 			document
 				.querySelector("div.input-flex.input-block")
@@ -173,7 +187,7 @@ export default function CandidatoAcesso() {
 				.querySelector("div.input-flex.input-block label span")
 				.classList.add("text-error");
 			return;
-		}
+		}*/
 
 		const data = {
 			email: email,
@@ -205,22 +219,25 @@ export default function CandidatoAcesso() {
 				login(token); //Store token
 			});
 
-			api.defaults.headers.post["Content-Type"] = "multipart/form-data"; //USAR FORMATO DE ARQUIVO
+			if (resume !== "") {
+				api.defaults.headers.post["Content-Type"] =
+					"multipart/form-data"; //USAR FORMATO DE ARQUIVO
 
-			const userResume = new FormData();
+				const userResume = new FormData();
+				userResume.append("arquivo", resume);
+				userResume.append("name", resume.name);
+				userResume.append("tipoCurriculo", "DOCUMENTO");
 
-			userResume.append("arquivo", resume);
-			userResume.append("name", resume.name);
-			userResume.append("tipoCurriculo", "DOCUMENTO");
-
-			await api.post("candidato-curriculo", userResume);
+				await api.post("candidato-curriculo", userResume);
+			}
 
 			//await logout();
 			showSuccess("Usuário criado com sucesso!");
 			setTimeout(() => history.push("/oportunidades"), 800);
+			setIsSending(false);
 		} catch (e) {
 			//const error = e.toString();
-
+			setIsSending(false);
 			showError(e.response.data.message);
 		}
 	}
@@ -420,7 +437,7 @@ export default function CandidatoAcesso() {
 					</div>
 
 					<div className="file-details display-none">
-						<FaTrash color={"red"} onClick={removeResume} />
+						<FaTrash color={"gray"} onClick={removeResume} />
 						<FaDownload color={"blue"} onClick={downloadResume} />
 						<p>{resume.name}</p>
 					</div>
@@ -431,6 +448,8 @@ export default function CandidatoAcesso() {
 							onChange={(value) => checkCaptcha(value)}
 						/>
 					</div>*/}
+
+					<BoxLoading isOpen={isSending} />
 
 					<div class="display-flex button-send">
 						<Link to="/" className="button button-secondary">
