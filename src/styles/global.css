@@ -23,7 +23,7 @@
 }
 
 @font-face {
-	font-family: Bariol Light;
+	font-family: Bariol Light;	
 	src: url(../fonts/bariol_light-webfont.ttf);
 }
 
@@ -48,6 +48,11 @@ body {
 button:focus,
 input {
 	outline: 0 !important;
+}
+
+.classFlex {
+	display: flex;
+	align-items: center;
 }
 
 .router-content {
@@ -138,3 +143,6 @@ a:visited {
     }
 }
 */
+
+
+/*page opportunities*/

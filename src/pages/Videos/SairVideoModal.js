@@ -6,6 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import { GrFormClose } from "react-icons/gr";
 
 import "./Styles/SairVideoModal.css";
+import "./Styles/SairVideoModal.css";
 //ReactModal.setAppElement("#root");
 const SairVideoModal = ({ functionClose, functionCloseAndLeave, isOpen }) => {
 	//const [isOpen, setIsOpen] = useState(true);
@@ -39,14 +40,15 @@ const SairVideoModal = ({ functionClose, functionCloseAndLeave, isOpen }) => {
 					},
 					content: {
 						borderRadius: 35,
-						padding: "40px",
+						padding: "40px 60px 40px 40px",
 						maxWidth: 550,
 						marginLeft: "50%",
 						left: -275,
-						height: 400,
+						height: 190,
 						marginTop: -195,
 						top: "50%",
 						width: "100%",
+						lineHeight: 1.3,
 					},
 				}}
 			>
@@ -60,9 +62,9 @@ const SairVideoModal = ({ functionClose, functionCloseAndLeave, isOpen }) => {
 							gravação do seu vídeo. Deseja realmente fazer isso?
 						</p>
 					</div>
-					<div>
-						<button onClick={() => closeAndLeave()}>Sim</button>
-						<button onClick={() => closeModal()}>Não</button>
+					<div className="classFlex flexModal">						
+						<button className="button button-primary" onClick={() => closeModal()}>Não</button>
+						<button className="button button-secondary" onClick={() => closeAndLeave()}>Sim</button>
 					</div>
 				</div>
 			</ReactModal>

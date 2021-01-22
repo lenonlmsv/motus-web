@@ -14,3 +14,9 @@
 .button-close-icon {
 	font-size: 30px !important;
 }
+
+.flexModal {
+	justify-content: space-between;
+	max-width: 240px;
+	margin: 20px auto 0 auto!important;
+}

@@ -40,7 +40,7 @@ const LoginModal = ({ functionClose }) => {
 						maxWidth: 550,
 						marginLeft: "50%",
 						left: -275,
-						height: 400,
+						height: 360,
 						marginTop: -195,
 						top: "50%",
 						width: "100%",
