@@ -6,7 +6,8 @@ require("dotenv").config();
 
 const api = axios.create({
 	//baseURL: process.env.REACT_APP_API_ENDPOINT
-	baseURL: "http://localhost:8000/",
+	//baseURL: "http://localhost:8000/",
+	baseURL: "http://ec2-23-22-2-171.compute-1.amazonaws.com:8000/",
 });
 
 export const APILogin = (json) => {

@@ -27,7 +27,11 @@ import { useAlert } from "react-alert";
 import { imageLoading } from "../../images/images";
 
 //Functions
-import { checkFileTypeFiles } from "../../services/functions";
+import {
+	checkFileTypeFiles,
+	verificarTelefones,
+	constHandleFreeNumber,
+} from "../../services/functions";
 import BoxLoading from "./Componentes/BoxLoading";
 
 export default function CandidatoAcesso() {
@@ -77,23 +81,6 @@ export default function CandidatoAcesso() {
 	//         return false;
 	//     }
 	// }
-
-	const verificarTelefones = (celular, numeroLivre) => {
-		const regEx = /^\([0-9]{2}\) \9[0-9]{4}-[0-9]{4}$/;
-
-		if (regEx.test(celular) | (phone.length > 8)) {
-			return true;
-		}
-
-		return false;
-	};
-
-	const constHandleFreeNumber = (e) => {
-		const newNumber = e.target.value.replace(/[^0-9()-\s+]+/, "");
-		//console.log(newNumber);
-		//	console.log(e.target.value);
-		setPhone(newNumber);
-	};
 
 	const handleResume = (e) => {
 		//Valida o tipo do arquivo
@@ -154,13 +141,6 @@ export default function CandidatoAcesso() {
 		//console.log(v);
 	};
 
-	const loadingForcado = (valor) => {
-		let i = 0;
-		while (i <= valor) {
-			i++;
-		}
-	};
-
 	async function handleSubmit(e) {
 		e.preventDefault();
 		setIsSending(true);
@@ -171,9 +151,8 @@ export default function CandidatoAcesso() {
 			return;
 		}
 
-		loadingForcado(100000000);
-
 		if (!checkPasswords()) {
+			setIsSending(false);
 			return;
 		}
 
@@ -236,7 +215,6 @@ export default function CandidatoAcesso() {
 			setTimeout(() => history.push("/oportunidades"), 800);
 			setIsSending(false);
 		} catch (e) {
-			//const error = e.toString();
 			setIsSending(false);
 			showError(e.response.data.message);
 		}
@@ -325,18 +303,6 @@ export default function CandidatoAcesso() {
 							</span>
 						</label>
 
-						{/* <input 
-                            id="phone-number" 
-                            value={cellNumber}
-                            type="text"
-                            placeholder='(00) 00000-0000'
-                            pattern = "[0-9()\\- ]+"
-                            maxLength="14"
-                            minLength="14"
-                            title="Somente números"
-                            onChange={event => {setCellNumber(event.target.value)}}
-                            required/>  */}
-
 						<InputPhoneNumber
 							value={cellNumber}
 							onChange={(event) => {
@@ -353,25 +319,13 @@ export default function CandidatoAcesso() {
 
 						<InputPhone
 							value={phone}
-							onChange={constHandleFreeNumber}
+							onChange={(event) =>
+								constHandleFreeNumber(
+									event.target.value,
+									setPhone
+								)
+							}
 						/>
-
-						{/*
-							<input
-								id="phone"
-								value={phone}
-								type="text"
-								pattern="[0-9]+"
-								//placeholder="(00) 0000-0000"
-								maxLength="10"
-								minLength="1"
-								title="Somente números"
-								onChange={(event) => {
-									setPhone(event.target.value);
-								}}
-								//required
-							/>
-						*/}
 					</div>
 
 					<div className="input-block">

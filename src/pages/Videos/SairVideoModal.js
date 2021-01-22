@@ -1,22 +1,25 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
-import LoginComponente from "./LoginComponente";
 
 import { Link, useHistory } from "react-router-dom";
 
 import { GrFormClose } from "react-icons/gr";
 
-import "./Styles/LoginModal.css";
-ReactModal.setAppElement("#root");
-const LoginModal = ({ functionClose }) => {
-	const [isOpen, setIsOpen] = useState(true);
+import "./Styles/SairVideoModal.css";
+//ReactModal.setAppElement("#root");
+const SairVideoModal = ({ functionClose, functionCloseAndLeave, isOpen }) => {
+	//const [isOpen, setIsOpen] = useState(true);
 	const history = useHistory();
 
 	const closeModal = () => {
-		setIsOpen(false);
-		functionClose();
+		//setIsOpen(false);
+		functionClose(false);
 		//console.log("modal close clicado");
 		//history.push("/oportunidades");
+	};
+
+	const closeAndLeave = () => {
+		functionCloseAndLeave();
 	};
 
 	return (
@@ -47,14 +50,24 @@ const LoginModal = ({ functionClose }) => {
 					},
 				}}
 			>
-				<Link onClick={() => closeModal()} className="button-close">
+				<p onClick={() => closeModal()} className="button-close">
 					<GrFormClose className="button-close-icon" />
-				</Link>
-
-				<LoginComponente closeModal={closeModal} />
+				</p>
+				<div>
+					<div>
+						<p>
+							Ao clicar em voltar, você estará cancelando a
+							gravação do seu vídeo. Deseja realmente fazer isso?
+						</p>
+					</div>
+					<div>
+						<button onClick={() => closeAndLeave()}>Sim</button>
+						<button onClick={() => closeModal()}>Não</button>
+					</div>
+				</div>
 			</ReactModal>
 		</div>
 	);
 };
 
-export default LoginModal;
+export default SairVideoModal;

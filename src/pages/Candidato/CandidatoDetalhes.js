@@ -12,8 +12,6 @@ import CurriculoLista from "./Componentes/CurriculoLista";
 import { InputPhoneNumber, InputPhone } from "./Componentes/Input";
 import CandidaturaLista from "./Componentes/CandidaturaLista";
 
-import { imageLoading } from "../../images/images";
-
 //API and Auth
 import api from "../../services/api";
 import { getHashId, setUserName } from "../../services/auth";
@@ -29,6 +27,10 @@ import { FaDownload, FaTrash } from "react-icons/fa";
 //Alert
 import { useAlert } from "react-alert";
 import BoxLoading from "./Componentes/BoxLoading";
+import {
+	verificarTelefones,
+	constHandleFreeNumber,
+} from "../../services/functions";
 
 function CandidatoDetalhes() {
 	const alert = useAlert();
@@ -90,9 +92,10 @@ function CandidatoDetalhes() {
 		e.preventDefault();
 		setIsSending(true);
 
-		let i = 0;
-		while (i < 20000) {
-			i++;
+		if (!verificarTelefones(cellNumber, phone)) {
+			showError("Ao menos um telefone precisa ser preenchido");
+			setIsSending(false);
+			return;
 		}
 
 		const data = {
@@ -241,17 +244,6 @@ function CandidatoDetalhes() {
 							</span>
 						</label>
 
-						{/* <input 
-                            id="phone-number" 
-                            value={cellNumber}
-                            type="text"
-                            pattern = "[0-9]+"
-                            maxLength="11"
-                            minLength="11"
-                            title="Somente números"
-                            onChange={event => {setCellNumber(event.target.value)}}
-                            required/> */}
-
 						<InputPhoneNumber
 							value={cellNumber}
 							onChange={(event) => {
@@ -269,45 +261,17 @@ function CandidatoDetalhes() {
 							</span>
 						</label>
 
-						{
-							<input
-								id="phone"
-								value={phone}
-								type="text"
-								pattern="[0-9]+"
-								maxLength="30"
-								minLength="0"
-								title="Somente números"
-								onChange={(event) => {
-									setPhone(event.target.value);
-								}}
-								disabled={errorOnUserGet}
-							/>
-						}
-
-						{/*<InputPhone
+						<InputPhone
 							value={phone}
-							onChange={(event) => {
-								setPhone(event.target.value);
-							}}
-						/>*/}
+							onChange={(event) =>
+								constHandleFreeNumber(
+									event.target.value,
+									setPhone
+								)
+							}
+							disabled={errorOnUserGet}
+						/>
 					</div>
-
-					{/* <div className="input-block">
-                        <label htmlFor="password">Senha
-                            <span>
-                                Informe uma senha para acesso ao sistema
-                            </span>
-                        </label>
-                            
-                        <input 
-                            id="password" 
-                            value={password}
-                            maxLength="10"
-                            type="password"
-                            onChange={event => {setPassword(event.target.value)}}
-                            required/>
-                    </div> */}
 
 					<div className="input-block">
 						<a

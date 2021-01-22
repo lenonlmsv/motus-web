@@ -148,13 +148,6 @@ function VideoDescricao() {
 						/>
 					) : (
 						<div className="video-buttons">
-							<label
-								htmlFor="video-resume"
-								className="button button-secondary"
-							>
-								Selecionar vídeo
-							</label>
-
 							<input
 								id="video-resume"
 								type="file"
@@ -168,6 +161,12 @@ function VideoDescricao() {
 							>
 								Gravar Vídeo
 							</Link>
+							<label
+								htmlFor="video-resume"
+								className="button button-secondary"
+							>
+								Selecionar um vídeo
+							</label>
 
 							{resumeFile && (
 								<button

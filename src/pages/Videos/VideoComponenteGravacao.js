@@ -19,6 +19,7 @@ import { checkFileTypeVideos } from "../../services/functions";
 
 //Alert
 import { useAlert } from "react-alert";
+import SairVideoModal from "./SairVideoModal";
 
 function VideoComponenteGravacao(props) {
 	useEffect(() => {
@@ -33,6 +34,7 @@ function VideoComponenteGravacao(props) {
 	const [returnTo, setreturnTo] = useState(props.returnTo);
 	const [loading, setLoading] = useState(false);
 	const [isGravando, setIsGravando] = useState(false);
+	const [openModal, setOpenModal] = useState(false);
 
 	const alert = useAlert();
 
@@ -82,7 +84,7 @@ function VideoComponenteGravacao(props) {
 					//Destination after record video
 					if (props.returnTo === "") {
 						setreturnTo("");
-						hideButtons(["#buttonUpload"]);
+						//hideButtons(["#buttonUpload"]);
 					}
 				})
 
@@ -249,7 +251,7 @@ function VideoComponenteGravacao(props) {
 	}
 
 	function stopT() {
-		//tempo = props.time;
+		tempo = props.time;
 		clearInterval(cron);
 		document.querySelector("p.timer").innerText = "";
 	}
@@ -277,6 +279,11 @@ function VideoComponenteGravacao(props) {
 
 	const closeOnExit = () => {
 		document.querySelector("#buttonStop").click();
+	};
+
+	const leavePage = () => {
+		setOpenModal(false);
+		history.push(`/oportunidades/${returnTo}`);
 	};
 
 	//Mostrar e ocultar botões
@@ -373,6 +380,12 @@ function VideoComponenteGravacao(props) {
 				//console.log("Camera? " + isCameraAllowed + " loading: " + loading)
 			}
 
+			<SairVideoModal
+				isOpen={openModal}
+				functionClose={setOpenModal}
+				functionCloseAndLeave={leavePage}
+			/>
+
 			{isCameraAllowed &&
 				(!loading && isCameraAllowed ? (
 					//
@@ -448,19 +461,21 @@ function VideoComponenteGravacao(props) {
 			<div id="back-button">
 				<button
 					onClick={() => {
-						if (isCameraAllowed) {
+						if (isCameraAllowed & isGravando) {
 							if (isGravando) {
 								closeOnExit();
-								setTimeout(
+								setOpenModal(true);
+								/*setTimeout(
 									() =>
 										history.push(
 											`/oportunidades/${returnTo}`
 										),
 									500
-								);
+								);*/
 							}
+						} else {
+							history.push(`/oportunidades/${returnTo}`);
 						}
-						history.push(`/oportunidades/${returnTo}`);
 					}}
 					className="button button-secondary"
 				>
