@@ -1,13 +1,14 @@
 import axios from "axios";
-import { getToken } from "./auth";
+import { getToken, getExpirationDate } from "./auth";
 import { login } from "./auth";
+import { checkTokenExpiration } from "./functions";
 
 require("dotenv").config();
 
 const api = axios.create({
 	//baseURL: process.env.REACT_APP_API_ENDPOINT
-	//baseURL: "http://localhost:8000/",
-	baseURL: "http://ec2-23-22-2-171.compute-1.amazonaws.com:8000/",
+	baseURL: "http://localhost:8000/",
+	//baseURL: "http://ec2-23-22-2-171.compute-1.amazonaws.com:8000/",
 });
 
 export const APILogin = (json) => {
@@ -22,7 +23,15 @@ export const APILogin = (json) => {
 
 api.interceptors.request.use(async (config) => {
 	const token = getToken();
+
 	if (token) {
+		//console.log();
+		checkTokenExpiration(
+			Date.parse(getExpirationDate()),
+			Date.parse(new Date())
+		)
+			? console.log("Precisa renovar")
+			: console.log("Não precisa renovar ainda");
 		////console.log("Tem token");
 		config.headers.Authorization = `Bearer ${token}`;
 	} else {

@@ -67,3 +67,13 @@ export const constHandleFreeNumber = (e, setPhone) => {
 	//	console.log(e.target.value);
 	setPhone(newNumber);
 };
+
+export const checkTokenExpiration = (horaTokenExpira, horaAtual) => {
+	var diff = Math.abs(horaTokenExpira - horaAtual) / 3600000;
+	//	console.log("Hora de expiração do token: " + horaTokenExpira);
+	//console.log("Hora atual: " + horaAtual);
+	//console.log(diff);
+
+	if (diff <= 0) return true;
+	else return false;
+};
